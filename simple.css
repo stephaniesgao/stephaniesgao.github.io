@@ -330,3 +330,13 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){height:265px;min-height:265px;max-height:265px}
 .postcard-grid .postcard-note{padding-bottom:64px}
 @media(max-width:380px){.postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){height:300px;min-height:300px;max-height:300px}}
+
+/* A real Instagram glimpse inside the camera popup. */
+.instagram-popup{width:min(430px,calc(100% - 32px));max-height:min(90vh,760px);overflow:auto}
+.instagram-popup .content-close{position:sticky;top:0;z-index:2;background:var(--paper)}
+.instagram-popup h2{margin-bottom:8px}
+.instagram-popup p{margin-bottom:12px}
+.instagram-preview{border:1px solid var(--line);background:#fff;margin:14px 0 12px;overflow:hidden}
+.instagram-preview iframe{display:block;width:100%;height:540px;border:0;background:#fff}
+.instagram-profile-link{display:inline-block;margin-bottom:2px}
+@media(max-width:420px){.instagram-preview iframe{height:480px}}
