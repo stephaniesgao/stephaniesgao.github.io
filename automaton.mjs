@@ -1,0 +1,3 @@
+export function closure(states){const result=new Set(states);if(result.has('q2'))result.add('q0');return [...result].sort()}
+export function advance(states,symbol){if(!['0','1'].includes(symbol))throw new Error('Use only 0 and 1.');const next=new Set();for(const state of closure(states)){if(state==='q0'&&symbol==='0')next.add('q1');if(state==='q1'&&symbol==='1'){next.add('q1');next.add('q2')}if(state==='q2'&&symbol==='0')next.add('q0')}return closure(next)}
+export function trace(word){if(!/^[01]*$/.test(word))throw new Error('Use only 0 and 1.');const steps=[{symbol:'ε',states:closure(['q0'])}];for(const symbol of word)steps.push({symbol,states:advance(steps.at(-1).states,symbol)});return steps}
