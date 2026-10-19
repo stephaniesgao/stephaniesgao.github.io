@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 86" fill="none" aria-hidden="true">
+  <path d="M6 5Q22 6 39 5L73 6L74 80Q50 81 7 80Z" fill="#ece6da" stroke="#3b3832" stroke-width="1.7" stroke-dasharray="2 2.5" stroke-linejoin="round"/>
+  <path d="M12 11Q42 10 68 12L69 74Q41 75 12 73Z" stroke="#958d81" stroke-width=".8"/>
+  <path d="M24 54L24 37Q25 23 40 22Q55 23 56 37L56 54" stroke="#393731" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M29 53L29 37Q30 28 40 27Q50 28 51 37L51 53M40 27L40 52" stroke="#8f887d" stroke-width="1"/>
+  <path d="M20 53Q40 51 60 53L59 58Q40 57 21 59Z" fill="#d9d1c4" stroke="#393731" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M25 56L25 61M31 57L31 62M37 57L37 62M43 57L43 62M49 57L49 62M55 56L55 61M22 62Q40 64 58 62" stroke="#3b3832" stroke-width=".8" stroke-linecap="round"/>
+  <path d="M57 27Q62 25 63 21M60 28Q65 29 67 25" stroke="#918a7e" stroke-width=".9" stroke-linecap="round"/>
+  <text x="40" y="72" text-anchor="middle" fill="#403d37" font-family="Arial,sans-serif" font-size="6" letter-spacing="1">ARGENTINA</text>
+</svg>

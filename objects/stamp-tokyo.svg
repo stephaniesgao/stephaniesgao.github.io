@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 86" fill="none" aria-hidden="true">
+  <path d="M6 5Q22 6 39 5L73 6L74 80Q50 81 7 80Z" fill="#ece6da" stroke="#3b3832" stroke-width="1.7" stroke-dasharray="2 2.5" stroke-linejoin="round"/>
+  <path d="M12 11Q42 10 68 12L69 74Q41 75 12 73Z" stroke="#958d81" stroke-width=".8"/>
+  <path d="M22 31Q23 26 28 26L52 26Q57 27 58 31L57 53Q56 57 52 58L28 58Q23 57 22 53Z" fill="#dcd5c9" stroke="#393731" stroke-width="1.7" stroke-linejoin="round"/>
+  <path d="M26 31L54 31L54 44L26 44Z" fill="#ece6da" stroke="#393731" stroke-width="1.2"/>
+  <path d="M40 31L40 44M25 48Q39 50 55 48M29 58L26 64M51 58L54 64M24 65L56 65" stroke="#8e877b" stroke-width="1" stroke-linecap="round"/>
+  <circle cx="29" cy="52" r="1.6" fill="#393731"/><circle cx="51" cy="52" r="1.6" fill="#393731"/>
+  <path d="M33 23L47 23M36 20L44 20" stroke="#9c9488" stroke-width=".8" stroke-linecap="round"/>
+  <text x="40" y="72" text-anchor="middle" fill="#403d37" font-family="Arial,sans-serif" font-size="6" letter-spacing="1.2">TOKYO</text>
+</svg>

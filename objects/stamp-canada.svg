@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 86" fill="none" aria-hidden="true">
+  <path d="M6 5Q22 6 39 5L73 6L74 80Q50 81 7 80Z" fill="#ece6da" stroke="#3b3832" stroke-width="1.7" stroke-dasharray="2 2.5" stroke-linejoin="round"/>
+  <path d="M12 11Q42 10 68 12L69 74Q41 75 12 73Z" stroke="#958d81" stroke-width=".8"/>
+  <path d="M21 57Q31 56 41 60Q50 62 60 57M14 63Q30 60 42 65Q54 67 67 62" stroke="#8d8579" stroke-width=".9" stroke-linecap="round"/>
+  <path d="M26 53L26 27M18 42L26 25L34 42M20 35L26 21L32 35M22 29L26 17L30 29M47 56L47 31M40 45L47 29L54 45M42 37L47 25L52 37M44 31L47 21L50 31" stroke="#393731" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25 49Q27 50 29 49M46 52Q49 53 51 52M35 54Q40 50 44 52" stroke="#aca498" stroke-width=".8" stroke-linecap="round"/>
+  <text x="40" y="72" text-anchor="middle" fill="#403d37" font-family="Arial,sans-serif" font-size="6" letter-spacing="1.2">CANADA</text>
+</svg>
