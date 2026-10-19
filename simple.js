@@ -95,8 +95,7 @@ render();
 
 const ownerTimezone='America/Argentina/Buenos_Aires';
 const visitorTimezone=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
-function clockParts(zone,now){return {time:new Intl.DateTimeFormat('en-GB',{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now),date:new Intl.DateTimeFormat('en-US',{timeZone:zone,month:'short',day:'numeric'}).format(now),offset:new Intl.DateTimeFormat('en',{timeZone:zone,timeZoneName:'shortOffset'}).formatToParts(now).find(p=>p.type==='timeZoneName').value}}
-function updateClocks(){const now=new Date();for(const [id,zone,label] of [['visitor-clock',visitorTimezone,'you'],['steph-clock',ownerTimezone,'me']]){const p=clockParts(zone,now);const node=document.getElementById(id);node.querySelector('time').textContent=p.time;node.querySelector('time').dateTime=now.toISOString();node.querySelector('.clock-place').textContent=zone.split('/').pop().replaceAll('_',' ');node.querySelector('.clock-meta').textContent=p.date+' · '+p.offset;node.setAttribute('aria-label',label+': '+p.time+', '+zone+', '+p.date+', '+p.offset)}}
+function updateClocks(){const now=new Date();for(const [id,zone,label] of [['visitor-clock',visitorTimezone,'you'],['steph-clock',ownerTimezone,'me']]){const time=new Intl.DateTimeFormat('en-GB',{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now);const place=zone.split('/').pop().replaceAll('_',' ');const node=document.getElementById(id);node.querySelector('time').textContent=time;node.querySelector('time').dateTime=now.toISOString();node.querySelector('.clock-place').textContent=place;node.setAttribute('aria-label',label+': '+time+' in '+place)}}
 updateClocks();setInterval(updateClocks,15000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateClocks()});
 
 const agentMenu=document.querySelector('.agent-menu');

@@ -308,3 +308,12 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .hobby-trio .photo-stack,.hobby-trio .scrap-photo{height:auto}
 .hobby-trio .scrap-photo{width:min(130px,100%)}
 .hobby-trio .scrap-photo img{height:auto;aspect-ratio:1.32;object-fit:cover}
+
+/* Quiet, single-line local times */
+.world-clocks{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:0;padding-top:0;margin-top:20px;font:10px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+.world-clocks>div{display:flex;align-items:baseline;gap:5px;min-width:0;white-space:nowrap}
+.world-clocks time{font:inherit;color:inherit;justify-self:auto}
+.clock-owner{align-self:auto}
+.clock-place{grid-column:auto}
+.clock-place::before{content:"·";margin-right:5px}
+@media(max-width:420px){.world-clocks{grid-template-columns:1fr;gap:4px}}
