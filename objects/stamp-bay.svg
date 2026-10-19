@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 86" fill="none" aria-hidden="true">
   <path d="M6 5Q22 6 39 5L73 6L74 80Q50 81 7 80Z" fill="#ece6da" stroke="#3b3832" stroke-width="1.7" stroke-dasharray="2 2.5" stroke-linejoin="round"/>
   <path d="M12 11Q42 10 68 12L69 74Q41 75 12 73Z" stroke="#958d81" stroke-width=".8"/>
-  <path d="M23 60Q25 39 24 20M29 59Q29 39 31 17M49 60Q48 39 50 18M56 59Q55 40 56 21" stroke="#3b3832" stroke-width="2" stroke-linecap="round"/>
-  <path d="M24 30Q17 29 16 23Q19 19 24 21M31 27Q38 25 39 20Q36 17 31 18M50 27Q44 26 42 21Q45 18 50 19M56 31Q63 28 64 23Q62 20 56 22" stroke="#3b3832" stroke-width="1.4" stroke-linejoin="round"/>
-  <path d="M35 59Q39 52 43 59M15 61Q26 58 39 61Q54 58 66 61M31 36L29 42M51 34L49 39" stroke="#90887d" stroke-width=".9" stroke-linecap="round"/>
+  <path d="M23 59L25 20M29 59L28 19M47 59L48 23M54 59L52 21" stroke="#3b3832" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M25 22L19 25L22 27L16 31M27 23L33 25L31 28L37 31M25 19L20 20L23 22M28 19L34 21M49 25L43 28L46 30L40 34M52 25L59 28L56 31L63 34M49 21L44 22M52 21L58 23" stroke="#3b3832" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 38L22 36M32 38L36 36M41 42L45 40M55 40L61 38M24 32L19 35M53 34L60 37M24 44L22 50M51 43L53 49M15 61Q27 58 39 61Q54 58 66 61" stroke="#90887d" stroke-width=".9" stroke-linecap="round"/>
   <text x="40" y="72" text-anchor="middle" fill="#403d37" font-family="Arial,sans-serif" font-size="6" letter-spacing="1">BAY AREA</text>
 </svg>
