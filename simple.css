@@ -375,29 +375,29 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .book-page .book-title{font:600 18px/1.3 Georgia,serif;color:#37332e}
 @media(max-width:460px){.book-page .book-title{font-size:14px}}
 
-/* Outside of work is a small personal collection, not a component grid. */
+/* Outside of work: a pair of shelves, arranged like objects kept at home. */
 .scrapbook{padding-top:0}
 .scrapbook header{margin:0 0 18px}
 .scrapbook header h1{font:500 24px/1.25 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.65px;margin:0}
-.scrapbook .hobby-shelf,.scrapbook .hobby-trio{display:grid;position:relative;align-items:end;gap:10px;margin:0 0 32px;padding:0 0 8px;border-bottom:1px solid var(--line);perspective:none}
-.scrapbook .hobby-shelf{grid-template-columns:minmax(0,.94fr) minmax(0,1.04fr) minmax(0,1.02fr)}
-.scrapbook .hobby-trio{grid-template-columns:minmax(0,.85fr) minmax(0,.82fr) minmax(0,1.33fr)}
-.scrapbook .hobby-shelf:after,.scrapbook .hobby-trio:after{content:none;animation:none}
-.scrapbook .hobby-shelf>section,.scrapbook .hobby-trio>section{position:relative;height:150px;min-height:150px!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;animation:none!important;opacity:1!important;filter:none!important;transition:none!important;transform:none!important}
-.scrapbook .shelf-title{display:block!important;position:absolute;z-index:3;top:5px;left:0!important;right:0;width:100%;margin:0!important;text-align:left!important;color:var(--muted);font:400 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif!important;letter-spacing:0!important;white-space:normal;transform:none!important}
-.scrapbook .camera-corner .shelf-title{padding-left:8px}
+.scrapbook .hobby-shelf,.scrapbook .hobby-trio{display:grid;position:relative;align-items:end;gap:8px;margin:0 0 36px;padding:0 0 9px;border-bottom:2px solid var(--line);perspective:none}
+.scrapbook .hobby-shelf{grid-template-columns:minmax(0,.95fr) minmax(0,1.1fr) minmax(0,1.05fr)}
+.scrapbook .hobby-trio{grid-template-columns:minmax(0,.82fr) minmax(0,.72fr) minmax(0,1.46fr)}
+.scrapbook .hobby-shelf:after,.scrapbook .hobby-trio:after{content:'';position:absolute;left:3px;right:1px;bottom:-7px;height:4px;background:var(--line);opacity:.4;animation:none;transform:none}
+.scrapbook .hobby-shelf>section,.scrapbook .hobby-trio>section{position:relative;height:173px;min-height:173px!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;animation:none!important;opacity:1!important;filter:none!important;transition:none!important;transform:none!important}
+.scrapbook .shelf-title{display:block!important;position:absolute;z-index:3;top:0;left:0!important;right:0;width:100%;margin:0!important;text-align:left!important;color:var(--ink);font:500 11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif!important;letter-spacing:-.15px!important;white-space:normal;transform:none!important}
+.scrapbook .camera-corner .shelf-title{top:15px;padding-left:8px}
 .scrapbook .record-section .shelf-title{padding-left:15px}
-.scrapbook .romcom-corner .shelf-title{padding-left:2px}
+.scrapbook .romcom-corner .shelf-title{top:11px;padding-left:2px}
 .scrapbook .scrap-spread .shelf-title{padding-left:1px}
-.scrapbook .scrap-reading .shelf-title{padding-left:10px}
-.scrapbook .field-trip .shelf-title{padding-left:12px}
-.scrapbook .camera-body{display:block!important;left:45%;bottom:0;transform:translateX(-50%) rotate(-1deg);transition:transform .2s ease!important}
-.scrapbook .mini-turntable{left:52%;bottom:0;transform:translateX(-50%);transition:transform .2s ease!important}
-.scrapbook .tiny-tv{left:51%;bottom:0;transform:translateX(-50%);transition:transform .2s ease!important}
-.scrapbook .music-box{left:46%;bottom:0;transform:translateX(-50%);transition:transform .2s ease!important}
-.scrapbook .books-open{left:50%;bottom:0}
-.scrapbook .photo-stack{left:2%;right:2%;bottom:0;transform:rotate(1deg);transition:transform .2s ease!important}
-.scrapbook .scrap-photo{width:min(145px,100%)}
+.scrapbook .scrap-reading .shelf-title{top:14px;padding-left:10px}
+.scrapbook .field-trip .shelf-title{padding-left:12px;font:italic 14px/1.1 Georgia,serif!important;letter-spacing:0!important}
+.scrapbook .camera-body{display:block!important;left:46%;bottom:0;width:min(150px,100%);height:auto;aspect-ratio:120/82;transform:translateX(-50%) rotate(-2deg);transition:transform .25s ease!important}
+.scrapbook .mini-turntable{left:52%;bottom:0;width:min(152px,100%);transform:translateX(-50%);transition:transform .25s ease!important}
+.scrapbook .tiny-tv{left:51%;bottom:0;width:min(166px,100%);transform:translateX(-50%);transition:transform .25s ease!important}
+.scrapbook .music-box{left:46%;bottom:0;width:min(126px,100%);transform:translateX(-50%);transition:transform .25s ease!important}
+.scrapbook .books-open{left:50%;bottom:0;width:min(130px,100%)}
+.scrapbook .photo-stack{left:0;right:0;bottom:0;transform:rotate(2deg);transition:transform .25s ease!important}
+.scrapbook .scrap-photo{width:min(176px,100%)}
 .scrapbook .scrap-photo img{height:auto;aspect-ratio:1.32;object-fit:cover}
 .scrapbook .camera-body img,.scrapbook .camera-body:after,.scrapbook .turntable-deck,.scrapbook .tv-aerial,.scrapbook .tv-screen:after,.scrapbook .ballerina,.scrapbook .book-spine,.scrapbook .scrap-photo{animation:none!important}
 .scrapbook .camera-body:after{content:none!important}
@@ -408,7 +408,7 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .scrapbook .field-trip:hover .photo-stack{transform:rotate(0) translateY(-2px);filter:none}
 .scrapbook .dance-open:hover .ballerina,.scrapbook .dance-open:focus-visible .ballerina{animation:ballerina-spin 3s linear infinite!important}
 .scrapbook .books-open:hover .book-spines,.scrapbook .books-open:focus-visible .book-spines{transform:translateY(-3px)}
-.scrapbook .book-spines{gap:3px}
+.scrapbook .book-spines{gap:5px}
 .scrapbook .book-spine{flex:0 0 auto;width:19px;border-width:1px;box-shadow:1px 2px 0 #0002}
 .scrapbook .book-spine:nth-child(1){width:17px}
 .scrapbook .book-spine:nth-child(2){width:21px}
@@ -416,5 +416,5 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .scrapbook>.little-gallery{display:flex;align-items:baseline;gap:14px;margin:6px 0 30px;padding:0;text-align:left;border:0}
 .scrapbook .little-gallery h2{font:400 11px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:0;color:var(--muted);white-space:nowrap;margin:0}
 .scrapbook .little-gallery .gallery-empty{font:11px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted);margin:0}
-@media(max-width:540px){.scrapbook .hobby-shelf,.scrapbook .hobby-trio{gap:5px}.scrapbook .shelf-title{font-size:10px}.scrapbook .hobby-shelf>section{height:137px;min-height:137px!important}.scrapbook .hobby-trio>section{height:153px;min-height:153px!important}.scrapbook .photo-stack{left:0;right:0}.scrapbook .little-gallery{display:block}.scrapbook .little-gallery .gallery-empty{margin-top:3px}}
+@media(max-width:540px){.scrapbook .hobby-shelf,.scrapbook .hobby-trio{gap:4px}.scrapbook .shelf-title{font-size:10px!important}.scrapbook .hobby-shelf>section{height:132px;min-height:132px!important}.scrapbook .hobby-trio>section{height:151px;min-height:151px!important}.scrapbook .camera-body{width:min(126px,100%)}.scrapbook .mini-turntable{width:min(120px,100%)}.scrapbook .tiny-tv{width:min(132px,100%)}.scrapbook .music-box{width:min(106px,100%)}.scrapbook .books-open{width:min(110px,100%)}.scrapbook .scrap-photo{width:min(150px,100%)}.scrapbook .photo-stack{left:0;right:0}.scrapbook .little-gallery{display:block}.scrapbook .little-gallery .gallery-empty{margin-top:3px}}
 @media(prefers-reduced-motion:reduce){.scrapbook .dance-open:hover .ballerina,.scrapbook .dance-open:focus-visible .ballerina{animation:none!important}}
