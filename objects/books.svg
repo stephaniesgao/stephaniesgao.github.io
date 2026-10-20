@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 105" fill="none" role="img" aria-label="Three books with blank spines">
+  <g stroke="#34322f" stroke-linejoin="round" stroke-linecap="round">
+    <g transform="rotate(-6 35 100)">
+      <path d="M19 20h24v80H19z" fill="#e6e1d7" stroke-width="1.5"/>
+      <path d="M22 20v80m4-80v80" stroke="#999286" stroke-width=".8"/>
+      <path d="M30 29h8m-8 3h8m-8 51h8m-8 3h8" stroke="#8f897d" stroke-width=".75"/>
+    </g>
+    <g>
+      <path d="M44 10h29v90H44z" fill="#d8d2c7" stroke-width="1.6"/>
+      <path d="M48 10v90m21-90v90" stroke="#9b9589" stroke-width=".8"/>
+      <path d="M55 21h10m-10 3h10m-10 61h10m-10 3h10" stroke="#817a6f" stroke-width=".85"/>
+    </g>
+    <g transform="rotate(6 84 100)">
+      <path d="M74 24h25v76H74z" fill="#ebe7de" stroke-width="1.5"/>
+      <path d="M78 24v76m17-76v76" stroke="#a39c90" stroke-width=".8"/>
+      <path d="M82 32h9m-9 3h9m-9 48h9m-9 3h9" stroke="#928b7f" stroke-width=".75"/>
+    </g>
+  </g>
+</svg>

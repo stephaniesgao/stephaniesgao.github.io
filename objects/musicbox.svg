@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 118" fill="none" aria-hidden="true">
- <path d="M17 85L17 39Q18 13 47 10Q80 5 101 32L102 85" fill="#ebe5da" stroke="#3b3934" stroke-width="1.8"/>
- <path d="M22 80L22 40Q23 18 49 15Q78 11 96 34L97 80" stroke="#9f988e" stroke-width=".9"/>
- <path d="M13 84Q51 79 107 84L109 104Q108 108 103 109L18 109Q13 108 12 104Z" fill="#e2dbcf" stroke="#3b3934" stroke-width="1.8" stroke-linejoin="round"/>
- <path d="M15 89Q60 86 106 89M18 103Q57 105 102 102" stroke="#aaa297" stroke-width=".8"/>
- <path d="M26 109L25 113M94 109L95 113" stroke="#3b3934" stroke-width="1.4"/>
- <path d="M56 96Q60 92 64 96Q67 99 63 101Q59 103 56 99Z" fill="#c6beb1" stroke="#3b3934" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 118" fill="none" role="img" aria-label="Music box illustration">
+  <g stroke="#33312d" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M15 83V39C15 18 34 8 59 8s46 12 46 33v42Z" fill="#e8e4da" stroke-width="1.7"/>
+    <path d="M20 82V40c0-18 17-27 39-27s41 10 41 28v41" stroke="#9d978c" stroke-width=".9"/>
+    <path d="M26 82V41c0-13 14-23 33-23 21 0 34 11 34 24v40" stroke="#c5beb3" stroke-width=".7"/>
+    <path d="M18 80c29-3 58-3 85 0" stroke="#5b564f" stroke-width="1.3"/>
+    <path d="M13 82c31-3 65-3 94 0v23c0 3-2 5-5 5H18c-3 0-5-2-5-5V82Z" fill="#dcd6cb" stroke-width="1.7"/>
+    <path d="M17 87c29-2 59-2 86 0M17 103h86" stroke="#9d968b" stroke-width=".75"/>
+    <path d="M30 110v3h9v-3m43 0v3h9v-3" fill="#b1a99d" stroke-width=".9"/>
+    <circle cx="60" cy="96" r="4" fill="#eee9df" stroke-width="1.1"/>
+    <circle cx="60" cy="96" r="1" fill="#777168" stroke-width=".5"/>
+    <path d="M47 79h26" stroke="#6b665e" stroke-width=".8"/>
+  </g>
 </svg>

@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100" fill="none" aria-hidden="true">
- <path d="M31 23L13 3M32 22L48 2" stroke="#393732" stroke-width="2" stroke-linecap="round"/>
- <path d="M10 23Q9 20 14 20L135 20Q140 21 140 25L141 82Q141 86 137 87L14 88Q10 87 10 83Z" fill="#eae4d9" stroke="#393732" stroke-width="2" stroke-linejoin="round"/>
- <path d="M13 26Q14 23 18 23L135 23M14 83Q75 85 136 82" stroke="#8d867b" stroke-width=".8"/>
- <path d="M29 88L27 93L43 93L45 88M111 87L109 93L125 93L127 87" fill="#cfc8bc" stroke="#393732" stroke-width="1.2"/>
- <path d="M19 31Q19 27 23 27L109 27Q115 27 115 33L115 75Q115 80 110 80L24 80Q19 80 19 75Z" fill="#242424" stroke="#393732" stroke-width="1.6"/>
- <path d="M126 33L134 33M126 37L134 37M126 74L134 74" stroke="#706a60" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100" fill="none" role="img" aria-label="Vintage television illustration">
+  <g stroke="#33312d" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M30 22 12 4m19 18L49 4" stroke-width="1.8"/>
+    <circle cx="12" cy="4" r="1.1" fill="#33312d" stroke-width=".6"/>
+    <circle cx="49" cy="4" r="1.1" fill="#33312d" stroke-width=".6"/>
+    <path d="M14 21h122c3 0 5 3 5 6v56c0 3-2 5-5 5H14c-3 0-5-2-5-5V27c0-3 2-6 5-6Z" fill="#e7e2d8" stroke-width="1.7"/>
+    <path d="M13 25h124M13 84h124" stroke="#a59e92" stroke-width=".8"/>
+    <path d="M27 88v6h17l2-6m63 0 2 6h16v-6" fill="#c5bdb1" stroke-width="1.2"/>
+    <path d="M19 31c0-3 2-5 5-5h85c5 0 7 3 7 7v43c0 4-3 6-7 6H25c-4 0-6-3-6-6V31Z" fill="#1e201f" stroke-width="1.6"/>
+    <path d="M22 32c1-2 3-3 5-3h80m-85 49h85" stroke="#a9a59e" stroke-width=".7"/>
+    <path d="M121 29h14m-14 4h14m-14 46h14" stroke="#8f897e" stroke-width=".8"/>
+    <path d="M121 70h13m-13 3h13" stroke="#67635a" stroke-width=".8"/>
+  </g>
 </svg>

@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 94" fill="none" aria-hidden="true">
- <path d="M9 10Q9 7 13 7L116 8Q120 8 120 12L121 77Q121 81 117 82L12 83Q8 82 8 78Z" fill="#eae4d9" stroke="#383630" stroke-width="2" stroke-linejoin="round"/>
- <path d="M11 13Q55 12 117 14M13 77Q57 79 116 77" stroke="#968f83" stroke-width=".8" opacity=".8"/>
- <path d="M17 83L18 87L33 87L34 83M96 82L97 87L112 87L113 82" fill="#c4bcaf" stroke="#383630" stroke-width="1.2"/>
- <path d="M84 20L109 20M84 24L103 24" stroke="#aaa397" stroke-width=".8"/>
- <path d="M89 71L107 71" stroke="#777168" stroke-width=".8"/>
- <circle cx="17" cy="17" r="2" fill="#68635a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 94" fill="none" role="img" aria-label="Record player illustration">
+  <g stroke="#302f2b" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M10 10h108c2 0 3 2 3 4v64c0 3-2 5-5 5H12c-3 0-5-2-5-5V14c0-2 1-4 3-4Z" fill="#e8e3d8" stroke-width="1.8"/>
+    <path d="M10 12h108M9 79h110" stroke="#a8a296" stroke-width=".8"/>
+    <path d="M11 83v5h16v-5m70 0v5h17v-5" fill="#b9b1a5" stroke-width="1.2"/>
+    <path d="M78 17h33v46H78" stroke="#b5ada1" stroke-width=".8"/>
+    <path d="M83 20h24m-24 4h17m-17 4h23" stroke="#878176" stroke-width=".75"/>
+    <circle cx="17" cy="18" r="2.1" fill="#45443f" stroke-width=".8"/>
+    <circle cx="109" cy="48" r="1.4" fill="#494640" stroke-width=".7"/>
+    <path d="M84 63h26M84 67h17M15 76h14" stroke="#8d867b" stroke-width=".8"/>
+    <path d="M33 83h48" stroke="#655f56" stroke-width=".75"/>
+  </g>
 </svg>
