@@ -1,6 +1,6 @@
 Stephanie Gao
 
-Canonical portfolio: https://stephyg0.github.io/
+Canonical portfolio: https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/
 
 About
 
@@ -61,7 +61,7 @@ Provisional description: Aura Protection is a concept for making attention bound
 
 Relevant skills: Product concept · Interaction design · Attention UX
 
-https://stephyg0.github.io/#projects/aura-protection
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/aura-protection
 
 Repository: https://github.com/stephyg0/aura-protection
 
@@ -73,7 +73,7 @@ Provisional description: Beacon is an academic concept for tsunami preparedness 
 
 Relevant skills: Emergency UX · Information architecture · Offline-first design
 
-https://stephyg0.github.io/#projects/beacon
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/beacon
 
 BFFR
 
@@ -83,7 +83,7 @@ Provisional description: BFFR is a digital reality-check concept with a delibera
 
 Relevant skills: Product concept · Conversational UX · Voice design
 
-https://stephyg0.github.io/#projects/bffr
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bffr
 
 Repository: https://github.com/stephyg0/bffr
 
@@ -95,7 +95,7 @@ Bulby is an Electron desktop overlay that transcribes microphone and call audio 
 
 Relevant skills: Electron · TypeScript · faster-whisper · Chrome extension
 
-https://stephyg0.github.io/#projects/bulby
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bulby
 
 Repository: https://github.com/stephyg0/local-meeting-copilot
 
@@ -107,7 +107,7 @@ Provisional description: Caba is an academic product concept for simplifying a c
 
 Relevant skills: Information architecture · Workflow design · Prototyping
 
-https://stephyg0.github.io/#projects/caba
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caba
 
 Caughtcha
 
@@ -117,7 +117,7 @@ Provisional description: Caughtcha is a small JavaScript experiment about notici
 
 Relevant skills: JavaScript · Interaction design · Behavioral UX
 
-https://stephyg0.github.io/#projects/caughtcha
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caughtcha
 
 Repository: https://github.com/stephyg0/caughtcha
 
@@ -129,7 +129,7 @@ Provisional description: Christmas Lights is an interactive seasonal screen expe
 
 Relevant skills: JavaScript · Motion design · Creative coding
 
-https://stephyg0.github.io/#projects/christmas-lights
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/christmas-lights
 
 Cyber for Students
 
@@ -139,7 +139,7 @@ Cyber for Students taught command-line and networking fundamentals across 16 cou
 
 Relevant skills: Linux VMs · CLI · Networking · CTF design
 
-https://stephyg0.github.io/#projects/cyber
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/cyber
 
 DelusionGPT
 
@@ -149,7 +149,7 @@ Provisional description: DelusionGPT is a TypeScript command-line companion for 
 
 Relevant skills: TypeScript · Node.js · Commander · Inquirer
 
-https://stephyg0.github.io/#projects/delusiongpt
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/delusiongpt
 
 Repository: https://github.com/stephyg0/delusiongpt
 
@@ -161,7 +161,7 @@ Category: My favourites
 
 Relevant skills: Product mechanics · Prototyping · Brand design
 
-https://stephyg0.github.io/#projects/evoluer
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/evoluer
 
 Green Carbon
 
@@ -171,7 +171,7 @@ Green Carbon is a working field-mapping and farmer-logbook prototype. It uses Le
 
 Relevant skills: Leaflet · Supabase · Geospatial data · Offline fallback
 
-https://stephyg0.github.io/#projects/green-carbon
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/green-carbon
 
 Repository: https://github.com/stephyg0/greencarbon-extension
 
@@ -183,7 +183,7 @@ Homework Hound is a Chrome extension that sends a pixel dog across the current p
 
 Relevant skills: JavaScript · Chrome extension · DOM interaction
 
-https://stephyg0.github.io/#projects/homework-hound
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/homework-hound
 
 Repository: https://github.com/stephyg0/homework-dog
 
@@ -195,7 +195,7 @@ Instagram Follow Checker compares followers and following from Instagram exports
 
 Relevant skills: Client-side ZIP parsing · JSON/HTML · Search UI
 
-https://stephyg0.github.io/#projects/instagram
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/instagram
 
 Repository: https://github.com/stephyg0/instagram-follow-checker
 
@@ -207,7 +207,7 @@ Provisional description: Lockin Twin is a focus-companion app built with React a
 
 Relevant skills: React · TypeScript · MediaPipe Face Mesh · Framer Motion
 
-https://stephyg0.github.io/#projects/lockin-twin
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/lockin-twin
 
 Repository: https://github.com/stephyg0/lock-in-twin
 
@@ -219,7 +219,7 @@ Matcha turned handwritten notes into AI flashcards and practice tests for active
 
 Relevant skills: AI study tools · Product strategy · Growth
 
-https://stephyg0.github.io/#projects/matcha
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/matcha
 
 Minerva Marketplace
 
@@ -229,7 +229,7 @@ Minerva Marketplace is a peer-to-peer marketplace designed for a student communi
 
 Relevant skills: PostgreSQL · OAuth · Scheduled email
 
-https://stephyg0.github.io/#projects/marketplace
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/marketplace
 
 Mymizu
 
@@ -239,7 +239,7 @@ Mymizu is a React prototype for making water refills easier to find and repeat. 
 
 Relevant skills: React · Google Maps · Geospatial analysis · Behavioral design
 
-https://stephyg0.github.io/#projects/mymizu
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/mymizu
 
 Repository: https://github.com/stephyg0/mymizu-extension
 
@@ -251,7 +251,7 @@ NFA Tree Lab is an interactive automata visualizer written in JavaScript. It tra
 
 Relevant skills: JavaScript · Automata · Computation trees
 
-https://stephyg0.github.io/#projects/nfa
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa
 
 Repository: https://github.com/stephyg0/nfa-tree-lab
 
@@ -263,7 +263,7 @@ Preclass is a Manifest V3 Chrome and Edge extension for Minerva Forum readings. 
 
 Relevant skills: JavaScript · Manifest V3 · Browser automation
 
-https://stephyg0.github.io/#projects/preclass
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/preclass
 
 Repository: https://github.com/stephyg0/preclass
 
@@ -275,7 +275,7 @@ Provisional description: seen. is a TypeScript and Next.js experiment built arou
 
 Relevant skills: Next.js · TypeScript · React · OpenRouter
 
-https://stephyg0.github.io/#projects/seen
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/seen
 
 Repository: https://github.com/stephyg0/seen.
 
@@ -287,7 +287,7 @@ Setlist is a weekly workout log that keeps exercise entries in the browser. It r
 
 Relevant skills: Browser storage · Duration calculation · CSV export
 
-https://stephyg0.github.io/#projects/setlist
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/setlist
 
 Repository: https://github.com/stephyg0/setlist-gym-log
 
@@ -299,7 +299,7 @@ Provisional description: Speakeasy Terminal is a concept for a hidden space navi
 
 Relevant skills: Command UX · Interaction design · Information architecture
 
-https://stephyg0.github.io/#projects/speakeasy-terminal
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/speakeasy-terminal
 
 Twin
 
@@ -309,7 +309,7 @@ Provisional description: Twin is a concept for a digital counterpart shaped by a
 
 Relevant skills: Personalization · State design · Product concept
 
-https://stephyg0.github.io/#projects/twin
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/twin
 
 Vectorizer
 
@@ -319,7 +319,7 @@ Vectorizer converts images and video frames into 50 × 50 grayscale matrices for
 
 Relevant skills: Python · Flask · Image processing · Linear algebra
 
-https://stephyg0.github.io/#projects/vectorizer
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/vectorizer
 
 Repository: https://github.com/stephyg0/vectorizer
 
@@ -331,7 +331,7 @@ Yuki Issei combined a musician’s web presence, visual identity, and short-form
 
 Relevant skills: Web development · Video editing · Creative production
 
-https://stephyg0.github.io/#projects/yuki-issei
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/yuki-issei
 
 Places
 
@@ -366,6 +366,9 @@ with love, Steph
 Outside of work
 
 Dance, hiking, makeup, content creation, rom-coms, reading, and puzzle games. Previously fenced at a national level.
+
+Book I’d recommend: Tomorrow, and Tomorrow, and Tomorrow.
+Currently reading: A Psalm for the Wild-Built.
 
 Favourite rom-coms: 10 Things I Hate About You, Notting Hill, Confessions of a Shopaholic, How to Lose a Guy in 10 Days, 27 Dresses, A Cinderella Story, Drive Me Crazy.
 
@@ -423,7 +426,7 @@ For the reflection, I chose to use this opportunity to dig deep into a profound 
 meaningful experience, writing a personal narrative to capture my thoughts and emotions
 authentically.
 
-https://stephyg0.github.io/#blog/woods
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/woods
 
 Writing: Power to the People: An Analysis of the “No Kings” Protest Movement (2025–2026)
 
@@ -693,7 +696,7 @@ World Values Survey. (2022). World Values Survey Wave 7 (2017-2022).
 Www.worldvaluessurvey.org.
 https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp
 
-https://stephyg0.github.io/#blog/political-analysis
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/political-analysis
 
 Writing: Writing Journal 1
 
@@ -930,7 +933,7 @@ on AI-generated content. However, I did use Grammarly and the built-in spell che
 Docs to ensure proper spelling and grammar. These tools helped me catch any basic errors, but
 all of the ideas and writing are entirely my own.
 
-https://stephyg0.github.io/#blog/lens
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/lens
 
 Writing: Beneath the Maple Leaf: Unmasking Canada’s Colonial Legacy and Indigenous Realities Within its National Identity
 
@@ -1221,7 +1224,7 @@ rights of Indigenous peoples. The article further critiques how this imbalance r
 pattern of marginalization, wherein Indigenous sovereignty and historical injustices are
 overshadowed by narratives that prioritize Canada’s image as a welcoming and inclusive nation.
 
-https://stephyg0.github.io/#blog/colonial-legacy
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/colonial-legacy
 
 Writing: ŦÁ¸WEN Passdown Ceremony
 
@@ -1248,7 +1251,7 @@ Ephemeral, ephemeral reminds us of the fleeting nature of time. Our days at Pear
 We are a family forged in the fire of shared experiences, bound by the laughter that echoed through these halls, and strengthened by the challenges we faced together. The bonds we've formed here are truly unbreakable, and the memories we've created are treasures we will carry with us always. Even As we prepare to embark on new journeys, let us carry the spirit of Tawen House with us. To my fellow Year 49s, thank you for being a part of this incredible journey. Thank you for the late-night conversations, the spontaneous adventures, the unwavering support, and the endless love. Each of you has left an indelible mark on my heart, and for that, I am eternally grateful. And to my Year 50s, thank you for the reinvigorated spirit you brought. Your energy, passion, and friendships have all supplied me with so much hope and joy. Each of you has added a unique spark to our house, making it more vibrant and alive. Thank you in advance for continuing not only this legacy but also the legacy of generations. Your contributions will shape the future of our house, and I have no doubt that you will carry forward the values and love that have defined us.
 Let us leave this place not with sadness, but with hope and excitement for the future. Let us remember that, like this tree, we will continue to grow and flourish, nourished by the love and lessons we've shared here. Our journey may be ephemeral, but its impact is timeless.
 
-https://stephyg0.github.io/#blog/passdown
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/passdown
 
 Writing: CAS Week Reflection
 
@@ -1263,7 +1266,7 @@ The next highlight of the Tofino adventure was the following day when we took a 
 While on the tour, Travis even brought us on a trek off the boardwalk (it was extreme hiking, it felt like wilderness CAS). We really pushed ourselves, physically and mentally. We had to climb through small passageways, jump over fallen trees, climb up steep rock cliffs and slide down muddy grounds. In the end, we were all soaked and covered in mud. Even though it was really difficult, it was so much fun. It was definitely a bonding experience. We persevered through physical obstacles such as climbing up giant rocks and also through problems such as losing half our group. In the end, everyone felt very accomplished (and tired), it was a great immersive experience!
 Overall the CAS experience was amazing. It is definitely one of the most memorable and fun moments from Pearson so far. The organized chaos pushed me out of my comfort zone. I learned physical skills such as surfing, hiking, rock climbing and even golfing. I also learned mental skills such as how to stay determined, the importance of courage and perseverance and the value of patience. I was able to bond with my peers and create once-in-a-lifetime memories whilst also recording them through film!
 
-https://stephyg0.github.io/#blog/cas-week
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/cas-week
 
 Writing: Project Week Reflection
 
@@ -1277,7 +1280,7 @@ The breathtaking views of snow-capped mountains and forests were a constant remi
 As we reached our campsite each night, exhausted but exhilarated, we took the time to immerse ourselves in the tranquillity and natural beauty that surrounded us. It was a chance to disconnect from the noise and distractions of everyday life and embrace the simplicity and wonder of the wilderness. It was in those quiet moments that we found solace and a profound appreciation for the world we inhabit. Looking back, this project week's adventure was undoubtedly one of the most amazing weeks of my life. The physical challenges tested my limits, but they also revealed my inner strength and resilience. The stunning landscapes and the sense of awe they inspired reminded me of the beauty that exists beyond our daily routines. And most importantly, the bonds formed with my fellow adventurers created a sense of community and connection that will forever hold a special place in my heart.
 As I continue to share the rest of this incredible journey through my upcoming videos, I hope to convey the immense joy, growth, and inspiration that snowshoeing on Kludahk Ridge brought into my life. It was a week filled with challenges, breathtaking scenery, and the forging of lifelong friendships. I am grateful for the opportunity to embark on such an adventure, and I can confidently say that this project week will always hold a cherished place in my memories.
 
-https://stephyg0.github.io/#blog/project-week
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/project-week
 
 Writing: Analysis of “A Thousand Li of Rivers and Mountains”: Wang Ximeng’s Ode to Daoist Harmony and Dynasty Idealism
 
@@ -1416,7 +1419,7 @@ www.newworldencyclopedia.org/entry/Emperor_Huizong_of_Song. Accessed 3 Feb. 2024
 Museum of Art: Heilbrunn Timeline of Art History.” The Met’s Heilbrunn Timeline of Art
 History, 1 Jan. 2001, www.metmuseum.org/toah/hd/nsong/hd_nsong.htm.
 
-https://stephyg0.github.io/#blog/wang-ximeng
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/wang-ximeng
 
 Links
 
@@ -1424,4 +1427,4 @@ Email: mailto:stephaniesgao@gmail.com
 LinkedIn: https://www.linkedin.com/in/stephaniesgao
 GitHub: https://github.com/stephyg0
 Instagram: https://www.instagram.com/stephanie_tyc/
-Résumé: https://stephyg0.github.io/Stephanie-Gao-Resume.pdf
+Résumé: https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/Stephanie-Gao-Resume.pdf
