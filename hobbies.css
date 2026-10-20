@@ -22,3 +22,15 @@
 .after-hours .after-link.dance-open{display:inline-block;width:auto;height:auto;padding:0 0 3px;font:12px/1.5 'Avenir Next',Avenir,'Segoe UI',sans-serif}
 @media(max-width:650px){.after-record{height:280px}}
 .after-record .record-skip{color:#30302d;z-index:2;font-size:10px;line-height:1}
+/* Keep the functional controls inside their illustrated cases. */
+.after-record .tonearm{top:11%;right:10%;transform-origin:50% 11%}
+.after-record .record-skip{right:9%;bottom:16%;display:grid;place-items:center;width:24px;height:24px;border:1.5px solid #4d4941;box-shadow:1px 1px 0 #0003;font:10px/1 ui-monospace,monospace;color:#30302d}
+.after-record .record-skip:hover{background:#fff8eb}
+.after-tv .tv-controls{right:7.6%;top:34.5%;gap:8px;align-items:center}
+.after-tv .tv-controls button{width:24px;height:24px;line-height:1;box-shadow:0 0 0 1px #eee7da55}
+/* The small index is a set of previews, not unrelated placeholder art. */
+.after-strip [data-after-go="1"] .strip-thumb{position:relative}
+.after-strip [data-after-go="1"] .strip-thumb:after{content:'';position:absolute;left:36%;top:22%;width:27px;height:27px;border-radius:50%;background:repeating-radial-gradient(circle,#2d2d2b 0 1px,#191919 2px 3px);border:1px solid #282828;pointer-events:none}
+.after-strip [data-after-go="4"] .strip-thumb img{transform:rotate(-6deg);box-shadow:4px 0 0 #dad6ce,8px 0 0 #a8a39a}
+@media(max-width:650px){.after-strip [data-after-go="1"] .strip-thumb:after{width:17px;height:17px;left:34%;top:22%}.after-tv .tv-controls{gap:5px}.after-tv .tv-controls button{width:20px;height:20px}}
+.after-tv .tiny-tv{transform:none}
