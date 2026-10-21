@@ -90,3 +90,14 @@
 .after-strip [data-after-go="1"] .strip-thumb img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain}
 .after-strip [data-after-go="1"] .strip-thumb::after{left:10%;top:11%;width:56%;height:auto;aspect-ratio:1;border:0;background:transparent url('objects/record-disc-photo.png') center/contain no-repeat}
 @media(max-width:650px){.after-strip [data-after-go="1"] .strip-thumb{width:min(100%,49px)}}
+
+/* The index preview is one composited surface. Both layers share the deck's
+   aspect ratio, so the spindle stays centered as the thumbnail scales. */
+.after-strip [data-after-go="1"] .strip-thumb{
+  background-image:url('objects/record-disc-photo.png'),url('objects/record-deck-photo.png');
+  background-repeat:no-repeat;
+  background-size:56% auto,100% 100%;
+  background-position:24% 43%,center;
+}
+.after-strip [data-after-go="1"] .strip-thumb img{visibility:hidden}
+.after-strip [data-after-go="1"] .strip-thumb::after{content:none}
