@@ -77,9 +77,15 @@
 .after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:90%;max-height:44px;object-fit:contain}
 @media(max-width:650px){.after-hike .hiking-boots-link{width:min(100%,295px)}}
 
-.after-dance .ballerina-turn,.after-dance .ballerina-still{position:absolute;left:19%;top:12%;width:62%;height:67%;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
-.after-dance .ballerina-turn{display:block;background:url('objects/ballerina-asian-turn.png') 0 0/400% 100% no-repeat;animation:ballerina-full-turn 2.4s linear infinite}
+.after-dance .music-box{perspective:500px}
+.after-dance .ballerina-spinner,.after-dance .ballerina-still{position:absolute;left:19%;top:12%;width:62%;height:67%;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
+.after-dance .ballerina-spinner{display:block;transform-style:preserve-3d;animation:ballerina-smooth-turn 5s linear infinite}
+.after-dance .ballerina-face{position:absolute;inset:0;background-position:center;background-size:contain;background-repeat:no-repeat;backface-visibility:hidden}
+.after-dance .ballerina-front{background-image:url('objects/ballerina-front.png');transform:rotateY(0deg)}
+.after-dance .ballerina-right{background-image:url('objects/ballerina-right.png');transform:rotateY(90deg)}
+.after-dance .ballerina-back{background-image:url('objects/ballerina-back.png');transform:rotateY(180deg)}
+.after-dance .ballerina-left{background-image:url('objects/ballerina-left.png');transform:rotateY(270deg)}
 .after-dance .ballerina-still{display:none;object-fit:contain}
-@keyframes ballerina-full-turn{0%,24.99%{background-position:0% 0}25%,49.99%{background-position:33.333% 0}50%,74.99%{background-position:66.667% 0}75%,100%{background-position:100% 0}}
-@media(prefers-reduced-motion:reduce){.after-dance .ballerina-turn{display:none}.after-dance .ballerina-still{display:block}}
+@keyframes ballerina-smooth-turn{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+@media(prefers-reduced-motion:reduce){.after-dance .ballerina-spinner{display:none}.after-dance .ballerina-still{display:block}}
 .after-heading h1{margin-bottom:0}
