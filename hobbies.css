@@ -77,7 +77,8 @@
 .after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:90%;max-height:44px;object-fit:contain}
 @media(max-width:650px){.after-hike .hiking-boots-link{width:min(100%,295px)}}
 
-.after-dance .ballerina-animation,.after-dance .ballerina-still{position:absolute;left:22%;top:10%;width:56%;height:55%;object-fit:contain;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
+.after-dance .ballerina-canvas,.after-dance .ballerina-still{position:absolute;left:16%;top:3%;width:68%;height:68%;object-fit:contain;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
 .after-dance .ballerina-still{display:none}
-@media(prefers-reduced-motion:reduce){.after-dance .ballerina-animation{display:none}.after-dance .ballerina-still{display:block}}
+.after-dance .ballerina-canvas:not(.is-rendered)+.ballerina-still{display:block}
+@media(prefers-reduced-motion:reduce){.after-dance .ballerina-canvas{display:none}.after-dance .ballerina-still{display:block}}
 .after-heading h1{margin-bottom:0}
