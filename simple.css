@@ -336,10 +336,14 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .instagram-popup .content-close{position:sticky;top:0;z-index:2;background:var(--paper)}
 .instagram-popup h2{margin-bottom:8px}
 .instagram-popup p{margin-bottom:12px}
-.instagram-preview{border:1px solid var(--line);background:#fff;margin:14px 0 12px;overflow:hidden}
-.instagram-preview iframe{display:block;width:100%;height:540px;border:0;background:#fff}
+.instagram-preview{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);margin:14px 0 12px;padding:18px;text-decoration:none;min-height:100px}
+.instagram-preview:hover{background:var(--soft)}
+.instagram-avatar{display:grid;place-items:center;flex:none;width:52px;height:52px;border:1px solid var(--ink);border-radius:50%;font:italic 34px/1 Georgia,serif}
+.instagram-profile-copy{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:12px}
+.instagram-profile-copy strong{font-size:14px}
+.instagram-profile-copy small{color:var(--muted);font-size:11px}
+.instagram-preview-arrow{align-self:flex-start;margin-left:auto;font-size:16px}
 .instagram-profile-link{display:inline-block;margin-bottom:2px}
-@media(max-width:420px){.instagram-preview iframe{height:480px}}
 
 /* Text-free book spines that sit directly on the shelf. */
 .hobby-trio .books-open{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);width:min(132px,100%);height:116px;padding:0;border:0;background:none;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
