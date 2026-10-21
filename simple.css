@@ -375,6 +375,19 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .book-page .book-title{font:600 18px/1.3 Georgia,serif;color:#37332e}
 @media(max-width:460px){.book-page .book-title{font-size:14px}}
 
+/* Real book photography under selectable HTML text, with a separate turning cover. */
+.books-popup{width:min(700px,calc(100% - 28px));padding:20px}
+.books-popup h2{margin:9px 0 10px}
+.open-book{display:block;aspect-ratio:3/2;width:100%;background:url('objects/open-book-photo.png') center/100% 100% no-repeat;filter:drop-shadow(4px 7px 5px #0003)}
+.book-page,.book-page:first-child,.book-page:nth-child(2){position:absolute;top:21%;left:13%;width:32%;height:62%;min-height:0;padding:0;background:none;border:0;box-shadow:none}
+.book-page:nth-child(2){left:55%}
+.book-page h3{font-size:clamp(13px,2.6vw,19px);margin:20px 0 9px}
+.book-page .book-title{font-size:clamp(11px,2.1vw,16px);line-height:1.35}
+.page-number{font-size:clamp(8px,1.3vw,10px)}
+.opening-cover{left:50%;top:2%;width:49%;height:96%;border:0;box-shadow:none;background:url('objects/book-cover-photo.png') center/100% 100% no-repeat}
+.cover-mark{display:none}
+@media(max-width:460px){.books-popup{padding:14px}.book-page h3{margin:10px 0 5px}.book-page .book-title{font-size:11px}}
+
 /* Outside of work is an arrangement of keepsakes, not an icon grid. */
 .scrapbook{padding-top:0}
 .scrapbook header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px}
