@@ -73,3 +73,6 @@
 .after-dance .ballerina-canvas{display:block;background:transparent}
 .after-dance .ballerina-fallback{object-fit:contain;filter:grayscale(1) contrast(1.08)}
 .after-dance .ballerina-canvas.is-rendered+.ballerina-fallback{display:none}
+
+.after-books .after-books-drawing{left:-10%;top:0;width:120%;height:100%;object-fit:contain}
+.after-strip [data-after-go="4"] .strip-thumb img{max-width:95%;max-height:45px}
