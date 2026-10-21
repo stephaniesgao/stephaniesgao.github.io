@@ -90,3 +90,4 @@
 .after-dance .ballerina-video.is-ready{opacity:1}
 .after-dance .ballerina-still{display:none;z-index:3}
 @media(prefers-reduced-motion:reduce){.after-dance .ballerina-video,.after-dance .ballerina-fallback{display:none}.after-dance .ballerina-still{display:block}}
+.after-heading h1{margin-bottom:0}
