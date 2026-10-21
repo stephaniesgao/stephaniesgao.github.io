@@ -132,9 +132,19 @@ export function mountBallerina(canvas) {
       const hover=canvas.closest('.dance-open')?.matches(':hover');
       figure.rotation.y=-.42+(now-started)*(hover?.0012:.00068);
     }
-    renderer.render(scene,camera);
+    try {
+      renderer.render(scene,camera);
+      if (!canvas.classList.contains('is-rendered')) {
+        canvas.classList.add('is-rendered');
+        canvas.parentElement?.classList.add('has-rendered');
+      }
+    } catch {
+      canvas.classList.remove('is-rendered');
+      canvas.parentElement?.classList.remove('has-rendered');
+      renderer.dispose();
+      return;
+    }
     requestAnimationFrame(draw);
   }
-  canvas.classList.add('is-rendered');
   requestAnimationFrame(draw);
 }
