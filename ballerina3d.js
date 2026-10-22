@@ -1,14 +1,152 @@
 import * as THREE from './vendor/three/three.module.min.js';
-import { makePorcelainBallerina } from './ballerina-figure.js';
+import { GLTFLoader } from './vendor/three/GLTFLoader.js';
 
-function makeFigure() {
-  const model = makePorcelainBallerina();
+let modelPromise;
+function loadModel() {
+  modelPromise ||= new GLTFLoader().loadAsync('./objects/ballerina-revised.glb?v=1');
+  return modelPromise;
+}
+
+const smoothstep = (start, end, value) => {
+  const t = Math.max(0, Math.min(1, (value - start) / (end - start)));
+  return t * t * (3 - 2 * t);
+};
+
+function refinePose(geometry) {
+  const positions = geometry.attributes.position;
+  const indices = geometry.index;
+  const original = new Float32Array(positions.count * 3);
+  for (let i = 0; i < positions.count; i++) {
+    original[i * 3] = positions.getX(i);
+    original[i * 3 + 1] = positions.getY(i);
+    original[i * 3 + 2] = positions.getZ(i);
+  }
+  const sums = new Float32Array(original.length);
+  const neighbors = new Uint16Array(positions.count);
+
+  // A light surface pass removes the little lumps around her face without
+  // flattening the nose or altering the mapped facial details.
+  for (let i = 0; i < indices.count; i += 3) {
+    const a = indices.getX(i), b = indices.getX(i + 1), c = indices.getX(i + 2);
+    for (const [from, to] of [[a, b], [a, c], [b, a], [b, c], [c, a], [c, b]]) {
+      const offset = from * 3, target = to * 3;
+      sums[offset] += original[target];
+      sums[offset + 1] += original[target + 1];
+      sums[offset + 2] += original[target + 2];
+      neighbors[from]++;
+    }
+  }
+
+  for (let i = 0; i < positions.count; i++) {
+    const offset = i * 3;
+    let x = original[offset], y = original[offset + 1], z = original[offset + 2];
+    const face = smoothstep(-.17, -.145, x) * (1 - smoothstep(-.075, -.05, x))
+      * smoothstep(.265, .285, y) * (1 - smoothstep(.34, .36, y))
+      * (1 - smoothstep(-.015, .015, z));
+    if (face && neighbors[i]) {
+      const blend = face * .24;
+      x += (sums[offset] / neighbors[i] - x) * blend;
+      y += (sums[offset + 1] / neighbors[i] - y) * blend;
+      z += (sums[offset + 2] / neighbors[i] - z) * blend;
+    }
+
+    // Shorten the horizontal arm from its shoulder, keeping the sleeve fixed.
+    const sideArm = smoothstep(.12, .21, x) * smoothstep(.09, .13, y)
+      * (1 - smoothstep(.21, .25, y));
+    x -= Math.max(0, x - .12) * .105 * sideArm;
+    z -= Math.max(0, z - .12) * .105 * sideArm;
+
+    // Extend only the exposed arabesque leg, not the back edge of the tutu.
+    const raisedLeg = (1 - smoothstep(-.30, -.23, z))
+      * smoothstep(.025, .045, y) * (1 - smoothstep(.08, .105, y))
+      * smoothstep(-.13, -.10, x) * (1 - smoothstep(-.03, 0, x));
+    z -= Math.max(0, -.23 - z) * .16 * raisedLeg;
+
+    // Tuck the irregular digit tips into each palm before adding five clean,
+    // individually modelled fingers to each hand below.
+    const upperHand = smoothstep(.455, .485, y) * (1 - smoothstep(-.22, -.20, x));
+    y -= Math.max(0, y - .465) * .72 * upperHand;
+    const sideHand = smoothstep(.305, .335, x) * smoothstep(.295, .32, z);
+    x -= Math.max(0, x - .315) * .72 * sideHand;
+    z -= Math.max(0, z - .315) * .72 * sideHand;
+    positions.setXYZ(i, x, y, z);
+  }
+  positions.needsUpdate = true;
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
+}
+
+function addHand(model, palm, direction, spread) {
+  const skin = new THREE.MeshPhysicalMaterial({ color: 0xf3d9bf, roughness: .42, clearcoat: .2 });
+  const palmMesh = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), skin);
+  palmMesh.position.copy(palm);
+  palmMesh.scale.set(.013, .008, .010);
+  model.add(palmMesh);
+  const lengths = [.016, .024, .028, .024, .018];
+  const along = new THREE.Vector3(...direction).normalize();
+  const across = new THREE.Vector3(...spread).normalize();
+  for (let i = 0; i < 5; i++) {
+    const offset = (i - 2) * .005;
+    const start = palm.clone().addScaledVector(across, offset).addScaledVector(along, .007);
+    const tip = start.clone().addScaledVector(along, lengths[i])
+      .addScaledVector(across, (i - 2) * .0015);
+    const bone = new THREE.Mesh(new THREE.CylinderGeometry(.0023, .003, start.distanceTo(tip), 6), skin);
+    bone.position.copy(start).add(tip).multiplyScalar(.5);
+    bone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tip.clone().sub(start).normalize());
+    model.add(bone);
+    const fingertip = new THREE.Mesh(new THREE.SphereGeometry(.0023, 6, 6), skin);
+    fingertip.position.copy(tip);
+    model.add(fingertip);
+  }
+}
+
+function makeFigure(source) {
+  const model = source.scene.clone(true);
+  model.traverse(part => {
+    if (!part.isMesh || !part.geometry?.attributes.position) return;
+    part.geometry = part.geometry.clone();
+    refinePose(part.geometry);
+  });
+  addHand(model, new THREE.Vector3(-.26, .468, -.125), [-.18, 1, -.08], [1, .12, 0]);
+  addHand(model, new THREE.Vector3(.305, .151, .318), [1, -.1, 1], [0, 1, 0]);
+  model.updateWorldMatrix(true, true);
   const bounds = new THREE.Box3().setFromObject(model);
   const size = bounds.getSize(new THREE.Vector3());
   const scale = Math.min(2.04 / size.y, 2.08 / Math.max(size.x, size.z));
+
+  // Keep the turn centred on the pointe shoe, rather than the mesh centre.
+  const point = new THREE.Vector3();
+  let footX = 0, footZ = 0, count = 0;
+  model.traverse(part => {
+    if (!part.isMesh || !part.geometry?.attributes.position) return;
+    const original = part.material;
+    part.material = new THREE.MeshPhysicalMaterial({
+      map: original.map,
+      color: 0xfff2da,
+      metalness: 0.08,
+      roughness: 0.28,
+      clearcoat: 0.58,
+      clearcoatRoughness: 0.2,
+      side: THREE.DoubleSide,
+    });
+    const positions = part.geometry.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      point.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld);
+      if (point.y < bounds.min.y + size.y * 0.025) {
+        footX += point.x;
+        footZ += point.z;
+        count++;
+      }
+    }
+  });
   const pivot = new THREE.Group();
   model.scale.setScalar(scale);
-  model.position.set(0, -bounds.min.y * scale, 0);
+  model.position.set(
+    -(count ? footX / count : bounds.getCenter(new THREE.Vector3()).x) * scale,
+    -bounds.min.y * scale,
+    -(count ? footZ / count : bounds.getCenter(new THREE.Vector3()).z) * scale,
+  );
   pivot.add(model);
   const spindle = new THREE.Mesh(
     new THREE.CylinderGeometry(0.055, 0.075, 0.035, 20),
@@ -20,9 +158,11 @@ function makeFigure() {
 }
 
 const mounted = new WeakSet();
-export function mountBallerina(canvas) {
+export async function mountBallerina(canvas) {
   if (!canvas || mounted.has(canvas)) return;
   mounted.add(canvas);
+  let asset;
+  try { asset = await loadModel(); } catch (error) { console.warn('Ballerina model unavailable', error); return; }
   if (!canvas.isConnected) return;
 
   let renderer;
@@ -32,14 +172,14 @@ export function mountBallerina(canvas) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.3;
 
   const scene = new THREE.Scene();
   const view = 1.28;
   const camera = new THREE.OrthographicCamera(-view, view, view, -view, .1, 20);
   camera.position.set(2.7, 2.25, 5.7);
   camera.lookAt(0, 1.13, 0);
-  scene.add(new THREE.AmbientLight(0xffffff, .95));
+  scene.add(new THREE.AmbientLight(0xffffff, 1.25));
   const key = new THREE.DirectionalLight(0xfff7ed, 1.25);
   key.position.set(-2, 5, 5);
   scene.add(key);
@@ -49,7 +189,7 @@ export function mountBallerina(canvas) {
   const fill = new THREE.DirectionalLight(0xffffff, .6);
   fill.position.copy(camera.position);
   scene.add(fill);
-  const figure = makeFigure();
+  const figure = makeFigure(asset);
   scene.add(figure);
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');

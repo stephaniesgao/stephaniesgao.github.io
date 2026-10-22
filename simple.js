@@ -1,6 +1,6 @@
 import {posts} from './posts.js?v=3';
 import {mountTrace} from './trace-ui.js?v=2';
-import {mountBallerina} from './ballerina3d.js?v=16';
+import {mountBallerina} from './ballerina3d.js?v=17';
 import {mountPhotoBooth} from './photobooth.js?v=1';
 const main=document.querySelector('main');
 const projectEntries=[
