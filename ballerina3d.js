@@ -1,65 +1,75 @@
 import * as THREE from './vendor/three/three.module.min.js';
+import { GLTFLoader } from './vendor/three/GLTFLoader.js';
 
-let modelData;
-function getModelData() {
-  if (!modelData) {
-    modelData = fetch('./objects/ballerina-model.json?v=1').then(response => {
-      if (!response.ok) throw new Error(`Ballerina model: ${response.status}`);
-      return response.json();
-    });
-  }
-  return modelData;
+let modelPromise;
+function loadModel() {
+  modelPromise ||= new GLTFLoader().loadAsync('./objects/ballerina-detailed.glb?v=1');
+  return modelPromise;
 }
 
-function makeModel(data) {
-  const figure = new THREE.Group();
-  for (const part of data.meshes) {
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(part.positions, 3));
-    geometry.setAttribute('normal', new THREE.Float32BufferAttribute(part.normals, 3));
-    geometry.setIndex(part.indices);
-    const material = new THREE.MeshStandardMaterial({
-      color: part.color,
-      metalness: part.metallic,
-      roughness: part.roughness,
-      transparent: part.alpha < 1,
-      opacity: part.alpha,
-      depthWrite: part.alpha >= 1,
-      side: THREE.DoubleSide,
-    });
-    figure.add(new THREE.Mesh(geometry, material));
-  }
-  return figure;
+function makeFigure(source) {
+  const model = source.scene.clone(true);
+  model.updateWorldMatrix(true, true);
+  const bounds = new THREE.Box3().setFromObject(model);
+  const size = bounds.getSize(new THREE.Vector3());
+  const scale = Math.min(2.15 / size.y, 2.18 / Math.max(size.x, size.z));
+
+  // Keep the turn centred on the pointe shoe, rather than the mesh centre.
+  const point = new THREE.Vector3();
+  let footX = 0, footZ = 0, count = 0;
+  model.traverse(part => {
+    if (!part.isMesh || !part.geometry?.attributes.position) return;
+    const positions = part.geometry.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      point.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld);
+      if (point.y < bounds.min.y + size.y * 0.025) {
+        footX += point.x;
+        footZ += point.z;
+        count++;
+      }
+    }
+  });
+  const pivot = new THREE.Group();
+  model.scale.setScalar(scale);
+  model.position.set(
+    -(count ? footX / count : bounds.getCenter(new THREE.Vector3()).x) * scale,
+    -bounds.min.y * scale,
+    -(count ? footZ / count : bounds.getCenter(new THREE.Vector3()).z) * scale,
+  );
+  pivot.add(model);
+  return pivot;
 }
 
 const mounted = new WeakSet();
 export async function mountBallerina(canvas) {
   if (!canvas || mounted.has(canvas)) return;
   mounted.add(canvas);
-  let data;
-  try { data = await getModelData(); } catch { return; }
+  let asset;
+  try { asset = await loadModel(); } catch (error) { console.warn('Ballerina model unavailable', error); return; }
   if (!canvas.isConnected) return;
 
   let renderer;
-  try { renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true, powerPreference:'low-power'}); }
+  try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' }); }
   catch { return; }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.7;
 
   const scene = new THREE.Scene();
-  const view = 1.36;
+  const view = 1.28;
   const camera = new THREE.OrthographicCamera(-view, view, view, -view, .1, 20);
-  camera.position.set(2.8, 2.15, 5.4);
-  camera.lookAt(.12, 1.18, 0);
-  scene.add(new THREE.AmbientLight(0xffffff, 1.3));
-  const key = new THREE.DirectionalLight(0xffffff, 1.45);
+  camera.position.set(2.7, 2.25, 5.7);
+  camera.lookAt(0, 1.13, 0);
+  scene.add(new THREE.AmbientLight(0xffffff, 2.0));
+  const key = new THREE.DirectionalLight(0xfff7ed, 2.0);
   key.position.set(-2, 5, 5);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0xe9cfb6, .7);
+  const rim = new THREE.DirectionalLight(0xe6e0d6, 1.1);
   rim.position.set(3, 3, -4);
   scene.add(rim);
-  const figure = makeModel(data);
+  const figure = makeFigure(asset);
   scene.add(figure);
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -84,7 +94,7 @@ export async function mountBallerina(canvas) {
     resize();
     if (!reduced.matches) {
       const hover = canvas.closest('.dance-open')?.matches(':hover');
-      figure.rotation.y = -.35 + (now - started) * (hover ? .00115 : .00062);
+      figure.rotation.y = (now - started) * (hover ? .00085 : .00055);
     }
     try {
       renderer.render(scene, camera);
@@ -92,7 +102,8 @@ export async function mountBallerina(canvas) {
         canvas.classList.add('is-rendered');
         canvas.parentElement?.classList.add('has-rendered');
       }
-    } catch {
+    } catch (error) {
+      console.warn('Ballerina render failed', error);
       canvas.classList.remove('is-rendered');
       canvas.parentElement?.classList.remove('has-rendered');
       renderer.dispose();
