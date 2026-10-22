@@ -3,7 +3,7 @@ import { GLTFLoader } from './vendor/three/GLTFLoader.js';
 
 let modelPromise;
 function loadModel() {
-  modelPromise ||= new GLTFLoader().loadAsync('./objects/ballerina-detailed.glb?v=1');
+  modelPromise ||= new GLTFLoader().loadAsync('./objects/ballerina-revised.glb?v=1');
   return modelPromise;
 }
 
@@ -55,20 +55,23 @@ export async function mountBallerina(canvas) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.7;
+  renderer.toneMappingExposure = 1.3;
 
   const scene = new THREE.Scene();
   const view = 1.28;
   const camera = new THREE.OrthographicCamera(-view, view, view, -view, .1, 20);
   camera.position.set(2.7, 2.25, 5.7);
   camera.lookAt(0, 1.13, 0);
-  scene.add(new THREE.AmbientLight(0xffffff, 2.0));
-  const key = new THREE.DirectionalLight(0xfff7ed, 2.0);
+  scene.add(new THREE.AmbientLight(0xffffff, 1.25));
+  const key = new THREE.DirectionalLight(0xfff7ed, 1.25);
   key.position.set(-2, 5, 5);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0xe6e0d6, 1.1);
+  const rim = new THREE.DirectionalLight(0xe6e0d6, .65);
   rim.position.set(3, 3, -4);
   scene.add(rim);
+  const fill = new THREE.DirectionalLight(0xffffff, .6);
+  fill.position.copy(camera.position);
+  scene.add(fill);
   const figure = makeFigure(asset);
   scene.add(figure);
 
@@ -94,7 +97,7 @@ export async function mountBallerina(canvas) {
     resize();
     if (!reduced.matches) {
       const hover = canvas.closest('.dance-open')?.matches(':hover');
-      figure.rotation.y = (now - started) * (hover ? .00085 : .00055);
+      figure.rotation.y = Math.PI + (now - started) * (hover ? .00085 : .00055);
     }
     try {
       renderer.render(scene, camera);
