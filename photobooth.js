@@ -57,13 +57,24 @@ export function mountPhotoBooth(dialog){
     return canvas.toDataURL('image/png');
   }
   function renderStrip(){
-    strip.replaceChildren(...photos.map((src,index)=>{
-      const img=document.createElement('img');
-      img.src=src;img.alt=`Photo ${index+1} of 4`;
-      return img;
+    strip.replaceChildren(...Array.from({length:4},(_,index)=>{
+      const slot=document.createElement('span');
+      slot.className='booth-slot';
+      if(photos[index]){
+        const img=document.createElement('img');
+        img.src=photos[index];
+        img.alt=`Photo ${index+1} of 4`;
+        slot.classList.add('is-filled');
+        slot.append(img);
+      }else{
+        slot.textContent=String(index+1).padStart(2,'0');
+        slot.setAttribute('aria-label',`Photo ${index+1} pending`);
+      }
+      return slot;
     }));
-    strip.classList.toggle('has-photos',photos.length>0);
+    strip.setAttribute('aria-label',`Photo strip, ${photos.length} of 4 photos taken`);
   }
+  renderStrip();
   shoot.addEventListener('click',async()=>{
     if(!stream||capturing)return;
     capturing=true;

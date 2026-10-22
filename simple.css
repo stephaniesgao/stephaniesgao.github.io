@@ -535,6 +535,12 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 @media(max-width:700px){.photo-booth{padding:10px!important}.booth-workspace{grid-template-columns:minmax(0,1fr) 60px;gap:8px}.booth-strip{min-height:235px;padding:5px 4px 16px}.booth-strip:after{font-size:6px;bottom:4px}.booth-camera{border-width:5px}.booth-camera-placeholder{font-size:11px}.booth-camera-placeholder i{transform:scale(.8) rotate(-5deg)}.booth-number,.booth-edition{font-size:7px}.photo-booth h3{font-size:16px!important}.booth-heading{margin-bottom:9px;padding-bottom:8px}}
 @media(max-width:520px){.camera-popup-grid{grid-template-columns:minmax(220px,1fr) minmax(235px,1fr)}.booth-workspace{grid-template-columns:minmax(0,1fr) 58px}}
 @media(prefers-reduced-motion:reduce){.booth-actions button{transition:none}}
+.booth-strip{display:grid;grid-template-rows:repeat(4,auto);align-content:start}
+.booth-slot{display:grid;place-items:center;width:100%;aspect-ratio:4/3;box-sizing:border-box;border:1px solid #d6cfc3;background:#e5ded2;color:#a29686;font:9px/1 ui-monospace,monospace;letter-spacing:.1em;overflow:hidden}
+.booth-strip[data-frame="ink"] .booth-slot{background:#393734;border-color:#56524d;color:#aaa195}
+.booth-strip[data-frame="rose"] .booth-slot{background:#eddbe0;border-color:#ceb9be;color:#997d85}
+.booth-slot.is-filled{background:transparent;border:0}
+.booth-slot img{width:100%;height:100%;border:0;aspect-ratio:auto;object-fit:cover}
 
 /* A small field journal appears after the backpack opens. */
 .hike-popup{box-sizing:border-box;width:min(700px,calc(100% - 32px));max-height:min(86vh,720px);overflow:auto;padding:26px 28px 28px;background:#f4f0e8;color:#34332f;border:1px solid #bcb5a8;box-shadow:5px 8px 0 #0003}
