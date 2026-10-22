@@ -507,4 +507,5 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .booth-frames span{display:inline-block;padding:5px 9px;border:1px solid var(--line)}
 .booth-frames input:checked+span{border-color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
 .booth-frames input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
-@media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{grid-template-columns:1fr;gap:22px}.photo-booth{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.booth-workspace{grid-template-columns:minmax(0,1fr) 96px}.camera-instagram .instagram-embed iframe{height:350px}}
+@media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{gap:14px}.photo-booth{padding-left:14px}.booth-workspace{grid-template-columns:minmax(0,1fr) 72px;gap:7px}.booth-strip{min-height:240px;padding:5px 5px 15px}.camera-instagram .instagram-embed iframe{height:350px}}
+@media(max-width:520px){.instagram-popup{width:calc(100% - 16px);padding:12px}.camera-popup-grid{grid-template-columns:minmax(220px,1fr) minmax(220px,1fr);gap:10px;overflow-x:auto;padding-bottom:8px}.photo-booth{padding-left:10px}.booth-workspace{grid-template-columns:minmax(0,1fr) 64px;gap:5px}.camera-instagram .instagram-embed iframe{height:320px}}
