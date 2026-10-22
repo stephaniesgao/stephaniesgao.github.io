@@ -12,13 +12,32 @@ function makeFigure(source) {
   model.updateWorldMatrix(true, true);
   const bounds = new THREE.Box3().setFromObject(model);
   const size = bounds.getSize(new THREE.Vector3());
-  const scale = Math.min(2.15 / size.y, 2.18 / Math.max(size.x, size.z));
+  const scale = Math.min(1.75 / size.y, 1.85 / Math.max(size.x, size.z));
+
+  const smoothstep = (a, b, value) => {
+    const t = THREE.MathUtils.clamp((value - a) / (b - a), 0, 1);
+    return t * t * (3 - 2 * t);
+  };
 
   // Keep the turn centred on the pointe shoe, rather than the mesh centre.
   const point = new THREE.Vector3();
   let footX = 0, footZ = 0, count = 0;
   model.traverse(part => {
     if (!part.isMesh || !part.geometry?.attributes.position) return;
+    // Tuck the malformed reconstructed leg under the skirt. A clean leg below
+    // takes its place, with no stray shoe poking through the hem.
+    part.geometry = part.geometry.clone();
+    const positions = part.geometry.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      const x = positions.getX(i), y = positions.getY(i), z = positions.getZ(i);
+      const reach = smoothstep(0.2, 0.44, -(x + z) * Math.SQRT1_2);
+      const height = smoothstep(-0.1, -0.025, y) * (1 - smoothstep(0.09, 0.15, y));
+      const amount = reach * height;
+      if (amount > 0) positions.setXYZ(i, x + 0.18 * amount, y - 0.02 * amount, z + 0.15 * amount);
+    }
+    positions.needsUpdate = true;
+    part.geometry.computeBoundingBox();
+    part.geometry.computeBoundingSphere();
     const original = part.material;
     part.material = new THREE.MeshPhysicalMaterial({
       map: original.map,
@@ -29,7 +48,6 @@ function makeFigure(source) {
       clearcoatRoughness: 0.2,
       side: THREE.DoubleSide,
     });
-    const positions = part.geometry.attributes.position;
     for (let i = 0; i < positions.count; i++) {
       point.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld);
       if (point.y < bounds.min.y + size.y * 0.025) {
@@ -39,6 +57,27 @@ function makeFigure(source) {
       }
     }
   });
+  // A smooth porcelain faceplate conceals the reconstructed facial texture.
+  const faceplate = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 32, 24),
+    new THREE.MeshPhysicalMaterial({ color: 0xf2e3c9, roughness: 0.24, clearcoat: 0.55, clearcoatRoughness: 0.18 }),
+  );
+  faceplate.position.set(-0.045, 0.282, 0.025);
+  faceplate.scale.set(0.055, 0.073, 0.061);
+  model.add(faceplate);
+  const porcelain = new THREE.MeshPhysicalMaterial({ color: 0xe9d8be, roughness: 0.27, clearcoat: 0.48 });
+  const brass = new THREE.MeshStandardMaterial({ color: 0xa87739, metalness: 0.78, roughness: 0.28 });
+  function limb(start, end, startRadius, endRadius, material) {
+    const from = new THREE.Vector3(...start), to = new THREE.Vector3(...end);
+    const direction = to.clone().sub(from);
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(endRadius, startRadius, direction.length(), 16), material);
+    mesh.position.copy(from).add(to).multiplyScalar(0.5);
+    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.normalize());
+    model.add(mesh);
+  }
+  limb([-0.16, -0.11, -0.15], [-0.32, -0.095, -0.29], 0.029, 0.02, porcelain);
+  limb([-0.32, -0.095, -0.29], [-0.5, -0.075, -0.45], 0.02, 0.012, porcelain);
+  limb([-0.5, -0.075, -0.45], [-0.565, -0.065, -0.505], 0.013, 0.006, brass);
   const pivot = new THREE.Group();
   model.scale.setScalar(scale);
   model.position.set(

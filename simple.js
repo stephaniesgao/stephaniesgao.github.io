@@ -1,6 +1,6 @@
 import {posts} from './posts.js?v=3';
 import {mountTrace} from './trace-ui.js?v=2';
-import {mountBallerina} from './ballerina3d.js?v=9';
+import {mountBallerina} from './ballerina3d.js?v=13';
 const main=document.querySelector('main');
 const projectEntries=[
 {id:'beacon',title:'Beacon',description:'A tsunami disaster app.',tags:'Disaster response'},
