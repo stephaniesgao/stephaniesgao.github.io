@@ -535,3 +535,18 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 @media(max-width:700px){.photo-booth{padding:10px!important}.booth-workspace{grid-template-columns:minmax(0,1fr) 60px;gap:8px}.booth-strip{min-height:235px;padding:5px 4px 16px}.booth-strip:after{font-size:6px;bottom:4px}.booth-camera{border-width:5px}.booth-camera-placeholder{font-size:11px}.booth-camera-placeholder i{transform:scale(.8) rotate(-5deg)}.booth-number,.booth-edition{font-size:7px}.photo-booth h3{font-size:16px!important}.booth-heading{margin-bottom:9px;padding-bottom:8px}}
 @media(max-width:520px){.camera-popup-grid{grid-template-columns:minmax(220px,1fr) minmax(235px,1fr)}.booth-workspace{grid-template-columns:minmax(0,1fr) 58px}}
 @media(prefers-reduced-motion:reduce){.booth-actions button{transition:none}}
+
+/* A small field journal appears after the backpack opens. */
+.hike-popup{box-sizing:border-box;width:min(700px,calc(100% - 32px));max-height:min(86vh,720px);overflow:auto;padding:26px 28px 28px;background:#f4f0e8;color:#34332f;border:1px solid #bcb5a8;box-shadow:5px 8px 0 #0003}
+.hike-popup .content-close{position:absolute;right:17px;top:11px;color:#34332f}
+.hike-kicker,.hike-stories section>span{font:10px/1.4 ui-monospace,monospace;letter-spacing:.1em;color:#777064}
+.hike-popup h2{font:italic 32px/1.1 Georgia,serif;letter-spacing:-.04em;margin:10px 0 22px;color:#34332f}
+.hike-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:28px;align-items:start}
+.hike-photo{margin:2px 0 0;background:#fffdfa;padding:9px 9px 22px;box-shadow:2px 4px 10px #40382e2b;transform:rotate(-2deg)}
+.hike-photo img{width:100%;height:330px;display:block;object-fit:cover;object-position:center 66%}
+.hike-photo figcaption{text-align:center;color:#625c53;font:italic 12px/1.3 Georgia,serif;margin-top:10px}
+.hike-stories section{margin:0 0 17px;padding:0 0 15px;border-bottom:1px solid #cfc7ba}
+.hike-stories h3{font:italic 20px/1.2 Georgia,serif;color:#34332f;margin:5px 0 7px}
+.hike-stories p{font:13px/1.6 'Avenir Next',Avenir,'Segoe UI',sans-serif;color:#4c4943;margin:0}
+.hike-stories a{display:inline-block;font:12px/1.5 'Avenir Next',Avenir,'Segoe UI',sans-serif;color:#34332f;text-decoration-color:#8a8175;margin-top:4px}
+@media(max-width:570px){.hike-popup{padding:18px 18px 22px}.hike-popup h2{font-size:27px;margin-bottom:16px}.hike-layout{grid-template-columns:1fr;gap:20px}.hike-photo{width:min(75%,260px);margin:auto}.hike-photo img{height:170px}.hike-stories section{margin-bottom:12px;padding-bottom:11px}}

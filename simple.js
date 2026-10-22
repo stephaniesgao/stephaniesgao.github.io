@@ -68,7 +68,29 @@ hobbies:()=>`<div class="after-hours"><header class="after-heading"><span class=
 function render(){const [route='home',slug]=location.hash.slice(1).split('/');const key=pages[route]?route:'home';document.querySelector('.more').open=false;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(key==='projects'&&['nfa','preclass','matcha'].includes(slug)){main.innerHTML='<p class="back"><a href="#projects">← Projects</a></p>';main.append(document.querySelector('#content-'+slug).content.cloneNode(true));if(slug==='nfa')mountTrace()}else if(key==='blog'&&posts.some(p=>p.id===slug)){const p=posts.find(p=>p.id===slug);main.innerHTML=`<article><p class="back"><a href="#blog">← Writing</a></p><h1>${p.title}</h1><p class="meta">${p.date}</p>${p.body}</article>`}else main.innerHTML=pages[key]();if(key==='hobbies')mountBallerina(main.querySelector('.ballerina-canvas'));if(key==='projects'&&slug&&projectRepos[slug]&&['nfa','preclass','matcha'].includes(slug)){const link=document.createElement('a');link.href=projectRepos[slug];link.textContent='View on GitHub ↗';link.target='_blank';link.rel='noopener';main.append(link)}clearSearch();if(key==='projects'&&slug&&!['nfa','preclass','matcha'].includes(slug))requestAnimationFrame(()=>{filterProjects('All');const target=document.getElementById('project-'+slug);if(target){target.querySelector('details').open=true;target.scrollIntoView()}});document.title=key==='home'?'Stephanie Gao':(key==='hobbies'?'Outside of work':main.querySelector('h1').textContent)+' | Stephanie Gao';if(render.done){main.focus({preventScroll:true});window.scrollTo(0,0)}render.done=true}
 function showAfterScene(index){const root=main.querySelector('.after-hours');if(!root)return;const scenes=[...root.querySelectorAll('[data-after-scene]')];const next=(index+scenes.length)%scenes.length;scenes.forEach((scene,i)=>{scene.hidden=i!==next;scene.classList.toggle('is-active',i===next)});root.querySelectorAll('[data-after-go]').forEach((button,i)=>button.setAttribute('aria-current',String(i===next)));root.querySelector('.after-count').textContent=String(next+1).padStart(2,'0')+' / 06';updateTvClip(next===2);const scene=scenes[next];if(!matchMedia('(prefers-reduced-motion: reduce)').matches)scene.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'cubic-bezier(.2,.8,.2,1)'});}
 main.addEventListener('click',e=>{const root=e.target.closest('.after-hours');if(!root)return;const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);const pick=e.target.closest('[data-after-go],[data-after-prev],[data-after-next]');if(!pick)return;showAfterScene(pick.hasAttribute('data-after-go')?Number(pick.dataset.afterGo):active+(pick.hasAttribute('data-after-next')?1:-1))});
-main.addEventListener('click',e=>{const bag=e.target.closest('.backpack-open');if(!bag)return;const open=bag.closest('.after-hike').classList.toggle('is-open');bag.setAttribute('aria-expanded',String(open))});
+let hikePopupPending=false;
+main.addEventListener('click',e=>{
+  const bag=e.target.closest('.backpack-open');
+  if(!bag||hikePopupPending)return;
+  hikePopupPending=true;
+  const scene=bag.closest('.after-hike');
+  scene.classList.add('is-open');
+  bag.setAttribute('aria-expanded','true');
+  const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:850;
+  setTimeout(()=>{
+    hikePopupPending=false;
+    if(!bag.isConnected||bag.closest('[hidden]'))return;
+    const dialog=document.createElement('dialog');
+    dialog.className='content-popup hike-popup';
+    dialog.setAttribute('aria-labelledby','hike-popup-title');
+    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><span class="hike-kicker">FIELD NOTES / 01</span><h2 id="hike-popup-title">The long way around.</h2><div class="hike-layout"><figure class="hike-photo"><img src="photos/redwoods.jpg" alt="Friends walking beneath the redwoods at Muir Woods"><figcaption>Muir Woods, fall 2024</figcaption></figure><div class="hike-stories"><section><span>01 / CANADA</span><h3>Where it started</h3><p>Hiking and camping were part of my life at Pearson College. On weekends, I helped build boardwalks to protect old-growth forests.</p></section><section><span>02 / BAY AREA</span><h3>Finding the trees again</h3><p>After moving to the Bay Area, I missed the woods. I brought friends to Muir Woods during our first Minerva fall break to hike, camp, and share that part of my life with them.</p></section><a href="#blog/woods">Read the Muir Woods story ↗</a></div></div>`;
+    document.body.append(dialog);
+    dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
+    dialog.querySelector('a[href="#blog/woods"]').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('close',()=>{dialog.remove();if(scene.isConnected)scene.classList.remove('is-open');if(bag.isConnected){bag.setAttribute('aria-expanded','false');bag.focus()}},{once:true});
+    dialog.showModal();
+  },delay);
+});
 main.addEventListener('keydown',e=>{if(!e.target.closest('.after-hours')||!['ArrowLeft','ArrowRight'].includes(e.key)||e.target.matches('input,textarea'))return;e.preventDefault();const root=main.querySelector('.after-hours');const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);showAfterScene(active+(e.key==='ArrowRight'?1:-1))});
 window.addEventListener('hashchange',render);document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();main.focus()});document.addEventListener('click',e=>{if(!e.target.closest('.more'))document.querySelector('.more').open=false});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.querySelector('.more').open){document.querySelector('.more').open=false;document.querySelector('.more summary').focus()}});
 
