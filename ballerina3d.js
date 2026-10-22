@@ -19,6 +19,16 @@ function makeFigure(source) {
   let footX = 0, footZ = 0, count = 0;
   model.traverse(part => {
     if (!part.isMesh || !part.geometry?.attributes.position) return;
+    const original = part.material;
+    part.material = new THREE.MeshPhysicalMaterial({
+      map: original.map,
+      color: 0xfff2da,
+      metalness: 0.08,
+      roughness: 0.28,
+      clearcoat: 0.58,
+      clearcoatRoughness: 0.2,
+      side: THREE.DoubleSide,
+    });
     const positions = part.geometry.attributes.position;
     for (let i = 0; i < positions.count; i++) {
       point.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld);
@@ -37,6 +47,12 @@ function makeFigure(source) {
     -(count ? footZ / count : bounds.getCenter(new THREE.Vector3()).z) * scale,
   );
   pivot.add(model);
+  const spindle = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.055, 0.075, 0.035, 20),
+    new THREE.MeshStandardMaterial({ color: 0x9d6d2f, metalness: 0.78, roughness: 0.3 }),
+  );
+  spindle.position.y = 0.018;
+  pivot.add(spindle);
   return pivot;
 }
 
