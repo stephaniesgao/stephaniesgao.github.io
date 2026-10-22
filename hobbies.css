@@ -78,11 +78,28 @@
 @media(max-width:650px){.after-hike .hiking-boots-link{width:min(100%,295px)}}
 
 .after-dance .ballerina-canvas,.after-dance .ballerina-still{position:absolute;left:16%;top:3%;width:68%;height:68%;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
-.after-dance .ballerina-still{display:block;background:url('/objects/ballerina-faceless-still.png?v=1') center/contain no-repeat}
+.after-dance .ballerina-still{display:block;background:url('objects/ballerina-porcelain-still.png?v=2') center/contain no-repeat}
 .after-dance .ballerina-canvas{opacity:0}
 .after-dance .ballerina-canvas.is-rendered{opacity:1}
 .after-dance .music-box.has-rendered .ballerina-still{display:none}
 @media(prefers-reduced-motion:reduce){.after-dance .ballerina-canvas{display:none!important}}
+
+/* Film footage sits behind the channel lettering and stays inside the glass. */
+.after-tv .tv-footage{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.after-tv .tv-footage iframe{position:absolute;left:50%;top:50%;width:560px;height:315px;border:0;transform:translate(-50%,-50%) scale(.46);filter:grayscale(1) contrast(1.15);opacity:.48;pointer-events:none}
+.after-tv .tv-screen::before{content:"";position:absolute;inset:0;z-index:1;background:#13131370;pointer-events:none}
+.after-tv .tv-channel,.after-tv .tv-title{z-index:2;text-shadow:0 1px 5px #000,0 1px 2px #000}
+@media(prefers-reduced-motion:reduce){.after-tv .tv-footage{display:none}}
+
+/* A single sole impression appears as the boots lift away. */
+.after-hike .hiking-boots-link{position:relative;z-index:2}
+.after-hike .boot-print{position:absolute;left:39%;bottom:0;width:43px;height:64px;opacity:0;transform:rotate(-24deg) scale(.78);pointer-events:none;transition:opacity .18s ease .16s,transform .38s ease .14s}
+.after-hike .boot-print::before,.after-hike .boot-print::after{content:"";position:absolute;left:6px;width:31px;background:repeating-linear-gradient(90deg,#6a6157 0 3px,#8b8175 3px 5px);border:2px solid #5c554d}
+.after-hike .boot-print::before{top:0;height:37px;border-radius:46% 46% 27% 27%}
+.after-hike .boot-print::after{bottom:0;height:17px;border-radius:25% 25% 40% 40%}
+.after-hike.is-stepping .hiking-boots-link{transform:rotate(-6deg) translateY(-19px)}
+.after-hike.is-stepping .boot-print{opacity:.7;transform:rotate(-24deg) scale(1)}
+@media(prefers-reduced-motion:reduce){.after-hike .boot-print{transition:none}.after-hike.is-stepping .hiking-boots-link{transform:none}}
 .after-heading h1{margin-bottom:0}
 
 /* Anchor the tiny record to its deck, rather than to the full navigation cell. */
