@@ -128,6 +128,37 @@ function showSpotify(){let panel=document.querySelector('.spotify-panel');if(!pa
 function connectSpotify(){showSpotify();if(spotifyController||spotifyLoading)return;spotifyLoading=true;window.onSpotifyIframeApiReady=api=>api.createController(document.querySelector('#spotify-mount'),{uri:'spotify:playlist:5zfpoBQbbJdg9yze5afZ5M',width:'100%',height:352},controller=>{spotifyController=controller;controller.addListener('ready',()=>{spotifyLoading=false;controller.play()});controller.addListener('playback_update',e=>{spotifyPaused=e.data.isPaused;const player=main.querySelector('.mini-turntable');if(!player)return;player.classList.toggle('needle-down',!spotifyPaused);const needle=player.querySelector('.tonearm');needle.setAttribute('aria-pressed',String(!spotifyPaused));needle.setAttribute('aria-label',spotifyPaused?'Drop needle to play':'Lift needle to pause');player.querySelector('.record-message').textContent=e.data.isBuffering?'Loading…':spotifyPaused?'Drop the needle to play.':'Playing from Spotify';});});const script=document.createElement('script');script.src='https://open.spotify.com/embed/iframe-api/v1';script.onerror=()=>{spotifyLoading=false;const mount=document.querySelector('#spotify-mount');mount.textContent='Player unavailable. Open the playlist in Spotify using the link below.';};document.head.append(script)}
 main.addEventListener('click',e=>{if(e.target.closest('.record-skip')){connectSpotify();return}if(!e.target.closest('.tonearm'))return;if(!spotifyController){connectSpotify();return}if(spotifyPaused)spotifyController.resume();else spotifyController.pause();});
 
-function writeBookNotes(dialog){const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const pages=[...dialog.querySelectorAll('.book-page')];if(reduced){dialog.querySelectorAll('.book-writing').forEach(line=>line.textContent=line.dataset.write);return}const timers=[];dialog.addEventListener('close',()=>timers.forEach(clearTimeout),{once:true});pages.forEach((page,pageIndex)=>{let offset=1300;page.querySelectorAll('.book-writing').forEach(line=>{const content=line.dataset.write;for(let index=0;index<content.length;index++){timers.push(setTimeout(()=>{if(!dialog.open)return;line.textContent=content.slice(0,index+1);line.classList.add('is-writing');if(index===content.length-1)line.classList.remove('is-writing')},offset+index*42+pageIndex*110))}offset+=content.length*42+180})})}
-main.addEventListener('click',e=>{const opener=e.target.closest('.books-open');if(!opener)return;const dialog=document.createElement('dialog');dialog.className='content-popup books-popup';dialog.setAttribute('aria-labelledby','books-popup-title');dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close books">×</button><span class="scrap-label">reading notes</span><h2 id="books-popup-title">On the shelf</h2><div class="open-book"><div class="book-right-page" aria-hidden="true"></div><div class="book-leaf" aria-hidden="true"><div class="book-leaf-front"></div><div class="book-leaf-back"></div></div><div class="book-notes"><div class="book-page"><span class="page-number">01 / to share</span><h3 class="book-writing" data-write="I'd recommend" aria-label="I'd recommend"></h3><p class="book-title book-writing" data-write="Tomorrow, and Tomorrow, and Tomorrow" aria-label="Tomorrow, and Tomorrow, and Tomorrow"></p></div><div class="book-page"><span class="page-number">02 / on my nightstand</span><h3 class="book-writing" data-write="Currently reading" aria-label="Currently reading"></h3><p class="book-title book-writing" data-write="A Psalm for the Wild-Built" aria-label="A Psalm for the Wild-Built"></p></div></div></div>`;document.body.append(dialog);writeBookNotes(dialog);dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{dialog.remove();opener.focus()});dialog.showModal()});
+function writeBookNotes(dialog){
+  const notes=dialog.querySelector('.book-notes');
+  const lines=[...dialog.querySelectorAll('.book-writing')];
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const timers=[];
+  let revealed=false;
+  dialog.addEventListener('close',()=>timers.forEach(clearTimeout),{once:true});
+  function reveal(){
+    if(revealed||!dialog.open)return;
+    revealed=true;
+    notes.classList.add('is-open');
+    notes.removeAttribute('aria-hidden');
+    if(reduced){lines.forEach(line=>line.textContent=line.dataset.write);return}
+    let offset=240;
+    lines.forEach(line=>{
+      const content=line.dataset.write;
+      for(let index=0;index<content.length;index++){
+        timers.push(setTimeout(()=>{
+          if(!dialog.open)return;
+          line.textContent=content.slice(0,index+1);
+          line.classList.toggle('is-writing',index!==content.length-1);
+        },offset+index*42));
+      }
+      offset+=content.length*42+180;
+    });
+  }
+  if(reduced){reveal();return}
+  const leaf=dialog.querySelector('.book-leaf');
+  leaf.addEventListener('animationend',event=>{if(event.target===leaf&&event.animationName==='turn-reading-leaf')reveal()},{once:true});
+  timers.push(setTimeout(reveal,1600));
+}
+
+main.addEventListener('click',e=>{const opener=e.target.closest('.books-open');if(!opener)return;const dialog=document.createElement('dialog');dialog.className='content-popup books-popup';dialog.setAttribute('aria-labelledby','books-popup-title');dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close books">×</button><span class="scrap-label">reading notes</span><h2 id="books-popup-title">On the shelf</h2><div class="open-book"><div class="book-right-page" aria-hidden="true"></div><div class="book-leaf" aria-hidden="true"><div class="book-leaf-front"></div><div class="book-leaf-back"></div></div><div class="book-notes" aria-hidden="true"><div class="book-page"><span class="page-number">01 / to share</span><h3 class="book-writing" data-write="I'd recommend" aria-label="I'd recommend"></h3><p class="book-title book-writing" data-write="Tomorrow, and Tomorrow, and Tomorrow" aria-label="Tomorrow, and Tomorrow, and Tomorrow"></p></div><div class="book-page"><span class="page-number">02 / on my nightstand</span><h3 class="book-writing" data-write="Currently reading" aria-label="Currently reading"></h3><p class="book-title book-writing" data-write="A Psalm for the Wild-Built" aria-label="A Psalm for the Wild-Built"></p></div></div></div>`;document.body.append(dialog);dialog.showModal();writeBookNotes(dialog);dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{dialog.remove();opener.focus()})});
 main.addEventListener('click',e=>{const opener=e.target.closest('.dance-open');if(!opener)return;const dialog=document.createElement('dialog');dialog.className='content-popup dance-popup';dialog.setAttribute('aria-labelledby','dance-popup-title');dialog.innerHTML='<button type="button" class="content-close" aria-label="Close dance">×</button><span class="hand-note">a little movement helps</span><h2 id="dance-popup-title">Dance breaks</h2><p>If I’m away from my desk, there’s a good chance I’m dancing.</p>';document.body.append(dialog);dialog.querySelector('button').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{dialog.remove();opener.focus()});dialog.showModal()});
