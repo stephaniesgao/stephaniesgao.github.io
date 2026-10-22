@@ -53,52 +53,20 @@ function refinePose(geometry) {
     // Shorten the horizontal arm from its shoulder, keeping the sleeve fixed.
     const sideArm = smoothstep(.12, .21, x) * smoothstep(.09, .13, y)
       * (1 - smoothstep(.21, .25, y));
-    x -= Math.max(0, x - .12) * .105 * sideArm;
-    z -= Math.max(0, z - .12) * .105 * sideArm;
+    x -= Math.max(0, x - .12) * .065 * sideArm;
+    z -= Math.max(0, z - .12) * .065 * sideArm;
 
     // Extend only the exposed arabesque leg, not the back edge of the tutu.
     const raisedLeg = (1 - smoothstep(-.30, -.23, z))
       * smoothstep(.025, .045, y) * (1 - smoothstep(.08, .105, y))
       * smoothstep(-.13, -.10, x) * (1 - smoothstep(-.03, 0, x));
-    z -= Math.max(0, -.23 - z) * .16 * raisedLeg;
-
-    // Tuck the irregular digit tips into each palm before adding five clean,
-    // individually modelled fingers to each hand below.
-    const upperHand = smoothstep(.455, .485, y) * (1 - smoothstep(-.22, -.20, x));
-    y -= Math.max(0, y - .465) * .72 * upperHand;
-    const sideHand = smoothstep(.305, .335, x) * smoothstep(.295, .32, z);
-    x -= Math.max(0, x - .315) * .72 * sideHand;
-    z -= Math.max(0, z - .315) * .72 * sideHand;
+    z -= Math.max(0, -.23 - z) * .10 * raisedLeg;
     positions.setXYZ(i, x, y, z);
   }
   positions.needsUpdate = true;
   geometry.computeVertexNormals();
   geometry.computeBoundingBox();
   geometry.computeBoundingSphere();
-}
-
-function addHand(model, palm, direction, spread) {
-  const skin = new THREE.MeshPhysicalMaterial({ color: 0xf3d9bf, roughness: .42, clearcoat: .2 });
-  const palmMesh = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), skin);
-  palmMesh.position.copy(palm);
-  palmMesh.scale.set(.013, .008, .010);
-  model.add(palmMesh);
-  const lengths = [.016, .024, .028, .024, .018];
-  const along = new THREE.Vector3(...direction).normalize();
-  const across = new THREE.Vector3(...spread).normalize();
-  for (let i = 0; i < 5; i++) {
-    const offset = (i - 2) * .005;
-    const start = palm.clone().addScaledVector(across, offset).addScaledVector(along, .007);
-    const tip = start.clone().addScaledVector(along, lengths[i])
-      .addScaledVector(across, (i - 2) * .0015);
-    const bone = new THREE.Mesh(new THREE.CylinderGeometry(.0023, .003, start.distanceTo(tip), 6), skin);
-    bone.position.copy(start).add(tip).multiplyScalar(.5);
-    bone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tip.clone().sub(start).normalize());
-    model.add(bone);
-    const fingertip = new THREE.Mesh(new THREE.SphereGeometry(.0023, 6, 6), skin);
-    fingertip.position.copy(tip);
-    model.add(fingertip);
-  }
 }
 
 function makeFigure(source) {
@@ -108,8 +76,6 @@ function makeFigure(source) {
     part.geometry = part.geometry.clone();
     refinePose(part.geometry);
   });
-  addHand(model, new THREE.Vector3(-.26, .468, -.125), [-.18, 1, -.08], [1, .12, 0]);
-  addHand(model, new THREE.Vector3(.305, .151, .318), [1, -.1, 1], [0, 1, 0]);
   model.updateWorldMatrix(true, true);
   const bounds = new THREE.Box3().setFromObject(model);
   const size = bounds.getSize(new THREE.Vector3());
