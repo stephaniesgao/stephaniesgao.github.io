@@ -370,7 +370,7 @@ Dance, hiking, makeup, content creation, rom-coms, reading, and puzzle games. Pr
 Book I’d recommend: Tomorrow, and Tomorrow, and Tomorrow.
 Currently reading: A Psalm for the Wild-Built.
 
-Favourite rom-coms: 10 Things I Hate About You, Notting Hill, Confessions of a Shopaholic, How to Lose a Guy in 10 Days, 27 Dresses, A Cinderella Story, Drive Me Crazy.
+Favourite rom-coms: 10 Things I Hate About You, Notting Hill, Confessions of a Shopaholic, How to Lose a Guy in 10 Days, 27 Dresses, A Cinderella Story, Drive Me Crazy, The Proposal, To All the Boys I've Loved Before, Bridget Jones's Diary, Love Actually.
 
 Spotify playlist: https://open.spotify.com/playlist/5zfpoBQbbJdg9yze5afZ5M
 

@@ -466,3 +466,45 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
   .scrapbook .little-gallery{display:block}.scrapbook .little-gallery .gallery-empty{margin-top:3px}
 }
 @media(prefers-reduced-motion:reduce){.scrapbook .dance-open:hover .ballerina,.scrapbook .dance-open:focus-visible .ballerina{animation:none!important}.scrapbook .hobby-stage section{transition:none!important}}
+
+/* Reading notes appear as ink after the cover has finished turning. */
+.book-page .book-writing{font-family:'Bradley Hand','Segoe Print','Comic Sans MS',cursive;letter-spacing:-.02em}
+.book-page h3.book-writing{font-style:normal;font-size:clamp(15px,2.8vw,21px)}
+.book-page .book-title.book-writing{font-size:clamp(13px,2.2vw,18px);font-weight:400;line-height:1.45}
+.book-writing.is-writing::after{content:'';display:inline-block;width:1px;height:.8em;background:#685f51;transform:rotate(14deg);margin-left:2px;vertical-align:baseline;opacity:.65}
+@media(max-width:460px){.book-page h3.book-writing{font-size:14px}.book-page .book-title.book-writing{font-size:12px}}
+
+/* Instagram and the visitor's local photo booth share one popup. */
+.instagram-popup{box-sizing:border-box;width:min(980px,calc(100% - 32px));max-height:min(92vh,820px);padding:24px}
+.instagram-popup .content-close{float:none;position:absolute;right:18px;top:13px}
+.instagram-popup h2{margin:3px 0 18px}
+.camera-popup-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.camera-popup-grid section{min-width:0}
+.camera-popup-grid h3{font:600 15px/1.3 'Avenir Next',Avenir,sans-serif;margin:0 0 9px}
+.camera-instagram .instagram-embed{margin:0 0 10px}
+.camera-instagram .instagram-embed iframe{height:410px}
+.camera-instagram .instagram-profile-link{font-size:12px;color:var(--ink)}
+.photo-booth{border-left:1px solid var(--line);padding-left:24px}
+.booth-workspace{display:grid;grid-template-columns:minmax(0,1fr) 98px;gap:12px;align-items:start}
+.booth-camera{position:relative;aspect-ratio:4/3;background:#242321;overflow:hidden;border:1px solid var(--line);display:grid;place-items:center}
+.booth-video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:block;visibility:hidden}.booth-camera.has-camera .booth-video{visibility:visible}
+.booth-camera-placeholder{position:absolute;inset:0;display:grid;place-items:center;background:#292826;color:#eee8dd;font:11px/1.4 ui-monospace,monospace;text-align:center;padding:10px}
+.booth-camera.has-camera .booth-camera-placeholder{display:none}
+.booth-strip{box-sizing:border-box;min-height:300px;background:#f5f0e6;color:#292722;padding:8px 8px 22px;display:flex;flex-direction:column;gap:5px;box-shadow:2px 3px 5px #0003}
+.booth-strip[data-frame="ink"]{background:#252525;color:#f6f0e6}
+.booth-strip[data-frame="rose"]{background:#e8cad0;color:#30282b}
+.booth-strip img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.booth-empty{font:10px/1.4 Georgia,serif;text-align:center;margin:auto}
+.booth-strip.has-photos .booth-empty{display:none}
+.booth-status{font:11px/1.4 ui-monospace,monospace;min-height:2.8em;margin:12px 0 8px}
+.booth-actions{display:flex;flex-wrap:wrap;gap:7px}
+.booth-actions button{padding:7px 10px;background:var(--paper);border:1px solid var(--ink);color:var(--ink);font:11px/1.3 'Avenir Next',Avenir,sans-serif;cursor:pointer}
+.booth-actions button:disabled{opacity:.4;cursor:default}
+.booth-frames{border:0;padding:0;margin:13px 0 0;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.booth-frames legend{font:10px ui-monospace,monospace;margin-bottom:6px}
+.booth-frames label{cursor:pointer;font:11px 'Avenir Next',Avenir,sans-serif}
+.booth-frames input{position:absolute;opacity:0}
+.booth-frames span{display:inline-block;padding:5px 9px;border:1px solid var(--line)}
+.booth-frames input:checked+span{border-color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
+.booth-frames input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+@media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{grid-template-columns:1fr;gap:22px}.photo-booth{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.booth-workspace{grid-template-columns:minmax(0,1fr) 96px}.camera-instagram .instagram-embed iframe{height:350px}}

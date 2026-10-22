@@ -71,11 +71,7 @@
 .after-books .after-books-drawing{left:-10%;top:0;width:120%;height:100%;object-fit:contain}
 .after-strip [data-after-go="4"] .strip-thumb img{max-width:95%;max-height:45px}
 
-.after-hike .hiking-boots-link{display:block;width:min(100%,315px);transition:transform .3s ease;transform:rotate(-2deg)}
-.after-hike .hiking-boots-link:hover{transform:rotate(0) translateY(-6px)}
-.after-hike .hiking-boots-link img{display:block;width:100%;height:auto;filter:drop-shadow(3px 7px 4px #0003)}
 .after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:90%;max-height:44px;object-fit:contain}
-@media(max-width:650px){.after-hike .hiking-boots-link{width:min(100%,295px)}}
 
 .after-dance .ballerina-canvas,.after-dance .ballerina-still{position:absolute;left:16%;top:3%;width:68%;height:68%;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
 .after-dance .ballerina-still{display:none}
@@ -91,13 +87,6 @@
 .after-tv .tv-channel,.after-tv .tv-title{z-index:2;text-shadow:0 1px 5px #000,0 1px 2px #000}
 @media(prefers-reduced-motion:reduce){.after-tv .tv-footage{display:none}}
 
-/* A single sole impression appears as the boots lift away. */
-.after-hike .hiking-boots-link{position:relative;z-index:2}
-.after-hike .boot-print{position:absolute;left:36%;bottom:-13px;width:70px;height:112px;background:url('objects/boot-footprint.svg') center/contain no-repeat;opacity:0;transform:rotate(-24deg) scale(.78);pointer-events:none;transition:opacity .18s ease .16s,transform .38s ease .14s}
-:root[data-theme="dark"] .after-hike .boot-print{filter:brightness(1.75)}
-.after-hike.is-stepping .hiking-boots-link{transform:rotate(-6deg) translateY(-45px)}
-.after-hike.is-stepping .boot-print{opacity:.95;transform:rotate(-24deg) scale(1)}
-@media(prefers-reduced-motion:reduce){.after-hike .boot-print{transition:none}.after-hike.is-stepping .hiking-boots-link{transform:none}}
 .after-heading h1{margin-bottom:0}
 
 /* Anchor the tiny record to its deck, rather than to the full navigation cell. */
@@ -116,3 +105,21 @@
 }
 .after-strip [data-after-go="1"] .strip-thumb img{visibility:hidden}
 .after-strip [data-after-go="1"] .strip-thumb::after{content:none}
+
+/* A side-lying field pack opens before the Muir Woods note. */
+.after-hike .backpack-open{position:relative;display:block;width:min(100%,340px);aspect-ratio:340/225;padding:0;border:0;background:none;overflow:visible;isolation:isolate;transform:rotate(-3deg);transition:transform .4s ease;cursor:pointer}
+.after-hike .backpack-open:hover{transform:rotate(0) translateY(-4px)}
+.backpack-body{position:absolute;inset:0;width:100%;height:100%;z-index:1;filter:drop-shadow(4px 7px 4px #0003)}
+.backpack-flap{position:absolute;z-index:4;left:72%;top:22%;width:28%;height:58%;transform-origin:12% 50%;transition:transform .6s cubic-bezier(.3,.1,.2,1)}
+.backpack-contents{position:absolute;inset:0;z-index:2;pointer-events:none}
+.backpack-contents img{position:absolute;display:block;opacity:0;filter:drop-shadow(2px 4px 2px #0002);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .35s}
+.pack-map{width:29%;left:65%;top:31%;transform:translate(-42px,32px) rotate(-23deg) scale(.55)}
+.pack-notebook{width:19%;left:76%;top:29%;transform:translate(-55px,36px) rotate(8deg) scale(.55)}
+.pack-compass{width:19%;left:74%;top:45%;transform:translate(-52px,18px) rotate(15deg) scale(.55)}
+.after-hike.is-open .backpack-flap{transform:rotate(-106deg) translate(-3px,4px)}
+.after-hike.is-open .pack-map{opacity:1;transform:translate(-9px,-77px) rotate(-32deg) scale(1)}
+.after-hike.is-open .pack-notebook{opacity:1;transform:translate(7px,-48px) rotate(19deg) scale(1)}
+.after-hike.is-open .pack-compass{opacity:1;transform:translate(2px,54px) rotate(45deg) scale(1)}
+.after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:96%;max-height:47px;object-fit:contain}
+@media(max-width:650px){.after-hike .backpack-open{width:min(100%,285px)}.after-hike.is-open .pack-notebook{transform:translate(2px,-41px) rotate(19deg) scale(1)}.after-hike.is-open .pack-compass{transform:translate(0,38px) rotate(45deg) scale(1)}}
+@media(prefers-reduced-motion:reduce){.after-hike .backpack-open,.backpack-flap,.backpack-contents img{transition:none}}
