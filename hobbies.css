@@ -78,11 +78,11 @@
 @media(max-width:650px){.after-hike .hiking-boots-link{width:min(100%,295px)}}
 
 .after-dance .ballerina-canvas,.after-dance .ballerina-still{position:absolute;left:16%;top:3%;width:68%;height:68%;pointer-events:none;filter:drop-shadow(1px 2px 1px #3a30264d)}
-.after-dance .ballerina-still{display:block;background:url('objects/ballerina-porcelain-refined.png?v=1') center/contain no-repeat}
+.after-dance .ballerina-still{display:none}
 .after-dance .ballerina-canvas{opacity:0}
 .after-dance .ballerina-canvas.is-rendered{opacity:1}
 .after-dance .music-box.has-rendered .ballerina-still{display:none}
-@media(prefers-reduced-motion:reduce){.after-dance .ballerina-canvas{display:none!important}}
+@media(prefers-reduced-motion:reduce){.after-dance .ballerina-canvas{display:block!important}}
 
 /* Film footage sits behind the channel lettering and stays inside the glass. */
 .after-tv .tv-footage{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
