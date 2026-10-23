@@ -113,12 +113,12 @@
 .backpack-open-state{opacity:0}
 .backpack-contents{position:absolute;inset:0;z-index:2;pointer-events:none}
 .backpack-contents img{position:absolute;display:block;opacity:0;filter:drop-shadow(2px 4px 2px #0002);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .35s}
-.pack-map{width:29%;left:65%;top:31%;transform:translate(-42px,32px) rotate(-23deg) scale(.55)}
-.pack-notebook{width:19%;left:76%;top:29%;transform:translate(-55px,36px) rotate(8deg) scale(.55)}
+.pack-map{width:28%;left:60%;top:31%;transform:translate(-42px,32px) rotate(-23deg) scale(.55)}
+.pack-notebook{width:17%;left:77%;top:29%;transform:translate(-55px,36px) rotate(8deg) scale(.55)}
 .pack-compass{width:19%;left:74%;top:45%;transform:translate(-52px,18px) rotate(15deg) scale(.55)}
 .after-hike.is-open .backpack-body{opacity:0}.after-hike.is-open .backpack-open-state{opacity:1}
-.after-hike.is-open .pack-map{opacity:1;transform:translate(-9px,-77px) rotate(-32deg) scale(1)}
-.after-hike.is-open .pack-notebook{opacity:1;transform:translate(7px,-48px) rotate(19deg) scale(1)}
+.after-hike.is-open .pack-map{opacity:1;transform:translate(-35px,-88px) rotate(-24deg) scale(1)}
+.after-hike.is-open .pack-notebook{opacity:1;transform:translate(3px,-48px) rotate(14deg) scale(1)}
 .after-hike.is-open .pack-compass{opacity:1;transform:translate(2px,54px) rotate(45deg) scale(1)}
 .after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:96%;max-height:47px;object-fit:contain}
 @media(max-width:650px){.after-hike .backpack-open{width:min(100%,285px)}.after-hike.is-open .pack-notebook{transform:translate(2px,-41px) rotate(19deg) scale(1)}.after-hike.is-open .pack-compass{transform:translate(0,38px) rotate(45deg) scale(1)}}
