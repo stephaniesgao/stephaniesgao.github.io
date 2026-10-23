@@ -474,73 +474,20 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .book-writing.is-writing::after{content:'';display:inline-block;width:1px;height:.8em;background:#685f51;transform:rotate(14deg);margin-left:2px;vertical-align:baseline;opacity:.65}
 @media(max-width:460px){.book-page h3.book-writing{font-size:14px}.book-page .book-title.book-writing{font-size:12px}}
 
-/* Instagram and the visitor's local photo booth share one popup. */
+/* Instagram and TikTok profile previews share the camera popup. */
 .instagram-popup{box-sizing:border-box;width:min(980px,calc(100% - 32px));max-height:min(92vh,820px);padding:24px}
 .instagram-popup .content-close{float:none;position:absolute;right:18px;top:13px}
 .instagram-popup h2{margin:3px 0 18px}
-.camera-popup-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.camera-popup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .camera-popup-grid section{min-width:0}
 .camera-popup-grid h3{font:600 15px/1.3 'Avenir Next',Avenir,sans-serif;margin:0 0 9px}
-.camera-instagram .instagram-embed{margin:0 0 10px}
-.camera-instagram .instagram-embed iframe{height:410px}
-.camera-instagram .instagram-profile-link{font-size:12px;color:var(--ink)}
-.photo-booth{border-left:1px solid var(--line);padding-left:24px}
-.booth-workspace{display:grid;grid-template-columns:minmax(0,1fr) 98px;gap:12px;align-items:start}
-.booth-camera{position:relative;aspect-ratio:4/3;background:#242321;overflow:hidden;border:1px solid var(--line);display:grid;place-items:center}
-.booth-video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:block;visibility:hidden}.booth-camera.has-camera .booth-video{visibility:visible}
-.booth-camera-placeholder{position:absolute;inset:0;display:grid;place-items:center;background:#292826;color:#eee8dd;font:11px/1.4 ui-monospace,monospace;text-align:center;padding:10px}
-.booth-camera.has-camera .booth-camera-placeholder{display:none}
-.booth-strip{box-sizing:border-box;min-height:300px;background:#f5f0e6;color:#292722;padding:8px 8px 22px;display:flex;flex-direction:column;gap:5px;box-shadow:2px 3px 5px #0003}
-.booth-strip[data-frame="ink"]{background:#252525;color:#f6f0e6}
-.booth-strip[data-frame="rose"]{background:#e8cad0;color:#30282b}
-.booth-strip img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
-.booth-empty{font:10px/1.4 Georgia,serif;text-align:center;margin:auto}
-.booth-strip.has-photos .booth-empty{display:none}
-.booth-status{font:11px/1.4 ui-monospace,monospace;min-height:2.8em;margin:12px 0 8px}
-.booth-actions{display:flex;flex-wrap:wrap;gap:7px}
-.booth-actions button{padding:7px 10px;background:var(--paper);border:1px solid var(--ink);color:var(--ink);font:11px/1.3 'Avenir Next',Avenir,sans-serif;cursor:pointer}
-.booth-actions button:disabled{opacity:.4;cursor:default}
-.booth-frames{border:0;padding:0;margin:13px 0 0;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.booth-frames legend{font:10px ui-monospace,monospace;margin-bottom:6px}
-.booth-frames label{cursor:pointer;font:11px 'Avenir Next',Avenir,sans-serif}
-.booth-frames input{position:absolute;opacity:0}
-.booth-frames span{display:inline-block;padding:5px 9px;border:1px solid var(--line)}
-.booth-frames input:checked+span{border-color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
-.booth-frames input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
-@media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{gap:14px}.photo-booth{padding-left:14px}.booth-workspace{grid-template-columns:minmax(0,1fr) 72px;gap:7px}.booth-strip{min-height:240px;padding:5px 5px 15px}.camera-instagram .instagram-embed iframe{height:350px}}
-@media(max-width:520px){.instagram-popup{width:calc(100% - 16px);padding:12px}.camera-popup-grid{grid-template-columns:minmax(220px,1fr) minmax(220px,1fr);gap:10px;overflow-x:auto;padding-bottom:8px}.photo-booth{padding-left:10px}.booth-workspace{grid-template-columns:minmax(0,1fr) 64px;gap:5px}.camera-instagram .instagram-embed iframe{height:320px}}
-
-/* The camera popup's booth is a tiny keepsake machine, with a printed strip beside the viewfinder. */
-.photo-booth{--booth-paper:#eee7d9;--booth-ink:#3b352e;--booth-rule:#bdb2a2;position:relative;background:var(--booth-paper);color:var(--booth-ink);border:1px solid #b5aa99;padding:16px 16px 14px!important;box-shadow:3px 4px 0 #0002}
-.photo-booth:before{content:'';position:absolute;inset:5px;border:1px solid #d2c8b9;pointer-events:none}
-.photo-booth h3{color:var(--booth-ink);font:italic 20px/1.1 Georgia,serif!important;letter-spacing:-.04em;margin:2px 0 4px!important}
-.photo-booth h3 span{font:15px/1 Georgia,serif;color:#8c786b;margin-left:5px}
-.booth-heading{position:relative;display:grid;grid-template-columns:1fr auto;align-items:start;padding:2px 2px 11px;margin-bottom:12px;border-bottom:1px solid var(--booth-rule)}
-.booth-heading h3{grid-column:1 / -1;grid-row:2}.booth-number,.booth-edition{font:9px/1.2 ui-monospace,monospace;letter-spacing:.07em}.booth-edition{white-space:nowrap;text-align:right}
-.booth-workspace{grid-template-columns:minmax(0,1fr) 86px;gap:12px;align-items:stretch;position:relative}
-.booth-camera{aspect-ratio:4/3;align-self:start;border:7px solid #4c4740;outline:1px solid #898176;background:#39352f;box-shadow:inset 0 0 0 1px #c3b7a4,2px 3px 0 #c8beae}
-.booth-camera:before,.booth-camera:after{content:'';position:absolute;width:20px;height:20px;border:1px solid #f2e9da8c;z-index:2;pointer-events:none}.booth-camera:before{top:9px;left:9px;border-right:0;border-bottom:0}.booth-camera:after{right:9px;bottom:9px;border-left:0;border-top:0}
-.booth-camera-placeholder{background:#39352f;color:#ece4d6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:italic 15px/1.2 Georgia,serif;padding:8px}
-.booth-camera-placeholder i{display:block;width:32px;height:24px;border:1.5px solid #d7c9b5;border-radius:3px;position:relative;transform:rotate(-5deg)}.booth-camera-placeholder i:before{content:'';position:absolute;width:10px;height:10px;border:1.5px solid #d7c9b5;border-radius:50%;top:5px;left:9px}.booth-camera-placeholder i:after{content:'';position:absolute;width:10px;height:3px;border:1.5px solid #d7c9b5;border-bottom:0;top:-5px;left:4px}
-.booth-viewfinder{position:absolute;left:7px;bottom:4px;z-index:3;color:#eee7d9;background:#39352fc9;padding:1px 4px;font:8px/1.2 ui-monospace,monospace;letter-spacing:.09em;pointer-events:none}
-.booth-strip{min-height:270px;padding:8px 7px 24px;background:#fbf8f1;color:#3b352e;box-shadow:1px 2px 0 #b7ab9b,3px 5px 5px #3b352e33;transform:rotate(2deg);position:relative}
-.booth-strip:before{content:'';position:absolute;inset:4px 3px auto;border-top:1px solid #ded4c6}.booth-strip:after{content:'SG  •  04';position:absolute;bottom:6px;left:0;right:0;text-align:center;font:8px/1 ui-monospace,monospace;letter-spacing:.09em}
-.booth-strip[data-frame="ink"]{background:#2b2926;color:#f4eee3}.booth-strip[data-frame="rose"]{background:#e9ccd0;color:#4b363b}
-.booth-strip img{border:1px solid #d6cfc3;background:#d4cdc1}
-.booth-empty{font:italic 13px/1.25 Georgia,serif;transform:rotate(-7deg);color:#8d8070}
-.booth-status{position:relative;min-height:0;margin:16px 2px 9px;color:#635b50;font:10px/1.4 ui-monospace,monospace}
-.booth-status:before{content:'●';font-size:7px;color:#9a6d60;margin-right:6px}
-.booth-actions{position:relative;gap:6px}.booth-actions button{background:#faf6ee;color:#3b352e;border:1px solid #8e8374;box-shadow:1px 2px 0 #b7ab9b;padding:7px 8px;font:10px/1.2 ui-monospace,monospace;transition:transform .15s,box-shadow .15s}.booth-actions button:hover:not(:disabled){transform:translateY(-2px);box-shadow:1px 4px 0 #b7ab9b}.booth-actions button:active:not(:disabled){transform:translateY(1px);box-shadow:none}.booth-actions button:disabled{opacity:.45}
-.booth-actions .booth-shoot:not(:disabled){background:#6f5148;color:#fff8ef;border-color:#6f5148}.booth-frames{position:relative;margin:13px 0 0;padding-top:11px;border-top:1px solid var(--booth-rule);gap:5px}.booth-frames legend{color:#635b50;letter-spacing:.08em}.booth-frames label{font:10px ui-monospace,monospace}.booth-frames span{background:#faf6ee;color:#3b352e;border-color:#b8ad9e;padding:5px 7px}.booth-frames input:checked+span{border-color:#6f5148;box-shadow:inset 0 -2px #6f5148}
-@media(max-width:700px){.photo-booth{padding:10px!important}.booth-workspace{grid-template-columns:minmax(0,1fr) 60px;gap:8px}.booth-strip{min-height:235px;padding:5px 4px 16px}.booth-strip:after{font-size:6px;bottom:4px}.booth-camera{border-width:5px}.booth-camera-placeholder{font-size:11px}.booth-camera-placeholder i{transform:scale(.8) rotate(-5deg)}.booth-number,.booth-edition{font-size:7px}.photo-booth h3{font-size:16px!important}.booth-heading{margin-bottom:9px;padding-bottom:8px}}
-@media(max-width:520px){.camera-popup-grid{grid-template-columns:minmax(220px,1fr) minmax(235px,1fr)}.booth-workspace{grid-template-columns:minmax(0,1fr) 58px}}
-@media(prefers-reduced-motion:reduce){.booth-actions button{transition:none}}
-.booth-strip{display:grid;grid-template-rows:repeat(4,auto);align-content:start}
-.booth-slot{display:grid;place-items:center;width:100%;aspect-ratio:4/3;box-sizing:border-box;border:1px solid #d6cfc3;background:#e5ded2;color:#a29686;font:9px/1 ui-monospace,monospace;letter-spacing:.1em;overflow:hidden}
-.booth-strip[data-frame="ink"] .booth-slot{background:#393734;border-color:#56524d;color:#aaa195}
-.booth-strip[data-frame="rose"] .booth-slot{background:#eddbe0;border-color:#ceb9be;color:#997d85}
-.booth-slot.is-filled{background:transparent;border:0}
-.booth-slot img{width:100%;height:100%;border:0;aspect-ratio:auto;object-fit:cover}
+.instagram-embed,.tiktok-preview{height:410px;overflow:auto;margin:0 0 10px;border:1px solid var(--line);background:var(--soft)}
+.camera-instagram .instagram-embed iframe{display:block;width:100%;height:100%;border:0}
+.tiktok-preview .tiktok-embed{min-width:288px;max-width:100%;margin:0 auto}
+.tiktok-preview iframe{max-width:100%}
+.social-profile-link{font-size:12px;color:var(--ink)}
+@media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{gap:14px}.instagram-embed,.tiktok-preview{height:350px}}
+@media(max-width:600px){.instagram-popup{width:calc(100% - 16px);padding:12px}.camera-popup-grid{grid-template-columns:1fr;gap:22px}.instagram-embed,.tiktok-preview{height:390px}}
 
 /* A small field journal appears after the backpack opens. */
 .hike-popup{box-sizing:border-box;width:min(700px,calc(100% - 32px));max-height:min(86vh,720px);overflow:auto;padding:26px 28px 28px;background:#f4f0e8;color:#34332f;border:1px solid #bcb5a8;box-shadow:5px 8px 0 #0003}
