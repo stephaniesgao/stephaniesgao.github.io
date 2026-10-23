@@ -56,11 +56,30 @@ function refinePose(geometry) {
     x -= Math.max(0, x - .12) * .065 * sideArm;
     z -= Math.max(0, z - .12) * .065 * sideArm;
 
-    // Extend only the exposed arabesque leg, not the back edge of the tutu.
+    // Draw the raised leg farther back from the hip without moving the tutu.
     const raisedLeg = (1 - smoothstep(-.30, -.23, z))
       * smoothstep(.025, .045, y) * (1 - smoothstep(.08, .105, y))
       * smoothstep(-.13, -.10, x) * (1 - smoothstep(-.03, 0, x));
-    z -= Math.max(0, -.23 - z) * .10 * raisedLeg;
+    z -= Math.max(0, -.23 - z) * .38 * raisedLeg;
+
+    // Tuck the top of the lifted thigh beneath the original skirt layers.
+    const upperThigh = smoothstep(.075, .11, -z) * (1 - smoothstep(.20, .25, -z)) * smoothstep(.018, .046, y)
+      * (1 - smoothstep(.077, .105, y)) * smoothstep(-.14, -.10, x)
+      * (1 - smoothstep(-.015, .025, x));
+    y -= .028 * upperThigh;
+
+    // Close up the noisy, splayed fingertips of the raised hand. Its palm
+    // stays in place, while the tips taper into a smaller porcelain gesture.
+    const hand = smoothstep(.414, .455, y) * (1 - smoothstep(-.22, -.19, x));
+    x += (-.26 - x) * hand * .97;
+    z += (-.125 - z) * hand * .97;
+    y -= Math.max(0, y - .44) * hand * .68;
+    if (hand > 0 && neighbors[i]) {
+      const smooth = hand * .62;
+      x += (sums[offset] / neighbors[i] - original[offset]) * smooth;
+      y += (sums[offset + 1] / neighbors[i] - original[offset + 1]) * smooth;
+      z += (sums[offset + 2] / neighbors[i] - original[offset + 2]) * smooth;
+    }
     positions.setXYZ(i, x, y, z);
   }
   positions.needsUpdate = true;
@@ -107,6 +126,15 @@ function makeFigure(source) {
     }
   });
   const pivot = new THREE.Group();
+  // Close the small opening beneath the back hem with the same ivory as the
+  // dress. This sits between the legs, beneath the ruffled outer layer.
+  const lining = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 24, 16),
+    new THREE.MeshPhysicalMaterial({ color: 0xe9dcca, roughness: .6 }),
+  );
+  lining.position.set(.018, -.035, .072);
+  lining.scale.set(.058, .075, .082);
+  model.add(lining);
   model.scale.setScalar(scale);
   model.position.set(
     -(count ? footX / count : bounds.getCenter(new THREE.Vector3()).x) * scale,

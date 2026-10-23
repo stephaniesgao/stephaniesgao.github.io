@@ -486,6 +486,7 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .tiktok-preview .tiktok-embed{min-width:288px;max-width:100%;margin:0 auto}
 .tiktok-preview iframe{max-width:100%}
 .social-profile-link{font-size:12px;color:var(--ink)}
+.embed-help{margin:5px 0 0;color:var(--muted);font:11px/1.4 'Avenir Next',Avenir,sans-serif}
 @media(max-width:700px){.instagram-popup{padding:17px}.camera-popup-grid{gap:14px}.instagram-embed,.tiktok-preview{height:350px}}
 @media(max-width:600px){.instagram-popup{width:calc(100% - 16px);padding:12px}.camera-popup-grid{grid-template-columns:1fr;gap:22px}.instagram-embed,.tiktok-preview{height:390px}}
 

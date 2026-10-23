@@ -1,6 +1,6 @@
 import {posts} from './posts.js?v=3';
 import {mountTrace} from './trace-ui.js?v=2';
-import {mountBallerina} from './ballerina3d.js?v=18';
+import {mountBallerina} from './ballerina3d.js?v=19';
 const main=document.querySelector('main');
 const projectEntries=[
 {id:'beacon',title:'Beacon',description:'A tsunami disaster app.',tags:'Disaster response'},
@@ -142,9 +142,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&agentMenu.open){age
 agentMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>agentMenu.open=false));
 
 let cameraShotPending=false;
+let creatorDialog=null;
+let creatorOpener=null;
 main.addEventListener('click',e=>{
   const opener=e.target.closest('.camera-open');
   if(!opener||cameraShotPending)return;
+  creatorOpener=opener;
   cameraShotPending=true;
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reducedMotion)document.body.classList.add('camera-snapping');
@@ -152,17 +155,19 @@ main.addEventListener('click',e=>{
     document.body.classList.remove('camera-snapping');
     cameraShotPending=false;
     if(!opener.isConnected)return;
+    if(creatorDialog){creatorDialog.showModal();return}
     const dialog=document.createElement('dialog');
     dialog.className='content-popup instagram-popup';
     dialog.setAttribute('aria-labelledby','content-popup-title');
-    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close making content">×</button><span class="scrap-label">camera roll / little moments</span><h2 id="content-popup-title">Making content</h2><div class="camera-popup-grid"><section class="camera-instagram"><h3>Instagram</h3><div class="instagram-embed"><iframe title="Stephanie Gao's Instagram profile" src="https://www.instagram.com/stephanie_tyc/embed/" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="social-profile-link" href="https://www.instagram.com/stephanie_tyc/" target="_blank" rel="noopener noreferrer">@stephanie_tyc ↗</a></section><section class="camera-tiktok"><h3>TikTok</h3><div class="tiktok-preview"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@scarlettsiyu" data-unique-id="scarlettsiyu" data-embed-type="creator"><section><a href="https://www.tiktok.com/@scarlettsiyu" target="_blank" rel="noopener noreferrer">@scarlettsiyu</a></section></blockquote></div><a class="social-profile-link" href="https://www.tiktok.com/@scarlettsiyu" target="_blank" rel="noopener noreferrer">@scarlettsiyu ↗</a></section></div>`;
+    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close making content">×</button><span class="scrap-label">camera roll / little moments</span><h2 id="content-popup-title">Making content</h2><div class="camera-popup-grid"><section class="camera-instagram"><h3>Instagram</h3><div class="instagram-embed"><iframe title="Stephanie Gao's Instagram profile" src="https://www.instagram.com/stephanie_tyc/embed/" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="social-profile-link" href="https://www.instagram.com/stephanie_tyc/" target="_blank" rel="noopener noreferrer">@stephanie_tyc ↗</a></section><section class="camera-tiktok"><h3>TikTok</h3><div class="tiktok-preview"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@scarlettsiyu" data-unique-id="scarlettsiyu" data-embed-type="creator"><section><a href="https://www.tiktok.com/@scarlettsiyu" target="_blank" rel="noopener noreferrer">@scarlettsiyu</a></section></blockquote></div><a class="social-profile-link" href="https://www.tiktok.com/@scarlettsiyu" target="_blank" rel="noopener noreferrer">Open @scarlettsiyu on TikTok ↗</a><p class="embed-help">If TikTok's preview is busy, the profile link still works.</p></section></div>`;
     document.body.append(dialog);
+    creatorDialog=dialog;
     const tiktokScript=document.createElement('script');
     tiktokScript.src='https://www.tiktok.com/embed.js';
     tiktokScript.async=true;
     dialog.append(tiktokScript);
     dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
-    dialog.addEventListener('close',()=>{dialog.remove();opener.focus()});
+    dialog.addEventListener('close',()=>{if(creatorOpener?.isConnected)creatorOpener.focus()});
     dialog.showModal();
   },reducedMotion?0:420);
 });
