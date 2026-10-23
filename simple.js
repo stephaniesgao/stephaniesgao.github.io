@@ -190,9 +190,11 @@ function writeBookNotes(dialog){
     notes.classList.add('is-open');
     notes.removeAttribute('aria-hidden');
     if(reduced){lines.forEach(line=>line.textContent=line.dataset.write);return}
-    let offset=240;
+    const headings=lines.filter(line=>line.tagName==='H3');
+    const titleStart=240+Math.max(...headings.map(line=>line.dataset.write.length))*42+180;
     lines.forEach(line=>{
       const content=line.dataset.write;
+      const offset=line.tagName==='H3'?240:titleStart;
       for(let index=0;index<content.length;index++){
         timers.push(setTimeout(()=>{
           if(!dialog.open)return;
@@ -200,7 +202,6 @@ function writeBookNotes(dialog){
           line.classList.toggle('is-writing',index!==content.length-1);
         },offset+index*42));
       }
-      offset+=content.length*42+180;
     });
   }
   if(reduced){reveal();return}
