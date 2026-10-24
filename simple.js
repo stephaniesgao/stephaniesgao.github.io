@@ -67,36 +67,43 @@ hobbies:()=>`<div class="after-hours"><header class="after-heading"><span class=
 function render(){const [route='home',slug]=location.hash.slice(1).split('/');const key=pages[route]?route:'home';document.querySelector('.more').open=false;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(key==='projects'&&['nfa','preclass','matcha'].includes(slug)){main.innerHTML='<p class="back"><a href="#projects">← Projects</a></p>';main.append(document.querySelector('#content-'+slug).content.cloneNode(true));if(slug==='nfa')mountTrace()}else if(key==='blog'&&posts.some(p=>p.id===slug)){const p=posts.find(p=>p.id===slug);main.innerHTML=`<article><p class="back"><a href="#blog">← Writing</a></p><h1>${p.title}</h1><p class="meta">${p.date}</p>${p.body}</article>`}else main.innerHTML=pages[key]();if(key==='hobbies')mountBallerina(main.querySelector('.ballerina-canvas'));if(key==='projects'&&slug&&projectRepos[slug]&&['nfa','preclass','matcha'].includes(slug)){const link=document.createElement('a');link.href=projectRepos[slug];link.textContent='View on GitHub ↗';link.target='_blank';link.rel='noopener';main.append(link)}clearSearch();if(key==='projects'&&slug&&!['nfa','preclass','matcha'].includes(slug))requestAnimationFrame(()=>{filterProjects('All');const target=document.getElementById('project-'+slug);if(target){target.querySelector('details').open=true;target.scrollIntoView()}});document.title=key==='home'?'Stephanie Gao':(key==='hobbies'?'Outside of work':main.querySelector('h1').textContent)+' | Stephanie Gao';if(render.done){main.focus({preventScroll:true});window.scrollTo(0,0)}render.done=true}
 function showAfterScene(index){const root=main.querySelector('.after-hours');if(!root)return;const scenes=[...root.querySelectorAll('[data-after-scene]')];const next=(index+scenes.length)%scenes.length;scenes.forEach((scene,i)=>{scene.hidden=i!==next;scene.classList.toggle('is-active',i===next)});root.querySelectorAll('[data-after-go]').forEach((button,i)=>button.setAttribute('aria-current',String(i===next)));root.querySelector('.after-count').textContent=String(next+1).padStart(2,'0')+' / 06';updateTvClip(next===2);const scene=scenes[next];if(!matchMedia('(prefers-reduced-motion: reduce)').matches)scene.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'cubic-bezier(.2,.8,.2,1)'});}
 main.addEventListener('click',e=>{const root=e.target.closest('.after-hours');if(!root)return;const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);const pick=e.target.closest('[data-after-go],[data-after-prev],[data-after-next]');if(!pick)return;showAfterScene(pick.hasAttribute('data-after-go')?Number(pick.dataset.afterGo):active+(pick.hasAttribute('data-after-next')?1:-1))});
-const mountainRegions=[
-  {name:'Pacific Northwest',sub:'Vancouver Island & the Cascades',terrain:'island',peaks:[
-    {name:'Mount St. Patrick',place:'Cape Scott, Vancouver Island',x:13,y:19},
-    {name:'Kings Peak',place:'Vancouver Island',x:37,y:40},
-    {name:'Mount Washington',place:'Vancouver Island',x:48,y:43},
-    {name:'Mount Albert Edward',place:'Vancouver Island',x:42,y:49},
-    {name:'5040 Peak',place:'Vancouver Island',x:43,y:63},
-    {name:'Kludahk',place:'Vancouver Island',x:57,y:78},
-    {name:'Mount Baker',place:'Washington, USA',x:83,y:69}
-  ]},
-  {name:'Japan',sub:'Honshu',terrain:'japan',peaks:[{name:'Mount Fuji',place:'Japan',x:52,y:57}]},
-  {name:'Patagonia',sub:'Argentina & Chile',terrain:'patagonia',peaks:[{name:'Fitz Roy',place:'Patagonia',x:55,y:43}]}
+const mountains=[
+  {name:'Mount St. Patrick',region:'Vancouver Island',lat:50.6776,lon:-128.3267},
+  {name:'Kings Peak',region:'Vancouver Island',lat:49.8107761,lon:-125.8368933},
+  {name:'Mount Washington',region:'Vancouver Island',lat:49.7528282,lon:-125.2963912},
+  {name:'Mount Albert Edward',region:'Vancouver Island',lat:49.6774859,lon:-125.4315354},
+  {name:'5040 Peak',region:'Vancouver Island',lat:49.1917848,lon:-125.2823423},
+  {name:'Kludahk Trail',region:'Vancouver Island',lat:48.5435133,lon:-124.3201090},
+  {name:'Mount Baker',region:'Washington',lat:48.7767701,lon:-121.8145660},
+  {name:'Mount Fuji',region:'Japan',lat:35.3628384,lon:138.7307677},
+  {name:'Fitz Roy',region:'Patagonia',lat:-49.2712498,lon:-73.0432115}
 ];
-const terrainSvg={
-  island:'<path class="atlas-land" d="M72 36 C120 15 192 32 242 82 C287 125 310 186 352 220 C378 241 425 264 428 292 C396 312 348 292 318 267 C268 232 244 174 202 132 C154 86 110 76 72 36Z"/><path class="atlas-land mainland" d="M426 -20 C404 48 436 97 469 139 C507 189 492 220 526 266 L650 280 L650 -20Z"/><path class="atlas-contour" d="M78 53 C134 47 184 76 221 116 C274 170 289 231 370 274 M112 48 C164 62 218 112 247 162 C278 213 307 244 369 272 M144 54 C199 84 231 126 262 177 C294 231 329 257 385 275 M434 19 C447 80 482 110 483 165 C491 202 518 235 573 260 M458 8 C463 70 502 108 503 158 C514 215 546 234 609 244"/><text x="42" y="340">PACIFIC</text><text x="471" y="35">MAINLAND</text>',
-  japan:'<path class="atlas-land" d="M303 -8 C319 26 321 52 305 79 C283 106 295 126 308 145 C327 171 310 194 320 216 C326 235 345 247 337 268 C326 297 308 314 288 341 L326 357 C368 320 386 291 369 260 C355 236 350 213 363 184 C373 154 355 126 351 100 C342 68 350 29 338 -8Z"/><path class="atlas-contour" d="M314 17 C333 63 308 98 329 139 C347 169 325 205 345 238 C356 262 337 301 308 327 M327 20 C347 67 320 97 344 139 C361 174 337 207 358 241 C370 271 347 310 321 338"/><text x="79" y="72">SEA OF JAPAN</text><text x="448" y="320">PACIFIC</text>',
-  patagonia:'<path class="atlas-land" d="M301 -15 C265 20 290 49 274 75 C251 103 270 133 251 164 C234 194 253 222 239 246 C223 277 240 306 225 350 L640 350 L640 -15Z"/><path class="atlas-contour" d="M296 0 C286 40 307 66 281 99 C261 132 279 163 261 191 C244 224 267 244 249 275 C239 303 250 323 242 350 M321 0 C312 44 333 75 308 109 C291 143 303 177 289 206 C276 236 300 261 282 297 C274 320 280 336 274 350 M343 0 C337 38 354 80 335 114 C321 153 332 182 314 215 C303 249 328 275 306 306"/><path class="atlas-lake" d="M345 253 C375 235 389 248 399 270 C390 294 360 302 344 285Z"/><text x="66" y="299">PACIFIC</text><text x="465" y="74">ARGENTINA</text>'
-};
-function showMountainRegion(dialog,regionIndex){
-  const region=mountainRegions[regionIndex];
-  dialog.querySelectorAll('[data-map-region]').forEach((button,i)=>button.setAttribute('aria-selected',String(i===regionIndex)));
-  dialog.querySelector('.atlas-location').textContent=region.sub;
-  dialog.querySelector('.atlas-map').innerHTML=`<svg viewBox="0 0 640 350" preserveAspectRatio="none" aria-hidden="true"><path class="atlas-grid" d="M0 88 H640 M0 176 H640 M0 264 H640 M128 0 V350 M256 0 V350 M384 0 V350 M512 0 V350"/>${terrainSvg[region.terrain]}</svg>${region.peaks.map((peak,i)=>`<button type="button" class="atlas-pin" data-peak="${i}" style="--x:${peak.x}%;--y:${peak.y}%" aria-label="Show ${peak.name}"><span>${String(i+1).padStart(2,'0')}</span></button>`).join('')}`;
-  dialog.querySelector('.atlas-list').innerHTML=region.peaks.map((peak,i)=>`<button type="button" class="atlas-peak" data-peak="${i}"><span>${String(i+1).padStart(2,'0')}</span><strong>${peak.name}</strong></button>`).join('');
-  function selectPeak(index){
-    dialog.querySelectorAll('[data-peak]').forEach(button=>button.classList.toggle('is-selected',Number(button.dataset.peak)===index));
-    dialog.querySelector('.atlas-selected').textContent=`${region.peaks[index].name} · ${region.peaks[index].place}`;
-  }
-  dialog.querySelectorAll('[data-peak]').forEach(button=>button.addEventListener('click',()=>selectPeak(Number(button.dataset.peak))));
-  selectPeak(0);
+let leafletPromise;
+function mountMountainMap(dialog){
+  leafletPromise ||= import('./vendor/leaflet/leaflet-src.esm.js');
+  leafletPromise.then(L=>{
+    if(!dialog.isConnected)return;
+    const map=L.map(dialog.querySelector('.mountain-map'),{scrollWheelZoom:false}).setView([49.65,-125.35],7);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:15,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    const markers=mountains.map((peak,index)=>{
+      const marker=L.circleMarker([peak.lat,peak.lon],{radius:6,color:'#302d29',weight:2,fillColor:'#f8f5ee',fillOpacity:1}).addTo(map);
+      marker.bindTooltip(peak.name,{direction:'top'});
+      marker.on('click',()=>selectPeak(index));
+      return marker;
+    });
+    function selectPeak(index){
+      const peak=mountains[index];
+      dialog.querySelectorAll('[data-mountain]').forEach(button=>button.setAttribute('aria-current',String(Number(button.dataset.mountain)===index)));
+      markers.forEach((marker,i)=>marker.setStyle({radius:i===index?9:6,fillColor:i===index?'#8d5b46':'#f8f5ee'}));
+      map.flyTo([peak.lat,peak.lon],index<7?10:11,{duration:.8});
+    }
+    dialog.querySelectorAll('[data-mountain]').forEach(button=>button.addEventListener('click',()=>selectPeak(Number(button.dataset.mountain))));
+    dialog.addEventListener('close',()=>map.remove(),{once:true});
+    requestAnimationFrame(()=>map.invalidateSize());
+  }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.mountain-map').textContent='Map unavailable. The mountain list is still here.'});
 }
 let hikePopupPending=false;
 main.addEventListener('click',e=>{
@@ -113,14 +120,13 @@ main.addEventListener('click',e=>{
     const dialog=document.createElement('dialog');
     dialog.className='content-popup hike-popup';
     dialog.setAttribute('aria-labelledby','hike-popup-title');
-    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><span class="hike-kicker">FIELD ATLAS / 09 STOPS</span><h2 id="hike-popup-title">The mountains I've hiked.</h2><div class="atlas-tabs" role="tablist" aria-label="Map region">${mountainRegions.map((region,i)=>`<button type="button" role="tab" data-map-region="${i}" aria-selected="${i===0}">${region.name}</button>`).join('')}</div><p class="atlas-location"></p><div class="atlas-layout"><div class="atlas-map" aria-label="Mountain map"></div><div class="atlas-sidebar"><p class="atlas-sidebar-label">PEAKS IN THIS MAP</p><div class="atlas-list"></div><p class="atlas-selected" aria-live="polite"></p></div></div><p class="atlas-footer">A little trail log, from the Island to Patagonia. <a href="#blog/woods">Read the Muir Woods note ↗</a></p>`;
+    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><h2 id="hike-popup-title">Mountains I've hiked</h2><div class="mountain-layout"><div class="mountain-map" aria-label="Map of mountains I've hiked"></div><div class="mountain-list" aria-label="Choose a mountain">${mountains.map((peak,i)=>`<button type="button" data-mountain="${i}" aria-current="false"><span>${peak.name}</span><small>${peak.region}</small></button>`).join('')}</div></div><a class="mountain-note" href="#blog/woods">A note from Muir Woods ↗</a>`;
     document.body.append(dialog);
-    dialog.querySelectorAll('[data-map-region]').forEach(button=>button.addEventListener('click',()=>showMountainRegion(dialog,Number(button.dataset.mapRegion))));
-    showMountainRegion(dialog,0);
     dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
     dialog.querySelector('a[href="#blog/woods"]').addEventListener('click',()=>dialog.close());
     dialog.addEventListener('close',()=>{dialog.remove();if(scene.isConnected)scene.classList.remove('is-open');if(bag.isConnected){bag.setAttribute('aria-expanded','false');bag.focus()}},{once:true});
     dialog.showModal();
+    mountMountainMap(dialog);
   },delay);
 });
 main.addEventListener('keydown',e=>{if(!e.target.closest('.after-hours')||!['ArrowLeft','ArrowRight'].includes(e.key)||e.target.matches('input,textarea'))return;e.preventDefault();const root=main.querySelector('.after-hours');const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);showAfterScene(active+(e.key==='ArrowRight'?1:-1))});
