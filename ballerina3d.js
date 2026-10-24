@@ -56,17 +56,26 @@ function refinePose(geometry) {
     x -= Math.max(0, x - .12) * .065 * sideArm;
     z -= Math.max(0, z - .12) * .065 * sideArm;
 
-    // Draw the raised leg farther back from the hip without moving the tutu.
-    const raisedLeg = (1 - smoothstep(-.30, -.23, z))
-      * smoothstep(.025, .045, y) * (1 - smoothstep(.08, .105, y))
-      * smoothstep(-.13, -.10, x) * (1 - smoothstep(-.03, 0, x));
-    z -= Math.max(0, -.23 - z) * .38 * raisedLeg;
+    // Keep the raised leg's original silhouette. The former partial z/y
+    // offsets pinched its upper edge into a kink. A small, even expansion on
+    // the free end gives the reconstructed calf a more natural thickness.
+    const backLeg = smoothstep(.23, .31, -z) * smoothstep(.015, .04, y)
+      * (1 - smoothstep(.105, .14, y)) * (1 - smoothstep(.045, .10, Math.abs(x + .08)));
+    x += (x + .08) * .09 * backLeg;
+    y += (y - .065) * .06 * backLeg;
 
-    // Tuck the top of the lifted thigh beneath the original skirt layers.
-    const upperThigh = smoothstep(.075, .11, -z) * (1 - smoothstep(.20, .25, -z)) * smoothstep(.018, .046, y)
-      * (1 - smoothstep(.077, .105, y)) * smoothstep(-.14, -.10, x)
-      * (1 - smoothstep(-.015, .025, x));
-    y -= .028 * upperThigh;
+    // Soften the scan's rounded hip artifact and draw it just inside the
+    // ruffled fabric instead of leaving a separate pale knob outside it.
+    const hip = smoothstep(.09, .13, -z) * (1 - smoothstep(.23, .28, -z))
+      * smoothstep(.025, .045, y) * (1 - smoothstep(.09, .115, y))
+      * smoothstep(-.14, -.10, x) * (1 - smoothstep(.005, .035, x));
+    if (hip && neighbors[i]) {
+      const blend = hip * .28;
+      x += (sums[offset] / neighbors[i] - original[offset]) * blend;
+      y += (sums[offset + 1] / neighbors[i] - original[offset + 1]) * blend;
+      z += (sums[offset + 2] / neighbors[i] - original[offset + 2]) * blend;
+      z += .012 * hip;
+    }
 
     // Close up the noisy, splayed fingertips of the raised hand. Its palm
     // stays in place, while the tips taper into a smaller porcelain gesture.
@@ -126,14 +135,15 @@ function makeFigure(source) {
     }
   });
   const pivot = new THREE.Group();
-  // Close the small opening beneath the back hem with the same ivory as the
-  // dress. This sits between the legs, beneath the ruffled outer layer.
+  // A narrow inner petticoat closes the opening beneath the hem. Its straight
+  // sides stay inside the outer ruffles, unlike the old sphere that showed as
+  // a bright round bump on the hip while the dancer turned.
   const lining = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 24, 16),
-    new THREE.MeshPhysicalMaterial({ color: 0xe9dcca, roughness: .6 }),
+    new THREE.CylinderGeometry(.041, .066, .082, 32, 1, false),
+    new THREE.MeshPhysicalMaterial({ color: 0xe9dcca, roughness: .72, side: THREE.DoubleSide }),
   );
-  lining.position.set(.018, -.035, .072);
-  lining.scale.set(.058, .075, .082);
+  lining.position.set(.018, -.044, -.018);
+  lining.scale.z = 1.12;
   model.add(lining);
   model.scale.setScalar(scale);
   model.position.set(
