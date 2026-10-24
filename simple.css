@@ -331,6 +331,45 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .postcard-grid .postcard-note{padding-bottom:64px}
 @media(max-width:380px){.postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){height:300px;min-height:300px;max-height:300px}}
 
+/* The postcards are little physical keepsakes, like the objects on the other page. */
+.postcard-grid{counter-reset:postcard;gap:26px;margin-top:28px}
+.postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){
+  position:relative;counter-increment:postcard;isolation:isolate;
+  padding:13px;gap:13px;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  color:#37342f;background:#eee9df;border:1px solid #81796d;border-radius:2px;
+  box-shadow:inset 0 0 0 3px #eee9df,inset 0 0 0 4px #c8bfae,3px 4px 0 #0002,5px 7px 13px #0002;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.postcard-grid>.place-postcard:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 3px #eee9df,inset 0 0 0 4px #c8bfae,4px 7px 0 #0002,7px 11px 17px #0003}
+.postcard-grid>.place-postcard::before{content:'POSTCARD  /  0' counter(postcard);position:absolute;left:16px;bottom:5px;color:#766e61;font:8px/1.2 ui-monospace,monospace;letter-spacing:.08em}
+.postcard-grid .postcard-picture{position:relative;min-width:0;border:5px solid #f8f5ed;background:#d8d1c4;box-shadow:0 0 0 1px #ada392,2px 3px 2px #0002}
+.postcard-grid .postcard-picture img{filter:saturate(.78) contrast(.96);transition:filter .3s ease,transform .4s ease}
+.postcard-grid .place-postcard:hover .postcard-picture img{filter:saturate(.95) contrast(1);transform:scale(1.025)}
+.postcard-grid .postcard-picture::after{content:'';position:absolute;left:-10px;top:-8px;width:47px;height:16px;z-index:2;background:#d8c7a9ab;border-left:1px solid #a49377aa;border-right:1px solid #a49377aa;transform:rotate(-18deg);pointer-events:none}
+.postcard-grid .postcard-picture>span{left:9px;bottom:9px;max-width:calc(100% - 18px);padding:3px 8px 4px;background:#f3ede2;color:#33302c;text-shadow:none;box-shadow:1px 2px 0 #0003;font:italic 18px/1.15 Georgia,serif;letter-spacing:-.03em;transform:rotate(-2deg)}
+.postcard-grid .postcard-note{position:relative;display:flex;flex-direction:column;min-width:0;margin:0;padding:17px 9px 27px 18px;overflow:visible;border-left:1px solid #b5ab9a;background:none;color:#37342f}
+.postcard-grid .postcard-note::before{content:'';position:absolute;left:12px;right:7px;top:8px;border-top:1px solid #cbc2b4}
+.postcard-grid .postcard-note::after{content:'';position:absolute;right:41px;bottom:26px;width:75px;height:31px;border:1px solid #aaa18f;border-radius:50%;opacity:.65;transform:rotate(-16deg);pointer-events:none}
+.postcard-grid .postcard-note h2{margin:7px 0 9px;color:#332f2a;font:italic 19px/1.15 Georgia,serif;letter-spacing:-.035em}
+.postcard-grid .postcard-note p{margin:0;color:#4d483f;font:11px/1.6 'Avenir Next',Avenir,'Segoe UI',sans-serif}
+.postcard-grid .postcard-note a{align-self:flex-start;margin-top:8px;color:#4d483f;font:10px/1.4 'Avenir Next',Avenir,'Segoe UI',sans-serif;text-decoration-color:#857a69}
+.postcard-grid .postcard-sign{margin:auto 0 8px;color:#6c6153;font:italic 12px/1.2 Georgia,serif}
+.postcard-grid .postcard-stamp{right:3px;bottom:6px;width:62px;height:67px;z-index:2;filter:drop-shadow(1px 2px 1px #0003)}
+.postcard-grid .postcard-lettering{border-color:#b6ab9b;background:radial-gradient(circle at 50% 48%,#e9e0cd 0 27%,transparent 27.3%),repeating-linear-gradient(0deg,#e7dece 0 1px,#e9e1d2 1px 17px)}
+.postcard-grid .postcard-lettering>span{position:static;max-width:none;padding:0;background:none;color:#4b4035;box-shadow:none;text-align:center;font:italic 34px/.95 Georgia,serif;letter-spacing:-.05em;transform:none}
+.postcard-grid .postcard-lettering small{position:relative;color:#6b5e4d;font:9px/1.5 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:500px){
+  .postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){height:265px;min-height:265px;max-height:265px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:10px;gap:9px}
+  .postcard-grid .postcard-note{padding:14px 3px 24px 10px}
+  .postcard-grid .postcard-note h2{font-size:16px}
+  .postcard-grid .postcard-note p{font-size:10px;line-height:1.5}
+  .postcard-grid .postcard-picture>span{font-size:15px}
+  .postcard-grid .postcard-stamp{width:52px;height:57px}
+  .postcard-grid .postcard-lettering>span{font-size:27px}
+}
+@media(max-width:380px){.postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){height:300px;min-height:300px;max-height:300px}}
+@media(prefers-reduced-motion:reduce){.postcard-grid>.place-postcard,.postcard-grid .postcard-picture img{transition:none}}
+
 /* A real Instagram glimpse inside the camera popup. */
 body.camera-snapping::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:#fff;opacity:0;animation:camera-shutter-flash .42s ease-out both}
 @keyframes camera-shutter-flash{0%,8%{opacity:0}18%{opacity:.92}38%{opacity:.82}100%{opacity:0}}
