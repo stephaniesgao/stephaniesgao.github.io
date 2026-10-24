@@ -107,21 +107,32 @@ function makeFigure(source) {
   model.updateWorldMatrix(true, true);
   const bounds = new THREE.Box3().setFromObject(model);
   const size = bounds.getSize(new THREE.Vector3());
-  const scale = Math.min(2.04 / size.y, 2.08 / Math.max(size.x, size.z));
+  const scale = Math.min(1.78 / size.y, 1.82 / Math.max(size.x, size.z));
 
   // Keep the turn centred on the pointe shoe, rather than the mesh centre.
   const point = new THREE.Vector3();
   let footX = 0, footZ = 0, count = 0;
   model.traverse(part => {
     if (!part.isMesh || !part.geometry?.attributes.position) return;
-    part.material = new THREE.MeshPhysicalMaterial({
-      color: 0xe8ddc8,
+    const original = part.material;
+    const porcelain = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      map: original.map || null,
       metalness: 0,
-      roughness: 0.82,
+      roughness: 0.76,
       clearcoat: 0.06,
       clearcoatRoughness: 0.8,
       side: THREE.DoubleSide,
     });
+    // Keep only a hint of the scan's color. The texture no longer exposes
+    // every seam and uneven patch, but the dancer still reads as a figurine.
+    if (original.map) porcelain.onBeforeCompile = shader => {
+      shader.fragmentShader = shader.fragmentShader.replace(
+        '#include <map_fragment>',
+        '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(0.72, 0.43, 0.43), diffuseColor.rgb, 0.36);',
+      );
+    };
+    part.material = porcelain;
     const positions = part.geometry.attributes.position;
     for (let i = 0; i < positions.count; i++) {
       point.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld);
@@ -150,6 +161,7 @@ function makeFigure(source) {
     -(count ? footZ / count : bounds.getCenter(new THREE.Vector3()).z) * scale,
   );
   pivot.add(model);
+  pivot.position.y = -0.13;
   const spindle = new THREE.Mesh(
     new THREE.CylinderGeometry(0.055, 0.075, 0.035, 20),
     new THREE.MeshStandardMaterial({ color: 0x9d6d2f, metalness: 0.78, roughness: 0.3 }),
