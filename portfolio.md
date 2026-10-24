@@ -63,7 +63,7 @@ Relevant skills: Product concept · Interaction design · Attention UX
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/aura-protection
 
-Repository: https://github.com/stephyg0/aura-protection
+Repository: https://github.com/stephaniesgao/aura-protection
 
 ### Beacon
 
@@ -85,7 +85,7 @@ Relevant skills: Product concept · Conversational UX · Voice design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bffr
 
-Repository: https://github.com/stephyg0/bffr
+Repository: https://github.com/stephaniesgao/bffr
 
 ### Bulby
 
@@ -97,7 +97,7 @@ Relevant skills: Electron · TypeScript · faster-whisper · Chrome extension
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bulby
 
-Repository: https://github.com/stephyg0/local-meeting-copilot
+Repository: https://github.com/stephaniesgao/local-meeting-copilot
 
 ### Caba
 
@@ -119,7 +119,7 @@ Relevant skills: JavaScript · Interaction design · Behavioral UX
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caughtcha
 
-Repository: https://github.com/stephyg0/caughtcha
+Repository: https://github.com/stephaniesgao/caughtcha
 
 ### Christmas Lights
 
@@ -151,7 +151,7 @@ Relevant skills: TypeScript · Node.js · Commander · Inquirer
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/delusiongpt
 
-Repository: https://github.com/stephyg0/delusiongpt
+Repository: https://github.com/stephaniesgao/delusiongpt
 
 ### ÉVOLUER
 
@@ -173,7 +173,7 @@ Relevant skills: Leaflet · Supabase · Geospatial data · Offline fallback
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/green-carbon
 
-Repository: https://github.com/stephyg0/greencarbon-extension
+Repository: https://github.com/stephaniesgao/greencarbon-extension
 
 ### Homework Hound
 
@@ -185,7 +185,7 @@ Relevant skills: JavaScript · Chrome extension · DOM interaction
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/homework-hound
 
-Repository: https://github.com/stephyg0/homework-dog
+Repository: https://github.com/stephaniesgao/homework-dog
 
 ### Instagram Follow Checker
 
@@ -197,7 +197,7 @@ Relevant skills: Client-side ZIP parsing · JSON/HTML · Search UI
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/instagram
 
-Repository: https://github.com/stephyg0/instagram-follow-checker
+Repository: https://github.com/stephaniesgao/instagram-follow-checker
 
 ### Lockin Twin
 
@@ -209,7 +209,7 @@ Relevant skills: React · TypeScript · MediaPipe Face Mesh · Framer Motion
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/lockin-twin
 
-Repository: https://github.com/stephyg0/lock-in-twin
+Repository: https://github.com/stephaniesgao/lock-in-twin
 
 ### Matcha (acquired)
 
@@ -241,7 +241,7 @@ Relevant skills: React · Google Maps · Geospatial analysis · Behavioral desig
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/mymizu
 
-Repository: https://github.com/stephyg0/mymizu-extension
+Repository: https://github.com/stephaniesgao/mymizu-extension
 
 ### NFA Tree Lab
 
@@ -253,7 +253,7 @@ Relevant skills: JavaScript · Automata · Computation trees
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa
 
-Repository: https://github.com/stephyg0/nfa-tree-lab
+Repository: https://github.com/stephaniesgao/nfa-tree-lab
 
 ### Preclass
 
@@ -265,7 +265,7 @@ Relevant skills: JavaScript · Manifest V3 · Browser automation
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/preclass
 
-Repository: https://github.com/stephyg0/preclass
+Repository: https://github.com/stephaniesgao/preclass
 
 ### seen.
 
@@ -277,7 +277,7 @@ Relevant skills: Next.js · TypeScript · React · OpenRouter
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/seen
 
-Repository: https://github.com/stephyg0/seen.
+Repository: https://github.com/stephaniesgao/seen.
 
 ### Setlist Gym Log
 
@@ -289,7 +289,7 @@ Relevant skills: Browser storage · Duration calculation · CSV export
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/setlist
 
-Repository: https://github.com/stephyg0/setlist-gym-log
+Repository: https://github.com/stephaniesgao/setlist-gym-log
 
 ### Speakeasy Terminal
 
@@ -321,7 +321,7 @@ Relevant skills: Python · Flask · Image processing · Linear algebra
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/vectorizer
 
-Repository: https://github.com/stephyg0/vectorizer
+Repository: https://github.com/stephaniesgao/vectorizer
 
 ### Yuki Issei
 
@@ -1425,6 +1425,6 @@ https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/wang-ximeng
 
 Email: mailto:stephaniesgao@gmail.com
 LinkedIn: https://www.linkedin.com/in/stephaniesgao
-GitHub: https://github.com/stephyg0
+GitHub: https://github.com/stephaniesgao
 Instagram: https://www.instagram.com/stephanie_tyc/
 Résumé: https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/Stephanie-Gao-Resume.pdf

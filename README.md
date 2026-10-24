@@ -1,2 +1,2 @@
-# stephyg0.github.io
+# stephaniesgao.github.io
 Stephanie Gao’s personal portfolio
