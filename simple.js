@@ -1,6 +1,6 @@
 import {posts} from './posts.js?v=3';
 import {mountTrace} from './trace-ui.js?v=2';
-import {mountBallerina} from './ballerina3d.js?v=20';
+import {mountBallerina} from './ballerina3d.js?v=21';
 const main=document.querySelector('main');
 const projectEntries=[
 {id:'beacon',title:'Beacon',description:'A tsunami disaster app.',tags:'Disaster response'},
@@ -68,39 +68,42 @@ function render(){const [route='home',slug]=location.hash.slice(1).split('/');co
 function showAfterScene(index){const root=main.querySelector('.after-hours');if(!root)return;const scenes=[...root.querySelectorAll('[data-after-scene]')];const next=(index+scenes.length)%scenes.length;scenes.forEach((scene,i)=>{scene.hidden=i!==next;scene.classList.toggle('is-active',i===next)});root.querySelectorAll('[data-after-go]').forEach((button,i)=>button.setAttribute('aria-current',String(i===next)));root.querySelector('.after-count').textContent=String(next+1).padStart(2,'0')+' / 06';updateTvClip(next===2);const scene=scenes[next];if(!matchMedia('(prefers-reduced-motion: reduce)').matches)scene.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'cubic-bezier(.2,.8,.2,1)'});}
 main.addEventListener('click',e=>{const root=e.target.closest('.after-hours');if(!root)return;const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);const pick=e.target.closest('[data-after-go],[data-after-prev],[data-after-next]');if(!pick)return;showAfterScene(pick.hasAttribute('data-after-go')?Number(pick.dataset.afterGo):active+(pick.hasAttribute('data-after-next')?1:-1))});
 const mountains=[
-  {name:'Mount St. Patrick',region:'Vancouver Island',lat:50.6776,lon:-128.3267},
-  {name:'Kings Peak',region:'Vancouver Island',lat:49.8107761,lon:-125.8368933},
-  {name:'Mount Washington',region:'Vancouver Island',lat:49.7528282,lon:-125.2963912},
-  {name:'Mount Albert Edward',region:'Vancouver Island',lat:49.6774859,lon:-125.4315354},
-  {name:'5040 Peak',region:'Vancouver Island',lat:49.1917848,lon:-125.2823423},
-  {name:'Kludahk Trail',region:'Vancouver Island',lat:48.5435133,lon:-124.3201090},
-  {name:'Mount Baker',region:'Washington',lat:48.7767701,lon:-121.8145660},
-  {name:'Mount Fuji',region:'Japan',lat:35.3628384,lon:138.7307677},
-  {name:'Fitz Roy',region:'Patagonia',lat:-49.2712498,lon:-73.0432115}
+  {name:'Mount St. Patrick',region:'Vancouver Island',lat:50.6776,lon:-128.3267,detail:'A northern Vancouver Island summit. Elevation is left unlisted until it can be verified.'},
+  {name:'Kings Peak',region:'Vancouver Island',lat:49.8107761,lon:-125.8368933,elevation:'about 2,060 m',detail:'One of the highest summits in Strathcona Provincial Park.',source:'https://www.beyondnootka.com/articles/island6000.html'},
+  {name:'Mount Washington',region:'Vancouver Island',lat:49.7528282,lon:-125.2963912,elevation:'1,588 m',detail:'An alpine summit above the Comox Valley.',source:'https://www.comoxvalleyrd.ca/sites/default/files/uploads/bylaws/bylaw_337_ocp_mtwashington_ircp_web.pdf'},
+  {name:'Mount Albert Edward',region:'Vancouver Island',lat:49.6774859,lon:-125.4315354,elevation:'2,093 m',detail:'A Strathcona peak reached through the Paradise Meadows area.',source:'https://strathconapark.org/park-maps-access/'},
+  {name:'5040 Peak',region:'Vancouver Island',lat:49.1917848,lon:-125.2823423,elevation:'5,040 ft / about 1,536 m',detail:'Named for its summit height in feet, above Cobalt Lake.',source:'https://www.mountainflora.ca/coast-ranges-peak-5040'},
+  {name:'Kludahk Trail',region:'Vancouver Island',lat:48.5435133,lon:-124.3201090,detail:'A ridge trail, about 35–40 km long, between Jordan River and Port Renfrew.',source:'https://www.kludahk.com/the-trail/'},
+  {name:'Mount Baker',region:'Washington',lat:48.7767701,lon:-121.8145660,elevation:'3,286 m',detail:'A glaciated volcano in the North Cascades.',source:'https://www.usgs.gov/volcanoes/mount-baker/'},
+  {name:'Mount Fuji',region:'Japan',lat:35.3628384,lon:138.7307677,elevation:'3,776 m',detail:'Japan’s highest mountain and an active volcano.',source:'https://web1.gsi.go.jp/WNEW/PRESS-RELEASE/keikaku61003.html'},
+  {name:'Fitz Roy',region:'Patagonia',lat:-49.2712498,lon:-73.0432115,elevation:'3,405 m',detail:'Also called Cerro Chaltén, rising above Los Glaciares National Park.',source:'https://www.argentina.gob.ar/node/303780'}
 ];
 let leafletPromise;
 function mountMountainMap(dialog){
+  const detail=dialog.querySelector('.mountain-detail');
+  let map,markers=[];
+  function selectPeak(index){
+    const peak=mountains[index];
+    dialog.querySelectorAll('[data-mountain]').forEach(button=>button.setAttribute('aria-current',String(Number(button.dataset.mountain)===index)));
+    detail.innerHTML=`<span class="mountain-detail-kicker">SELECTED PLACE</span><h3>${peak.name}</h3><p>${peak.region}${peak.elevation?' · '+peak.elevation:''}</p><p>${peak.detail}</p><small>${Math.abs(peak.lat).toFixed(3)}° ${peak.lat>=0?'N':'S'}, ${Math.abs(peak.lon).toFixed(3)}° ${peak.lon>=0?'E':'W'}</small>${peak.source?`<a href="${peak.source}" target="_blank" rel="noopener">Elevation / route source ↗</a>`:''}`;
+    markers.forEach((marker,i)=>marker.setStyle({radius:i===index?9:6,fillColor:i===index?'#8d5b46':'#f8f5ee'}));
+    if(map)map.flyTo([peak.lat,peak.lon],index<7?10:11,{duration:.8});
+  }
+  dialog.querySelectorAll('[data-mountain]').forEach(button=>button.addEventListener('click',()=>selectPeak(Number(button.dataset.mountain))));
   leafletPromise ||= import('./vendor/leaflet/leaflet-src.esm.js');
   leafletPromise.then(L=>{
     if(!dialog.isConnected)return;
-    const map=L.map(dialog.querySelector('.mountain-map'),{scrollWheelZoom:false}).setView([49.65,-125.35],7);
+    map=L.map(dialog.querySelector('.mountain-map'),{scrollWheelZoom:false}).setView([49.65,-125.35],7);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:15,
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    const markers=mountains.map((peak,index)=>{
+    markers=mountains.map((peak,index)=>{
       const marker=L.circleMarker([peak.lat,peak.lon],{radius:6,color:'#302d29',weight:2,fillColor:'#f8f5ee',fillOpacity:1}).addTo(map);
       marker.bindTooltip(peak.name,{direction:'top'});
       marker.on('click',()=>selectPeak(index));
       return marker;
     });
-    function selectPeak(index){
-      const peak=mountains[index];
-      dialog.querySelectorAll('[data-mountain]').forEach(button=>button.setAttribute('aria-current',String(Number(button.dataset.mountain)===index)));
-      markers.forEach((marker,i)=>marker.setStyle({radius:i===index?9:6,fillColor:i===index?'#8d5b46':'#f8f5ee'}));
-      map.flyTo([peak.lat,peak.lon],index<7?10:11,{duration:.8});
-    }
-    dialog.querySelectorAll('[data-mountain]').forEach(button=>button.addEventListener('click',()=>selectPeak(Number(button.dataset.mountain))));
     dialog.addEventListener('close',()=>map.remove(),{once:true});
     requestAnimationFrame(()=>map.invalidateSize());
   }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.mountain-map').textContent='Map unavailable. The mountain list is still here.'});
@@ -120,7 +123,7 @@ main.addEventListener('click',e=>{
     const dialog=document.createElement('dialog');
     dialog.className='content-popup hike-popup';
     dialog.setAttribute('aria-labelledby','hike-popup-title');
-    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><h2 id="hike-popup-title">Mountains I've hiked</h2><div class="mountain-layout"><div class="mountain-map" aria-label="Map of mountains I've hiked"></div><div class="mountain-list" aria-label="Choose a mountain">${mountains.map((peak,i)=>`<button type="button" data-mountain="${i}" aria-current="false"><span>${peak.name}</span><small>${peak.region}</small></button>`).join('')}</div></div><a class="mountain-note" href="#blog/woods">A note from Muir Woods ↗</a>`;
+    dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><h2 id="hike-popup-title">Mountains I've hiked</h2><div class="mountain-layout"><div class="mountain-map" aria-label="Map of mountains I've hiked"></div><div class="mountain-list" aria-label="Choose a mountain">${mountains.map((peak,i)=>`<button type="button" data-mountain="${i}" aria-current="false"><span>${peak.name}</span><small>${peak.region}</small></button>`).join('')}</div></div><div class="mountain-detail" aria-live="polite"><span class="mountain-detail-kicker">SELECTED PLACE</span><p>Choose a marker or a name to see the details.</p></div><a class="mountain-note" href="#blog/woods">A note from Muir Woods ↗</a>`;
     document.body.append(dialog);
     dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
     dialog.querySelector('a[href="#blog/woods"]').addEventListener('click',()=>dialog.close());

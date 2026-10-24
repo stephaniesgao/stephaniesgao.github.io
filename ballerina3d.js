@@ -114,14 +114,12 @@ function makeFigure(source) {
   let footX = 0, footZ = 0, count = 0;
   model.traverse(part => {
     if (!part.isMesh || !part.geometry?.attributes.position) return;
-    const original = part.material;
     part.material = new THREE.MeshPhysicalMaterial({
-      map: original.map,
-      color: 0xfff2da,
-      metalness: 0.08,
-      roughness: 0.28,
-      clearcoat: 0.58,
-      clearcoatRoughness: 0.2,
+      color: 0xe8ddc8,
+      metalness: 0,
+      roughness: 0.82,
+      clearcoat: 0.06,
+      clearcoatRoughness: 0.8,
       side: THREE.DoubleSide,
     });
     const positions = part.geometry.attributes.position;
