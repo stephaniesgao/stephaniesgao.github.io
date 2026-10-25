@@ -53,8 +53,8 @@ function refinePose(geometry) {
     // Shorten the horizontal arm from its shoulder, keeping the sleeve fixed.
     const sideArm = smoothstep(.12, .21, x) * smoothstep(.09, .13, y)
       * (1 - smoothstep(.21, .25, y));
-    x -= Math.max(0, x - .12) * .065 * sideArm;
-    z -= Math.max(0, z - .12) * .065 * sideArm;
+    x -= Math.max(0, x - .12) * .11 * sideArm;
+    z -= Math.max(0, z - .12) * .11 * sideArm;
 
     // Keep the raised leg's original silhouette. The former partial z/y
     // offsets pinched its upper edge into a kink. A small, even expansion on
