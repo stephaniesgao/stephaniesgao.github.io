@@ -129,7 +129,7 @@ function makeFigure(source) {
     if (original.map) porcelain.onBeforeCompile = shader => {
       shader.fragmentShader = shader.fragmentShader.replace(
         '#include <map_fragment>',
-        '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(0.72, 0.43, 0.43), diffuseColor.rgb, 0.36);',
+        '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(0.80, 0.68, 0.49), diffuseColor.rgb, 0.36);',
       );
     };
     part.material = porcelain;
