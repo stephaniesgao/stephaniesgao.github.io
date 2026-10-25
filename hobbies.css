@@ -126,3 +126,13 @@
 .after-strip button:last-child .strip-thumb img{width:auto;height:auto;max-width:96%;max-height:47px;object-fit:contain}
 @media(max-width:650px){.after-hike .backpack-open{width:min(100%,285px)}}
 @media(prefers-reduced-motion:reduce){.after-hike .backpack-open,.backpack-body,.backpack-open-state{transition:none}.after-hike.is-open .backpack-contents img{animation:none;opacity:1;transform:rotate(var(--land-tilt))}}
+
+/* Outside of Work uses one clean face for UI and one serif for small accents. */
+body:has(.after-hours) .site,
+body:has(.after-hours) .site *,
+.content-popup,
+.content-popup *{font-family:'Avenir Next',Avenir,'Segoe UI',sans-serif!important}
+body:has(.after-hours) .after-stop,
+body:has(.after-hours) .tv-title,
+.books-popup .book-writing{font-family:Georgia,serif!important}
+.books-popup .book-writing{font-style:italic}
