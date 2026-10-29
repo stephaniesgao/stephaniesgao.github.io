@@ -45,6 +45,16 @@
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bffr"
     },
     {
+      "id": "buenos-aires-refuges",
+      "name": "Buenos Aires Climate Refuges",
+      "category": "Other",
+      "repository": null,
+      "provisional_description": false,
+      "description": "Buenos Aires Climate Refuges is a bilingual React and TypeScript prototype for finding climate shelters and drinking fountains. It searches a local dataset of 269 shelters and 176 fountains with filters and record details. An optional Google Maps layer adds map selection and walking directions; the core search works without an API key. The app has no backend or account system.",
+      "tags": "React · TypeScript · Geospatial search · Bilingual UX",
+      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/buenos-aires-refuges"
+    },
+    {
       "id": "bulby",
       "name": "Bulby",
       "category": "My favourites",
@@ -83,6 +93,16 @@
       "description": "Christmas Lights is an interactive seasonal screen experiment built in JavaScript. Instead of a static holiday image, it treats light and motion as the interface. The project is a small study in timing, visual feedback, and making a browser feel like an object in a room.",
       "tags": "JavaScript · Motion design · Creative coding",
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/christmas-lights"
+    },
+    {
+      "id": "cs110-scheduler",
+      "name": "CS110 Scheduler",
+      "category": "Academic",
+      "repository": null,
+      "provisional_description": false,
+      "description": "CS110 Scheduler is a local Python and SQLite task planner built around a priority queue. It offers weekly calendar and agenda views, reminders, and rescheduling for missed tasks. Optional Google Calendar sync and Google Drive export connect the schedule to existing tools. The base app runs locally without external Python packages.",
+      "tags": "Python · SQLite · Priority queues · Google Calendar/Drive",
+      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/cs110-scheduler"
     },
     {
       "id": "cyber",
