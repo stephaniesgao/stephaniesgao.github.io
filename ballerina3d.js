@@ -50,11 +50,12 @@ function refinePose(geometry) {
       z += (sums[offset + 2] / neighbors[i] - z) * blend;
     }
 
-    // Shorten the horizontal arm from its shoulder, keeping the sleeve fixed.
-    const sideArm = smoothstep(.12, .21, x) * smoothstep(.09, .13, y)
-      * (1 - smoothstep(.21, .25, y));
-    x -= Math.max(0, x - .12) * .11 * sideArm;
-    z -= Math.max(0, z - .12) * .11 * sideArm;
+    // The outstretched arm is at positive x and z, near shoulder height.
+    // Taper only its forearm; leave the raised arm and the skirt alone.
+    const sideArm = smoothstep(.12, .20, x) * smoothstep(.10, .14, y)
+      * (1 - smoothstep(.20, .23, y)) * smoothstep(.06, .12, z);
+    x -= Math.max(0, x - .12) * .15 * sideArm;
+    z -= Math.max(0, z - .08) * .12 * sideArm;
 
     // Keep the raised leg's original silhouette. The former partial z/y
     // offsets pinched its upper edge into a kink. A small, even expansion on
@@ -82,7 +83,7 @@ function refinePose(geometry) {
     const hand = smoothstep(.414, .455, y) * (1 - smoothstep(-.22, -.19, x));
     x += (-.26 - x) * hand * .97;
     z += (-.125 - z) * hand * .97;
-    y -= Math.max(0, y - .44) * hand * .68;
+    y -= Math.max(0, y - .44) * hand * .5;
     if (hand > 0 && neighbors[i]) {
       const smooth = hand * .62;
       x += (sums[offset] / neighbors[i] - original[offset]) * smooth;
