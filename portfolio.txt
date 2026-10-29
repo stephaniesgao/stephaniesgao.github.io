@@ -51,7 +51,7 @@ Built a sensor-reactive robot fetch feature and interactive Scratch program to t
 
 Projects
 
-27 projects. All listed below; no filters or collapsed content.
+26 projects. All listed below; no filters or collapsed content.
 
 Aura Protection
 
@@ -148,16 +148,6 @@ Provisional description: Christmas Lights is an interactive seasonal screen expe
 JavaScript · Motion design · Creative coding
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/christmas-lights
-
-CS110 Scheduler
-
-Category: Academic
-
-CS110 Scheduler is a local Python and SQLite task planner built around a priority queue. It offers weekly calendar and agenda views, reminders, and rescheduling for missed tasks. Optional Google Calendar sync and Google Drive export connect the schedule to existing tools. The base app runs locally without external Python packages.
-
-Python · SQLite · Priority queues · Google Calendar/Drive
-
-https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/cs110-scheduler
 
 Cyber for Students
 
