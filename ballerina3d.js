@@ -130,7 +130,7 @@ function makeFigure(source) {
     if (original.map) porcelain.onBeforeCompile = shader => {
       shader.fragmentShader = shader.fragmentShader.replace(
         '#include <map_fragment>',
-        '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(0.80, 0.68, 0.49), diffuseColor.rgb, 0.36);',
+        '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(0.68, 0.53, 0.32), diffuseColor.rgb, 0.12);',
       );
     };
     part.material = porcelain;
@@ -187,7 +187,7 @@ export async function mountBallerina(canvas) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
+  renderer.toneMappingExposure = 1.18;
 
   const scene = new THREE.Scene();
   const view = 1.28;
