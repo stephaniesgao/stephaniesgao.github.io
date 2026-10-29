@@ -8,11 +8,21 @@
       "id": "aura-protection",
       "name": "Aura Protection",
       "category": "Content apps",
-      "repository": "https://github.com/stephaniesgao/aura-protection",
+      "repository": null,
       "provisional_description": true,
       "description": "Aura Protection is a concept for making attention boundaries visible instead of burying them in settings. The interaction centers on a small, playful pause before a distracting action. The interesting product challenge is designing an interruption that feels helpful without becoming another distraction.",
       "tags": "Product concept · Interaction design · Attention UX",
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/aura-protection"
+    },
+    {
+      "id": "nfa",
+      "name": "Automata Lab",
+      "category": "Academic",
+      "repository": "https://github.com/stephaniesgao/nfa-tree-lab",
+      "provisional_description": false,
+      "description": "Automata Lab is a JavaScript workbench for editing DFA, NFA, and PDA diagrams and inspecting their computation trees. It supports step-by-step exploration, explicit epsilon transitions, and PNG, SVG, or clipboard export. A question importer can prepare an editable draft from pasted ChatGPT JSON; direct image recognition still requires separate AI setup.",
+      "tags": "JavaScript · DFA/NFA/PDA · Computation trees · Export",
+      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa"
     },
     {
       "id": "beacon",
@@ -28,7 +38,7 @@
       "id": "bffr",
       "name": "BFFR",
       "category": "Content apps",
-      "repository": "https://github.com/stephaniesgao/bffr",
+      "repository": null,
       "provisional_description": true,
       "description": "BFFR is a digital reality-check concept with a deliberately direct voice. It turns a moment of overthinking into a short prompt to reconsider an assumption. The design experiment is how much personality an interface can have while still giving people a clear, useful interaction.",
       "tags": "Product concept · Conversational UX · Voice design",
@@ -175,23 +185,13 @@
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/mymizu"
     },
     {
-      "id": "nfa",
-      "name": "NFA Tree Lab",
-      "category": "Academic",
-      "repository": "https://github.com/stephaniesgao/nfa-tree-lab",
-      "provisional_description": false,
-      "description": "NFA Tree Lab is an interactive automata visualizer written in JavaScript. It traces a binary string one symbol at a time, shows every active state, and expands the full nondeterministic computation tree. Explicit epsilon transitions and image export make a usually abstract formal-language concept inspectable and shareable.",
-      "tags": "JavaScript · Automata · Computation trees",
-      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa"
-    },
-    {
       "id": "preclass",
       "name": "Preclass",
       "category": "Academic",
       "repository": "https://github.com/stephaniesgao/preclass",
       "provisional_description": false,
-      "description": "Preclass is a Manifest V3 Chrome and Edge extension for Minerva Forum readings. It collects instructions, links, and questions into a reviewable prompt, then sends that prompt to a chosen ChatGPT course conversation. The handoff preserves existing drafts and offers a copy fallback, with no backend, API key, analytics, or inference billing.",
-      "tags": "JavaScript · Manifest V3 · Browser automation",
+      "description": "Preclass is a Manifest V3 Chrome and Edge extension for Minerva Forum. It collects readings or numbered workbook questions into a reviewable prompt and sends it to a chosen ChatGPT course conversation. The workbook collector checks for missing questions; the handoff preserves existing drafts and offers a copy fallback. It runs without a backend, API key, analytics, or inference billing.",
+      "tags": "JavaScript · Manifest V3 · DOM extraction · Browser automation",
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/preclass"
     },
     {
@@ -210,8 +210,8 @@
       "category": "Other",
       "repository": "https://github.com/stephaniesgao/setlist-gym-log",
       "provisional_description": false,
-      "description": "Setlist is a weekly workout log that keeps exercise entries in the browser. It records visit times, calculates total duration, and exports a CSV for spreadsheet analysis. The useful engineering detail is keeping the everyday workflow quick while making the data portable.",
-      "tags": "Browser storage · Duration calculation · CSV export",
+      "description": "Setlist is a weekly gym dashboard that stores workout entries in the browser. It records start and end times, tracks exercises by day, and attaches up to eight photos per session. Weekly duration and session totals are calculated automatically, and the displayed week can be exported as CSV.",
+      "tags": "Browser storage · Photo attachments · Duration calculation · CSV export",
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/setlist"
     },
     {

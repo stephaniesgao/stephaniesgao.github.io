@@ -59,11 +59,21 @@ Category: Content apps
 
 Provisional description: Aura Protection is a concept for making attention boundaries visible instead of burying them in settings. The interaction centers on a small, playful pause before a distracting action. The interesting product challenge is designing an interruption that feels helpful without becoming another distraction.
 
-Relevant skills: Product concept · Interaction design · Attention UX
+Product concept · Interaction design · Attention UX
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/aura-protection
 
-Repository: https://github.com/stephaniesgao/aura-protection
+### Automata Lab
+
+Category: Academic
+
+Automata Lab is a JavaScript workbench for editing DFA, NFA, and PDA diagrams and inspecting their computation trees. It supports step-by-step exploration, explicit epsilon transitions, and PNG, SVG, or clipboard export. A question importer can prepare an editable draft from pasted ChatGPT JSON; direct image recognition still requires separate AI setup.
+
+JavaScript · DFA/NFA/PDA · Computation trees · Export
+
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa
+
+Repository: https://github.com/stephaniesgao/nfa-tree-lab
 
 ### Beacon
 
@@ -71,7 +81,7 @@ Category: Academic
 
 Provisional description: Beacon is an academic concept for tsunami preparedness and response. It organizes hazard information into a short sequence of actions so a person can find the next step under time pressure. The technical design challenge is prioritizing location, alert state, and offline access without making the emergency interface harder to scan.
 
-Relevant skills: Emergency UX · Information architecture · Offline-first design
+Emergency UX · Information architecture · Offline-first design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/beacon
 
@@ -81,11 +91,9 @@ Category: Content apps
 
 Provisional description: BFFR is a digital reality-check concept with a deliberately direct voice. It turns a moment of overthinking into a short prompt to reconsider an assumption. The design experiment is how much personality an interface can have while still giving people a clear, useful interaction.
 
-Relevant skills: Product concept · Conversational UX · Voice design
+Product concept · Conversational UX · Voice design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bffr
-
-Repository: https://github.com/stephaniesgao/bffr
 
 ### Bulby
 
@@ -93,7 +101,7 @@ Category: My favourites
 
 Bulby is an Electron desktop overlay that transcribes microphone and call audio locally with faster-whisper. I connected the live transcript and a fresh screenshot to a Chrome extension that hands context to ChatGPT only when the user asks. The compact window can expand, move, and resize; the local transcription path needs no OpenAI API key.
 
-Relevant skills: Electron · TypeScript · faster-whisper · Chrome extension
+Electron · TypeScript · faster-whisper · Chrome extension
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bulby
 
@@ -105,7 +113,7 @@ Category: Academic
 
 Provisional description: Caba is an academic product concept for simplifying a complicated workflow. The proposed interface breaks information into smaller decisions and makes progress visible. Its technical focus is information architecture: deciding what the tool needs to store, what the user must enter, and what can be deferred.
 
-Relevant skills: Information architecture · Workflow design · Prototyping
+Information architecture · Workflow design · Prototyping
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caba
 
@@ -115,7 +123,7 @@ Category: Content apps
 
 Provisional description: Caughtcha is a small JavaScript experiment about noticing online habits in the moment. It uses a well-timed interruption as the central interaction rather than a dashboard of retrospective statistics. The interesting design constraint is making the prompt noticeable without making it disruptive.
 
-Relevant skills: JavaScript · Interaction design · Behavioral UX
+JavaScript · Interaction design · Behavioral UX
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caughtcha
 
@@ -127,7 +135,7 @@ Category: Other
 
 Provisional description: Christmas Lights is an interactive seasonal screen experiment built in JavaScript. Instead of a static holiday image, it treats light and motion as the interface. The project is a small study in timing, visual feedback, and making a browser feel like an object in a room.
 
-Relevant skills: JavaScript · Motion design · Creative coding
+JavaScript · Motion design · Creative coding
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/christmas-lights
 
@@ -137,7 +145,7 @@ Category: Academic
 
 Cyber for Students taught command-line and networking fundamentals across 16 countries. I provisioned dedicated Linux virtual machines so learners could practice in their own environments. The curriculum used 250 custom capture-the-flag challenges, turning shell and security concepts into problems students could solve hands-on.
 
-Relevant skills: Linux VMs · CLI · Networking · CTF design
+Linux VMs · CLI · Networking · CTF design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/cyber
 
@@ -147,7 +155,7 @@ Category: Content apps
 
 Provisional description: DelusionGPT is a TypeScript command-line companion for stressed developers. It uses Commander and Inquirer for the terminal flow and Chalk for its intentionally theatrical responses. The interesting constraint is expressing a distinct personality through text, prompts, and timing instead of a graphical interface.
 
-Relevant skills: TypeScript · Node.js · Commander · Inquirer
+TypeScript · Node.js · Commander · Inquirer
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/delusiongpt
 
@@ -159,7 +167,7 @@ Category: My favourites
 
 ÉVOLUER is a L’Oréal Brandstorm fragrance concept built around one base scent that changes through the seasons. We designed a spray-count mechanism for releasing monthly scent capsules and mapped the experience from bottle use to an in-store Fragrance Observatory. The work combined product mechanics, scent-journey prototyping, and brand design; it won the Japan national round in 2026.
 
-Relevant skills: Product mechanics · Prototyping · Brand design
+Product mechanics · Prototyping · Brand design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/evoluer
 
@@ -169,7 +177,7 @@ Category: Academic
 
 Green Carbon is a working field-mapping and farmer-logbook prototype. It uses Leaflet for polygon drawing and overlap checks, Supabase for profile and field data, and local storage as a fallback when the service is unavailable. The workflow links boundary geometry to activity records so farm verification is easier to inspect, including in low-connectivity settings.
 
-Relevant skills: Leaflet · Supabase · Geospatial data · Offline fallback
+Leaflet · Supabase · Geospatial data · Offline fallback
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/green-carbon
 
@@ -181,7 +189,7 @@ Category: Content apps
 
 Homework Hound is a Chrome extension that sends a pixel dog across the current page to “eat” the homework. JavaScript controls the dog’s appetite, the page effect, stopping, and cleanup so the interaction is reversible. It can also export an evidence.png screenshot of the joke.
 
-Relevant skills: JavaScript · Chrome extension · DOM interaction
+JavaScript · Chrome extension · DOM interaction
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/homework-hound
 
@@ -193,7 +201,7 @@ Category: Other
 
 Instagram Follow Checker compares followers and following from Instagram exports entirely in the browser. It reads multiple ZIPs or extracted JSON/HTML, combines numbered follower files, and deduplicates usernames before showing searchable results. The ZIP parser handles stored and deflated entries, including ZIP64, without an account, server upload, or installation.
 
-Relevant skills: Client-side ZIP parsing · JSON/HTML · Search UI
+Client-side ZIP parsing · JSON/HTML · Search UI
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/instagram
 
@@ -205,7 +213,7 @@ Category: Content apps
 
 Provisional description: Lockin Twin is a focus-companion app built with React and TypeScript. Its repository uses MediaPipe Face Mesh for camera-based face tracking and Framer Motion for interface animation. The technical experiment is whether a responsive character can make the start of a work session feel less solitary.
 
-Relevant skills: React · TypeScript · MediaPipe Face Mesh · Framer Motion
+React · TypeScript · MediaPipe Face Mesh · Framer Motion
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/lockin-twin
 
@@ -217,7 +225,7 @@ Category: My favourites
 
 Matcha turned handwritten notes into AI flashcards and practice tests for active recall. As CPO, I led product decisions, branding, and growth while shaping the note-to-study workflow. It reached 320 active users in its first month and was acquired for integration into a productivity-app suite.
 
-Relevant skills: AI study tools · Product strategy · Growth
+AI study tools · Product strategy · Growth
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/matcha
 
@@ -227,7 +235,7 @@ Category: My favourites
 
 Minerva Marketplace is a peer-to-peer marketplace designed for a student community of about 1,000 across international rotations; that is the target community, not a claimed active-user count. I designed PostgreSQL schemas for users and listings, implemented OAuth, and set up scheduled email notifications. The interesting systems problem is keeping listings and transactions useful as students change cities each semester.
 
-Relevant skills: PostgreSQL · OAuth · Scheduled email
+PostgreSQL · OAuth · Scheduled email
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/marketplace
 
@@ -237,31 +245,19 @@ Category: Academic
 
 Mymizu is a React prototype for making water refills easier to find and repeat. The consumer side combines a Google Maps refill map, daily refill tracking, and a growing sprout companion; an admin view diagnoses underserved “red zones” and suggests new stations. I explored how geospatial analysis, reminders, and small rewards can connect individual behavior to network coverage.
 
-Relevant skills: React · Google Maps · Geospatial analysis · Behavioral design
+React · Google Maps · Geospatial analysis · Behavioral design
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/mymizu
 
 Repository: https://github.com/stephaniesgao/mymizu-extension
 
-### NFA Tree Lab
-
-Category: Academic
-
-NFA Tree Lab is an interactive automata visualizer written in JavaScript. It traces a binary string one symbol at a time, shows every active state, and expands the full nondeterministic computation tree. Explicit epsilon transitions and image export make a usually abstract formal-language concept inspectable and shareable.
-
-Relevant skills: JavaScript · Automata · Computation trees
-
-https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa
-
-Repository: https://github.com/stephaniesgao/nfa-tree-lab
-
 ### Preclass
 
 Category: Academic
 
-Preclass is a Manifest V3 Chrome and Edge extension for Minerva Forum readings. It collects instructions, links, and questions into a reviewable prompt, then sends that prompt to a chosen ChatGPT course conversation. The handoff preserves existing drafts and offers a copy fallback, with no backend, API key, analytics, or inference billing.
+Preclass is a Manifest V3 Chrome and Edge extension for Minerva Forum. It collects readings or numbered workbook questions into a reviewable prompt and sends it to a chosen ChatGPT course conversation. The workbook collector checks for missing questions; the handoff preserves existing drafts and offers a copy fallback. It runs without a backend, API key, analytics, or inference billing.
 
-Relevant skills: JavaScript · Manifest V3 · Browser automation
+JavaScript · Manifest V3 · DOM extraction · Browser automation
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/preclass
 
@@ -273,7 +269,7 @@ Category: Content apps
 
 Provisional description: seen. is a TypeScript and Next.js experiment built around the feeling of being left on read. Its repository includes React, an OpenRouter integration, and scripts for iMessage interaction. The interesting technical question is how to turn a familiar messaging signal into a responsive experience rather than a static joke.
 
-Relevant skills: Next.js · TypeScript · React · OpenRouter
+Next.js · TypeScript · React · OpenRouter
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/seen
 
@@ -283,9 +279,9 @@ Repository: https://github.com/stephaniesgao/seen.
 
 Category: Other
 
-Setlist is a weekly workout log that keeps exercise entries in the browser. It records visit times, calculates total duration, and exports a CSV for spreadsheet analysis. The useful engineering detail is keeping the everyday workflow quick while making the data portable.
+Setlist is a weekly gym dashboard that stores workout entries in the browser. It records start and end times, tracks exercises by day, and attaches up to eight photos per session. Weekly duration and session totals are calculated automatically, and the displayed week can be exported as CSV.
 
-Relevant skills: Browser storage · Duration calculation · CSV export
+Browser storage · Photo attachments · Duration calculation · CSV export
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/setlist
 
@@ -297,7 +293,7 @@ Category: Other
 
 Provisional description: Speakeasy Terminal is a concept for a hidden space navigated through typed commands. It treats command parsing, discoverability, and feedback as the experience rather than hiding them behind conventional menus. The design challenge is making a terminal feel inviting to someone who has never used one.
 
-Relevant skills: Command UX · Interaction design · Information architecture
+Command UX · Interaction design · Information architecture
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/speakeasy-terminal
 
@@ -307,7 +303,7 @@ Category: Content apps
 
 Provisional description: Twin is a concept for a digital counterpart shaped by a person’s preferences and repeated interactions. It explores what the interface would need to remember to feel consistent over time. The technical product question is how to make that state legible and editable, so personalization stays understandable.
 
-Relevant skills: Personalization · State design · Product concept
+Personalization · State design · Product concept
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/twin
 
@@ -317,7 +313,7 @@ Category: Academic
 
 Vectorizer converts images and video frames into 50 × 50 grayscale matrices for a linear-algebra exploration. A Python CLI can export CSV, JSON, or Sage-compatible matrix text, while a Flask app processes uploaded images and clips. I varied epsilon thresholds and replayed processed frames to inspect information loss and motion continuity.
 
-Relevant skills: Python · Flask · Image processing · Linear algebra
+Python · Flask · Image processing · Linear algebra
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/vectorizer
 
@@ -329,7 +325,7 @@ Category: Other
 
 Yuki Issei combined a musician’s web presence, visual identity, and short-form content. I built the site, edited clips and a lyric video, designed the poster, and coordinated the production workflow. AI-assisted song drafts became a starting point for human vocal recordings with the singer.
 
-Relevant skills: Web development · Video editing · Creative production
+Web development · Video editing · Creative production
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/yuki-issei
 
