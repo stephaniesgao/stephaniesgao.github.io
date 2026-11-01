@@ -2,7 +2,7 @@
 
 Personal portfolio.
 
-- [Full portfolio text](https://stephaniesgao.github.io/portfolio.md): About, experience, all projects, places, interests, writing, and contact links.
-- [Agent view](https://stephaniesgao.github.io/agent.html): Static HTML, no JavaScript required.
-- [Structured JSON](https://stephaniesgao.github.io/portfolio.json): Complete portfolio data.
-- [Plain text](https://stephaniesgao.github.io/portfolio.txt): Complete portfolio text.
+- [Full portfolio text](https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/portfolio.md): About, experience, projects, and contact links.
+- [Agent view](https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/agent.html): Static HTML, no JavaScript required.
+- [Structured JSON](https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/portfolio.json): Complete portfolio data.
+- [Plain text](https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/portfolio.txt): Complete portfolio text.
