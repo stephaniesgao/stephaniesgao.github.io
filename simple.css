@@ -620,4 +620,4 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .hike-popup .leaflet-control-attribution{font-size:9px}
 @media(max-width:600px){.hike-popup{padding:18px}.hike-popup h2{font-size:21px;margin-bottom:13px}.mountain-layout{grid-template-columns:1fr;gap:12px}.mountain-map{height:310px}.mountain-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:185px;column-gap:10px}}
 
-.locked-nav{display:block;padding:5px 0;color:#999;white-space:nowrap;cursor:default}.locked-nav span{font-size:10px;margin-left:2px}html[data-theme="dark"] .locked-nav{color:#777}
+.locked-nav{display:block;padding:5px 0;color:#999;white-space:nowrap;cursor:default}.locked-nav span{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:16px;height:16px;margin-left:2px;border-radius:50%;background:#333;color:#fff}.locked-nav svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}html[data-theme="dark"] .locked-nav{color:#777}
