@@ -35,7 +35,7 @@ November 2025 – March 2026
 Chief Product OfficerSan Francisco, CA
 Acquired by productivity apps company to integrate into its suite of study tools.
 Developed a digital notebook turning handwritten notes into AI flashcards and practice tests for active recall.
-Led product, branding, and growth initiatives that brought the product to 320 active users in its first month.
+Led product, branding, and growth. Matcha was acquired in June 2026.
 Axlora
 May 2025 – Aug 2025
 Technical Project Management InternSan Francisco, CA
@@ -233,7 +233,7 @@ Repository: https://github.com/stephaniesgao/lock-in-twin
 
 Category: My favourites
 
-Matcha turned handwritten notes into AI flashcards and practice tests for active recall. As CPO, I led product decisions, branding, and growth while shaping the note-to-study workflow. It reached 320 active users in its first month and was acquired for integration into a productivity-app suite.
+Matcha turned handwritten notes into AI flashcards and practice tests for active recall. As CPO, I led product decisions, branding, and growth while shaping the note-to-study workflow. Matcha was acquired in June 2026 for integration into a productivity-app suite.
 
 AI study tools · Product strategy · Growth
 
