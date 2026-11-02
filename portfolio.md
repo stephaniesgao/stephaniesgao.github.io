@@ -117,16 +117,6 @@ https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bulby
 
 Repository: https://github.com/stephaniesgao/local-meeting-copilot
 
-### Caba
-
-Category: Academic
-
-Provisional description: Caba is an academic product concept for simplifying a complicated workflow. The proposed interface breaks information into smaller decisions and makes progress visible. Its technical focus is information architecture: deciding what the tool needs to store, what the user must enter, and what can be deferred.
-
-Information architecture · Workflow design · Prototyping
-
-https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caba
-
 ### Caughtcha
 
 Category: Content apps

@@ -65,16 +65,6 @@
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/bulby"
     },
     {
-      "id": "caba",
-      "name": "Caba",
-      "category": "Academic",
-      "repository": null,
-      "provisional_description": true,
-      "description": "Caba is an academic product concept for simplifying a complicated workflow. The proposed interface breaks information into smaller decisions and makes progress visible. Its technical focus is information architecture: deciding what the tool needs to store, what the user must enter, and what can be deferred.",
-      "tags": "Information architecture · Workflow design · Prototyping",
-      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/caba"
-    },
-    {
       "id": "caughtcha",
       "name": "Caughtcha",
       "category": "Content apps",
