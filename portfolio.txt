@@ -79,7 +79,7 @@ Beacon
 
 Category: Academic
 
-Provisional description: Beacon is an academic concept for tsunami preparedness and response. It organizes hazard information into a short sequence of actions so a person can find the next step under time pressure. The technical design challenge is prioritizing location, alert state, and offline access without making the emergency interface harder to scan.
+Provisional description: Beacon was an academic tsunami preparedness project for the Kamaishi City Government. We worked with the city’s tsunami chips, which already support a similar purpose, while exploring how a digital interface could guide someone through an emergency. The app organizes hazard information into a short sequence of actions so a person can find the next step under time pressure. The design prioritizes location, alert state, and offline access while keeping instructions easy to scan.
 
 Emergency UX · Information architecture · Offline-first design
 
