@@ -225,16 +225,6 @@
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/speakeasy-terminal"
     },
     {
-      "id": "twin",
-      "name": "Twin",
-      "category": "Content apps",
-      "repository": null,
-      "provisional_description": true,
-      "description": "Twin is a concept for a digital counterpart shaped by a person’s preferences and repeated interactions. It explores what the interface would need to remember to feel consistent over time. The technical product question is how to make that state legible and editable, so personalization stays understandable.",
-      "tags": "Personalization · State design · Product concept",
-      "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/twin"
-    },
-    {
       "id": "vectorizer",
       "name": "Vectorizer",
       "category": "Academic",

@@ -297,16 +297,6 @@ Command UX · Interaction design · Information architecture
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/speakeasy-terminal
 
-Twin
-
-Category: Content apps
-
-Provisional description: Twin is a concept for a digital counterpart shaped by a person’s preferences and repeated interactions. It explores what the interface would need to remember to feel consistent over time. The technical product question is how to make that state legible and editable, so personalization stays understandable.
-
-Personalization · State design · Product concept
-
-https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/twin
-
 Vectorizer
 
 Category: Academic
