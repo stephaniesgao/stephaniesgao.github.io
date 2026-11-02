@@ -20,7 +20,7 @@
       "category": "Academic",
       "repository": "https://github.com/stephaniesgao/nfa-tree-lab",
       "provisional_description": false,
-      "description": "Automata Lab is a JavaScript workbench for editing DFA, NFA, and PDA diagrams and inspecting their computation trees. It supports step-by-step exploration, explicit epsilon transitions, and PNG, SVG, or clipboard export. A question importer can prepare an editable draft from pasted ChatGPT JSON; direct image recognition still requires separate AI setup.",
+      "description": "Automata Lab is a JavaScript workbench for editing DFA, NFA, and PDA diagrams and inspecting their computation trees. It supports step-by-step exploration, explicit epsilon transitions, and PNG, SVG, or clipboard export.",
       "tags": "JavaScript · DFA/NFA/PDA · Computation trees · Export",
       "url": "https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/nfa"
     },
