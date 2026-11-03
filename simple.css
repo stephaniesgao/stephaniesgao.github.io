@@ -375,7 +375,7 @@ body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line
 .postcard-grid>.place-postcard,.postcard-grid>.place-postcard:nth-child(even){
   width:100%;height:330px;min-height:330px;max-height:330px;
   display:grid;grid-template-columns:54% 46%;gap:0;padding:0;
-  border:0;border-radius:0;background:transparent url('objects/postcard-paper-v1.png') center/100% 100% no-repeat;
+  border:0;border-radius:0;background:transparent url('objects/postcard-paper-v1.webp') center/100% 100% no-repeat;
   box-shadow:none;transform:none;overflow:visible;
 }
 .postcard-grid>.place-postcard:hover{transform:none;box-shadow:none}
@@ -484,11 +484,11 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .books-popup h2{margin:9px 0 10px}
 .open-book{display:block;aspect-ratio:3/2;width:100%;background:none;transform-style:preserve-3d;filter:drop-shadow(4px 7px 5px #0003)}
 .book-right-page,.book-leaf{position:absolute;top:0;left:50%;width:50%;height:100%}
-.book-right-page{background:url('objects/open-book-photo.png') right center/200% 100% no-repeat}
+.book-right-page{background:url('objects/open-book-photo.webp') right center/200% 100% no-repeat}
 .book-leaf{z-index:2;transform-origin:left center;transform-style:preserve-3d;animation:turn-reading-leaf 1.25s cubic-bezier(.36,.05,.18,1) both}
 .book-leaf-front,.book-leaf-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.book-leaf-front{background:url('objects/book-cover-photo.png') center/100% 100% no-repeat}
-.book-leaf-back{background:url('objects/open-book-photo.png') left center/200% 100% no-repeat;transform:rotateY(180deg)}
+.book-leaf-front{background:url('objects/book-cover-photo.webp') center/100% 100% no-repeat}
+.book-leaf-back{background:url('objects/open-book-photo.webp') left center/200% 100% no-repeat;transform:rotateY(180deg)}
 .book-notes{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .24s ease-out}
 .book-notes.is-open{opacity:1}
 .book-page,.book-page:first-child,.book-page:nth-child(2){position:absolute;top:21%;left:13%;width:32%;height:62%;min-height:0;padding:0;background:none;border:0;box-shadow:none}
@@ -621,3 +621,4 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 @media(max-width:600px){.hike-popup{padding:18px}.hike-popup h2{font-size:21px;margin-bottom:13px}.mountain-layout{grid-template-columns:1fr;gap:12px}.mountain-map{height:310px}.mountain-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:185px;column-gap:10px}}
 
 .locked-nav{display:block;padding:5px 0;color:#999;white-space:nowrap;cursor:default}.locked-nav span{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:16px;height:16px;margin-left:2px;border-radius:50%;background:#333;color:#fff}.locked-nav svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}html[data-theme="dark"] .locked-nav{color:#777}
+.more .locked-nav{width:100%;border:0;background:none;text-align:left;font:inherit;cursor:pointer}.more .locked-nav:hover{color:inherit}.bonus-link[hidden],.locked-nav[hidden],.puzzle-bonus-links[hidden]{display:none!important}.puzzle-progress{font:13px/1.5 ui-monospace,monospace;color:#777}.puzzle-bonus-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 16px;font:14px/1.5 ui-monospace,monospace}

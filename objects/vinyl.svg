@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="Vinyl record without lettering">
+  <circle cx="50" cy="50" r="49" fill="#191a19" stroke="#3c3d39" stroke-width="1.5"/>
+  <g stroke="#343633" stroke-width=".8">
+    <circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="41"/>
+    <circle cx="50" cy="50" r="37"/><circle cx="50" cy="50" r="34"/>
+    <circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="27"/>
+    <circle cx="50" cy="50" r="23"/><circle cx="50" cy="50" r="19"/>
+  </g>
+  <path d="M18 17a46 46 0 0 1 31-13" stroke="#777b74" stroke-width=".8" opacity=".45" stroke-linecap="round"/>
+  <path d="M13 25a44 44 0 0 1 12-14" stroke="#a2a69e" stroke-width=".7" opacity=".35" stroke-linecap="round"/>
+  <circle cx="50" cy="50" r="11.5" fill="#e7e1d5" stroke="#7d786f" stroke-width=".9"/>
+  <circle cx="50" cy="50" r="1.2" fill="#33332e"/>
+</svg>
