@@ -270,3 +270,23 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-record:has(.record-player:not([hidden])) .mini-turntable{align-self:center}
 .after-record:has(.record-player:not([hidden])) .turntable-deck{max-height:none}
 @media(max-width:650px){.after-record:has(.record-player:not([hidden])){height:245px;min-height:0}}
+
+/* Outside of Work uses the same type as the rest of the portfolio. */
+.after-hours,.after-hours .after-heading h1,.after-hours .after-copy .after-statement,.after-hours .after-copy .after-link,.after-hours .after-strip .strip-label,.after-hours .after-navigation{font-family:inherit}
+.after-hours .after-heading h1{font-size:27px;font-weight:500;letter-spacing:-1px}
+.after-hours .after-copy .after-statement{max-width:44em;margin:0 auto 10px;text-align:center;font-size:12px;font-weight:400;line-height:1.6;color:var(--ink)}
+.after-hours .after-copy .after-link{font-size:11px}
+@media(max-width:650px){.after-hours .after-heading h1{font-size:27px}.after-hours .after-copy .after-statement{font-size:11px;padding:0 8px}}
+/* A small, tactile boombox replaces the disco ball. */
+.after-dance .dance-radio{position:relative;display:grid;place-items:center;width:min(100%,335px);height:250px;margin:0 auto;padding:0;border:0;background:none;cursor:pointer;transition:transform .25s ease}
+.after-dance .dance-radio:hover,.after-dance .dance-radio:focus-visible{transform:translateY(-4px)}
+.after-dance .dance-radio-image{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(3px 8px 5px #0003)}
+.after-dance .dance-radio-beat{position:absolute;right:8%;top:1%;display:flex;align-items:end;gap:3px;height:16px;opacity:0;transition:opacity .25s}
+.after-dance .dance-radio-beat i{display:block;width:2px;height:7px;background:var(--ink)}
+.after-dance .dance-radio.is-playing{animation:dance-radio-rock .7s ease-in-out infinite alternate}
+.after-dance .dance-radio.is-playing .dance-radio-beat{opacity:1}
+.after-dance .dance-radio.is-playing .dance-radio-beat i:nth-child(2){height:15px;animation:dance-beat .65s ease-in-out infinite alternate}
+.after-dance .dance-radio.is-playing .dance-radio-beat i:nth-child(3){height:10px;animation:dance-beat .8s ease-in-out infinite alternate-reverse}
+@keyframes dance-radio-rock{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
+@keyframes dance-beat{to{height:4px}}
+@media(prefers-reduced-motion:reduce){.after-dance .dance-radio.is-playing,.after-dance .dance-radio.is-playing .dance-radio-beat i{animation:none}}
