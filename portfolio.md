@@ -322,12 +322,16 @@ https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/yuki-issei
 ## Places
 
 Places
-A few chapters from Canada, the Bay Area, Tokyo, and Buenos Aires.
-CanadaPearson College · British Columbiaturn over ↻From StephCanadaDear Canada,Pearson College, backcountry trails, and weekends building boardwalks to protect old-growth forests.with love, Stephturn back ↻
-Bay AreaMuir Woods · fall 2024turn over ↻From StephBay AreaFrom the Bay,My first-year Minerva chapter. During fall break, I brought friends to Muir Woods to reconnect with the outdoors.with love, Stephturn back ↻
-TokyoSpring 2026turn over ↻From StephTokyoHello from Tokyo,Another Minerva chapter, in spring 2026.with love, Stephturn back ↻
-Buenos AiresArgentina · currentlyturn over ↻From StephBuenos AiresWriting from here,Where I’m currently based.with love, Stephturn back ↻
-San Telmo, 2008 · photo by Jakobien van der Weijden · CC BY-SA 2.0.
+Canada, the Bay Area, Tokyo, and Buenos Aires. A few chapters I've kept.
+CanadaPearson College · British ColumbiaFrom StephCanadaDear Canada,Pearson College, backcountry trails, and weekends building boardwalks to protect old-growth forests.turn back ↻
+Bay AreaMuir Woods · fall 2024From StephBay AreaFrom the Bay,My first-year Minerva chapter. During fall break, I brought friends to Muir Woods to reconnect with the outdoors.turn back ↻
+TokyoSpring 2026From StephTokyoHello from Tokyo,Another Minerva chapter, in spring 2026.turn back ↻
+Buenos AiresArgentina · currentlyFrom StephBuenos AiresWriting from here,Where I’m currently based.turn back ↻
+←
+CanadaBay AreaTokyoBuenos Aires
+→
+Drag to browse. Tap the photo to read the note.
+Buenos Aires photo: Jakobien van der Weijden, CC BY-SA 2.0.
 
 ## Outside of work
 
