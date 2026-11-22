@@ -148,3 +148,44 @@ body:has(.after-hours) .tv-title,
 .after-hours .after-navigation{color:var(--muted)}
 .after-hours .after-strip{margin-top:8px}
 @media(max-width:650px){.after-hours .after-scenes,.after-hours .after-scene{min-height:0}.after-hours .after-heading h1{font-size:40px}}
+
+/* Viewing room: one object at a time, with the caption beneath it. */
+.after-hours{padding-top:2px}
+.after-hours .after-heading{margin:0 0 13px}
+.after-hours .after-eyebrow{display:none}
+.after-hours .after-heading h1{font-size:clamp(30px,4.8vw,46px);letter-spacing:-.05em;margin:0}
+.after-hours .after-viewer{border:0}
+.after-hours .after-rule{border-bottom:1px solid var(--line);padding:5px 0 11px;font-size:10px}
+.after-hours .after-scenes,.after-hours .after-scene{min-height:0}
+.after-hours .after-scene{display:flex;flex-direction:column;gap:0;padding:11px 0 19px}
+.after-hours .after-scene[hidden]{display:none!important}
+.after-hours .after-object{width:100%;height:310px;display:grid;place-items:center}
+.after-hours .after-copy{align-self:center;width:100%;padding:0;text-align:center}
+.after-hours .after-index{display:none}
+.after-hours .after-copy h2{font:500 25px/1.2 'Avenir Next',Avenir,'Segoe UI',sans-serif;letter-spacing:-.04em;margin:4px 0 6px}
+.after-hours .after-copy p{max-width:32em;margin:0 auto 11px;font-size:12px;line-height:1.55;color:var(--muted)}
+.after-hours .after-copy .after-link{font-size:11px}
+.after-hours .after-navigation{margin-top:4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3px 0}
+.after-hours .after-navigation>span{font-size:10px}
+.after-hours .after-strip{border-bottom:0;margin-top:11px}
+.after-hours .after-strip button{padding-bottom:9px}
+.after-hours .after-strip button[aria-current=true]{border-top-width:1px}
+.after-hours .after-strip button:not([aria-current=true]) .strip-thumb{opacity:.48}
+.after-hours .after-strip button:hover .strip-thumb{opacity:1}
+.after-hours .little-gallery:has(.gallery-empty){display:none}
+@media(max-width:650px){.after-hours .after-heading h1{font-size:35px}.after-hours .after-object{height:245px}.after-hours .after-copy h2{font-size:22px}.after-hours .after-scene{padding:8px 0 14px}}
+.after-hours .after-scenes{position:relative}
+.after-hours .after-peek{position:absolute;top:100px;z-index:2;display:grid;place-items:center;width:102px;height:126px;padding:0;border:0;background:none;cursor:pointer;opacity:.65;transition:opacity .25s ease,transform .35s ease}
+.after-hours .after-peek img{display:block;max-width:100%;max-height:100%;object-fit:contain;filter:grayscale(1)}
+.after-hours .after-peek-prev{left:0;transform:perspective(300px) rotateY(-22deg) scale(.86)}
+.after-hours .after-peek-next{right:0;transform:perspective(300px) rotateY(22deg) scale(.86)}
+.after-hours .after-peek:hover,.after-hours .after-peek:focus-visible{opacity:.85;transform:perspective(300px) rotateY(0) scale(1)}
+.after-hours .after-camera .object-shadow{display:none}
+.after-hours .after-strip{border-bottom:1px solid var(--line);margin-top:11px}
+.after-hours .after-strip .strip-thumb{display:none}
+.after-hours .after-strip button{display:flex;justify-content:center;gap:5px;align-items:baseline;padding:11px 2px 12px;text-align:center}
+.after-hours .after-strip .strip-number{display:inline;font-size:9px;color:var(--muted)}
+.after-hours .after-strip .strip-label{font-size:10px}
+@media(max-width:600px){.after-hours .after-peek{display:none}}
+@media(max-width:390px){.after-hours .after-peek{width:42px;height:60px}}
+@media(prefers-reduced-motion:reduce){.after-hours .after-peek{transition:none}}
