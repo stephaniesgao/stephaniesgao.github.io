@@ -189,3 +189,15 @@ body:has(.after-hours) .tv-title,
 @media(max-width:600px){.after-hours .after-peek{display:none}}
 @media(max-width:390px){.after-hours .after-peek{width:42px;height:60px}}
 @media(prefers-reduced-motion:reduce){.after-hours .after-peek{transition:none}}
+
+/* Dance and hiking now use objects from the same photographic collection. */
+.after-dance .dance-open,.after-hike .trail-map-open{display:block;position:relative;width:min(100%,355px);height:255px;margin:0 auto;padding:0;border:0;background:none;cursor:pointer;transform-origin:50% 78%;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.after-dance .dance-open:hover,.after-dance .dance-open:focus-visible{transform:rotate(-3deg) translateY(-6px)}
+.after-hike .trail-map-open:hover,.after-hike .trail-map-open:focus-visible{transform:perspective(600px) rotateY(-6deg) translateY(-4px)}
+.after-hike.is-open .trail-map-open{transform:perspective(600px) rotateY(4deg) scale(1.04)}
+.after-dance .pointe-shoes,.after-hike .trail-map-image{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(2px 7px 5px #0003)}
+.after-hours .after-object.after-dance,.after-hours .after-object.after-hike{overflow:visible}
+@media(max-width:650px){.after-dance .dance-open,.after-hike .trail-map-open{width:min(100%,310px);height:220px}}
+@media(prefers-reduced-motion:reduce){.after-dance .dance-open,.after-hike .trail-map-open{transition:none}}
+html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
+.after-dance .pointe-shoes{-webkit-mask-image:radial-gradient(ellipse 80% 72% at 50% 50%,#000 63%,transparent 99%);mask-image:radial-gradient(ellipse 80% 72% at 50% 50%,#000 63%,transparent 99%)}
