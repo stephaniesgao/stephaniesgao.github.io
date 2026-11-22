@@ -1,4 +1,4 @@
-import {posts} from './posts.js?v=6';
+import {posts} from './posts.js?v=7';
 import {mountBallerina} from './ballerina3d.js?v=29';
 import {mountTrace} from './trace-ui.js?v=2';
 const main=document.querySelector('main');
