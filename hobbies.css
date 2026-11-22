@@ -136,3 +136,15 @@ body:has(.after-hours) .after-stop,
 body:has(.after-hours) .tv-title,
 .books-popup .book-writing{font-family:Georgia,serif!important}
 .books-popup .book-writing{font-style:italic}
+
+/* Let the object, rather than the interface chrome, lead each scene. */
+.after-hours .after-heading{margin-bottom:22px}
+.after-hours .after-eyebrow{font-size:10px;letter-spacing:.035em}
+.after-hours .after-heading h1{font-size:clamp(34px,5.2vw,53px);letter-spacing:-.055em;margin-top:8px}
+.after-hours .after-rule{color:var(--muted);letter-spacing:.045em}
+.after-hours .after-scenes,.after-hours .after-scene{min-height:365px}
+.after-hours .after-copy h2{font-size:clamp(25px,3vw,34px);margin:9px 0 14px}
+.after-hours .after-index{letter-spacing:.045em}
+.after-hours .after-navigation{color:var(--muted)}
+.after-hours .after-strip{margin-top:8px}
+@media(max-width:650px){.after-hours .after-scenes,.after-hours .after-scene{min-height:0}.after-hours .after-heading h1{font-size:40px}}
