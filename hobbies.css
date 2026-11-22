@@ -260,3 +260,13 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 /* Match the music preview to the layered full-size turntable. */
 .after-hours .after-peek.is-music::after{content:'';position:absolute;left:10%;top:calc(50% - 29px);width:56%;aspect-ratio:1;background:url('objects/record-disc-photo.webp') center/contain no-repeat;pointer-events:none;filter:grayscale(1)}
 .after-hours .after-peek.is-music:hover::after,.after-hours .after-peek.is-music:focus-visible::after{filter:none}
+
+/* Keep Spotify in a corner panel without changing the scene height. */
+.after-record .record-player{position:fixed;right:clamp(12px,3vw,36px);bottom:clamp(12px,3vw,30px);z-index:100;width:min(320px,calc(100vw - 24px));margin:0;padding:10px;background:var(--paper);border:1px solid var(--ink);box-shadow:0 14px 42px #0005}
+.after-record .record-pop-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--ink);font:600 11px/1.3 'Avenir Next',Avenir,'Segoe UI',sans-serif}
+.after-record .record-pop-close{width:22px;height:22px;padding:0;border:0;background:none;color:var(--ink);font:19px/1 'Avenir Next',Avenir,'Segoe UI',sans-serif;cursor:pointer}
+.after-record .record-player iframe{height:152px}
+.after-record:has(.record-player:not([hidden])){height:265px;min-height:0}
+.after-record:has(.record-player:not([hidden])) .mini-turntable{align-self:center}
+.after-record:has(.record-player:not([hidden])) .turntable-deck{max-height:none}
+@media(max-width:650px){.after-record:has(.record-player:not([hidden])){height:245px;min-height:0}}
