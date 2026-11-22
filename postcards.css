@@ -44,3 +44,24 @@
 @media(max-width:600px){.postal-stage{aspect-ratio:1.32}.postal-entry{top:11px;left:15px;width:calc(100% - 30px)}.postal-card{aspect-ratio:1.43}.postal-entry[data-offset="-1"]{transform:translate3d(-8%,12px,-65px) rotate(-4deg)}.postal-entry[data-offset="1"]{transform:translate3d(8%,12px,-65px) rotate(4deg)}.postal-entry[data-offset="2"]{transform:translate3d(0,23px,-115px) rotate(1deg)}.postal-front-footer{display:block;padding:35px 13px 11px}.postal-front-footer strong{display:block;font-size:24px}.postal-front-footer small{display:block;margin-top:4px;font-size:10px}.postal-back{padding:17px}.postal-message{gap:11px;padding-top:19px}.postal-message strong{font-size:20px}.postal-message>span{font-size:13px;line-height:1.4}.postal-back .postal-cue{right:17px;bottom:13px}.postal-tabs{gap:8px}.postal-tabs button{font-size:10px}.postal-controls>[data-postal-prev],.postal-controls>[data-postal-next]{width:23px}.postal-credit{margin-top:25px}}
 @media(max-width:390px){.postal-stage{aspect-ratio:1.26}.postal-tabs{gap:5px}.postal-tabs button{font-size:9px}.postal-card{aspect-ratio:1.35}.postal-message>span{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.postal-entry,.postal-card,.postal-image img{transition:none}}
+/* The reverse is a printed surface with real postcard proportions. */
+.postal-back{background:#efe5d3 url('objects/postcard-paper.webp') center/cover no-repeat;border:1px solid #c9bda9;padding:0;box-shadow:inset 0 0 0 8px #fff8, inset 0 0 0 9px #a79d8b44;color:#2e302d}
+.postal-back-head{display:flex;align-items:baseline;justify-content:space-between;margin:16px 20px 0;padding:0 0 7px;border-bottom:1px solid #5c5b5155;font:600 10px/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;color:#555147}
+.postal-back-head span:last-child{font:10px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:0}
+.postal-back-content{display:grid;grid-template-columns:52% 48%;height:calc(100% - 45px);padding:14px 18px 21px}
+.postal-message{display:flex;flex-direction:column;gap:15px;max-width:none;min-width:0;padding:18px 17px 0 2px;border-right:1px solid #5c5b5180}
+.postal-message strong{font:italic 500 clamp(20px,2.8vw,27px)/1.1 Georgia,serif;letter-spacing:-.02em}
+.postal-message>span:not(.postal-signature){font:clamp(12px,1.5vw,15px)/1.45 Georgia,serif}
+.postal-signature{margin-top:auto;font:italic 17px/1 Georgia,serif;transform:rotate(-4deg);transform-origin:left center}
+.postal-address{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:13px;min-width:0;padding:0 10px 25px 24px}
+.postal-stamp{position:absolute;top:0;right:8px;width:76px;height:77px;padding:5px 5px 14px;background:#f3f0e7;border:1px dashed #655d50;box-shadow:0 1px 2px #0002;transform:rotate(3deg)}
+.postal-stamp img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.1)}
+.postal-stamp>span{position:absolute;left:5px;right:5px;bottom:2px;text-align:center;font:7px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.05em}
+.postal-postmark{position:absolute;top:46px;right:64px;z-index:1;display:grid;place-items:center;width:58px;height:58px;border:2px double #625d5188;border-radius:50%;font:10px/1.1 ui-monospace,monospace;letter-spacing:.1em;text-align:center;color:#5e5b52aa;transform:rotate(-14deg)}
+.postal-postmark:after{content:'';position:absolute;left:49px;top:19px;width:43px;border-top:1px solid #625d5188;box-shadow:0 5px #625d5188,0 10px #625d5188;transform:rotate(-5deg)}
+.postal-to{font:italic 13px/1.2 Georgia,serif;color:#514b42}
+.postal-address-line{display:block;width:100%;border-bottom:1px solid #5c5b5180}
+.postal-back .postal-cue{right:19px;bottom:11px;color:#504b42}
+@media(max-width:600px){.postal-back-head{margin:12px 13px 0;font-size:8px}.postal-back-head span:last-child{font-size:8px}.postal-back-content{height:calc(100% - 37px);padding:9px 9px 17px}.postal-message{gap:8px;padding:8px 8px 0 2px}.postal-message strong{font-size:clamp(15px,4vw,20px)}.postal-message>span:not(.postal-signature){font-size:clamp(10px,2.8vw,12px);line-height:1.35}.postal-signature{font-size:12px}.postal-address{gap:8px;padding:0 4px 17px 10px}.postal-stamp{top:0;right:3px;width:49px;height:53px;padding:3px 3px 10px}.postal-stamp>span{font-size:5px}.postal-postmark{top:28px;right:36px;width:38px;height:38px;font-size:7px}.postal-postmark:after{left:31px;top:13px;width:27px;box-shadow:0 3px #625d5188,0 6px #625d5188}.postal-to{font-size:10px}.postal-back .postal-cue{right:12px;bottom:6px;font-size:8px}}
+.postal-message .postal-signature{font:italic 17px/1 Georgia,serif}
+@media(max-width:600px){.postal-message .postal-signature{font-size:12px}}
