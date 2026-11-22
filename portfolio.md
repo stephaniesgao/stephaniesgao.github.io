@@ -322,21 +322,16 @@ https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/yuki-issei
 ## Places
 
 Places
-Canada, Victoria, the Bay Area, Tokyo, and Buenos Aires. A few chapters I've kept.
-CanadaPearson College · British ColumbiaPOSTCARDPearson College · British ColumbiaDear Canada,Pearson College, backcountry trails, and weekends building boardwalks to protect old-growth forests.Steph xCanadaSG
-✳to: youturn back ↻
-VictoriaBritish Columbia · Vancouver IslandPOSTCARDBritish Columbia · Vancouver IslandHello from Victoria,A Victoria chapter on Vancouver Island, with the Inner Harbour and the water close by.Steph xVictoriaSG
-✳to: youturn back ↻
-Bay AreaMuir Woods · fall 2024POSTCARDMuir Woods · fall 2024From the Bay,My first-year Minerva chapter. During fall break, I brought friends to Muir Woods to reconnect with the outdoors.Steph xBay AreaSG
-✳to: youturn back ↻
-TokyoSpring 2026POSTCARDSpring 2026Hello from Tokyo,Another Minerva chapter, in spring 2026.Steph xTokyoSG
-✳to: youturn back ↻
-Buenos AiresArgentina · currentlyPOSTCARDArgentina · currentlyWriting from here,Where I’m currently based.Steph xBuenos AiresSG
-✳to: youturn back ↻
+Calgary, Victoria, the Bay Area, Tokyo, and Buenos Aires. A few chapters I've kept.
+CalgaryAlberta · CanadaDear Calgary,From TELUS Spark to the trails, Calgary is a chapter I know well.Steph xto: you
+VictoriaBritish Columbia · Vancouver IslandDear Victoria,A Victoria chapter on Vancouver Island, with the Inner Harbour and the water close by.Steph xto: you
+Bay AreaMuir Woods · fall 2024Dear Bay Area,My first-year Minerva chapter. During fall break, I brought friends to Muir Woods to reconnect with the outdoors.Steph xto: you
+TokyoSpring 2026Dear Tokyo,Another Minerva chapter, in spring 2026.Steph xto: you
+Buenos AiresArgentina · currentlyDear Buenos Aires,Where I’m currently based.Steph xto: you
 ←
-CanadaVictoriaBay AreaTokyoBuenos Aires
+CalgaryVictoriaBay AreaTokyoBuenos Aires
 →
-Drag to browse. Tap the photo to read the note.
+Drag to browse. Tap a card to flip it.
 
 ## Outside of work
 
