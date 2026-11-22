@@ -237,3 +237,8 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-dance .dance-ball-orb{display:block;width:210px;height:240px;object-fit:contain;border:0;border-radius:0;background:none;box-shadow:none;transform:rotate(-6deg);filter:drop-shadow(3px 8px 4px #0005)}
 .after-dance .dance-ball.is-spinning .dance-ball-orb{animation:ball-rock 2.6s ease-in-out infinite}
 @keyframes ball-rock{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+/* One sentence per object, with controls kept separate from the copy. */
+.after-hours .after-heading{margin-bottom:20px}
+.after-hours .after-rule{justify-content:flex-end}
+.after-hours .after-copy .after-statement{max-width:27em;margin:0 0 17px;font:400 clamp(16px,2.2vw,20px)/1.45 'Avenir Next',Avenir,'Segoe UI',sans-serif;color:var(--ink)}
+.after-hours .after-navigation{justify-content:flex-end}
