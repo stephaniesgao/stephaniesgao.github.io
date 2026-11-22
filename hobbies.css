@@ -290,3 +290,17 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 @keyframes dance-radio-rock{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
 @keyframes dance-beat{to{height:4px}}
 @media(prefers-reduced-motion:reduce){.after-dance .dance-radio.is-playing,.after-dance .dance-radio.is-playing .dance-radio-beat i{animation:none}}
+
+/* Restore the generated cover and page spread, opening inline. */
+.after-books .book-object{width:min(100%,430px);height:310px}
+.after-books .books-open{width:min(100%,330px);margin:0 auto}
+.after-books .inline-book{width:100%;animation:none}
+.after-books .book-inline-stage{width:100%;aspect-ratio:3/2;filter:drop-shadow(4px 7px 5px #0003)}
+.after-books .book-inline-stage .book-notes{opacity:0;transition:opacity .25s ease}
+.after-books .inline-book.is-revealed .book-notes{opacity:1}
+.after-books .book-inline-stage .book-page{top:19%;height:62%}
+.after-books .book-inline-stage .book-page h3{font-size:clamp(11px,2vw,17px);margin:18px 0 8px}
+.after-books .book-inline-stage .book-title{font-size:clamp(9px,1.7vw,14px)}
+.after-books .book-return{margin:0 auto;font-family:inherit;font-size:10px}
+@media(max-width:650px){.after-books .book-object{width:min(100%,345px);height:250px}.after-books .book-inline-stage .book-page h3{margin:11px 0 5px}.after-books .book-inline-stage .book-title{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.after-books .book-inline-stage .book-notes{transition:none}}
