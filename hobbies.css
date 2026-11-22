@@ -256,3 +256,7 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-camera .camera-profile-name{display:block;min-width:0}.after-camera .camera-profile-name small{display:block;margin-top:2px;font:7px/1.2 ui-monospace,monospace;color:#b9b2a5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .after-camera .camera-profile-arrow{font-size:11px}.after-camera .camera-return{position:absolute;right:5%;bottom:5%;width:22px;height:22px;margin:0;padding:0;border:1px solid #716960;border-radius:50%;background:#e4ddce;color:#292620;font-size:15px;line-height:18px}
 @media(max-width:650px){.after-camera .camera-object{width:min(100%,345px);height:235px}}
+
+/* Match the music preview to the layered full-size turntable. */
+.after-hours .after-peek.is-music::after{content:'';position:absolute;left:10%;top:calc(50% - 29px);width:56%;aspect-ratio:1;background:url('objects/record-disc-photo.webp') center/contain no-repeat;pointer-events:none;filter:grayscale(1)}
+.after-hours .after-peek.is-music:hover::after,.after-hours .after-peek.is-music:focus-visible::after{filter:none}
