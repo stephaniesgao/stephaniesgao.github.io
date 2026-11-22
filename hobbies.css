@@ -201,3 +201,39 @@ body:has(.after-hours) .tv-title,
 @media(prefers-reduced-motion:reduce){.after-dance .dance-open,.after-hike .trail-map-open{transition:none}}
 html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-dance .pointe-shoes{-webkit-mask-image:radial-gradient(ellipse 80% 72% at 50% 50%,#000 63%,transparent 99%);mask-image:radial-gradient(ellipse 80% 72% at 50% 50%,#000 63%,transparent 99%)}
+/* Each keepsake changes in place. */
+.after-camera .camera-object,.after-books .book-object{width:min(100%,330px);height:250px;display:grid;place-items:center;position:relative}
+.after-camera .camera-front[hidden],.after-books .books-open[hidden],.camera-back[hidden],.inline-book[hidden],.record-player[hidden]{display:none!important}
+.after-camera .camera-back{width:100%;height:225px;padding:13px;background:#e5dfd3;border:4px solid #56514a;border-radius:20px;box-shadow:4px 7px 0 #0003;transform:rotate(3deg);animation:object-turn .45s ease both}
+.camera-screen{height:172px;padding:10px 12px;background:#252522;border:5px solid #aaa397;border-radius:8px;color:#f5f0e8}
+.camera-screen-label{display:block;font:9px/1.2 ui-monospace,monospace;letter-spacing:.12em;color:#c5beaf}
+.camera-profiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.camera-profiles a{display:flex;flex-direction:column;gap:4px;min-width:0;padding:9px 6px;border:1px solid #66625b;border-radius:4px;color:#f5f0e8;text-decoration:none;font-size:12px;line-height:1.2}
+.camera-profiles a:hover{background:#41413a}.camera-profiles a>span{font:24px/1 Georgia,serif}.camera-profiles small{font-size:9px;color:#d0c8bc;overflow-wrap:anywhere}
+.camera-return,.book-return{display:block;margin:5px auto 0;padding:2px 5px;border:0;background:none;color:var(--ink);font-size:10px;cursor:pointer}
+@keyframes object-turn{from{opacity:.25;transform:rotateY(-85deg) rotate(3deg)}to{opacity:1;transform:rotateY(0) rotate(3deg)}}
+.after-books .inline-book{width:100%;position:relative;animation:book-unfold .6s ease both}
+.inline-book-pages{display:grid;grid-template-columns:1fr 1fr;min-height:197px;color:#302d28;filter:drop-shadow(4px 5px 3px #0004)}
+.inline-book-pages section{display:flex;flex-direction:column;gap:12px;padding:18px 13px;background:#e9e3d8;border:1px solid #a9a092;min-width:0}
+.inline-book-pages section:first-child{border-radius:5px 0 0 5px;box-shadow:inset -8px 0 12px #8a81723b}
+.inline-book-pages section:last-child{border-radius:0 5px 5px 0;box-shadow:inset 8px 0 12px #8a81723b}
+.inline-book-pages small{font:8px/1.3 ui-monospace,monospace;letter-spacing:.04em}
+.inline-book-pages strong{font:italic 16px/1.2 Georgia,serif}.inline-book-pages span{font:13px/1.35 Georgia,serif}
+@keyframes book-unfold{from{opacity:.2;transform:perspective(600px) rotateY(70deg) scaleX(.6)}to{opacity:1;transform:perspective(600px) rotateY(0) scaleX(1)}}
+.after-dance .dance-ball{position:relative;width:220px;height:245px;display:grid;place-items:center;overflow:visible}
+.after-dance .dance-ball:before{content:'';position:absolute;top:-12px;left:50%;height:45px;border-left:2px solid #aaa39a}
+.dance-ball-orb{width:175px;height:175px;border-radius:50%;border:2px solid #aaa39a;background:radial-gradient(circle at 31% 25%,#fffdf3 0 3%,transparent 24%),repeating-linear-gradient(0deg,transparent 0 21px,#766f665e 22px 24px),repeating-linear-gradient(90deg,#eee9de 0 21px,#b9b2a6 22px 24px);box-shadow:inset -22px -24px 35px #4a453d70,4px 9px 9px #0003;transform:rotate(-8deg);transition:transform .8s}
+.dance-ball-glow{position:absolute;inset:20px;border-radius:50%;box-shadow:0 0 0 transparent;pointer-events:none}
+.dance-ball.is-spinning .dance-ball-orb{animation:ball-turn 3s linear infinite}.dance-ball.is-spinning .dance-ball-glow{box-shadow:0 0 45px #f5e8bd55}
+@keyframes ball-turn{to{transform:rotate(352deg)}}
+.after-record .record-player{position:relative;z-index:3;width:min(100%,315px);margin:4px auto 0;padding:6px;background:var(--paper);border:1px solid var(--line)}
+.after-record .record-player iframe{display:block;width:100%;border:0}.after-record .record-player a{display:block;margin-top:5px;color:var(--ink);font-size:10px}
+.after-record:has(.record-player:not([hidden])){height:auto;min-height:430px}.after-record:has(.record-player:not([hidden])) .mini-turntable{align-self:start}.after-record:has(.record-player:not([hidden])) .turntable-deck{max-height:210px}
+@media(max-width:650px){.after-record:has(.record-player:not([hidden])){min-height:420px}.after-camera .camera-object,.after-books .book-object{height:235px}}
+@media(prefers-reduced-motion:reduce){.after-camera .camera-back,.after-books .inline-book,.dance-ball.is-spinning .dance-ball-orb{animation:none}}
+/* Facets catch light without turning the dance object into a flat grid. */
+.dance-ball-orb{background:radial-gradient(circle at 29% 22%,#fffdf5 0 2%,#f1ece2 5%,transparent 30%),radial-gradient(circle at 72% 68%,#544f47 0,transparent 42%),repeating-linear-gradient(0deg,transparent 0 15px,#615b5155 16px 17px),repeating-linear-gradient(90deg,#e6e1d7 0 15px,#aaa397 16px 17px);box-shadow:inset -22px -25px 30px #26241f88,inset 10px 6px 15px #fff9e8aa,4px 9px 9px #0003}
+.after-dance .dance-ball:before{display:none}
+.after-dance .dance-ball-orb{display:block;width:210px;height:240px;object-fit:contain;border:0;border-radius:0;background:none;box-shadow:none;transform:rotate(-6deg);filter:drop-shadow(3px 8px 4px #0005)}
+.after-dance .dance-ball.is-spinning .dance-ball-orb{animation:ball-rock 2.6s ease-in-out infinite}
+@keyframes ball-rock{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
