@@ -322,8 +322,10 @@ https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/yuki-issei
 ## Places
 
 Places
-Canada, the Bay Area, Tokyo, and Buenos Aires. A few chapters I've kept.
+Canada, Victoria, the Bay Area, Tokyo, and Buenos Aires. A few chapters I've kept.
 CanadaPearson College · British ColumbiaPOSTCARDPearson College · British ColumbiaDear Canada,Pearson College, backcountry trails, and weekends building boardwalks to protect old-growth forests.Steph xCanadaSG
+✳to: youturn back ↻
+VictoriaBritish Columbia · Vancouver IslandPOSTCARDBritish Columbia · Vancouver IslandHello from Victoria,A Victoria chapter on Vancouver Island, with the Inner Harbour and the water close by.Steph xVictoriaSG
 ✳to: youturn back ↻
 Bay AreaMuir Woods · fall 2024POSTCARDMuir Woods · fall 2024From the Bay,My first-year Minerva chapter. During fall break, I brought friends to Muir Woods to reconnect with the outdoors.Steph xBay AreaSG
 ✳to: youturn back ↻
@@ -332,7 +334,7 @@ TokyoSpring 2026POSTCARDSpring 2026Hello from Tokyo,Another Minerva chapter, in 
 Buenos AiresArgentina · currentlyPOSTCARDArgentina · currentlyWriting from here,Where I’m currently based.Steph xBuenos AiresSG
 ✳to: youturn back ↻
 ←
-CanadaBay AreaTokyoBuenos Aires
+CanadaVictoriaBay AreaTokyoBuenos Aires
 →
 Drag to browse. Tap the photo to read the note.
 
