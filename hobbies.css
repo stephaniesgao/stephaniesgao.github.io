@@ -314,3 +314,52 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 @keyframes map-fold-away{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.18) translateX(-12%)}}
 @keyframes map-unfold{0%{opacity:0;transform:perspective(700px) rotateY(-55deg) scaleX(.55)}30%{opacity:1}100%{opacity:1;transform:perspective(700px) rotateY(0) scaleX(1.08)}}
 @media(prefers-reduced-motion:reduce){.after-hike.is-opening .trail-map-folded{display:none;animation:none}.after-hike.is-opening .trail-map-image{opacity:1;transform:none;animation:none}}
+
+/* The book opens over the page, at reading size. */
+.books-popup{width:min(940px,calc(100vw - 28px));max-width:none;max-height:min(92vh,760px);padding:0;border:0;background:transparent;box-shadow:none;overflow:visible}
+.books-popup::backdrop{background:rgba(8,9,10,.78)}
+.books-popup .content-close{position:absolute;right:4px;top:-34px;float:none;width:30px;height:30px;padding:0;border:1px solid #eee9dc;border-radius:50%;color:#eee9dc;background:#28241f;font-size:22px;line-height:26px;z-index:5}
+.books-popup .open-book{position:relative;width:100%;max-height:calc(92vh - 30px);aspect-ratio:3/2;margin:0 auto;filter:drop-shadow(2px 10px 18px #0008)}
+.books-popup .book-right-page,.books-popup .book-leaf-back{background-color:transparent}
+.books-popup .book-page h3{font-size:clamp(17px,2.3vw,25px);margin:clamp(16px,3vw,29px) 0 13px}
+.books-popup .book-page .book-title{font-size:clamp(14px,2vw,21px);line-height:1.35}
+.books-popup .page-number{font-size:clamp(9px,1vw,12px)}
+@media(max-width:600px){.books-popup{padding:0;width:calc(100vw - 14px)}.books-popup .book-page h3{font-size:clamp(12px,3.2vw,17px);margin:10px 0 5px}.books-popup .book-page .book-title{font-size:clamp(10px,2.7vw,14px)}.books-popup .page-number{font-size:8px}}
+
+/* Both social profiles sit inside the camera screen; the shutter flashes before it turns. */
+.after-camera .camera-shutter-flash{position:absolute;inset:3%;z-index:6;pointer-events:none;opacity:0;background:#fffef9;border-radius:15px}
+.after-camera .camera-object.is-flashing .camera-shutter-flash{animation:camera-snap .4s ease-out both}
+@keyframes camera-snap{0%{opacity:0}18%{opacity:.98}45%{opacity:.83}100%{opacity:0}}
+.after-camera .camera-screen{background:#151513;color:#f3f0e9}
+.after-camera .camera-profiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin-top:5px}
+.after-camera .camera-profiles a{display:flex;flex-direction:column;align-items:stretch;gap:2px;min-height:79px;padding:4px 5px;border-color:#666057;background:#242320;font-size:9px}
+.after-camera .camera-profile-mark{font-size:13px;text-align:left;line-height:1}
+.after-camera .camera-profile-name{font-size:9px;line-height:1.05}
+.after-camera .camera-profile-name small{font-size:6px;margin-top:1px}
+.after-camera .camera-profile-arrow{display:none}
+.after-camera .camera-mini-feed{display:flex;gap:2px;height:19px;margin-top:auto}
+.after-camera .camera-mini-feed i{display:block;flex:1;background:#8e8579}
+.after-camera .camera-mini-instagram i:first-child{background:linear-gradient(140deg,#aa7c8e,#d9bd98)}
+.after-camera .camera-mini-instagram i:nth-child(2){background:linear-gradient(30deg,#9aa296,#c9ada2)}
+.after-camera .camera-mini-instagram i:nth-child(3){background:linear-gradient(140deg,#d8b1a1,#777e8e)}
+.after-camera .camera-mini-tiktok i{position:relative;background:#171717;border:1px solid #4e4b49}
+.after-camera .camera-mini-tiktok i::after{content:'▶';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#ded7d0;font-size:7px}
+@media(max-width:650px){.after-camera .camera-profiles a{min-height:67px;padding:3px 4px}.after-camera .camera-mini-feed{height:14px}.after-camera .camera-profile-name{font-size:8px}}
+
+/* The mountain map is the opened scroll, rather than a second object behind it. */
+.after-hike .trail-map-image{display:none}
+.after-hike .trail-map-folded{opacity:1;transform:none}
+.hike-popup{width:min(980px,calc(100vw - 24px));max-width:none;max-height:90vh;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible}
+.hike-popup::backdrop{background:rgba(8,9,10,.73)}
+.hike-popup .atlas-paper{position:relative;max-height:88vh;overflow:auto;padding:28px 31px 22px;background:#eee7d8;border-top:7px solid #d6c8ad;border-bottom:7px solid #d6c8ad;box-shadow:0 18px 65px #0008;animation:atlas-unfurl .72s cubic-bezier(.18,.74,.22,1) both}
+.hike-popup .atlas-paper::before,.hike-popup .atlas-paper::after{content:'';position:absolute;top:0;bottom:0;width:13px;background:linear-gradient(90deg,#b7a789,#e6dbc5,#c2b294);box-shadow:1px 0 4px #6f62574d;pointer-events:none;z-index:600}
+.hike-popup .atlas-paper::before{left:0;border-radius:7px 0 0 7px}.hike-popup .atlas-paper::after{right:0;border-radius:0 7px 7px 0}
+@keyframes atlas-unfurl{0%{clip-path:inset(0 48% 0 48%);transform:scaleX(.86)}100%{clip-path:inset(0 0 0 0);transform:scaleX(1)}}
+.hike-popup h2{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin-bottom:18px}
+.hike-popup .content-close{position:absolute;top:12px;right:24px;z-index:601;border:0;background:none;color:#333;font-size:27px}
+.hike-popup .mountain-layout{grid-template-columns:minmax(0,1fr) 172px;gap:18px;min-height:0}
+.hike-popup .mountain-map{height:clamp(280px,48vh,430px);border:1px solid #aca794;background:#d8d8cd}
+.hike-popup .mountain-list{max-height:clamp(280px,48vh,430px)}
+.hike-popup .mountain-detail{min-height:80px}
+@media(max-width:650px){.hike-popup .atlas-paper{padding:18px 20px 15px}.hike-popup .mountain-layout{grid-template-columns:1fr;gap:9px}.hike-popup .mountain-map{height:260px}.hike-popup .mountain-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:166px;overflow:auto;column-gap:7px}.hike-popup .mountain-list button{font-size:11px}.hike-popup .content-close{top:5px;right:14px}}
+@media(prefers-reduced-motion:reduce){.hike-popup .atlas-paper,.after-camera .camera-object.is-flashing .camera-shutter-flash{animation:none}}
