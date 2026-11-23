@@ -355,6 +355,72 @@ Favourite rom-coms: 10 Things I Hate About You, Notting Hill, Confessions of a S
 
 Spotify playlist: https://open.spotify.com/playlist/5zfpoBQbbJdg9yze5afZ5M
 
+## Writing: Whimsy Maxxing
+
+November 2026
+
+In defense of having a little more fun with technology.
+
+I used to be embarrassingly addicted to LinkedIn.
+I'd scroll through it the same way people scroll through Instagram or TikTok, except instead of watching people make questionable life decisions, I was reading about how someone's morning coffee taught them five lessons about entrepreneurship.
+And for a while, I genuinely enjoyed it. I liked seeing what people were building, reading about interesting ideas, and discovering people whose work I admired. Somewhere along the way, though, my feed started feeling like one enormous, never-ending corporate group project. Everyone was building something revolutionary, every minor inconvenience was a profound learning experience, and every post somehow ended with a lesson about leadership.
+I don't know when we collectively decided that being taken seriously required sounding like a motivational PowerPoint, but I would very much like us to reconsider.
+There's just so little whimsy.
+And I don't think this is exclusively a LinkedIn problem. It's something I've started noticing across tech more generally. Somewhere along the way, we seem to have decided that being technically impressive requires a certain degree of emotional restraint. Black websites, minimalist typography, cryptic one-liners, and product launches that sound like they've been written by someone who considers smiling a competitive disadvantage.
+Apparently, having aura means looking as though you've never experienced a moment of genuine excitement in your life.
+I find this a little strange, especially considering that technology is one of the most imaginative things humans have ever created. We build machines that can talk, robots that can dance, and software that somehow makes the entire world accessible through a little rectangle in our pockets. The underlying ideas are wonderfully ridiculous when you think about them. And yet, so much of the culture surrounding them seems determined to make everything look as serious as possible.
+Why?
+I think we've developed a peculiar association between technical competence and a certain kind of personality. The ideal engineer is often portrayed as someone who is intensely rational, socially indifferent, and primarily interested in solving difficult problems. They wear the same clothes every day, communicate in cryptic technical shorthand, and supposedly have little interest in anything that doesn't involve a computer.
+It's an amusing stereotype, but also a rather limiting one. Some of the most technically brilliant people I've met are also extraordinarily creative, funny, curious, and occasionally a little strange. They have hobbies that have nothing to do with software. They make art, play music, collect obscure things, and develop elaborate inside jokes that would make absolutely no sense to anyone outside their friend group.
+In other words, they're people.
+And people are inherently a little whimsical.
+I don't think technical sophistication and playfulness are opposites. If anything, I suspect they often come from the same place: a willingness to be curious about things that don't immediately seem useful.
+Think about how many people first became interested in programming because they wanted to make something silly. A game, a ridiculous website, a robot that serves absolutely no practical purpose. There's something wonderful about the freedom to build things simply because the idea makes you happy.
+I started building robots when I was younger, and while I loved the engineering challenges, there was also something genuinely delightful about making a collection of motors, sensors, and wires do something that previously existed only in my imagination. I don't think that feeling is fundamentally different from making art. You're taking something that doesn't exist and finding a way to bring it into the world.
+Somewhere between learning to code and becoming a serious person in tech, I think we're encouraged to forget that part.
+We start worrying about whether our projects are technically impressive enough, whether our websites look professional enough, and whether our ideas sound sufficiently ambitious. A silly side project becomes something we hesitate to share because it doesn't solve a billion-dollar problem. A playful design gets replaced with something more conventional because it might not look credible to investors.
+And slowly, we begin treating personality as something that needs to be removed from the things we create.
+I've noticed this particularly in startup culture. There seems to be an unwritten rule that a certain kind of aesthetic communicates seriousness. Every company wants to look like the future, and apparently the future has very little color. The websites become darker, the messaging becomes more abstract, and everyone starts describing relatively ordinary software as infrastructure for something enormous.
+Don't get me wrong, I love a beautifully designed minimalist website. Sometimes simplicity is exactly what a product needs. But there's a difference between making a deliberate design choice and adopting an aesthetic because you've decided that's what technically sophisticated companies are supposed to look like.
+I wonder how many interesting ideas get quietly discarded because they don't fit the image someone wants to project.
+There's also something funny about the word aura in all of this. We've somehow turned the ability to appear effortlessly impressive into its own little performance. The less you explain yourself, the more mysterious you seem. The less visibly excited you are, the more confident you appear.
+It's almost as though enthusiasm has become embarrassing.
+But I think enthusiasm is one of the most attractive qualities a person can have. I love meeting people who become animated when they talk about something they're interested in, even if I know absolutely nothing about the subject. There's a particular kind of joy in watching someone explain an obscure technical problem, a niche hobby, or a completely unnecessary project they've spent three weekends building.
+I don't care if the thing they're excited about is commercially useful. I care that they care.
+And perhaps that's what I find missing from some corners of technology. Not intelligence or ambition, because there's certainly no shortage of either, but a willingness to be visibly delighted by the things we're creating.
+We've made seriousness such a prominent signal of competence that I wonder whether we've forgotten how compelling genuine curiosity can be.
+Of course, there's a reason people are cautious about appearing unserious. Technical work often involves considerable responsibility. Software can manage financial systems, medical information, and infrastructure that millions of people depend on. Reliability matters, and there are situations where being careful and precise is far more important than being entertaining.
+But rigor doesn't require a complete absence of personality.
+A system can be engineered thoughtfully and still be delightful to use. Documentation can be accurate without sounding like it was written by a committee of particularly exhausted robots. An engineer can explain a difficult concept with humor without making the concept any less difficult.
+I think there's a tendency to treat whimsy as decoration, something you add after the serious work is finished. A cute illustration, a playful error message, a little animation in the corner of a website.
+Those things can be lovely, but I think whimsy can be something deeper.
+It's a way of approaching problems with curiosity rather than immediately asking whether they're useful. It's the willingness to entertain an unusual idea long enough to discover whether there's something interesting inside it. It's recognizing that people don't interact with technology as perfectly rational operators. They bring their emotions, preferences, habits, and occasionally their rather questionable sense of humor.
+I find it strange that we spend so much time talking about human-centered design while sometimes designing as though humans are merely inconvenient components of a larger technical system.
+People enjoy beauty. They enjoy being surprised. They form attachments to objects and places for reasons that aren't entirely practical. We give names to our cars, decorate our desks, and become inexplicably loyal to particular coffee mugs. None of these behaviors makes us less rational or capable. They're part of what makes everyday life interesting.
+Why should the technology we create be any different?
+I think about the little details in software that have made me smile over the years. A strangely specific loading message, an unexpected animation, a product that seems to have been designed by someone who genuinely enjoyed making it. These moments rarely change the fundamental functionality, but they change how the experience feels.
+And feelings are part of the experience, whether engineers want to admit it or not.
+There's also something particularly interesting about whimsy in an era when so much software can be generated automatically. As building becomes easier, we're going to see an enormous number of products that are perfectly functional, reasonably well designed, and almost entirely indistinguishable from one another.
+When everyone has access to similar tools and models, technical execution alone may become less of a differentiator for certain kinds of software. The choices people make about what to build, how it should feel, and what makes it worth using become increasingly visible.
+I don't think the answer is to put cartoon characters on every dashboard. That sounds rather exhausting.
+But I do think there's room for technology that feels more like it was made by people with personalities, rather than organizations trying very hard to appear important.
+Perhaps this is partly because I don't see my technical interests as separate from the rest of who I am. I love programming, but I also love dancing, fashion, writing, and making things simply because I think they'll be beautiful. I've never understood why those interests are supposed to occupy different parts of my life.
+The same curiosity that makes me want to understand how a system works also makes me want to design something playful or spend an unreasonable amount of time choosing a font. I don't think one makes the other less legitimate.
+Sometimes I want to build something technically complicated. Sometimes I want to make something pretty. Ideally, I'd like to do both, and perhaps add a slightly unnecessary animation while I'm at it.
+I think we're entering a particularly interesting moment for this kind of creativity. The barriers to making software are becoming lower, and people who might never have considered themselves developers are discovering that they can build things. Artists can create interactive experiences. Writers can make little websites. Someone with a ridiculous idea and a free afternoon can turn it into something real.
+That possibility feels wonderfully exciting to me.
+For a long time, building software required learning enough about computers to communicate with them on their terms. Increasingly, the tools are becoming capable of meeting people where they are. And when more people can participate in creating technology, we get more than additional software. We get different kinds of imagination shaping what software can be.
+I hope that means more strange little projects, more unexpected ideas, and more things built for no reason other than someone thought they would be fun.
+Not everything needs to become a startup. Not every project needs a monetization strategy. Sometimes a person should be allowed to spend an entire weekend making a website that serves no purpose whatsoever beyond making their friends laugh.
+I think that counts as a perfectly reasonable use of technology.
+And perhaps the funniest part of all this is that some of the most influential things in computing began with people experimenting, playing, and following their curiosity without knowing exactly where it would lead. The culture that now prizes polished ambition was built, in no small part, by people who thought computers were fascinating enough to spend their free time doing strange things with them.
+I don't think we need less ambition in tech. I think we could use a little more joy alongside it.
+I want to see people get excited about what they're building. I want more colorful websites, more peculiar projects, more engineers with hobbies that make absolutely no sense, and more founders who are willing to admit that sometimes they made a design decision simply because it delighted them.
+There's something rather wonderful about taking difficult work seriously without taking yourself quite so seriously.
+And if that costs me a little aura, I think I'll survive.
+
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/whimsy-maxxing
+
 ## Writing: The Right Kind of Interesting
 
 November 2026
