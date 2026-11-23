@@ -435,7 +435,7 @@ References
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/most-interesting-ai-release-is-a-markdown-file
 
-## Writing: The Simulator Is Not the World
+## Writing: Congratulations, Your AI Has Learned to Cheat
 
 November 2026
 
@@ -641,152 +641,90 @@ References
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/instinct-and-the-internet-we-built-for-ourselves
 
-## Writing: The Case for Company-Owned Intelligence
+## Writing: Was Lady Gaga's Meat Dress a Warning About AI?
 
-October 2026
+September 2026
 
-The Paradox of General Intelligence
-The great ambition of modern AI has been to make intelligence general. But a model's ability to reason across domains tells us surprisingly little about its ability to perform reliably within one.
-For years, the most practical way to build with AI has been to use the strongest available foundation model. The performance advantage of frontier systems made developing proprietary alternatives difficult to justify, particularly for companies without the resources of a dedicated AI research lab. That tradeoff is becoming less obvious. Open-weight models have narrowed the capability gap, while improvements in post-training and inference optimization are making it increasingly feasible to develop systems around specific workloads. A general-purpose model may still offer the strongest overall capabilities, but an organization rarely needs all of them for every task. It is worth asking whether a system designed to be reasonably good at almost anything is always the right choice for work that demands exceptional performance at something quite specific.
-For some applications, a smaller model trained on the right distribution of data could match or outperform a much larger system at a fraction of the inference cost. In others, the opportunity may lie in developing specialized foundation models that learn the underlying structure of a domain and generalize across related tasks without extensive additional training. The distinction matters because specialization should not mean building a separate model for every customer or workflow. Ideally, it means developing capabilities that transfer within a domain while avoiding the computational overhead of generality that the application does not require.
-The difficulty is that valuable training data and learning environments are harder to produce than they appear. Much of the expertise needed to improve models in specialized domains exists outside frontier labs, embedded in proprietary workflows and the judgment of industry experts. An engineering firm may know precisely what distinguishes an acceptable solution from an unacceptable one, yet struggle to express that distinction as a verifiable training signal. Even the most well-resourced AI labs cannot replicate this depth of expertise across every industry. Turning such knowledge into meaningful model improvements requires environments that capture real decisions, produce reliable feedback, and demonstrate improvements beyond the training distribution.
-Our thesis is that the market for high-quality data and learning environments is not zero-sum. As the race to develop more capable models intensifies, internal research and external specialization can both contribute valuable improvements. We believe the opportunity lies in developing environments that deliver measurable capability gains worth more than the research effort required to reproduce them, and building the infrastructure to do so at scale.
-The Market Is Open to Contribution
-Intelligence is an arms race. A team competing to build a more capable model has to decide where its next research hour goes. If an outside team can deliver a useful improvement sooner, buying that work can be the rational choice even when it is reproducible. Time to capability is part of the product.
-More internal synthetic data does not automatically displace external research. An environment that exposes a new failure, a verifier that makes a difficult task trainable, or data that improves a specific capability can add value alongside the buyer's own work. The relevant question is the marginal improvement it produces, and whether that improvement justifies the cost of obtaining it.
-There is already concrete evidence of this division of labor. Baseten's Environment Network connects enterprise customers with specialist teams that construct environments, tasks, and rubrics, while Baseten handles training and inference. Its announcement identifies environment development as research-intensive work that benefits from dedicated expertise. [19]
-This gives a small, technically strong team a concrete way in. Find a consequential problem, understand it deeply, and build a solution that improves the customer's model. A supplier earns its place through original contributions and faster research cycles. Our entry point is this work. We bring experience in reinforcement learning with executable feedback and the virtual machines agents run in, and are building latent λ around the ability to diagnose a failure, construct a learning problem, and deliver an improvement the customer can keep.
-Environments Produce Experience
-A useful environment specifies initial state, available actions, state transitions, constraints, and a way to evaluate the outcome. It must let a policy try different decisions and encounter meaningful consequences. SWE-Gym demonstrates the executable version in software engineering; Silver and Sutton make the broader case for learning through interaction and experience. [1] [2]
-The interesting challenge is translating real work into such environments. An experienced engineer may recognize why an apparently reasonable decision would fail, yet struggle to explain that judgment as a training objective. A useful environment must preserve the information available at each decision, represent what would happen under different actions, and determine whether the eventual outcome is acceptable. A replay of one successful trajectory is not enough.
-Inspect complete trajectories before trusting a task. Check which observations led to a decision, whether tools behaved correctly, and how a successful run earned its reward. Simulation quality needs its own checks: UserProxyBench found that changing the simulated user could materially change an agent's measured reward. [22]
-Difficulty is also relative to the learner. Under group-relative training objectives, tasks whose sampled responses all receive the same reward contribute little signal for distinguishing better behavior from worse. RLVE adjusts problem difficulty as the policy improves and tests transfer to unseen task generators. Its experiments suggest a useful research discipline: measure how much of the experience produces learning, then keep the curriculum moving. [28]
-The quality of the feedback matters as much as the experience itself. An evaluation suite is a specification of acceptable work, accounting for the finished artifact, the resulting state, and consequential actions along the way. An agent that reaches the correct final state through an unauthorized action has not completed the task correctly. Anthropic's evaluation framework provides a useful structure for tasks, trials, graders, traces, and outcomes. [3]
-And the grader needs an evaluation too. Model judgments should be calibrated against experts, tested for position and verbosity bias, and checked against legitimate alternative solutions. Release evaluations should remain separate from the rewards being optimized during training. Judge bias and reward overoptimization are measured problems with direct consequences for model quality. [4] [9]
-The unit of progress is a verified improvement on unseen work. Better tools for extracting expert judgment, constructing tasks, and auditing rewards can make a small research team disproportionately productive. What matters is not how many examples an environment generates, but whether the resulting model learns something useful that transfers beyond them.
-Train the Behavior That Matters
-Once a failure has been identified, the appropriate intervention is not always another training run. Missing information calls for better context. Broken tools need repair. Demonstrations, preferences, distillation, and interactive rewards provide different kinds of supervision, with InstructGPT, DPO, and DeepSeek-R1 offering precedents in their respective settings. [5] [6] [15]
-Specialization can also amortize expensive reasoning over repeated work. Thinking Machines' on-policy distillation experiments combine student-generated trajectories with dense teacher feedback, while its LoRA work shows how carefully configured adaptation can match full fine-tuning in the tested post-training regimes. These are practical methods for developing and maintaining many specialized models without repeating the full expense of training their foundations. [18] [7]
-Intermediate checks are valuable when correctness can be assessed along the way. Process supervision in mathematics and our prior work on compiler and symbolic-execution feedback motivate this direction, although the verification method must fit the domain. [16] [See Prior Work]
-A specialized model is only useful if its advantages survive deployment. Measure cost per accepted task, including inference, tools, retries, human review, and allocated training and operating costs. Measure latency under real concurrency. A lower token price has to survive those comparisons.
-Specialized systems can also work alongside frontier models rather than replacing them. Glean reports that its Waldo search-planning model reduced end-to-end latency by roughly 50% and token use by 25% without quality regression in its system. This is a concrete example of owning a valuable part of a workload rather than reproducing every capability of a general-purpose model. [20]
-Serving and training belong in the same engineering conversation. Efficient KV-cache management expands useful throughput, while inference-time computation can be allocated according to task difficulty. Fireworks' account of its training engagements identifies integration and iteration speed as recurring bottlenecks. Faster experiments matter only when their results survive production. [10] [11] [21]
-Bespoke Research, Repeatable Systems
-Every business has its own tools, exceptions, and standards. Useful specialization begins by understanding them. The infrastructure around that work can become progressively more powerful: task generation, verifier auditing, environment resets, rollout scheduling, experiment tracking, and releases.
-A research engineer should accumulate tools that make each investigation more productive. An audit that catches one reward defect becomes a check across a task family. A reliable environment reset makes thousands of experiments possible. Domain expertise becomes more valuable when it is encoded in machinery other engineers can use.
-This is the meaning of hyperscale in our ambition: making the development and maintenance of specialized intelligence economical across many organizations. Customer knowledge remains private. The reusable asset for latent λ is the engineering that makes each subsequent deployment faster to build and better to operate.
-Company ownership extends beyond the model weights. The ownership package should include authorized training data, versioned environments and evaluations, reproducible recipes, exportable model artifacts where licenses permit, and deployment and rollback instructions. The customer controls release decisions and retains the means to improve the system.
-A new foundation model should be an opportunity to advance. Carry the customer's tasks, judgments, and evaluation standards into the next training run and test the result again. Adapters are tied to their base architectures, so migration requires engineering, but the enduring asset is the reproducible knowledge behind the model. YC's Own Your Intelligence request identifies a similar opportunity in helping companies develop capabilities they can maintain across model generations. [17]
-The first deployment may require close collaboration with domain experts and considerable bespoke research. That is not necessarily a weakness. Paul Graham's account of early customer attention and Anthropic's preference for simple, measurable agent systems offer useful operating principles: learn from the actual work before attempting to abstract it. [13] [14]
-The question is whether enough of that process can eventually be standardized. If every environment requires an entirely new research project, the business remains a consultancy regardless of its technical sophistication. The infrastructure becomes interesting when each investigation improves the tools used in the next.
-The First Proof Can Be Narrow
-A research company can begin with a claim somebody else can test: a defined task family, unseen evaluation cases, working artifacts, and a full account of cost. Nomos specialized an existing Qwen model and released its reasoning harness. LLM-VeriOpt released a small compiler specialist with training and evaluation artifacts. These provide useful precedents for turning a bounded research result into something others can inspect and build upon. [23] [24]
-The experiment must identify where the improvement comes from. Compare better instructions, retrieved examples, tool access, and search before attributing a gain to changed weights. Hold the context and evaluation budget constant where possible, and measure previous capabilities after each update. Research on continual learning shows how much conclusions can change when stronger training and merging baselines are introduced. [25]
-We are also interested in capabilities that transfer across related tasks. A vertical foundation model earns that description by learning reusable domain representations rather than requiring separate training for every application. Stripe's payments model offers a precedent for this approach. [12]
-Writing presents a particularly interesting test of judgment. An editor's revisions contain information about factuality, argument, audience, and voice, but these objectives cannot be reduced to a single deterministic verifier. Research on diversity-aware preference training offers a starting point for improving prose without collapsing stylistic range. [8]
-The valuable observation is an editorial decision: what an author kept, what they rejected, and why. A useful system would learn from those decisions and improve subsequent work. Test it on later drafts and new topics, ask authors blindly which version they would publish, and measure the effort required to reach an accepted draft. Human studies suggest that perceived authenticity can diverge from automated style measurements, while research on constructive feedback has yet to establish whether higher-rated advice consistently produces better revisions. [26] [27]
-These are different kinds of learning problems, with different standards for verification. That makes them useful tests of the same infrastructure hypothesis. We do not need every environment to resemble every other environment. We need the underlying research machinery to become more productive as we develop them.
-The Economics of Knowing Something Others Don't
-There are reasons this thesis may be wrong. General-purpose models may improve quickly enough that specialized training becomes unnecessary for many valuable workloads. High-quality environments may prove too expensive to construct, or the improvements they produce may fail to transfer beyond narrow evaluations. The methods developed for one domain may offer little advantage in the next.
-These are questions the research must answer. A useful first result would demonstrate that a specialized learning environment produces a measurable improvement over strong existing alternatives, that the improvement survives independent evaluation, and that its value justifies the research required to obtain it. The next would establish that the environment remains useful as models change, and that subsequent improvements become less expensive to produce.
-The future of AI is often described as a competition between increasingly powerful general-purpose models. That competition will continue, but it does not follow that every valuable contribution must originate within the laboratories training the largest systems.
-As frontier capabilities advance, some of the remaining gaps may become harder to identify through broad benchmarks alone. They will lie in specialized domains where the relevant problems are obvious to experienced practitioners but difficult to reconstruct without access to their expertise. An external team does not need to compete with a frontier laboratory on model scale to make a meaningful contribution. It needs to understand a problem well enough to teach the model something its developers could not easily teach it themselves.
-latent λ is being built around that possibility. We want to make the process repeatable: acquire useful feedback, turn it into measurable capability, and let its owner retain the result. Each successful experiment should improve the machinery for the next.
-The ambition is not simply to build specialized models. It is to develop the infrastructure that makes specialized intelligence economical to produce, reliable to operate, and possible to improve as the underlying technology advances.
-Prior Work
-Aryan Mahajan coauthored CoTran: An LLM-Based Code Translator Using Reinforcement Learning with Feedback from Compiler and Symbolic Execution (ECAI 2024), with Prithwish Jana, Piyush Jha, Haoyang Ju, Gautham Kishore, and Vijay Ganesh. CoTran combines supervised fine-tuning and reinforcement learning with compiler- and symbolic-execution-based testing feedback.
-Selected papers citing this work:
-Migrating Code At Scale With LLMs At Google (FSE 2025). Celal Ziftci and colleagues at Google discuss CoTran in §6 and cite its preprint.
-Type-Constrained Code Generation with Language Models (PLDI 2025). Coauthored by Dawn Song and Koushik Sen at UC Berkeley, and Martin Vechev at ETH Zurich. Reference 34 cites the ECAI paper.
-LLM-Based Code Translation Needs Formal Compositional Reasoning (2025). Coauthored by Sanjit A. Seshia and Alvin Cheung at UC Berkeley, and Somesh Jha at Wisconsin–Madison. The paper discusses CoTran's compiler and symbolic-execution feedback.
-Revisiting the Role of Natural Language Code Comments in Code Translation (FASE 2026). Coauthored by Anamitra Roy Choudhury and Vijay Arya at IBM Research India. The paper discusses CoTran in §2 and Appendix A.
+I recently came across a blog post by Niklas Gruhn titled Don't Be a Meat Proxy, and I haven't stopped thinking about it.
+The premise is wonderfully absurd. Someone asks a question in Slack, leaves feedback on a pull request, or starts an argument in a group chat. Instead of responding themselves, the other person copies the question into Claude, takes whatever comes back, and pastes it into the conversation. The recipient is now reading a response from an AI through a human who may not have understood, verified, or even read it.
+Congratulations, you've become a meat proxy. A biological API endpoint with considerably worse latency.
+It's a funny term, but I think it captures something much more interesting about how we're beginning to use AI. We've built systems that can generate increasingly sophisticated work with very little human involvement, but we haven't quite figured out what meaningful human involvement should look like anymore. Instead, we're creating workflows where the human is technically responsible for the output while contributing almost nothing to its production.
+And somehow, we've started calling this productivity.
+The illusion of getting more done
+One of the stranger consequences of generative AI is how dramatically it has changed the relationship between effort and output. A report that might have taken hours to write can now be generated in minutes. A developer can produce hundreds of lines of code without understanding every implementation detail. Someone can respond to dozens of emails without writing a single sentence themselves.
+There's nothing inherently wrong with this. In fact, eliminating unnecessary effort is one of the best things technology can do. I've spent plenty of time building automations to avoid repetitive work, and I use AI extensively in my own projects. But I think we're beginning to confuse the volume of work produced with the amount of useful work accomplished.
+Consider a developer who receives a ticket, gives it to Claude Code, and submits the resulting pull request. Another developer reviews the implementation and points out a potential issue. The first developer copies the feedback into Claude, generates a fix, and pushes another commit. This repeats until the reviewer is satisfied.
+From the outside, the original developer appears to have completed the task. They submitted the pull request, responded to feedback, and merged the implementation. Yet it's worth asking where the actual understanding occurred. The reviewer identified the problems, evaluated the implementation, and determined what needed to change. The coding agent produced the modifications. The developer connecting them may have contributed little beyond transferring information between the two.
+This is close to the example Gruhn raises in his original essay, and I think it's especially interesting because the workflow technically functions. The code might even be good. The problem is that the person credited with the work may not be the person who understood it.
+Of course, using AI to implement something doesn't automatically make someone a meat proxy. An experienced engineer might delegate most of the code generation while still making architectural decisions, evaluating trade-offs, and taking responsibility for the result. The distinction isn't how much code someone writes themselves. It's whether they understand and contribute to the work being produced.
+We're accustomed to measuring productivity through visible artifacts: documents completed, messages answered, pull requests merged. Generative AI makes those artifacts extraordinarily cheap to produce, which means they become increasingly poor proxies for the value of the underlying work.
+We've made writing cheaper than reading
+For most of the internet's history, producing a substantial piece of writing required enough effort that its existence suggested at least some investment from the author. A detailed email, technical explanation, or lengthy proposal usually meant someone had spent time thinking through what they wanted to communicate.
+That assumption is becoming less reliable.
+An AI-generated response can be longer, more polished, and more technically elaborate than something a person would have written themselves. It can also contain far more information than the recipient needs. The sender saves time by generating it, but the recipient still has to read, interpret, and verify it.
+We've reduced the cost of producing information without necessarily reducing the cost of consuming it.
+Suppose I ask a colleague why a particular technical decision was made. They could spend five minutes explaining the reasoning in their own words, or they could ask Claude to generate a comprehensive explanation and send me several paragraphs. The second option might take them thirty seconds. But if I now have to spend ten minutes reading the response, separating relevant information from unnecessary detail, and checking whether it actually answers my question, the total amount of work hasn't decreased. It's simply been transferred to me.
+It's a rather unfortunate trade. You save thirty minutes writing an essay nobody asked for, and I inherit the responsibility of figuring out what it means.
+This is what I find most frustrating about unfiltered AI output. It often creates the appearance of thoroughness while making the actual exchange of information less efficient. A useful response is not necessarily the most comprehensive response. Sometimes the most valuable thing someone can do is understand a complicated issue well enough to explain it simply.
+That requires judgment. And judgment is precisely what disappears when a person forwards model output without processing it.
+The human in the loop might just be the bottleneck
+There's another irony here. We're building increasingly autonomous agents, but many workflows still require humans to manually transfer information between systems.
+An agent writes a document. A person copies it into another application. A second agent evaluates the document. The person returns the feedback to the first agent. The cycle continues until someone is satisfied.
+Why is the human there?
+Sometimes there's a good answer. The person may need to make a decision, authorize an action, or assess something the systems cannot reliably evaluate. Human oversight can be genuinely valuable when it involves meaningful judgment. But in other cases, the human is only present because the systems haven't been connected.
+In software engineering, we generally wouldn't consider it good architecture to require a person to manually copy JSON responses between two services. We'd build an integration, define an interface, and let the systems communicate. Yet we routinely create equivalent workflows with AI agents and call them human-in-the-loop systems.
+We've somehow reinvented middleware, except the middleware needs coffee breaks and occasionally forgets to reply.
+This reminds me of a much older observation by Lisanne Bainbridge in her 1983 paper Ironies of Automation. Bainbridge argued that automating routine parts of a system can leave humans responsible for the very situations they are least prepared to handle. As automation improves, the remaining human role often becomes more difficult rather than less important. [2]
+I think we're encountering a related problem with AI agents. We keep humans involved because we want the reassurance of human oversight, but the mere presence of a human doesn't guarantee that any meaningful oversight is happening.
+Research on human involvement in automated decision-making adds another interesting complication. In Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making, Sele and Chugunova found that allowing people to adjust algorithmic recommendations increased their willingness to use the system, but their interventions also reduced average prediction accuracy in the experiment. The researchers observed that participants tended to follow algorithmic recommendations more closely than equivalent human recommendations. [3]
+I find this particularly interesting because it challenges the assumption that adding a human necessarily makes an automated system more reliable. We often treat human oversight as a safeguard, but its effectiveness depends on whether the person can independently assess the system's recommendation.
+A reviewer who doesn't understand the implementation they're approving isn't much of a safeguard. Neither is an employee who automatically accepts an agent's recommendation because it looks plausible.
+The useful human role should be explicit. What decision is this person making? What information do they have that the agent doesn't? What would cause them to reject the proposed action?
+If we can't answer those questions, there's a reasonable chance we've inserted a person into the workflow without giving them a meaningful function.
+The problem isn't delegation. It's responsibility.
+I don't think the solution is to use AI less. That would be a strange conclusion to draw from technology that can already perform so many useful tasks.
+The distinction I care about is between delegating execution and delegating judgment.
+When I use an agent to research companies, organize information, or draft outreach, I'm delegating work that would otherwise require considerable manual effort. But I still need to decide which companies matter, whether the research is credible, and what I actually want to communicate.
+Those decisions are often the most valuable part of the process.
+There's an important difference between asking AI to help formulate an argument and asking AI to decide what your argument should be. The former can make your thinking more effective. The latter can make it surprisingly easy to stop thinking altogether.
+This is especially apparent in writing. Language models are remarkably good at producing explanations that sound reasonable, even when the underlying reasoning is weak or the author hasn't fully understood the subject. A well-written paragraph creates an impression of competence. We've spent our entire lives using language as a signal of understanding, and now we've built systems capable of producing that signal without requiring understanding from the person presenting it.
+The danger isn't necessarily that the AI is wrong. It might be completely correct. The problem is that the human presenting the information may have no independent basis for evaluating it.
+This creates a peculiar accountability problem. When someone sends me a technical recommendation, I normally assume they're prepared to explain why they believe it. I can question their assumptions, ask about alternatives, and understand the reasoning behind their conclusion.
+But if the recommendation is generated by a model they haven't evaluated, that conversation becomes difficult. They may simply return to the model, ask it to defend its earlier answer, and forward the response. At that point, I'm not really having a discussion with another person. I'm having a discussion with a language model through someone who controls the prompt but doesn't necessarily understand the subject.
+Which raises the rather obvious question of why I wasn't invited to speak to Claude directly.
+Doing less should mean understanding more
+I think one of the most important skills in an AI-heavy workplace will be knowing which parts of a task deserve your attention.
+It's unrealistic to expect people to personally verify every line of code, every data transformation, or every intermediate step of a sufficiently complex agentic workflow. The entire point of automation is to reduce how much work requires direct human attention. But we need better ways to determine where that attention is most valuable.
+For a software engineer, that might mean spending less time implementing boilerplate and more time understanding architecture, testing assumptions, and evaluating whether the system behaves correctly. For someone working in product, it might mean delegating research synthesis while retaining responsibility for deciding which customer problems are worth solving.
+The objective isn't to preserve human effort for its own sake. It's to make sure we're applying human effort where it changes the outcome.
+This is also why I think the ability to explain your work will become increasingly important. If you've delegated an implementation to an agent but can explain its architecture, identify its limitations, and defend the decisions it embodies, you've probably contributed something meaningful. If your only response to a question is to ask the agent what it thinks, the situation is different.
+Of course, explanation isn't a perfect measure of understanding. People can produce convincing explanations for things they don't understand, and AI can help them do that too. But being able to reason independently about the work is still a useful standard.
+There's also a broader question about how we develop expertise. If we increasingly delegate implementation, drafting, and analysis, we may reduce our exposure to the practical details through which expertise is acquired. The relationship isn't straightforward. AI can also be a remarkably effective teacher, and someone who actively interrogates an agent's work might learn faster than someone doing everything manually.
+What matters is whether the interaction involves learning and evaluation or simply accepting whatever appears on the screen.
+A person who uses AI to understand an unfamiliar concept is doing something different from a person who uses AI to avoid understanding it.
+Maybe we haven't redefined work yet
+I think meat proxy resonates because it gives a name to something we've all started encountering, but haven't quite figured out how to talk about.
+We're in an awkward transitional period where the tools can perform substantial portions of knowledge work, while our expectations of what it means to contribute haven't changed nearly as quickly.
+We still reward people for producing artifacts, even when producing those artifacts no longer requires much effort. We still assign ownership based on who submitted the work, rather than who exercised judgment over it. And we still treat human involvement as inherently valuable, even when that involvement consists entirely of forwarding information between systems.
+This doesn't mean AI-generated work is less valuable. In many cases, it's an extraordinary improvement. But it does mean we need to become more precise about what people are contributing.
+A developer who uses AI to ship a reliable system is not necessarily less valuable than one who writes every line themselves. A researcher who uses AI to investigate more hypotheses may be doing better research. Someone who automates an entire administrative workflow may create far more value than someone who performs those tasks manually.
+The common factor isn't the amount of effort they personally expend. It's whether they exercise judgment, take responsibility for the outcome, and contribute something the system would not otherwise have produced.
+I also think there's a social dimension that gets overlooked. When someone asks a colleague a question, they may not just be requesting information. They may want that person's experience, opinion, or perspective. Replacing the response with a generic AI explanation can miss the entire point of the interaction.
+If I wanted to know what Claude thinks, I could ask Claude. When I ask another person, I'm usually interested in what they think.
+Don't outsource the part that makes you useful
+I don't particularly care whether someone uses AI to write code, draft emails, or produce documents. I do all of those things myself, and I think we're only beginning to understand how much work these systems can take off our hands.
+What I care about is whether the person using the tool is still participating intellectually in the process.
+There's a difference between being the person who decides what should happen and being the person who forwards what a model decided should happen. As AI becomes capable of handling more execution, I suspect that distinction will become increasingly important.
+The opportunity is enormous. We can spend less time on repetitive implementation and more time making decisions, exploring ideas, and solving problems that previously required too much manual work. But that only happens if we use the time we've recovered to do something more valuable.
+Otherwise, we end up in a strange situation where everyone is producing more work, everyone is reading more work, and nobody is particularly sure who's doing the thinking.
+Perhaps the most useful question to ask before sending something AI-generated isn't whether the output is good enough to pass along. It's whether you've added anything by being the person who sends it.
+Because if all you're doing is passing information between a person and a language model, congratulations. We've finally found a way to make computers faster by putting a human in the middle.
 References
-[1] Welcome to the Era of Experience
-David Silver & Richard S. Sutton, 2025.
-Agents learning through interaction and experience.
-[2] Training Software Engineering Agents and Verifiers with SWE-Gym
-Jiayi Pan et al., 2024.
-Executable software environments for training and verification.
-[3] Demystifying evals for AI agents
-Anthropic, 2026.
-Tasks, trials, graders, traces, and outcomes.
-[4] Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena
-Lianmin Zheng et al., 2023.
-Position, verbosity, and self-enhancement bias in model judgments.
-[5] Training language models to follow instructions with human feedback
-Long Ouyang et al., OpenAI, 2022.
-Demonstrations and preference-based alignment.
-[6] Direct Preference Optimization: Your Language Model is Secretly a Reward Model
-Rafael Rafailov et al., 2023.
-Learning from preferences through a direct optimization objective.
-[7] LoRA Without Regret
-John Schulman, Thinking Machines Lab, 2025.
-Parameter-efficient adaptation in the tested post-training regimes.
-[8] Modifying Large Language Model Post-Training for Diverse Creative Writing
-John Joon Young Chung et al., 2025.
-Diversity-aware preference training for creative writing.
-[9] Scaling Laws for Reward Model Overoptimization
-Leo Gao, John Schulman & Jacob Hilton, 2022.
-The risks of excessive proxy reward optimization.
-[10] Efficient Memory Management for Large Language Model Serving with PagedAttention
-Woosuk Kwon et al., 2023.
-Memory management and inference throughput.
-[11] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters
-Charlie Snell, Jaehoon Lee, Kelvin Xu & Aviral Kumar, 2024.
-Allocating inference-time computation efficiently.
-[12] Using AI to optimize payments performance with the Payments Intelligence Suite
-John Affaki, Stripe, 2025.
-Domain-specific representations for payments intelligence.
-[13] Do Things that Don't Scale
-Paul Graham, 2013.
-Learning through close attention to early users.
-[14] Building effective agents
-Anthropic, 2024.
-Simple, composable agent architectures.
-[15] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning
-DeepSeek-AI, 2025.
-Reinforcement learning for reasoning capabilities.
-[16] Let's Verify Step by Step
-Hunter Lightman et al., OpenAI, 2023.
-Process supervision for mathematical reasoning.
-[17] Requests for Startups — Winter 2027
-Jon Xu, Diana Hu & Jared Friedman, Y Combinator; accessed October 29, 2026.
-Own Your Intelligence, Vertical Foundation Models, and LLMs That Write Well.
-[18] On-Policy Distillation
-Kevin Lu and collaborators, Thinking Machines Lab, 2025.
-Student-generated trajectories and teacher feedback.
-[19] Introducing the Baseten Environment Network
-Charles O'Neill, Max Kirkby, Mudith Jayasekara & Ardin Lo, Baseten, October 2026.
-Specialist environment teams working alongside training and inference infrastructure.
-[20] Glean Waldo: An agentic search model that pairs with LLMs
-Eddie Zhou, Kunal Patil, Abhilash Samantapudi & Julie Mills, Glean, 2026.
-Company-reported latency and token savings from specialized search planning.
-[21] The fine-tuning bottleneck isn't the algorithm
-Fireworks, March 2026.
-Integration, iteration speed, and training-method selection.
-[22] UserProxyBench: Evaluating LLM User Simulators for Agent Benchmarks and Training
-Ashish Jain & Armaan Sandhu, 2026.
-The effect of simulator fidelity on measured agent performance.
-[23] Nomos 1
-Nous Research & Hillclimb, 2025.
-A specialized reasoning model with released weights and harness.
-[24] LLM-VeriOpt: Verification-Guided Reinforcement Learning for LLM-Based Compiler Optimization
-Xiangxin Fang et al., CGO 2026.
-Compiler specialization using verifier feedback.
-[25] Off-Policy Merging Beats On-Policy Self-Distillation for Continual Learning
-Chen Henry Wu, Thomas Zhang & Aditi Raghunathan, 2026.
-Continual learning and stronger checkpoint-merging baselines.
-[26] Can You Make It Sound Like You? Post-Editing LLM-Generated Text for Personal Style
-Connor Baumler et al., 2026.
-Perceived authenticity and automated style measurements.
-[27] Generating Constructive Feedback on Stories via Reinforcement Learning
-Maja Stahl, Timon Ziegenbein & Henning Wachsmuth, 2026.
-Improving the perceived usefulness of writing feedback.
-[28] RLVE: Scaling Up Reinforcement Learning for Language Models with Adaptive Verifiable Environments
-Zhiyuan Zeng et al., ICML 2026.
-Adaptive task difficulty and generalization to held-out generators.
+[1] Gruhn, N. (2026). Don't Be a Meat Proxy.
+[2] Bainbridge, L. (1983). Ironies of Automation. Automatica, 19(6), 775–779.
+[3] Sele, D., & Chugunova, M. (2024). Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making. PLOS ONE, 19(2), e0298037.
 
-https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/company-owned-intelligence
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/was-lady-gagas-meat-dress-a-warning-about-ai
 
 ## Links
 
