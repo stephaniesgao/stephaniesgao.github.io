@@ -98,7 +98,7 @@
 .postal-front{background-image:url('card-paper/front.webp')}
 .postal-back{background-image:url('card-paper/back.webp');background-color:transparent}
 .postal-image{inset:8% 5% 14%;background:#ddd}
-.postal-front-footer{inset:auto 6% 3%;height:6%;padding:0;background:transparent}
+.postal-front-footer{inset:auto 6% 5%;height:6%;padding:0;background:transparent}
 .postal-front-footer strong{font-size:13px}
 .postal-front-footer small{font-size:11px}
 .postal-back-top{height:13%;margin:0 7%;border:0;background:none;font-size:11px}
@@ -109,5 +109,5 @@
 .postal-address{border:0;margin:0;padding:5% 8%;display:block}
 .postal-to{font-size:11px}
 .postal-address-lines{display:none}
-@media(max-width:600px){.postal-stage{height:330px;aspect-ratio:auto}.postal-entry[data-offset="-1"]{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}.postal-entry[data-offset="1"]{transform:translate3d(9%,12px,-55px) rotate(4deg)}.postal-card{height:270px;aspect-ratio:auto}.postal-image{inset:8% 5% 14%}.postal-front-footer{inset:auto 6% 3%;height:6%;display:flex}.postal-front-footer strong{font-size:11px}.postal-front-footer small{font-size:9px}.postal-back-top{height:12%;margin:0 6%;font-size:9px}.postal-back-grid{height:88%;grid-template-columns:1fr 1fr}.postal-message{padding:3% 6% 6% 8%}.postal-message strong{font-size:14px;margin-bottom:5px}.postal-message>span{font-size:10px;line-height:1.32}.postal-message em{font-size:10px}.postal-address{padding:4% 7%}.postal-to{font-size:9px}}
+@media(max-width:600px){.postal-stage{height:330px;aspect-ratio:auto}.postal-entry[data-offset="-1"]{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}.postal-entry[data-offset="1"]{transform:translate3d(9%,12px,-55px) rotate(4deg)}.postal-card{height:270px;aspect-ratio:auto}.postal-image{inset:8% 5% 14%}.postal-front-footer{inset:auto 6% 5%;height:6%;display:flex}.postal-front-footer strong{font-size:11px}.postal-front-footer small{font-size:9px}.postal-back-top{height:12%;margin:0 6%;font-size:9px}.postal-back-grid{height:88%;grid-template-columns:1fr 1fr}.postal-message{padding:3% 6% 6% 8%}.postal-message strong{font-size:14px;margin-bottom:5px}.postal-message>span{font-size:10px;line-height:1.32}.postal-message em{font-size:10px}.postal-address{padding:4% 7%}.postal-to{font-size:9px}}
 @media(max-width:390px){.postal-stage{height:345px}.postal-card{height:285px}.postal-message>span{font-size:9.5px;line-height:1.3}}
