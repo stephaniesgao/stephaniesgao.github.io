@@ -363,3 +363,29 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .hike-popup .mountain-detail{min-height:80px}
 @media(max-width:650px){.hike-popup .atlas-paper{padding:18px 20px 15px}.hike-popup .mountain-layout{grid-template-columns:1fr;gap:9px}.hike-popup .mountain-map{height:260px}.hike-popup .mountain-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:166px;overflow:auto;column-gap:7px}.hike-popup .mountain-list button{font-size:11px}.hike-popup .content-close{top:5px;right:14px}}
 @media(prefers-reduced-motion:reduce){.hike-popup .atlas-paper,.after-camera .camera-object.is-flashing .camera-shutter-flash{animation:none}}
+
+/* The flash belongs to the viewport, and the back of the camera is the return control. */
+.site-camera-flash{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0;background:#fffef9}
+.site-camera-flash.is-flashing{animation:camera-snap .4s ease-out both}
+.after-camera .camera-shutter-flash,.after-camera .camera-return{display:none}
+.after-camera .camera-object{width:min(100%,500px);height:310px}
+.after-hours .after-object.after-camera{height:320px}
+.after-camera .camera-back{cursor:pointer}
+.after-camera .camera-back:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.after-camera .camera-screen{left:19.3%;top:36%;width:57%;height:50%;padding:5px 7px}
+.after-camera .camera-screen-label{font-size:8px}
+.after-camera .camera-profiles{gap:7px;margin-top:7px}
+.after-camera .camera-profiles a{min-height:105px;padding:6px 7px;gap:4px;border-color:#78736b;background:#302e2a;font-size:11px}
+.after-camera .camera-profile-mark{font-size:16px}
+.after-camera .camera-profile-name{font-size:11px}
+.after-camera .camera-profile-name small{font-size:8px}
+.after-camera .camera-mini-feed{height:31px}
+@media(max-width:650px){.after-camera .camera-object{width:min(100%,425px);height:265px}.after-hours .after-object.after-camera{height:270px}.after-camera .camera-profiles a{min-height:83px;padding:4px}.after-camera .camera-mini-feed{height:21px}.after-camera .camera-profile-name{font-size:9px}.after-camera .camera-profile-name small{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.site-camera-flash.is-flashing{animation:none;opacity:0}}
+
+/* Public profile photos give the camera screen a real preview without embedding either app. */
+.after-camera .camera-profiles a{min-height:121px}
+.after-camera .camera-mini-feed{height:54px;overflow:hidden}
+.after-camera .camera-mini-feed img{width:100%;min-width:0;height:100%;display:block;object-fit:cover;filter:none}
+.after-camera .camera-mini-instagram img{width:50%}
+@media(max-width:650px){.after-camera .camera-profiles a{min-height:98px}.after-camera .camera-mini-feed{height:39px}}
