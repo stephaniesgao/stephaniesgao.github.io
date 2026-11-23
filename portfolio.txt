@@ -51,7 +51,19 @@ Built a sensor-reactive robot fetch feature and interactive Scratch program to t
 
 Projects
 
-24 projects. All listed below; no filters or collapsed content.
+25 projects. All listed below; no filters or collapsed content.
+
+Æther
+
+Category: Other
+
+An interactive particle field that runs entirely in the browser. WebGL 2 transform feedback simulates 65,536 particles on the GPU using alternating state buffers. Visitors can attract or repel particles, switch between four motion patterns, and tune field strength, turbulence, and glow. The project has no dependencies or build step.
+
+WebGL 2 · Transform feedback · GPU simulation · Interaction design
+
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#projects/aether
+
+Repository: https://github.com/stephaniesgao/aether
 
 Aura Protection
 
