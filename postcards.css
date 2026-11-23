@@ -125,3 +125,12 @@
 .postal-to{align-self:center;margin:0;font:12px/1.2 'Kalam','Bradley Hand','Segoe Print',cursive;color:#4f514a}
 @media(max-width:600px){.postal-back-grid{height:100%;grid-template-columns:minmax(0,1.8fr) minmax(75px,.55fr)}.postal-message{padding:5% 1% 4% 7%}.postal-message strong{font-size:16px;margin-bottom:4px}.postal-message>span{font-size:11.5px;line-height:1.22}.postal-message em{margin-top:5px;font-size:12px}.postal-address{padding:5% 7% 3% 1%}.postal-landmark-stamp{width:min(100%,75px)}.postal-to{font-size:10px}}
 @media(max-width:390px){.postal-message>span{font-size:11px;line-height:1.2}.postal-landmark-stamp{width:min(100%,68px)}}
+
+/* Draw the chosen card out from the deck, then lay it over the others. */
+.postal-entry.shuffling-in-right,.postal-entry.shuffling-in-left{z-index:10!important;opacity:1!important;pointer-events:none;transition:none;animation-duration:.74s;animation-timing-function:cubic-bezier(.22,.6,.25,1);animation-fill-mode:both}
+.postal-entry.shuffling-in-right{animation-name:postal-shuffle-right}
+.postal-entry.shuffling-in-left{animation-name:postal-shuffle-left}
+@keyframes postal-shuffle-right{0%{transform:translate3d(13%,15px,-70px) rotate(5deg)}34%{transform:translate3d(38%,-16px,80px) rotate(8deg)}67%{transform:translate3d(17%,-22px,95px) rotate(2deg)}100%{transform:translate3d(0,0,0) rotate(0)}}
+@keyframes postal-shuffle-left{0%{transform:translate3d(-13%,14px,-70px) rotate(-5deg)}34%{transform:translate3d(-38%,-16px,80px) rotate(-8deg)}67%{transform:translate3d(-17%,-22px,95px) rotate(-2deg)}100%{transform:translate3d(0,0,0) rotate(0)}}
+@media(max-width:600px){@keyframes postal-shuffle-right{0%{transform:translate3d(9%,12px,-55px) rotate(4deg)}34%{transform:translate3d(25%,-13px,70px) rotate(7deg)}67%{transform:translate3d(12%,-18px,85px) rotate(2deg)}100%{transform:translate3d(0,0,0) rotate(0)}}@keyframes postal-shuffle-left{0%{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}34%{transform:translate3d(-25%,-13px,70px) rotate(-7deg)}67%{transform:translate3d(-12%,-18px,85px) rotate(-2deg)}100%{transform:translate3d(0,0,0) rotate(0)}}}
+@media(prefers-reduced-motion:reduce){.postal-entry.shuffling-in-right,.postal-entry.shuffling-in-left{animation:none}}
