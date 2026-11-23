@@ -52,3 +52,35 @@
 @media(max-width:600px){.postal-stage{height:320px;aspect-ratio:auto}.postal-entry{top:11px;left:15px;width:calc(100% - 30px)}.postal-card{height:270px;aspect-ratio:auto}.postal-entry[data-offset="-1"]{transform:translate3d(-9%,13px,-65px) rotate(-4deg)}.postal-entry[data-offset="1"]{transform:translate3d(9%,13px,-65px) rotate(4deg)}.postal-entry[data-offset="2"],.postal-entry[data-offset="-2"]{transform:translate3d(0,25px,-115px) rotate(1deg)}.postal-front-footer{display:block;padding:7px 11px 0;height:48px}.postal-front-footer strong{display:block;font-size:26px}.postal-front-footer small{display:block;margin-top:4px;font-size:10px}.postal-image{inset:7px 7px 48px}.postal-back-top{height:31px;padding:0 11px;font-size:8px}.postal-back-grid{height:calc(100% - 31px);grid-template-columns:minmax(0,3.1fr) minmax(0,.8fr)}.postal-message{padding:13px 10px 10px}.postal-message strong{font-size:15px;margin-bottom:7px}.postal-message>span{font-size:11px;line-height:1.38}.postal-message em{font-size:10px;padding-top:4px}.postal-address{padding:13px 6px}.postal-stamp{width:37px;height:42px;font-size:13px}.postal-stamp small{font-size:7px}.postal-address-lines i{height:22px}.postal-to{font-size:7px;overflow-wrap:anywhere}.postal-tabs{justify-content:flex-start;gap:9px}.postal-tabs button{font-size:10px}.postal-controls>[data-postal-prev],.postal-controls>[data-postal-next]{width:23px}}
 @media(max-width:390px){.postal-stage{height:343px}.postal-card{height:285px}.postal-message>span{font-size:10.5px;line-height:1.35}.postal-back-grid{grid-template-columns:minmax(0,3.5fr) minmax(0,.65fr)}.postal-address-lines,.postal-to{display:none}.postal-address{padding:13px 4px}.postal-stamp{width:32px;height:38px}}
 @media(prefers-reduced-motion:reduce){.postal-entry,.postal-card{transition:none}}
+
+/* Quiet photo prints, with a handwritten note on the reverse. */
+.postal-stage{aspect-ratio:1.48}
+.postal-entry{top:10px;left:10px;width:calc(100% - 20px)}
+.postal-entry[data-offset="-1"]{transform:translate3d(-7px,8px,-55px) rotate(-1.3deg)}
+.postal-entry[data-offset="1"]{transform:translate3d(8px,13px,-55px) rotate(1.2deg)}
+.postal-entry[data-offset="2"],.postal-entry[data-offset="-2"]{transform:translate3d(0,21px,-100px) rotate(-.4deg)}
+.postal-entry[data-offset="3"],.postal-entry[data-offset="-3"]{transform:translate3d(3px,26px,-130px) rotate(.5deg)}
+.postal-entry.passing-left{transform:translate3d(-112%,-8px,20px) rotate(-8deg)}
+.postal-entry.passing-right{transform:translate3d(112%,-8px,20px) rotate(8deg)}
+.postal-card{border-color:#c8c8c3;border-radius:0;background:#f6f6f2;box-shadow:1px 2px 2px #0002,0 11px 24px #0002}
+.postal-card:hover,.postal-front{background:#f6f6f2}
+.postal-image{inset:8px 8px 43px}
+.postal-front-footer{inset:auto 8px 0;align-items:center;justify-content:space-between;height:43px;padding:0;background:#f6f6f2}
+.postal-front-footer strong{font:600 13px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:0}
+.postal-front-footer small{font-size:11px;color:#777b76;text-align:right}
+.postal-back{background:#f8f8f4;color:#292d29}
+.postal-back-top{height:38px;margin:0 19px;padding:0;border-color:#d4d5cf;font:11px/1.3 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:0;color:#71756e}
+.postal-back-top span:first-child{color:#292d29;font-weight:600}
+.postal-back-top span:last-child{font-weight:400;letter-spacing:0}
+.postal-back-grid{grid-template-columns:minmax(0,1.7fr) minmax(0,.7fr);height:calc(100% - 38px)}
+.postal-message{padding:22px 22px 18px}
+.postal-message strong{margin-bottom:12px;font-size:18px}
+.postal-message>span{font-size:13px;line-height:1.55}
+.postal-address{border-color:#d4d5cf;margin:18px 0;padding:4px 18px;align-items:stretch;justify-content:space-between}
+.postal-to{align-self:auto;margin:0;font:12px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#686e66;letter-spacing:0;text-transform:none}
+.postal-address-lines{margin:0;padding-bottom:10px}
+.postal-address-lines i{border-color:#b8bbb3;height:24px}
+.postal-controls{border-bottom:0}
+.postal-hint{margin-top:7px}
+@media(max-width:600px){.postal-stage{height:315px;aspect-ratio:auto}.postal-entry{top:9px;left:8px;width:calc(100% - 16px)}.postal-card{height:270px}.postal-image{inset:7px 7px 42px}.postal-front-footer{inset:auto 8px 0;height:42px;padding:0;display:flex}.postal-front-footer strong{font-size:12px}.postal-front-footer small{font-size:10px;margin:0}.postal-back-top{height:31px;margin:0 11px;font-size:9px}.postal-back-grid{height:calc(100% - 31px);grid-template-columns:minmax(0,3fr) minmax(0,.8fr)}.postal-message{padding:13px 11px 11px}.postal-message strong{font-size:15px;margin-bottom:7px}.postal-message>span{font-size:11px;line-height:1.38}.postal-address{margin:12px 0;padding:3px 7px}.postal-to{font-size:9px}.postal-address-lines i{height:20px}}
+@media(max-width:390px){.postal-stage{height:327px}.postal-card{height:280px}.postal-message>span{font-size:10.5px;line-height:1.35}.postal-back-grid{grid-template-columns:minmax(0,3.8fr) minmax(0,.7fr)}.postal-address{padding:3px 5px}}
