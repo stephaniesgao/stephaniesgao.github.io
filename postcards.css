@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
 /* Photographic postcards with a quiet printed border. */
 .places-page{padding-top:2px}
 .places-heading h1{margin:0 0 13px}
@@ -111,3 +112,16 @@
 .postal-address-lines{display:none}
 @media(max-width:600px){.postal-stage{height:330px;aspect-ratio:auto}.postal-entry[data-offset="-1"]{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}.postal-entry[data-offset="1"]{transform:translate3d(9%,12px,-55px) rotate(4deg)}.postal-card{height:270px;aspect-ratio:auto}.postal-image{inset:8% 5% 14%}.postal-front-footer{inset:auto 6% 5%;height:6%;display:flex}.postal-front-footer strong{font-size:11px}.postal-front-footer small{font-size:9px}.postal-back-top{height:12%;margin:0 6%;font-size:9px}.postal-back-grid{height:88%;grid-template-columns:1fr 1fr}.postal-message{padding:3% 6% 6% 8%}.postal-message strong{font-size:14px;margin-bottom:5px}.postal-message>span{font-size:10px;line-height:1.32}.postal-message em{font-size:10px}.postal-address{padding:4% 7%}.postal-to{font-size:9px}}
 @media(max-width:390px){.postal-stage{height:345px}.postal-card{height:285px}.postal-message>span{font-size:9.5px;line-height:1.3}}
+
+/* Handwritten message and city-specific printed stamps. */
+.postal-back-grid{height:100%;grid-template-columns:minmax(0,1.72fr) minmax(100px,.58fr)}
+.postal-message{padding:7% 3% 5% 9%}
+.postal-message strong,.postal-message>span,.postal-message em{font-family:'Kalam','Bradley Hand','Segoe Print',cursive;letter-spacing:0}
+.postal-message strong{font-size:20px;font-weight:700;line-height:1.1;margin:0 0 7px}
+.postal-message>span{font-size:14px;line-height:1.35}
+.postal-message em{margin-top:8px;padding:0;font-size:15px;line-height:1.1;font-weight:400;font-style:normal}
+.postal-address{padding:6% 12% 4% 2%;display:flex;flex-direction:column;align-items:center;gap:5px}
+.postal-landmark-stamp{display:block;width:min(100%,95px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(1px 2px 2px #0002)}
+.postal-to{align-self:center;margin:0;font:12px/1.2 'Kalam','Bradley Hand','Segoe Print',cursive;color:#4f514a}
+@media(max-width:600px){.postal-back-grid{height:100%;grid-template-columns:minmax(0,1.8fr) minmax(75px,.55fr)}.postal-message{padding:5% 1% 4% 7%}.postal-message strong{font-size:16px;margin-bottom:4px}.postal-message>span{font-size:11.5px;line-height:1.22}.postal-message em{margin-top:5px;font-size:12px}.postal-address{padding:5% 7% 3% 1%}.postal-landmark-stamp{width:min(100%,75px)}.postal-to{font-size:10px}}
+@media(max-width:390px){.postal-message>span{font-size:11px;line-height:1.2}.postal-landmark-stamp{width:min(100%,68px)}}
