@@ -389,3 +389,36 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-camera .camera-mini-feed img{width:100%;min-width:0;height:100%;display:block;object-fit:cover;filter:none}
 .after-camera .camera-mini-instagram img{width:50%}
 @media(max-width:650px){.after-camera .camera-profiles a{min-height:98px}.after-camera .camera-mini-feed{height:39px}}
+
+/* The trail map unfolds into one paper sheet; geographic tiles and markers stay interactive. */
+.hike-popup{width:min(1020px,calc(100vw - 24px))}
+.hike-popup .atlas-stage{position:relative;perspective:1100px}
+.hike-popup .atlas-folded{position:absolute;z-index:5;left:50%;top:50%;width:min(55%,470px);transform:translate(-50%,-50%) scale(.72);filter:drop-shadow(4px 12px 12px #0008);pointer-events:none;animation:atlas-folded-away .75s ease-in both}
+.hike-popup .atlas-paper{background:#d5bd91 url('objects/mountain-map-open-v2.jpg') center/100% 100% no-repeat;border:0;border-radius:3px;box-shadow:0 16px 55px #0009;animation:atlas-unfurl .78s cubic-bezier(.18,.74,.22,1) both}
+.hike-popup .atlas-paper::before,.hike-popup .atlas-paper::after{display:none}
+.hike-popup .atlas-paper>*{animation:atlas-contents-in .22s .65s both}
+@keyframes atlas-folded-away{0%,25%{opacity:1;transform:translate(-50%,-50%) scale(.72) rotate(-8deg)}75%{opacity:.8;transform:translate(-50%,-50%) scale(1.12) rotateY(-45deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.4) rotateY(-78deg)}}
+@keyframes atlas-contents-in{from{opacity:0}to{opacity:1}}
+.hike-popup .mountain-map{border:1px solid #8a7255;background:#cdb78e;box-shadow:inset 0 0 0 3px #d8c4a0}
+.hike-popup .mountain-map .leaflet-tile{filter:sepia(.35) saturate(.55) contrast(.85);mix-blend-mode:multiply;opacity:.83}
+.hike-popup .peak-pin{width:28px;height:28px;display:grid;place-items:center;border:0;background:none;filter:drop-shadow(1px 2px 1px #382c2590)}
+.hike-popup .peak-pin svg{display:block;width:28px;height:28px;overflow:visible}
+.hike-popup .peak-pin path:first-child{fill:#f1e8d4;stroke:#342a25;stroke-width:2;stroke-linejoin:round}
+.hike-popup .peak-pin path:last-child{fill:none;stroke:#342a25;stroke-width:1.4;stroke-linecap:round}
+.hike-popup .peak-pin.is-selected path:first-child{fill:#a24f32}
+.hike-popup .peak-pin:hover{transform:translateY(-3px)}
+@media(prefers-reduced-motion:reduce){.hike-popup .atlas-folded{display:none;animation:none}.hike-popup .atlas-paper,.hike-popup .atlas-paper>*{animation:none}}
+/* Keep every mountain visible and let the printed paper show through the live map. */
+.hike-popup .mountain-map{background:rgba(231,217,185,.55)}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.72;mix-blend-mode:multiply}
+.hike-popup .mountain-list{max-height:none;overflow:visible;padding:2px 10px;background:rgba(242,230,207,.9);border:1px solid #9d8767}
+.hike-popup .mountain-list button{padding:7px 3px;font-size:11px;line-height:1.1;border-bottom:1px solid #c1ae8e}
+.hike-popup .mountain-list button:last-child{border-bottom:0}
+.hike-popup .mountain-list small{display:none}
+.hike-popup .mountain-detail{display:block;min-height:0;margin-top:12px;padding:9px 12px;background:rgba(242,230,207,.9);border:1px solid #9d8767}
+@media(max-width:650px){.hike-popup .mountain-list{max-height:none;overflow:visible;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px}.hike-popup .mountain-list button{font-size:10px;padding:6px 2px}}
+.hike-popup h2{display:inline-block;padding:3px 8px;margin:0 0 12px -8px;background:rgba(242,230,207,.82)}
+.hike-popup .mountain-map .leaflet-tile{opacity:1;filter:sepia(.45) saturate(.55) contrast(1.25)}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.86;mix-blend-mode:multiply}
+.hike-popup .mountain-map .leaflet-tile{filter:sepia(.45) saturate(.7) brightness(.86) contrast(1.45)}
+.hike-popup .mountain-list button[aria-current=true]{background:#dec09d;color:#5f2d20;padding-left:6px}
