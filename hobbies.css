@@ -422,3 +422,20 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .hike-popup .mountain-map .leaflet-tile-pane{opacity:.86;mix-blend-mode:multiply}
 .hike-popup .mountain-map .leaflet-tile{filter:sepia(.45) saturate(.7) brightness(.86) contrast(1.45)}
 .hike-popup .mountain-list button[aria-current=true]{background:#dec09d;color:#5f2d20;padding-left:6px}
+/* The camera opens above the carousel, with the same dark film as the book. */
+.camera-popup{width:min(900px,calc(100vw - 24px));max-width:none;max-height:92vh;padding:35px 10px 12px;border:0;background:transparent;box-shadow:none;overflow:visible}
+.camera-popup::backdrop{background:rgba(8,9,10,.78)}
+.camera-popup .content-close{position:absolute;right:18px;top:0;z-index:3;width:30px;height:30px;padding:0;border:1px solid #eee9dc;border-radius:50%;color:#eee9dc;background:#28241f;font-size:22px;line-height:26px}
+.camera-popup .camera-object{width:min(100%,850px);height:auto;min-height:0;margin:0 auto}
+.camera-popup .camera-front{width:min(100%,620px)}
+.camera-popup .camera-back{width:100%;height:auto;aspect-ratio:1380/860;opacity:1;animation:none;transform:none}
+.camera-popup .camera-back-image{display:block;width:100%;height:100%;object-fit:contain;opacity:1;filter:drop-shadow(3px 12px 12px #0008)}
+.camera-popup .camera-screen{left:19.3%;top:36%;width:57%;height:50%;padding:10px 13px;background:#151513;opacity:1}
+.camera-popup .camera-screen-label{font-size:11px}
+.camera-popup .camera-profiles{gap:12px;margin-top:12px}
+.camera-popup .camera-profiles a{min-height:210px;padding:10px 12px;gap:7px;opacity:1}
+.camera-popup .camera-profile-mark{font-size:20px}
+.camera-popup .camera-profile-name{font-size:16px}
+.camera-popup .camera-profile-name small{font-size:11px}
+.camera-popup .camera-mini-feed{height:125px}
+@media(max-width:650px){.camera-popup{padding:32px 2px 8px}.camera-popup .content-close{right:4px}.camera-popup .camera-screen{padding:3px 5px}.camera-popup .camera-screen-label{font-size:6px}.camera-popup .camera-profiles{gap:3px;margin-top:3px}.camera-popup .camera-profiles a{min-height:0;height:calc((100vw - 24px)*.282 - 15px);padding:3px;gap:2px}.camera-popup .camera-profile-mark{font-size:10px}.camera-popup .camera-profile-name{font-size:8px}.camera-popup .camera-profile-name small{font-size:6px}.camera-popup .camera-mini-feed{height:42%}}

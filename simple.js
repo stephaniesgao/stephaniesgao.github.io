@@ -212,6 +212,32 @@ function turnCamera(obj,toBack){
     setTimeout(()=>flash.classList.remove('is-flashing'),220);
   },180);
 }
+function openCamera(){
+  if(document.querySelector('.camera-popup[open]'))return;
+  const source=main.querySelector('.after-camera .camera-object');
+  if(!source)return;
+  const dialog=document.createElement('dialog');
+  dialog.className='content-popup camera-popup after-camera';
+  dialog.setAttribute('aria-label','Stephanie’s camera and social profiles');
+  dialog.innerHTML='<button type="button" class="content-close" aria-label="Close camera">×</button>';
+  const camera=source.cloneNode(true);
+  dialog.append(camera);
+  document.body.append(dialog);
+  dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',e=>{
+    if(e.target===dialog){dialog.close();return}
+    if(e.target.closest('.camera-profiles a'))return;
+    if(e.target.closest('.camera-back')){turnCamera(camera,false);setTimeout(()=>{if(dialog.open)dialog.close()},430)}
+  });
+  dialog.addEventListener('keydown',e=>{
+    if((e.key==='Enter'||e.key===' ')&&e.target.matches('.camera-back')){
+      e.preventDefault();turnCamera(camera,false);setTimeout(()=>{if(dialog.open)dialog.close()},430)
+    }
+  });
+  dialog.addEventListener('close',()=>{dialog.remove();source.querySelector('.camera-front')?.focus()},{once:true});
+  dialog.showModal();
+  turnCamera(camera,true);
+}
 function openReadingBook(source){
   if(document.querySelector('.books-popup[open]'))return;
   const dialog=document.createElement('dialog');
@@ -233,8 +259,7 @@ function openReadingBook(source){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)reveal();
 }
 main.addEventListener('click',e=>{
-  if(e.target.closest('.camera-back')&&!e.target.closest('.camera-profiles a')){turnCamera(e.target.closest('.camera-object'),false);return}
-  if(e.target.closest('.camera-open')){const obj=main.querySelector('.camera-object');if(obj)turnCamera(obj,true);return}
+  if(e.target.closest('.camera-open')){openCamera();return}
   if(e.target.closest('.books-open')){const obj=main.querySelector('.book-object');if(obj)openReadingBook(obj);return}
   if(e.target.closest('.dance-open')){const radio=main.querySelector('.dance-radio');const playing=radio.classList.toggle('is-playing');radio.setAttribute('aria-pressed',String(playing));radio.setAttribute('aria-label',playing?'Pause dance break':'Start a dance break');return}
   if(e.target.closest('.record-pop-close')){main.querySelector('.after-record .tonearm')?.click();return}
