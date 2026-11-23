@@ -355,6 +355,76 @@ Favourite rom-coms: 10 Things I Hate About You, Notting Hill, Confessions of a S
 
 Spotify playlist: https://open.spotify.com/playlist/5zfpoBQbbJdg9yze5afZ5M
 
+## Writing: The Right Kind of Interesting
+
+November 2026
+
+I've been thinking about how some hobbies seem to come with a complimentary intellectual reputation.
+If you're a software engineer who spends their weekends bouldering, you're interesting. If you run marathons, you're disciplined. If you play chess, you're strategic. If you read philosophy, you're thoughtful. But if your hobbies are a little more traditionally feminine, they somehow don't seem to carry the same intellectual credibility.
+Apparently, some hobbies make you a more interesting person, while others make people question whether you're a serious person at all.
+I love tech. I love working in it, learning about AI, discovering new tools, and spending an unreasonable amount of time thinking about things that probably wouldn't interest most people at dinner. I genuinely enjoy the work, and I don't think that's going to change anytime soon. But I also love dancing, fashion, makeup, and making videos about things that have absolutely nothing to do with technology. Sometimes I want to read about reinforcement learning. Sometimes I want to spend an hour figuring out which blush looks best with my outfit.
+I don't find these interests particularly contradictory, although apparently other people do.
+There's a certain image of what a serious person in tech is supposed to look like. They're intellectually curious, technically capable, and ideally have a collection of hobbies that reinforce those qualities. They read books about philosophy and economics, exercise regularly, occasionally climb a large rock, and have very strong opinions about their preferred programming language.
+Of course, there's nothing wrong with any of these things. I think reading is wonderful, and I genuinely believe it can make people more thoughtful. Exercise is good for you. Bouldering looks fun, although I've never quite understood why climbing a wall has become such an important part of the software engineering identity.
+What interests me is why some activities are treated as evidence of competence while others are treated as distractions from it.
+Why does spending three hours at a climbing gym suggest that you're disciplined and interesting, while spending three hours at a dance studio is somehow less impressive? Both require practice, physical awareness, and a willingness to spend an unreasonable amount of time getting better at something that isn't strictly necessary for survival. In fact, having spent much of my childhood dancing, I can assure you that rehearsing the same eight counts until your entire body hurts requires a fairly extraordinary amount of discipline.
+And yet, one fits comfortably into the image of a technically impressive person, while the other seems to belong to an entirely different category of identity.
+I suspect this has less to do with the activities themselves and more to do with the kinds of people we associate with them.
+Certain hobbies have become part of the cultural vocabulary of tech. Bouldering, running, chess, and increasingly elaborate health routines signal something about the person participating in them. They're understood as extensions of ambition, intellectual curiosity, or self-improvement. Even when someone is doing them simply because they're enjoyable, we seem determined to interpret them as evidence of some deeper personal quality.
+Other hobbies don't receive the same generosity.
+Take makeup, for example. I make makeup content online, and it's something I genuinely enjoy. I like experimenting with products, playing with colors, and figuring out how different looks can change the way I present myself. It's creative, a little indulgent, and sometimes just a nice way to spend an afternoon.
+I also happen to work in tech.
+What's strange is how often those two facts seem to surprise people. There appears to be an assumption that someone who enjoys makeup, fashion, or creating beauty content must be less technically serious than someone whose interests are more conventionally intellectual.
+It's rarely expressed quite so explicitly. People don't usually say, "I saw your makeup video, and I've decided you probably don't understand distributed systems." But the assumption shows up in smaller ways. The surprise when someone discovers I can code. The way conversations change when people learn what I work on. The sense that I have to establish my technical credibility before my other interests can be treated as harmless personality traits rather than evidence against me.
+I don't particularly want to spend my life convincing people that wearing lipstick and understanding software architecture are compatible activities. They seem perfectly capable of coexisting in my brain.
+And yet, here we are.
+I think the entire looksmaxxing phenomenon makes this contradiction particularly funny. For a while, parts of the tech internet became obsessed with optimizing appearance, health, and physical performance. There were elaborate routines for sleep, nutrition, supplements, skincare, exercise, and essentially anything else that could be turned into a measurable improvement.
+Some of it was genuinely useful. Some of it seemed like an extraordinarily complicated way to discover that sleeping enough and going outside occasionally are good for you.
+But what interested me was how differently these activities were perceived depending on how they were presented.
+A man meticulously researching supplements, tracking his body composition, and spending hundreds of dollars on skincare could frame it as optimization. It became evidence that he was disciplined, informed, and committed to self-improvement. A woman spending time researching cosmetic products or experimenting with makeup was more likely to have the same interest dismissed as vanity.
+The underlying activities aren't identical, of course, and there are meaningful differences between health and aesthetics. But the cultural distinction is still interesting. When an interest can be described through the language of performance and optimization, it somehow becomes more respectable.
+Perhaps makeup would be taken more seriously in tech if I described it as facial appearance optimization with a strong emphasis on color theory and iterative experimentation.
+Unfortunately, I suspect that would make my videos considerably less fun.
+There's also something revealing about the way we talk about hobbies as though they need to justify their existence through the skills they develop.
+Reading is valuable because it makes you knowledgeable. Running is valuable because it builds discipline. Chess is valuable because it teaches strategic thinking. Even leisure seems to require some kind of personal development thesis.
+I understand the appeal. I like learning, and I enjoy activities that challenge me. But I don't think everything we do needs to make us more productive, intelligent, or impressive.
+Sometimes I dance because I love dancing.
+I spent six years performing with the Young Canadians, rehearsing for shows at the Calgary Stampede. There were long practices, difficult choreography, and plenty of days when I was completely exhausted. I learned an enormous amount about commitment, teamwork, and performing under pressure. But I don't think those lessons are what make dancing worth doing.
+I loved the music. I loved performing. I loved the strange feeling of practicing something until your body could do it almost without thinking. I loved being part of something beautiful that existed for a few minutes onstage and then disappeared.
+I don't feel the need to turn that into a leadership lesson to make it respectable.
+And I think this is where the conversation becomes a little more personal for me. I'm interested in technology partly because I love understanding how things work, but also because I love making things. The same curiosity that makes me want to explore a new programming framework can make me want to learn a dance routine, design an outfit, or spend an afternoon experimenting with a video idea.
+Those interests don't compete for some limited amount of legitimacy. They're simply different ways I enjoy being a person.
+I also wonder whether we'd find each other more interesting if we stopped treating certain hobbies as intellectual credentials.
+If someone tells me they love bouldering, I'd like to hear about why they enjoy it. If someone loves makeup, I'd like to know what they find interesting about it. If someone spends their weekends collecting obscure stamps, I would probably have quite a few questions, mostly because I'm curious how they got into collecting obscure stamps.
+I don't think the value of someone's interests should depend on how conveniently they fit into the story we're already telling about that person.
+There's a particular kind of freedom in being allowed to enjoy things without having to make them consistent with your professional identity. I can care deeply about my work without wanting it to explain every other part of my life. I can be ambitious without turning my hobbies into evidence of ambition. And I can be technically capable without presenting myself as someone who thinks about technology every waking moment.
+In fact, I think one of the loveliest things about getting to know people is discovering the parts of them you never would have expected. The engineer who makes beautiful pottery. The researcher who's obsessed with reality television. The founder who spends every weekend dancing. There's something rather charming about realizing that people contain far more than their professional biographies suggest.
+But we seem strangely determined to make everyone legible through a handful of familiar archetypes.
+I notice this particularly in the way people react to content creation. There's a difference between being someone who writes technical essays online and someone who posts makeup tutorials, even if the same person does both. One is easily interpreted as intellectual contribution. The other is often reduced to wanting attention, looking pretty, or participating in something supposedly superficial.
+Of course, not all content is equally thoughtful or interesting. There's plenty of shallow technical writing, just as there's plenty of shallow beauty content. But we don't seem to apply the same assumptions to the people making it.
+A man discussing an obscure productivity system is sharing knowledge. A woman discussing her favorite foundation is an influencer. And somehow, the second label tends to come with an implication that she must be less capable of doing anything else.
+I don't think every makeup video needs to be defended as a sophisticated artistic exercise. Sometimes it's just a makeup video. I enjoy making them, people enjoy watching them, and I think that's a perfectly good reason for them to exist.
+What bothers me is the idea that participating in something conventionally feminine somehow makes my technical interests less credible.
+I'm not particularly interested in becoming the kind of person who only shares the parts of her life that make her look impressive to other people in tech. That sounds rather boring, and I already spend enough time staring at a computer.
+I also don't want to pretend that I don't care how I'm perceived. Of course I do. Most people do, to some extent. It can be frustrating to feel that you have to work harder to establish credibility because of interests that have nothing to do with your actual abilities.
+But I think the answer is to become less apologetic about having those interests, rather than quietly abandoning them.
+There is something almost comical about the idea that I should stop making makeup videos to seem more serious about AI. As though my understanding of machine learning might improve if I simply posted fewer lip gloss reviews.
+I don't think people become more intellectually interesting by narrowing themselves into whatever collection of activities their industry currently approves of. If anything, I find the opposite more compelling. People who have spent time in different worlds often bring perspectives that wouldn't have occurred to someone who has only ever occupied one.
+And even that feels like too practical a justification. I shouldn't have to argue that dancing makes me a better engineer, or that making videos improves my understanding of product design, for those activities to deserve a place in my life.
+Maybe they do. Maybe they don't.
+I love them anyway.
+I think that's what I've been trying to articulate. I don't want to be seen as a tech girl who also happens to have a few acceptable hobbies. I want to be someone who can care enormously about technical problems and still get excited about a new eyeshadow palette, a dance performance, or a completely unrelated creative project.
+I want to be able to talk about AI research one afternoon and spend the evening getting dressed up with my friends without either experience making the other less meaningful.
+And I wish we extended that same freedom to everyone.
+People are allowed to be complicated. They're allowed to have interests that don't fit together neatly, hobbies that serve no purpose beyond enjoyment, and parts of their personalities that would look slightly out of place on a LinkedIn profile.
+Perhaps what I find most peculiar about the whole thing is that we spend so much time celebrating curiosity in tech, but sometimes seem rather selective about which forms of curiosity count.
+We admire people who explore unfamiliar technical ideas, challenge assumptions, and pursue things simply because they find them interesting. I think that's wonderful. I just don't understand why that spirit should stop at the edge of a computer screen.
+If anything, I'd like to live in a world where we're a little more curious about the things other people love, even when they're not things we'd choose for ourselves.
+I don't need everyone in tech to appreciate makeup or understand why I love dancing. I'd just like those interests to be allowed to exist without becoming a referendum on how seriously I should be taken.
+And if being a credible engineer requires me to give up lip gloss, I'm afraid we've reached an irreconcilable difference.
+
+https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/the-right-kind-of-interesting
+
 ## Writing: The Most Interesting AI Release Is a Markdown File
 
 November 2026
