@@ -652,3 +652,9 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .blog-equation{overflow-x:auto;max-width:100%;padding:10px 0;margin:4px 0 24px;border:0;border-bottom:1px solid var(--line);background:none;font:14px/1.6 'SFMono-Regular',Consolas,monospace;white-space:pre;color:var(--ink)}
 .blog-inline-math{font:.9em/1.4 'SFMono-Regular',Consolas,monospace;white-space:nowrap}
 @media(max-width:600px){.blog-article .back{margin-bottom:24px}.blog-header h1{font-size:29px}.blog-body{font-size:16px;line-height:1.7}.blog-body h2{font-size:19px}}
+
+/* Blog stays in the main navigation, including while puzzle locked. */
+.site>nav>.locked-nav{padding:0;border:0;background:none;color:var(--muted);font:inherit;cursor:pointer}
+.site>nav>.locked-nav:hover{color:var(--ink)}
+.site>nav>.bonus-link{text-decoration:none}
+.site>nav>.bonus-link[aria-current=page]{color:var(--ink);text-decoration:underline}

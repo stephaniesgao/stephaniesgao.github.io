@@ -79,7 +79,7 @@ hobbies:()=>`<div class="after-hours"><header class="after-heading"><h1>Outside 
 <article class="after-scene" data-after-scene="2" hidden><div class="after-object after-tv"><div class="tiny-tv"><div class="tv-shell"><div class="tv-screen" aria-live="polite"><span class="tv-footage" aria-hidden="true"><iframe title="Muted film clip" tabindex="-1" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></span><span class="tv-channel">CH 01</span><strong class="tv-title">10 Things I Hate About You</strong><span class="tv-caption" hidden>one of my favourites</span></div><div class="tv-controls"><button type="button" data-tv="previous" aria-label="Previous movie">−</button><button type="button" data-tv="next" aria-label="Next movie">+</button></div></div></div></div><div class="after-copy"><h2 class="sr-only">Rom-com channel</h2><p class="after-statement">I love rom-coms, and these are my 11 favourites.</p></div></article>
 <article class="after-scene" data-after-scene="3" hidden><div class="after-object after-dance"><button class="dance-open dance-radio" aria-label="Start a dance break" aria-pressed="false"><img class="dance-radio-image" src="objects/dance-boombox.webp" alt="" aria-hidden="true"><span class="dance-radio-beat" aria-hidden="true"><i></i><i></i><i></i></span></button></div><div class="after-copy"><h2 class="sr-only">Dance breaks</h2><p class="after-statement">I take dance breaks whenever I need to get moving again.</p><button class="after-link dance-open">Start a dance break ↗</button></div></article>
 <article class="after-scene" data-after-scene="4" hidden><div class="after-object after-books"><div class="book-object"><button type="button" class="books-open" aria-label="Open my book" aria-expanded="false"><img class="after-books-drawing" src="objects/books-v3-photo.webp" alt="A few books on a shelf"></button><div class="inline-book" hidden><div class="open-book book-inline-stage" aria-label="An open book with my reading picks"><div class="book-right-page"></div><div class="book-leaf" aria-hidden="true"><div class="book-leaf-front"></div><div class="book-leaf-back"></div></div><div class="book-notes" aria-hidden="true"><div class="book-page"><small class="page-number">01 / TO SHARE</small><h3>I’d recommend</h3><p class="book-title">Tomorrow, and Tomorrow, and Tomorrow</p></div><div class="book-page"><small class="page-number">02 / ON MY NIGHTSTAND</small><h3>Currently reading</h3><p class="book-title">A Psalm for the Wild-Built</p></div></div></div></div></div></div><div class="after-copy"><h2 class="sr-only">On the shelf</h2><p class="after-statement">Here’s a book I’d recommend and one I’m reading now.</p><button class="after-link books-open">Open the book ↗</button></div></article>
-<article class="after-scene" data-after-scene="5" hidden><div class="after-object after-hike"><button type="button" class="trail-map-open" aria-label="Open my mountain map"><img class="trail-map-image" src="objects/trail-map-photo.webp" alt="A folded topographic trail map"></button></div><div class="after-copy"><h2 class="sr-only">Taking the long way</h2><p class="after-statement">I love hiking and camping, especially when a trail leads into the mountains.</p><button class="after-link trail-map-open">Open the mountain map ↗</button></div></article>
+<article class="after-scene" data-after-scene="5" hidden><div class="after-object after-hike"><button type="button" class="trail-map-open" aria-label="Open my mountain map"><img class="trail-map-folded" src="objects/trail-map-folded.webp" alt="A folded topographic trail map"><img class="trail-map-image" src="objects/trail-map-photo.webp" alt="" aria-hidden="true"></button></div><div class="after-copy"><h2 class="sr-only">Taking the long way</h2><p class="after-statement">I love hiking and camping, especially when a trail leads into the mountains.</p><button class="after-link trail-map-open">Open the mountain map ↗</button></div></article>
 </div><div class="after-navigation"><div><button data-after-prev aria-label="Previous interest">←</button><button data-after-next aria-label="Next interest">→</button></div></div></div>
 <nav class="after-strip" aria-label="Browse interests">${[['01','content','camera-photo.webp'],['02','music','record-deck-photo.webp'],['03','films','tv-photo.webp'],['04','dance','dance-boombox.webp'],['05','books','books-v3-photo.webp'],['06','trails','trail-map-photo.webp']].map(([number,label,asset],i)=>`<button type="button" data-after-go="${i}" aria-current="${i===0?'true':'false'}"><span class="strip-thumb"><img src="objects/${asset}" alt=""></span><span class="strip-number">${number}</span><span class="strip-label">${label}</span></button>`).join('')}</nav>${gallerySection()}</div>`
 };
@@ -112,7 +112,7 @@ function mountMountainMap(dialog){
   leafletPromise ||= import('./vendor/leaflet/leaflet-src.esm.js');
   leafletPromise.then(L=>{
     if(!dialog.isConnected)return;
-    map=L.map(dialog.querySelector('.mountain-map'),{scrollWheelZoom:false}).setView([49.65,-125.35],7);
+    map=L.map(dialog.querySelector('.mountain-map'),{scrollWheelZoom:false,worldCopyJump:true}).setView([0,-90],2);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom:15,
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -124,7 +124,7 @@ function mountMountainMap(dialog){
       return marker;
     });
     dialog.addEventListener('close',()=>map.remove(),{once:true});
-    requestAnimationFrame(()=>map.invalidateSize());
+    requestAnimationFrame(()=>{map.invalidateSize();map.fitBounds(mountains.map(peak=>[peak.lat,peak.lon]),{padding:[24,24],maxZoom:3})});
   }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.mountain-map').textContent='Map unavailable. The mountain list is still here.'});
 }
 let hikePopupPending=false;
@@ -133,18 +133,18 @@ main.addEventListener('click',e=>{
   if(!mapButton||hikePopupPending)return;
   hikePopupPending=true;
   const scene=mapButton.closest('.after-hike');
-  scene.classList.add('is-open');
-  const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:400;
+  scene.classList.add('is-opening');
+  const delay=matchMedia('(prefers-reduced-motion: reduce)').matches?0:1100;
   setTimeout(()=>{
     hikePopupPending=false;
-    if(!mapButton.isConnected||mapButton.closest('[hidden]'))return;
+    if(!mapButton.isConnected||mapButton.closest('[hidden]')){scene.classList.remove('is-opening');return;}
     const dialog=document.createElement('dialog');
     dialog.className='content-popup hike-popup';
     dialog.setAttribute('aria-labelledby','hike-popup-title');
     dialog.innerHTML=`<button type="button" class="content-close" aria-label="Close hiking notes">×</button><h2 id="hike-popup-title">Mountains I've hiked</h2><div class="mountain-layout"><div class="mountain-map" aria-label="Map of mountains I've hiked"></div><div class="mountain-list" aria-label="Choose a mountain">${mountains.map((peak,i)=>`<button type="button" data-mountain="${i}" aria-current="false"><span>${peak.name}</span><small>${peak.region}</small></button>`).join('')}</div></div><div class="mountain-detail" aria-live="polite"><span class="mountain-detail-kicker">SELECTED PLACE</span><p>Choose a marker or a name to see the details.</p></div>`;
     document.body.append(dialog);
     dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
-    dialog.addEventListener('close',()=>{dialog.remove();if(scene.isConnected)scene.classList.remove('is-open');if(mapButton.isConnected)mapButton.focus()},{once:true});
+    dialog.addEventListener('close',()=>{dialog.remove();if(scene.isConnected)scene.classList.remove('is-opening');if(mapButton.isConnected)mapButton.focus()},{once:true});
     dialog.showModal();
     mountMountainMap(dialog);
   },delay);

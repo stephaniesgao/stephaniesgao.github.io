@@ -304,3 +304,13 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .after-books .book-return{margin:0 auto;font-family:inherit;font-size:10px}
 @media(max-width:650px){.after-books .book-object{width:min(100%,345px);height:250px}.after-books .book-inline-stage .book-page h3{margin:11px 0 5px}.after-books .book-inline-stage .book-title{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.after-books .book-inline-stage .book-notes{transition:none}}
+
+/* Folded paper opens before the mountain map appears. */
+.after-hike .trail-map-open{perspective:700px}
+.after-hike .trail-map-folded,.after-hike .trail-map-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(2px 7px 5px #0003)}
+.after-hike .trail-map-image{opacity:0;transform:perspective(700px) rotateY(-55deg) scaleX(.55);transform-origin:20% 50%}
+.after-hike.is-opening .trail-map-folded{animation:map-fold-away .55s ease-in forwards}
+.after-hike.is-opening .trail-map-image{animation:map-unfold .8s .22s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes map-fold-away{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.18) translateX(-12%)}}
+@keyframes map-unfold{0%{opacity:0;transform:perspective(700px) rotateY(-55deg) scaleX(.55)}30%{opacity:1}100%{opacity:1;transform:perspective(700px) rotateY(0) scaleX(1.08)}}
+@media(prefers-reduced-motion:reduce){.after-hike.is-opening .trail-map-folded{display:none;animation:none}.after-hike.is-opening .trail-map-image{opacity:1;transform:none;animation:none}}
