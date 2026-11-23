@@ -779,83 +779,164 @@ Writing: Was Lady Gaga's Meat Dress a Warning About AI?
 
 September 2026
 
+On meat proxies and the increasingly ceremonial role of having a brain.
+
 I recently came across a blog post by Niklas Gruhn titled Don't Be a Meat Proxy, and I haven't stopped thinking about it.
-The premise is wonderfully absurd. Someone asks a question in Slack, leaves feedback on a pull request, or starts an argument in a group chat. Instead of responding themselves, the other person copies the question into Claude, takes whatever comes back, and pastes it into the conversation. The recipient is now reading a response from an AI through a human who may not have understood, verified, or even read it.
+
+The premise is wonderfully absurd. Someone asks a question in Slack or leaves feedback on a pull request. Instead of responding themselves, the other person copies the question into Claude, takes whatever comes back, and pastes it into the conversation. The recipient is now reading a response from an AI through a human who may not have understood, verified, or even read it.
+
 Congratulations, you've become a meat proxy. A biological API endpoint with considerably worse latency.
+
 It's a funny term, but I think it captures something much more interesting about how we're beginning to use AI. We've built systems that can generate increasingly sophisticated work with very little human involvement, but we haven't quite figured out what meaningful human involvement should look like anymore. Instead, we're creating workflows where the human is technically responsible for the output while contributing almost nothing to its production.
+
 And somehow, we've started calling this productivity.
+
 The illusion of getting more done
-One of the stranger consequences of generative AI is how dramatically it has changed the relationship between effort and output. A report that might have taken hours to write can now be generated in minutes. A developer can produce hundreds of lines of code without understanding every implementation detail. Someone can respond to dozens of emails without writing a single sentence themselves.
+
+One of the stranger consequences of generative AI is how dramatically it has changed the relationship between effort and output. A report that might have taken hours to write can now be generated in minutes. A developer can produce hundreds of lines of code without understanding every implementation detail.
+
 There's nothing inherently wrong with this. In fact, eliminating unnecessary effort is one of the best things technology can do. I've spent plenty of time building automations to avoid repetitive work, and I use AI extensively in my own projects. But I think we're beginning to confuse the volume of work produced with the amount of useful work accomplished.
+
 Consider a developer who receives a ticket, gives it to Claude Code, and submits the resulting pull request. Another developer reviews the implementation and points out a potential issue. The first developer copies the feedback into Claude, generates a fix, and pushes another commit. This repeats until the reviewer is satisfied.
-From the outside, the original developer appears to have completed the task. They submitted the pull request, responded to feedback, and merged the implementation. Yet it's worth asking where the actual understanding occurred. The reviewer identified the problems, evaluated the implementation, and determined what needed to change. The coding agent produced the modifications. The developer connecting them may have contributed little beyond transferring information between the two.
+
+From the outside, the original developer appears to have completed the task. Yet it's worth asking where the actual understanding occurred. The reviewer identified the problems and determined what needed to change. The coding agent produced the modifications. The developer connecting them may have contributed little beyond transferring information between the two.
+
 This is close to the example Gruhn raises in his original essay, and I think it's especially interesting because the workflow technically functions. The code might even be good. The problem is that the person credited with the work may not be the person who understood it.
-Of course, using AI to implement something doesn't automatically make someone a meat proxy. An experienced engineer might delegate most of the code generation while still making architectural decisions, evaluating trade-offs, and taking responsibility for the result. The distinction isn't how much code someone writes themselves. It's whether they understand and contribute to the work being produced.
-We're accustomed to measuring productivity through visible artifacts: documents completed, messages answered, pull requests merged. Generative AI makes those artifacts extraordinarily cheap to produce, which means they become increasingly poor proxies for the value of the underlying work.
+
+Of course, using AI to implement something doesn't automatically make someone a meat proxy. An experienced engineer might delegate most of the code generation while still making architectural decisions and evaluating the result. The distinction isn't how much code someone writes themselves. It's whether they understand and contribute to the work being produced.
+
+We're accustomed to measuring productivity through completed work. Generative AI makes the visible evidence of that work extraordinarily cheap to produce, which means it tells us increasingly little about the understanding behind it.
+
 We've made writing cheaper than reading
-For most of the internet's history, producing a substantial piece of writing required enough effort that its existence suggested at least some investment from the author. A detailed email, technical explanation, or lengthy proposal usually meant someone had spent time thinking through what they wanted to communicate.
+
+For most of the internet's history, producing a substantial piece of writing required enough effort that its existence suggested at least some investment from the author. A lengthy technical explanation usually meant someone had spent time thinking through what they wanted to communicate.
+
 That assumption is becoming less reliable.
-An AI-generated response can be longer, more polished, and more technically elaborate than something a person would have written themselves. It can also contain far more information than the recipient needs. The sender saves time by generating it, but the recipient still has to read, interpret, and verify it.
+
+An AI-generated response can be longer and more polished than something a person would have written themselves. It can also contain far more information than the recipient needs. The sender saves time by generating it, but the recipient still has to figure out whether any of it is useful.
+
 We've reduced the cost of producing information without necessarily reducing the cost of consuming it.
-Suppose I ask a colleague why a particular technical decision was made. They could spend five minutes explaining the reasoning in their own words, or they could ask Claude to generate a comprehensive explanation and send me several paragraphs. The second option might take them thirty seconds. But if I now have to spend ten minutes reading the response, separating relevant information from unnecessary detail, and checking whether it actually answers my question, the total amount of work hasn't decreased. It's simply been transferred to me.
+
+Suppose I ask a colleague why a particular technical decision was made. They could spend five minutes explaining the reasoning in their own words, or they could ask Claude to generate a comprehensive explanation and send me several paragraphs. The second option might take them thirty seconds. But if I now have to spend ten minutes figuring out whether the response actually answers my question, the total amount of work hasn't decreased. It's simply been transferred to me.
+
 It's a rather unfortunate trade. You save thirty minutes writing an essay nobody asked for, and I inherit the responsibility of figuring out what it means.
-This is what I find most frustrating about unfiltered AI output. It often creates the appearance of thoroughness while making the actual exchange of information less efficient. A useful response is not necessarily the most comprehensive response. Sometimes the most valuable thing someone can do is understand a complicated issue well enough to explain it simply.
+
+This is what I find most frustrating about unfiltered AI output. It often creates the appearance of thoroughness while making the actual exchange of information less efficient. Sometimes the most valuable thing someone can do is understand a complicated issue well enough to explain it simply.
+
 That requires judgment. And judgment is precisely what disappears when a person forwards model output without processing it.
+
 The human in the loop might just be the bottleneck
+
 There's another irony here. We're building increasingly autonomous agents, but many workflows still require humans to manually transfer information between systems.
-An agent writes a document. A person copies it into another application. A second agent evaluates the document. The person returns the feedback to the first agent. The cycle continues until someone is satisfied.
+
+An agent writes a document. A person copies it into another application. A second agent evaluates the document, and the person returns its feedback to the first. The cycle continues until someone is satisfied.
+
 Why is the human there?
-Sometimes there's a good answer. The person may need to make a decision, authorize an action, or assess something the systems cannot reliably evaluate. Human oversight can be genuinely valuable when it involves meaningful judgment. But in other cases, the human is only present because the systems haven't been connected.
-In software engineering, we generally wouldn't consider it good architecture to require a person to manually copy JSON responses between two services. We'd build an integration, define an interface, and let the systems communicate. Yet we routinely create equivalent workflows with AI agents and call them human-in-the-loop systems.
+
+Sometimes there's a good answer. The person may need to authorize an action or assess something the systems cannot reliably evaluate. Human oversight can be genuinely valuable when it involves meaningful judgment. But in other cases, the human is only present because the systems haven't been connected.
+
+In software engineering, we generally wouldn't consider it good architecture to require a person to manually copy JSON responses between two services. We'd build an integration and let the systems communicate. Yet we routinely create equivalent workflows with AI agents and call them human-in-the-loop systems.
+
 We've somehow reinvented middleware, except the middleware needs coffee breaks and occasionally forgets to reply.
+
 This reminds me of a much older observation by Lisanne Bainbridge in her 1983 paper Ironies of Automation. Bainbridge argued that automating routine parts of a system can leave humans responsible for the very situations they are least prepared to handle. As automation improves, the remaining human role often becomes more difficult rather than less important. [2]
+
 I think we're encountering a related problem with AI agents. We keep humans involved because we want the reassurance of human oversight, but the mere presence of a human doesn't guarantee that any meaningful oversight is happening.
+
 Research on human involvement in automated decision-making adds another interesting complication. In Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making, Sele and Chugunova found that allowing people to adjust algorithmic recommendations increased their willingness to use the system, but their interventions also reduced average prediction accuracy in the experiment. The researchers observed that participants tended to follow algorithmic recommendations more closely than equivalent human recommendations. [3]
+
 I find this particularly interesting because it challenges the assumption that adding a human necessarily makes an automated system more reliable. We often treat human oversight as a safeguard, but its effectiveness depends on whether the person can independently assess the system's recommendation.
+
 A reviewer who doesn't understand the implementation they're approving isn't much of a safeguard. Neither is an employee who automatically accepts an agent's recommendation because it looks plausible.
+
 The useful human role should be explicit. What decision is this person making? What information do they have that the agent doesn't? What would cause them to reject the proposed action?
+
 If we can't answer those questions, there's a reasonable chance we've inserted a person into the workflow without giving them a meaningful function.
+
 The problem isn't delegation. It's responsibility.
+
 I don't think the solution is to use AI less. That would be a strange conclusion to draw from technology that can already perform so many useful tasks.
+
 The distinction I care about is between delegating execution and delegating judgment.
-When I use an agent to research companies, organize information, or draft outreach, I'm delegating work that would otherwise require considerable manual effort. But I still need to decide which companies matter, whether the research is credible, and what I actually want to communicate.
+
+When I use an agent to research companies or prepare outreach, I'm delegating work that would otherwise require considerable manual effort. But I still need to decide which companies matter and whether the research is credible enough to act on.
+
 Those decisions are often the most valuable part of the process.
+
 There's an important difference between asking AI to help formulate an argument and asking AI to decide what your argument should be. The former can make your thinking more effective. The latter can make it surprisingly easy to stop thinking altogether.
+
 This is especially apparent in writing. Language models are remarkably good at producing explanations that sound reasonable, even when the underlying reasoning is weak or the author hasn't fully understood the subject. A well-written paragraph creates an impression of competence. We've spent our entire lives using language as a signal of understanding, and now we've built systems capable of producing that signal without requiring understanding from the person presenting it.
+
 The danger isn't necessarily that the AI is wrong. It might be completely correct. The problem is that the human presenting the information may have no independent basis for evaluating it.
-This creates a peculiar accountability problem. When someone sends me a technical recommendation, I normally assume they're prepared to explain why they believe it. I can question their assumptions, ask about alternatives, and understand the reasoning behind their conclusion.
+
+This creates a peculiar accountability problem. When someone sends me a technical recommendation, I normally assume they're prepared to explain why they believe it. I can question their assumptions and understand how they arrived at their conclusion.
+
 But if the recommendation is generated by a model they haven't evaluated, that conversation becomes difficult. They may simply return to the model, ask it to defend its earlier answer, and forward the response. At that point, I'm not really having a discussion with another person. I'm having a discussion with a language model through someone who controls the prompt but doesn't necessarily understand the subject.
+
 Which raises the rather obvious question of why I wasn't invited to speak to Claude directly.
+
 Doing less should mean understanding more
+
 I think one of the most important skills in an AI-heavy workplace will be knowing which parts of a task deserve your attention.
-It's unrealistic to expect people to personally verify every line of code, every data transformation, or every intermediate step of a sufficiently complex agentic workflow. The entire point of automation is to reduce how much work requires direct human attention. But we need better ways to determine where that attention is most valuable.
-For a software engineer, that might mean spending less time implementing boilerplate and more time understanding architecture, testing assumptions, and evaluating whether the system behaves correctly. For someone working in product, it might mean delegating research synthesis while retaining responsibility for deciding which customer problems are worth solving.
+
+It's unrealistic to expect people to personally verify every line of code or every intermediate step of a sufficiently complex agentic workflow. The entire point of automation is to reduce how much work requires direct human attention. But we need better ways to determine where that attention is most valuable.
+
+For a software engineer, that might mean spending less time implementing boilerplate and more time understanding whether the system behaves correctly. For someone working in product, it might mean delegating research synthesis while retaining responsibility for deciding which customer problems are worth solving.
+
 The objective isn't to preserve human effort for its own sake. It's to make sure we're applying human effort where it changes the outcome.
-This is also why I think the ability to explain your work will become increasingly important. If you've delegated an implementation to an agent but can explain its architecture, identify its limitations, and defend the decisions it embodies, you've probably contributed something meaningful. If your only response to a question is to ask the agent what it thinks, the situation is different.
+
+This is also why I think the ability to explain your work will become increasingly important. If you've delegated an implementation to an agent but can explain why it was built that way and where it might fail, you've probably contributed something meaningful. If your only response to a question is to ask the agent what it thinks, the situation is different.
+
 Of course, explanation isn't a perfect measure of understanding. People can produce convincing explanations for things they don't understand, and AI can help them do that too. But being able to reason independently about the work is still a useful standard.
-There's also a broader question about how we develop expertise. If we increasingly delegate implementation, drafting, and analysis, we may reduce our exposure to the practical details through which expertise is acquired. The relationship isn't straightforward. AI can also be a remarkably effective teacher, and someone who actively interrogates an agent's work might learn faster than someone doing everything manually.
-What matters is whether the interaction involves learning and evaluation or simply accepting whatever appears on the screen.
-A person who uses AI to understand an unfamiliar concept is doing something different from a person who uses AI to avoid understanding it.
+
+There's also a broader question about how we develop expertise. Much of what we know comes from the practical work of figuring things out ourselves. If we delegate more of that work, what happens to the experience we would otherwise have gained?
+
+I don't think the answer is necessarily that AI makes us less capable. Someone who actively interrogates an agent's work might learn faster than someone doing everything manually. AI can be a remarkably effective teacher, especially when it makes difficult material easier to explore.
+
+But there's a difference between using a tool to understand something and using it to avoid understanding altogether.
+
+And I suspect that difference will matter much more as these systems improve.
+
 Maybe we haven't redefined work yet
+
 I think meat proxy resonates because it gives a name to something we've all started encountering, but haven't quite figured out how to talk about.
+
 We're in an awkward transitional period where the tools can perform substantial portions of knowledge work, while our expectations of what it means to contribute haven't changed nearly as quickly.
-We still reward people for producing artifacts, even when producing those artifacts no longer requires much effort. We still assign ownership based on who submitted the work, rather than who exercised judgment over it. And we still treat human involvement as inherently valuable, even when that involvement consists entirely of forwarding information between systems.
+
+We still reward people for producing artifacts, even when producing those artifacts no longer requires much effort. Ownership often goes to whoever submitted the work, regardless of how much they understood or contributed to it.
+
 This doesn't mean AI-generated work is less valuable. In many cases, it's an extraordinary improvement. But it does mean we need to become more precise about what people are contributing.
-A developer who uses AI to ship a reliable system is not necessarily less valuable than one who writes every line themselves. A researcher who uses AI to investigate more hypotheses may be doing better research. Someone who automates an entire administrative workflow may create far more value than someone who performs those tasks manually.
-The common factor isn't the amount of effort they personally expend. It's whether they exercise judgment, take responsibility for the outcome, and contribute something the system would not otherwise have produced.
-I also think there's a social dimension that gets overlooked. When someone asks a colleague a question, they may not just be requesting information. They may want that person's experience, opinion, or perspective. Replacing the response with a generic AI explanation can miss the entire point of the interaction.
+
+A developer who uses AI to ship a reliable system is not necessarily less valuable than one who writes every line themselves. A researcher who uses AI to investigate more hypotheses may be doing better research. The ability to accomplish something with less manual effort should generally be celebrated.
+
+What matters is whether the person has contributed something the system would not otherwise have produced.
+
+I also think there's a social dimension that gets overlooked. When someone asks a colleague a question, they may not just be requesting information. They may want that person's experience or perspective. Replacing the response with a generic AI explanation can miss the entire point of the interaction.
+
 If I wanted to know what Claude thinks, I could ask Claude. When I ask another person, I'm usually interested in what they think.
+
 Don't outsource the part that makes you useful
-I don't particularly care whether someone uses AI to write code, draft emails, or produce documents. I do all of those things myself, and I think we're only beginning to understand how much work these systems can take off our hands.
+
+I don't particularly care whether someone uses AI to write code or draft emails. I do both myself, and I think we're only beginning to understand how much work these systems can take off our hands.
+
 What I care about is whether the person using the tool is still participating intellectually in the process.
+
 There's a difference between being the person who decides what should happen and being the person who forwards what a model decided should happen. As AI becomes capable of handling more execution, I suspect that distinction will become increasingly important.
-The opportunity is enormous. We can spend less time on repetitive implementation and more time making decisions, exploring ideas, and solving problems that previously required too much manual work. But that only happens if we use the time we've recovered to do something more valuable.
+
+The opportunity is enormous. We can spend less time on repetitive implementation and more time doing the thinking that previously got buried beneath it. But that only happens if we use the time we've recovered to do something more valuable.
+
 Otherwise, we end up in a strange situation where everyone is producing more work, everyone is reading more work, and nobody is particularly sure who's doing the thinking.
+
 Perhaps the most useful question to ask before sending something AI-generated isn't whether the output is good enough to pass along. It's whether you've added anything by being the person who sends it.
+
 Because if all you're doing is passing information between a person and a language model, congratulations. We've finally found a way to make computers faster by putting a human in the middle.
+
 References
+
 [1] Gruhn, N. (2026). Don't Be a Meat Proxy.
+
 [2] Bainbridge, L. (1983). Ironies of Automation. Automatica, 19(6), 775–779.
+
 [3] Sele, D., & Chugunova, M. (2024). Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making. PLOS ONE, 19(2), e0298037.
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/was-lady-gagas-meat-dress-a-warning-about-ai

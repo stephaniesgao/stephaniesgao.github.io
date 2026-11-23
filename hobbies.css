@@ -446,3 +446,34 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .camera-popup.is-transitioning::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;background:#fffef9;animation:camera-cover .55s linear both}
 @keyframes camera-cover{0%,70%{opacity:1}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.site-camera-flash.is-flashing,.camera-popup.is-transitioning::before{animation:none;opacity:0}}
+
+/* One softer screen-wide flash, with the camera back revealed during the bright frame. */
+.site-camera-flash{background:#fffaf0}
+.site-camera-flash.is-flashing{animation:camera-cover-soft .48s ease-out both}
+.camera-popup.is-transitioning::before{display:none}
+@keyframes camera-cover-soft{0%{opacity:0}24%{opacity:.78}54%{opacity:.78}100%{opacity:0}}
+.after-camera .camera-profile-mark{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px}
+.after-camera .social-brand{display:block;width:19px;height:19px;color:#f4f1ec}
+.camera-popup .camera-profile-mark{width:30px;height:30px}
+.camera-popup .social-brand{width:26px;height:26px}
+@media(max-width:650px){.camera-popup .camera-profile-mark{width:15px;height:15px}.camera-popup .social-brand{width:13px;height:13px}}
+@media(prefers-reduced-motion:reduce){.site-camera-flash.is-flashing{animation:none;opacity:0}}
+/* A handwritten note on each page, with the synopsis below the title. */
+.books-popup .book-page h3,.books-popup .book-page .book-title,.books-popup .book-synopsis{font-family:'Kalam','Bradley Hand','Segoe Print',cursive!important;font-style:normal;letter-spacing:0}
+.books-popup .book-page h3{font-size:clamp(17px,2.1vw,23px);line-height:1.15;margin:clamp(13px,2.5vw,24px) 0 8px}
+.books-popup .book-page .book-title{font-size:clamp(17px,2vw,22px);font-weight:700;line-height:1.18;color:#302d28}
+.books-popup .book-synopsis{margin:9px 0 0;font-size:clamp(13px,1.35vw,16px);line-height:1.3;color:#554c40}
+@media(max-width:600px){.books-popup .book-page h3{font-size:clamp(11px,2.8vw,16px);margin:7px 0 4px}.books-popup .book-page .book-title{font-size:clamp(11px,2.8vw,15px)}.books-popup .book-synopsis{font-size:clamp(8px,2vw,11px);line-height:1.18;margin-top:5px}}
+/* The folded map becomes the same sheet: its two printed halves swing open before the live markers appear. */
+.hike-popup .atlas-stage{isolation:isolate}
+.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{content:'';position:absolute;top:0;bottom:0;width:50%;background-image:url('objects/mountain-map-open-v2.jpg');background-repeat:no-repeat;background-size:200% 100%;z-index:4;pointer-events:none;backface-visibility:hidden}
+.hike-popup .atlas-stage::before{left:0;background-position:left center;transform-origin:right center;animation:atlas-left-panel .85s ease-in-out both}
+.hike-popup .atlas-stage::after{right:0;background-position:right center;transform-origin:left center;animation:atlas-right-panel .85s ease-in-out both}
+.hike-popup .atlas-folded{animation:atlas-folded-merge .55s ease-in both}
+.hike-popup .atlas-paper{animation:atlas-sheet-reveal .86s linear both}
+.hike-popup .atlas-paper>*{animation:atlas-contents-in .2s .75s both}
+@keyframes atlas-folded-merge{0%,30%{opacity:1;transform:translate(-50%,-50%) scale(.72)}65%{opacity:0;transform:translate(-50%,-50%) scale(.78)}100%{opacity:0}}
+@keyframes atlas-left-panel{0%,25%{opacity:0;transform:perspective(1100px) rotateY(88deg)}35%{opacity:1}72%{opacity:1;transform:perspective(1100px) rotateY(0)}100%{opacity:0;transform:perspective(1100px) rotateY(0)}}
+@keyframes atlas-right-panel{0%,25%{opacity:0;transform:perspective(1100px) rotateY(-88deg)}35%{opacity:1}72%{opacity:1;transform:perspective(1100px) rotateY(0)}100%{opacity:0;transform:perspective(1100px) rotateY(0)}}
+@keyframes atlas-sheet-reveal{0%,60%{opacity:0}75%,100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{display:none}.hike-popup .atlas-folded{display:none}.hike-popup .atlas-paper{animation:none;opacity:1}}
