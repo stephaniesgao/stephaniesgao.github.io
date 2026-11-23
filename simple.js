@@ -200,17 +200,19 @@ main.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.
 function turnCamera(obj,toBack){
   if(obj._flashTimer)return;
   const flash=document.querySelector('.site-camera-flash');
+  const popup=obj.closest('.camera-popup');
   flash.classList.remove('is-flashing');
   void flash.offsetWidth;
   flash.classList.add('is-flashing');
+  if(popup){popup.classList.remove('is-transitioning');void popup.offsetWidth;popup.classList.add('is-transitioning')}
   obj._flashTimer=setTimeout(()=>{
     obj.classList.toggle('is-flipped',toBack);
     obj.querySelector('.camera-front').hidden=toBack;
     obj.querySelector('.camera-back').hidden=!toBack;
     obj.querySelector('.camera-front').setAttribute('aria-expanded',String(toBack));
     obj._flashTimer=null;
-    setTimeout(()=>flash.classList.remove('is-flashing'),220);
   },180);
+  setTimeout(()=>{flash.classList.remove('is-flashing');popup?.classList.remove('is-transitioning')},560);
 }
 function openCamera(){
   if(document.querySelector('.camera-popup[open]'))return;
@@ -223,17 +225,24 @@ function openCamera(){
   const camera=source.cloneNode(true);
   dialog.append(camera);
   document.body.append(dialog);
-  dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
+  const closeCamera=()=>{
+    if(dialog._closing)return;
+    dialog._closing=true;
+    turnCamera(camera,false);
+    setTimeout(()=>{if(dialog.open)dialog.close()},300);
+  };
+  dialog.querySelector('.content-close').addEventListener('click',closeCamera);
   dialog.addEventListener('click',e=>{
-    if(e.target===dialog){dialog.close();return}
+    if(e.target===dialog){closeCamera();return}
     if(e.target.closest('.camera-profiles a'))return;
-    if(e.target.closest('.camera-back')){turnCamera(camera,false);setTimeout(()=>{if(dialog.open)dialog.close()},430)}
+    if(e.target.closest('.camera-back'))closeCamera();
   });
   dialog.addEventListener('keydown',e=>{
     if((e.key==='Enter'||e.key===' ')&&e.target.matches('.camera-back')){
-      e.preventDefault();turnCamera(camera,false);setTimeout(()=>{if(dialog.open)dialog.close()},430)
+      e.preventDefault();closeCamera()
     }
   });
+  dialog.addEventListener('cancel',e=>{e.preventDefault();closeCamera()});
   dialog.addEventListener('close',()=>{dialog.remove();source.querySelector('.camera-front')?.focus()},{once:true});
   dialog.showModal();
   turnCamera(camera,true);
