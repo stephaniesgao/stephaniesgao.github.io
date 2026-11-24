@@ -477,3 +477,9 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 @keyframes atlas-right-panel{0%,25%{opacity:0;transform:perspective(1100px) rotateY(-88deg)}35%{opacity:1}72%{opacity:1;transform:perspective(1100px) rotateY(0)}100%{opacity:0;transform:perspective(1100px) rotateY(0)}}
 @keyframes atlas-sheet-reveal{0%,60%{opacity:0}75%,100%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{display:none}.hike-popup .atlas-folded{display:none}.hike-popup .atlas-paper{animation:none;opacity:1}}
+
+/* A shutter-like burst stays with the camera, with its brightest frame hiding the flip. */
+.camera-popup .camera-object::after{content:'';position:absolute;inset:5% 1%;z-index:8;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,#fff 0 52%,#fffefa 66%,rgba(255,254,250,.65) 76%,transparent 94%)}
+.camera-popup .camera-object.is-flashing::after{animation:camera-local-flash .5s ease-out both}
+@keyframes camera-local-flash{0%{opacity:0}26%{opacity:.9}36%{opacity:1}48%{opacity:.8}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.camera-popup .camera-object.is-flashing::after{animation:none}}
