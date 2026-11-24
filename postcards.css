@@ -126,14 +126,19 @@
 @media(max-width:600px){.postal-back-grid{height:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.postal-message{padding:5% 1% 4% 7%}.postal-message strong{font-size:16px;margin-bottom:4px}.postal-message>span{font-size:11.5px;line-height:1.22}.postal-message em{margin-top:5px;font-size:12px}.postal-address{padding:5% 7% 3% 1%}.postal-landmark-stamp{width:min(100%,75px)}.postal-to{font-size:10px}}
 @media(max-width:390px){.postal-message>span{font-size:11px;line-height:1.2}.postal-landmark-stamp{width:min(100%,68px)}}
 
-/* Draw the chosen card out from the deck, then lay it over the others. */
-.postal-entry.shuffling-in-right,.postal-entry.shuffling-in-left{z-index:10!important;opacity:1!important;pointer-events:none;transition:none;animation-duration:.74s;animation-timing-function:cubic-bezier(.22,.6,.25,1);animation-fill-mode:both}
-.postal-entry.shuffling-in-right{animation-name:postal-shuffle-right}
-.postal-entry.shuffling-in-left{animation-name:postal-shuffle-left}
-@keyframes postal-shuffle-right{0%{transform:translate3d(13%,15px,-70px) rotate(5deg)}42%{transform:translate3d(24%,-10px,45px) rotate(6deg)}100%{transform:translate3d(0,0,0) rotate(0)}}
-@keyframes postal-shuffle-left{0%{transform:translate3d(-13%,14px,-70px) rotate(-5deg)}42%{transform:translate3d(-24%,-10px,45px) rotate(-6deg)}100%{transform:translate3d(0,0,0) rotate(0)}}
-@media(max-width:600px){@keyframes postal-shuffle-right{0%{transform:translate3d(9%,12px,-55px) rotate(4deg)}42%{transform:translate3d(17%,-8px,40px) rotate(5deg)}100%{transform:translate3d(0,0,0) rotate(0)}}@keyframes postal-shuffle-left{0%{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}42%{transform:translate3d(-17%,-8px,40px) rotate(-5deg)}100%{transform:translate3d(0,0,0) rotate(0)}}}
-@media(prefers-reduced-motion:reduce){.postal-entry.shuffling-in-right,.postal-entry.shuffling-in-left{animation:none}}
+/* Pull a print out from behind the stack, then lay it on top. */
+.postal-collection.postal-instant .postal-entry{transition:none!important}
+.postal-entry.postal-pull-left,.postal-entry.postal-pull-right{opacity:1!important;pointer-events:none;animation-duration:.44s;animation-timing-function:cubic-bezier(.25,.55,.45,1);animation-fill-mode:both}
+.postal-entry.postal-pull-left{animation-name:postal-pull-left}
+.postal-entry.postal-pull-right{animation-name:postal-pull-right}
+.postal-entry.postal-enter-left,.postal-entry.postal-enter-right{z-index:21!important;opacity:1!important;pointer-events:none;animation-duration:.58s;animation-timing-function:cubic-bezier(.16,.7,.2,1);animation-fill-mode:both}
+.postal-entry.postal-enter-left{animation-name:postal-enter-left}
+.postal-entry.postal-enter-right{animation-name:postal-enter-right}
+@keyframes postal-pull-left{from{transform:var(--postal-start-transform);opacity:1}to{transform:translate3d(-112%,10px,90px) rotate(-8deg);opacity:1}}
+@keyframes postal-pull-right{from{transform:var(--postal-start-transform);opacity:1}to{transform:translate3d(112%,10px,90px) rotate(8deg);opacity:1}}
+@keyframes postal-enter-left{from{transform:translate3d(-112%,10px,90px) rotate(-8deg)}to{transform:translate3d(0,0,0) rotate(0)}}
+@keyframes postal-enter-right{from{transform:translate3d(112%,10px,90px) rotate(8deg)}to{transform:translate3d(0,0,0) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.postal-entry.postal-pull-left,.postal-entry.postal-pull-right,.postal-entry.postal-enter-left,.postal-entry.postal-enter-right{animation:none}}
 
 /* Both faces are cut from the same cream photo-print stock. */
 .postal-back{background-image:url('card-paper/front.webp');background-color:transparent}

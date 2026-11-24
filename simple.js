@@ -41,7 +41,60 @@ const romcomClips=['k_zin9OQNXU','hZ8PfLIc8MI','GOfpZID8Akg','uhr-0FReuHY','eiLe
 let romcomChannel=0;
 function updateTvClip(active){const frame=main.querySelector('.tv-footage iframe');if(!frame)return;if(!active||matchMedia('(prefers-reduced-motion: reduce)').matches){frame.removeAttribute('src');return}const id=romcomClips[romcomChannel];frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&playsinline=1&controls=0&loop=1&playlist=${id}&rel=0`}
 let activePostcard=0,postalDragStart=null,suppressPostcardClick=false,postalPassTimer=null,postalShuffling=false,postalQueuedMove=null;
-function showPostcard(index,focus=false){const deck=main.querySelector('.postal-collection');if(!deck)return;const cards=[...deck.querySelectorAll('.postal-entry')];const target=(index+cards.length)%cards.length;if(postalShuffling){postalQueuedMove={index:target,focus};return}const previous=activePostcard;activePostcard=target;const moved=previous!==activePostcard;const forward=((activePostcard-previous+cards.length)%cards.length)<=cards.length/2;cards.forEach((entry,i)=>{let offset=(i-activePostcard+cards.length)%cards.length;if(offset>Math.floor(cards.length/2))offset-=cards.length;entry.dataset.offset=String(offset);entry.style.zIndex=String(offset===0?4:offset===1?3:offset===-1?2:1);const card=entry.querySelector('.postal-card');card.tabIndex=offset===0?0:-1;card.setAttribute('aria-label',`${offset===0?'Flip':'Select'} card from ${card.querySelector('.postal-front-footer strong').textContent}`);if(offset!==0&&card.getAttribute('aria-pressed')==='true'){card.setAttribute('aria-pressed','false');card.querySelector('.postal-front').setAttribute('aria-hidden','false');card.querySelector('.postal-back').setAttribute('aria-hidden','true')}});deck.querySelectorAll('[data-postal-go]').forEach((button,i)=>button.setAttribute('aria-current',String(i===activePostcard)));if(focus)cards[activePostcard].querySelector('.postal-card').focus({preventScroll:true});if(!moved)return;const incoming=cards[activePostcard];postalShuffling=true;incoming.classList.add(forward?'shuffling-in-right':'shuffling-in-left');const finish=()=>{clearTimeout(postalPassTimer);incoming.removeEventListener('animationend',finish);incoming.classList.remove('shuffling-in-right','shuffling-in-left');postalShuffling=false;const queued=postalQueuedMove;postalQueuedMove=null;if(queued&&queued.index!==activePostcard)showPostcard(queued.index,queued.focus)};incoming.addEventListener('animationend',finish,{once:true});postalPassTimer=setTimeout(finish,780)}
+function layoutPostcards(deck,cards){
+  cards.forEach((entry,i)=>{
+    let offset=(i-activePostcard+cards.length)%cards.length;
+    if(offset>Math.floor(cards.length/2))offset-=cards.length;
+    entry.dataset.offset=String(offset);
+    entry.style.zIndex=String(offset===0?4:offset===1?3:offset===-1?2:1);
+    const card=entry.querySelector('.postal-card');
+    card.tabIndex=offset===0?0:-1;
+    card.setAttribute('aria-label',`${offset===0?'Flip':'Select'} card from ${card.querySelector('.postal-front-footer strong').textContent}`);
+    if(offset!==0&&card.getAttribute('aria-pressed')==='true'){
+      card.setAttribute('aria-pressed','false');
+      card.querySelector('.postal-front').setAttribute('aria-hidden','false');
+      card.querySelector('.postal-back').setAttribute('aria-hidden','true');
+    }
+  });
+  deck.querySelectorAll('[data-postal-go]').forEach((button,i)=>button.setAttribute('aria-current',String(i===activePostcard)));
+}
+function showPostcard(index,focus=false){
+  const deck=main.querySelector('.postal-collection');
+  if(!deck)return;
+  const cards=[...deck.querySelectorAll('.postal-entry')];
+  const target=(index+cards.length)%cards.length;
+  if(postalShuffling){postalQueuedMove={index:target,focus};return}
+  if(target===activePostcard)return;
+  const previous=activePostcard;
+  const forward=((target-previous+cards.length)%cards.length)<=cards.length/2;
+  const incoming=cards[target];
+  const pullClass=forward?'postal-pull-right':'postal-pull-left';
+  const enterClass=forward?'postal-enter-right':'postal-enter-left';
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  postalShuffling=true;
+  const settle=()=>{
+    incoming.classList.remove(enterClass);
+    postalShuffling=false;
+    const queued=postalQueuedMove;
+    postalQueuedMove=null;
+    if(queued&&queued.index!==activePostcard)showPostcard(queued.index,queued.focus);
+  };
+  const bringForward=()=>{
+    incoming.classList.remove(pullClass);
+    deck.classList.add('postal-instant');
+    activePostcard=target;
+    layoutPostcards(deck,cards);
+    if(focus)incoming.querySelector('.postal-card').focus({preventScroll:true});
+    if(reduced){deck.classList.remove('postal-instant');settle();return}
+    incoming.classList.add(enterClass);
+    requestAnimationFrame(()=>deck.classList.remove('postal-instant'));
+    postalPassTimer=setTimeout(settle,590);
+  };
+  if(reduced){bringForward();return}
+  incoming.style.setProperty('--postal-start-transform',getComputedStyle(incoming).transform);
+  incoming.classList.add(pullClass);
+  postalPassTimer=setTimeout(bringForward,440);
+}
 main.addEventListener('click',e=>{const deck=e.target.closest('.postal-collection');if(!deck)return;const control=e.target.closest('[data-postal-prev],[data-postal-next],[data-postal-go]');if(control){showPostcard(control.hasAttribute('data-postal-go')?Number(control.dataset.postalGo):activePostcard+(control.hasAttribute('data-postal-next')?1:-1));return}const card=e.target.closest('.postal-card');if(!card)return;if(suppressPostcardClick){suppressPostcardClick=false;return}const index=Number(card.closest('.postal-entry').dataset.postcard);if(index!==activePostcard){showPostcard(index);return}const flipped=card.getAttribute('aria-pressed')!=='true';card.setAttribute('aria-pressed',String(flipped));card.setAttribute('aria-label',`Flip card from ${card.querySelector('.postal-front-footer strong').textContent}`);card.querySelector('.postal-front').setAttribute('aria-hidden',String(flipped));card.querySelector('.postal-back').setAttribute('aria-hidden',String(!flipped))});
 main.addEventListener('pointerdown',e=>{if(!e.target.closest('.postal-stage'))return;postalDragStart={x:e.clientX,y:e.clientY}});
 main.addEventListener('pointerup',e=>{if(!postalDragStart)return;const dx=e.clientX-postalDragStart.x,dy=e.clientY-postalDragStart.y;postalDragStart=null;if(Math.abs(dx)<45||Math.abs(dx)<Math.abs(dy)*1.2)return;showPostcard(activePostcard+(dx<0?1:-1));suppressPostcardClick=true;setTimeout(()=>suppressPostcardClick=false,180)});
