@@ -100,6 +100,7 @@ function mountMountainMap(dialog){
   let map,markers=[];
   function selectPeak(index){
     const peak=mountains[index];
+    dialog.querySelector('.atlas-paper').classList.add('is-geographic');
     dialog.querySelectorAll('[data-mountain]').forEach(button=>button.setAttribute('aria-current',String(Number(button.dataset.mountain)===index)));
     detail.innerHTML=`<span class="mountain-detail-kicker">SELECTED PLACE</span><h3>${peak.name}</h3><p>${peak.region}${peak.elevation?' · '+peak.elevation:''}</p><p>${peak.detail}</p><small>${Math.abs(peak.lat).toFixed(3)}° ${peak.lat>=0?'N':'S'}, ${Math.abs(peak.lon).toFixed(3)}° ${peak.lon>=0?'E':'W'}</small>${peak.source?`<a href="${peak.source}" target="_blank" rel="noopener">Elevation / route source ↗</a>`:''}`;
     markers.forEach((marker,i)=>marker.getElement()?.classList.toggle('is-selected',i===index));
@@ -126,6 +127,12 @@ function mountMountainMap(dialog){
   }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.mountain-map').textContent='Map unavailable. The mountain list is still here.'});
 }
 let hikePopupPending=false;
+function closeOutsideSurface(dialog,surface,close){
+  dialog.addEventListener('click',e=>{
+    const rect=surface.getBoundingClientRect();
+    if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)close();
+  });
+}
 main.addEventListener('click',e=>{
   const mapButton=e.target.closest('.trail-map-open');
   if(!mapButton||hikePopupPending)return;
@@ -136,10 +143,12 @@ main.addEventListener('click',e=>{
   dialog.innerHTML=`<div class="atlas-stage"><img class="atlas-folded" src="objects/trail-map-folded.webp" alt="" aria-hidden="true"><div class="atlas-paper"><button type="button" class="content-close" aria-label="Close mountain map">×</button><h2 id="hike-popup-title">Mountains I've hiked</h2><div class="mountain-layout"><div class="mountain-map" aria-label="Map of mountains I've hiked"></div><div class="mountain-list" aria-label="Choose a mountain">${mountains.map((peak,i)=>`<button type="button" data-mountain="${i}" aria-current="false"><span>${peak.name}</span><small>${peak.region}</small></button>`).join('')}</div></div><div class="mountain-detail" aria-live="polite"><span class="mountain-detail-kicker">SELECTED PLACE</span><p>Choose a mountain on the map or in the list.</p></div></div></div>`;
   document.body.append(dialog);
   dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>{dialog.remove();hikePopupPending=false;if(mapButton.isConnected)mapButton.focus()},{once:true});
   const foldedSource=main.querySelector('.after-hike button.trail-map-open')||mapButton;
+  closeOutsideSurface(dialog,dialog.querySelector('.atlas-stage'),()=>dialog.close());
+  dialog.addEventListener('close',()=>{foldedSource.classList.remove('is-origin-hidden');dialog.remove();hikePopupPending=false;if(mapButton.isConnected)mapButton.focus()},{once:true});
   const sourceRect=foldedSource.getBoundingClientRect();
   dialog.showModal();
+  foldedSource.classList.add('is-origin-hidden');
   const stage=dialog.querySelector('.atlas-stage');
   const stageRect=stage.getBoundingClientRect();
   stage.style.setProperty('--atlas-start-x',`${sourceRect.left+sourceRect.width/2-stageRect.left-stageRect.width/2}px`);
@@ -243,6 +252,7 @@ function openCamera(){
     if(dialog.open)dialog.close();
   };
   dialog.querySelector('.content-close').addEventListener('click',closeCamera);
+  closeOutsideSurface(dialog,camera,closeCamera);
   dialog.addEventListener('click',e=>{
     if(e.target===dialog){closeCamera();return}
     if(e.target.closest('.camera-profiles a'))return;
@@ -268,6 +278,7 @@ function openReadingBook(source){
   dialog.innerHTML='<button type="button" class="content-close" aria-label="Close book">×</button>';
   dialog.append(stage);
   document.body.append(dialog);
+  closeOutsideSurface(dialog,stage,()=>dialog.close());
   const notes=dialog.querySelector('.book-notes');
   const reveal=()=>{if(dialog.open){notes.classList.add('is-open');notes.setAttribute('aria-hidden','false')}};
   dialog.querySelector('.book-leaf').addEventListener('animationend',reveal,{once:true});

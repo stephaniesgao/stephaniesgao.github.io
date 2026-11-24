@@ -554,3 +554,24 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .camera-popup .camera-object::after{inset:0;border-radius:20%;background:radial-gradient(ellipse 78% 76% at center,#fff 0 68%,rgba(255,255,255,.96) 80%,transparent 100%),radial-gradient(ellipse 82% 13% at center,rgba(255,255,255,.94),transparent 100%)}
 .camera-popup .camera-object::after{inset:0;border-radius:0;background:radial-gradient(ellipse 56% 48% at center,#fff 0 23%,rgba(255,255,255,.93) 42%,rgba(255,255,255,.35) 68%,transparent 100%),radial-gradient(ellipse 92% 7% at center,rgba(255,255,255,.88),rgba(255,255,255,.2) 58%,transparent 100%)}
 .camera-popup .camera-object.is-concealing .camera-front,.camera-popup .camera-object.is-concealing .camera-back{opacity:0}
+
+/* The illustrated sheet grows from the folded map, then its two halves swing open. */
+.after-hike .trail-map-open.is-origin-hidden{opacity:0}
+.hike-popup .atlas-paper{background:#d8c49e url('objects/mountain-map-open-v2.jpg') center/100% 100% no-repeat}
+.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{display:block;opacity:0;animation:none}
+.hike-popup.is-opening .atlas-stage::before{animation:atlas-left-unfold 1.05s ease-in-out both}
+.hike-popup.is-opening .atlas-stage::after{animation:atlas-right-unfold 1.05s ease-in-out both}
+.hike-popup.is-opening .atlas-stage{animation:atlas-from-icon 1.05s cubic-bezier(.2,.7,.2,1) both}
+.hike-popup.is-opening .atlas-folded{animation:atlas-folded-to-sheet 1.05s ease-in-out both}
+.hike-popup.is-opening .atlas-paper{animation:atlas-open-sheet 1.05s linear both}
+.hike-popup.is-opening .atlas-paper>*{animation:atlas-contents-in .22s .88s both}
+@keyframes atlas-left-unfold{0%,30%{opacity:0;transform:perspective(1000px) rotateY(86deg)}40%{opacity:1}78%{opacity:1;transform:perspective(1000px) rotateY(0)}100%{opacity:0;transform:perspective(1000px) rotateY(0)}}
+@keyframes atlas-right-unfold{0%,30%{opacity:0;transform:perspective(1000px) rotateY(-86deg)}40%{opacity:1}78%{opacity:1;transform:perspective(1000px) rotateY(0)}100%{opacity:0;transform:perspective(1000px) rotateY(0)}}
+@keyframes atlas-folded-to-sheet{0%,32%{opacity:1}52%,100%{opacity:0}}
+@keyframes atlas-open-sheet{0%,70%{opacity:0}90%,100%{opacity:1}}
+.hike-popup .mountain-map{opacity:0;pointer-events:none;transition:opacity .4s ease}
+.hike-popup .atlas-paper.is-geographic .mountain-map{opacity:.86;pointer-events:auto}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.88}
+@media(prefers-reduced-motion:reduce){.hike-popup.is-opening .atlas-stage::before,.hike-popup.is-opening .atlas-stage::after,.hike-popup.is-opening .atlas-folded{display:none;animation:none}.hike-popup.is-opening .atlas-stage,.hike-popup.is-opening .atlas-paper,.hike-popup.is-opening .atlas-paper>*{animation:none}.hike-popup .atlas-paper{opacity:1}}
+.hike-popup .atlas-paper{background-size:calc(100% + 28px) calc(100% + 28px);background-position:center}
+.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{background-size:calc(200% + 28px) calc(100% + 28px)}
