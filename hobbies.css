@@ -575,3 +575,9 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 @media(prefers-reduced-motion:reduce){.hike-popup.is-opening .atlas-stage::before,.hike-popup.is-opening .atlas-stage::after,.hike-popup.is-opening .atlas-folded{display:none;animation:none}.hike-popup.is-opening .atlas-stage,.hike-popup.is-opening .atlas-paper,.hike-popup.is-opening .atlas-paper>*{animation:none}.hike-popup .atlas-paper{opacity:1}}
 .hike-popup .atlas-paper{background-size:calc(100% + 28px) calc(100% + 28px);background-position:center}
 .hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{background-size:calc(200% + 28px) calc(100% + 28px)}
+
+/* A quick glint sweeps across the camera as its face changes. */
+.camera-popup .camera-object::after{inset:-6% -8%;border-radius:0;background:radial-gradient(ellipse 42% 56% at 48% 49%,#fff 0 27%,rgba(255,255,255,.94) 47%,rgba(255,255,255,.36) 70%,transparent 100%),linear-gradient(108deg,transparent 36%,rgba(255,255,255,.34) 44%,rgba(255,255,255,.96) 49%,rgba(255,255,255,.3) 54%,transparent 62%);filter:blur(2px)}
+.camera-popup .camera-object.is-flashing::after{animation:camera-lens-sweep .41s cubic-bezier(.2,.55,.3,1) both}
+@keyframes camera-lens-sweep{0%{opacity:0;transform:translateX(-17%) scale(.62) rotate(-5deg)}25%{opacity:.85;transform:translateX(-7%) scale(.91) rotate(-2deg)}42%,54%{opacity:1;transform:translateX(0) scale(1.04) rotate(0)}100%{opacity:0;transform:translateX(19%) scale(.72) rotate(4deg)}}
+@media(prefers-reduced-motion:reduce){.camera-popup .camera-object.is-flashing::after{animation:none}}

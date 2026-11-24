@@ -277,16 +277,16 @@ function turnCamera(obj,toBack){
   void obj.offsetWidth;
   obj.classList.add('is-flashing');
   if(popup){popup.classList.remove('is-transitioning');void popup.offsetWidth;popup.classList.add('is-transitioning')}
-  setTimeout(()=>obj.classList.add('is-concealing'),140);
+  setTimeout(()=>obj.classList.add('is-concealing'),105);
   obj._flashTimer=setTimeout(()=>{
     obj.classList.toggle('is-flipped',toBack);
     obj.querySelector('.camera-front').hidden=toBack;
     obj.querySelector('.camera-back').hidden=!toBack;
     obj.querySelector('.camera-front').setAttribute('aria-expanded',String(toBack));
     obj._flashTimer=null;
-  },240);
-  setTimeout(()=>obj.classList.remove('is-concealing'),440);
-  setTimeout(()=>{obj.classList.remove('is-flashing');popup?.classList.remove('is-transitioning')},650);
+  },185);
+  setTimeout(()=>obj.classList.remove('is-concealing'),300);
+  setTimeout(()=>{obj.classList.remove('is-flashing');popup?.classList.remove('is-transitioning')},410);
 }
 function openCamera(){
   if(document.querySelector('.camera-popup[open]'))return;
