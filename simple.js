@@ -141,7 +141,7 @@ hobbies:()=>`<div class="after-hours room"><header class="room-heading"><h1>Outs
 <nav class="after-strip shelf" aria-label="Browse interests">${[['01','content','camera-photo.webp'],['02','music','record-deck-photo.webp'],['03','films','tv-photo.webp'],['04','dance','dance-boombox.webp'],['05','books','books-v3-photo.webp'],['06','trails','trail-map-photo.webp']].map(([number,label,asset],i)=>`<button type="button" data-after-go="${i}" aria-current="${i===0?'true':'false'}"><span class="strip-thumb"><img src="objects/${asset}" alt="" draggable="false"></span><span class="strip-label">${label}</span></button>`).join('')}</nav>${gallerySection()}</div>`
 };
 /* Places: postcards scattered on a table. */
-const placeSpots={wide:[[1,4,-6],[32,0,4],[62,7,-3],[6,47,5],[35,42,-4],[61,50,7]],narrow:[[4,1,-4],[12,15,4],[5,29,-3],[12,43,3],[4,57,-4],[12,71,3]]};
+const placeSpots={wide:[[2,6,-4],[35,3,3],[68,7,-2],[3,53,3],[35.5,50,-3],[68.5,54,4]],narrow:[[3,1.1,-3],[11,17.4,3],[4,33.7,-2],[11,50,3],[3,66.3,-3],[11,82.6,2]]};
 let placeTop=0,placeDrag=null,placeMoved=false;
 const placeLayout=()=>matchMedia('(max-width:700px)').matches?'narrow':'wide';
 const roomReduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -157,11 +157,12 @@ function pullPostcard(entry,then){
   if(entry.dataset.pulling)return;
   if(Number(entry.style.zIndex)===placeTop||roomReduced()){liftPostcard(entry);if(then)then();return}
   entry.dataset.pulling='1';
-  const table=entry.parentElement,w=entry.offsetWidth,h=entry.offsetHeight,x0=entry.offsetLeft,y0=entry.offsetTop,z=Number(entry.style.zIndex),pad=10;
-  const above=[...table.querySelectorAll('.postal-entry')].filter(o=>o!==entry&&Number(o.style.zIndex)>z).map(o=>[o.offsetLeft-pad,o.offsetTop-pad,o.offsetLeft+o.offsetWidth+pad,o.offsetTop+o.offsetHeight+pad]);
+  const table=entry.parentElement,z=Number(entry.style.zIndex),pad=12,tr=table.getBoundingClientRect(),er=entry.getBoundingClientRect();
+  const w=er.width,h=er.height,x0=er.left-tr.left,y0=er.top-tr.top;
+  const above=[...table.querySelectorAll('.postal-entry')].filter(o=>o!==entry&&Number(o.style.zIndex)>z).map(o=>{const r=o.getBoundingClientRect();return [r.left-tr.left-pad,r.top-tr.top-pad,r.right-tr.left+pad,r.bottom-tr.top+pad]});
   const clear=(x,y)=>above.every(([l,t,r,b])=>x+w<=l||x>=r||y+h<=t||y>=b);
   const d=.7071,dirs=placeLayout()==='narrow'?[[1,0],[-1,0]]:[[1,0],[-1,0],[0,1],[0,-1],[d,d],[-d,d],[d,-d],[-d,-d]];
-  const limit=Math.max(w,h)*1.1;let best=null;
+  const limit=Math.max(w,h)*1.4;let best=null;
   for(const [ux,uy] of dirs){for(let step=0;step<=limit;step+=8){if(clear(x0+ux*step,y0+uy*step)){if(!best||step<best[2])best=[ux,uy,step];break}}}
   if(!best){const cx=x0+w/2-table.clientWidth/2,cy=y0+h/2-table.clientHeight/2,len=Math.hypot(cx,cy)||1;best=[cx/len,cy/len,limit]}
   const tx=best[0]*best[2],ty=best[1]*best[2];
