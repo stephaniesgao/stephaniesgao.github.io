@@ -1,4 +1,4 @@
-import {posts} from './posts.js?v=17';
+import {posts} from './posts.js?v=18';
 import {mountTrace} from './trace-ui.js?v=2';
 const main=document.querySelector('main');
 const projectEntries=[
@@ -137,7 +137,15 @@ main.addEventListener('click',e=>{
   document.body.append(dialog);
   dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>{dialog.remove();hikePopupPending=false;if(mapButton.isConnected)mapButton.focus()},{once:true});
+  const foldedSource=main.querySelector('.after-hike button.trail-map-open')||mapButton;
+  const sourceRect=foldedSource.getBoundingClientRect();
   dialog.showModal();
+  const stage=dialog.querySelector('.atlas-stage');
+  const stageRect=stage.getBoundingClientRect();
+  stage.style.setProperty('--atlas-start-x',`${sourceRect.left+sourceRect.width/2-stageRect.left-stageRect.width/2}px`);
+  stage.style.setProperty('--atlas-start-y',`${sourceRect.top+sourceRect.height/2-stageRect.top-stageRect.height/2}px`);
+  stage.style.setProperty('--atlas-start-scale',String(Math.min(1,sourceRect.width/stageRect.width)));
+  dialog.classList.add('is-opening');
   mountMountainMap(dialog);
 });
 main.addEventListener('keydown',e=>{if(!e.target.closest('.after-hours')||!['ArrowLeft','ArrowRight'].includes(e.key)||e.target.matches('input,textarea'))return;e.preventDefault();const root=main.querySelector('.after-hours');const active=Number(root.querySelector('.after-scene.is-active').dataset.afterScene);showAfterScene(active+(e.key==='ArrowRight'?1:-1))});

@@ -486,3 +486,61 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 
 /* Give the longer reading notes enough room on narrow screens. */
 @media(max-width:600px){.books-popup .book-page,.books-popup .book-page:first-child{left:9%;width:37%;top:18%;height:67%}.books-popup .book-page:nth-child(2){left:54%;width:37%}.books-popup .book-synopsis{font-size:clamp(8.5px,2.15vw,11px);line-height:1.16}}
+
+/* The folded object grows from its shelf position into the same sheet of paper. */
+.hike-popup .atlas-stage::before,.hike-popup .atlas-stage::after{display:none}
+.hike-popup .atlas-stage{transform-origin:center;isolation:isolate}
+.hike-popup.is-opening .atlas-stage{animation:atlas-from-icon .82s cubic-bezier(.2,.7,.2,1) both}
+.hike-popup .atlas-folded{inset:0;width:100%;height:100%;object-fit:contain;transform:none;opacity:0;animation:none;z-index:5}
+.hike-popup.is-opening .atlas-folded{animation:atlas-folded-continuity .82s ease-out both}
+.hike-popup .atlas-paper{animation:none;box-shadow:0 18px 48px #0008;background-size:100% 100%;border-radius:0;overflow:auto}
+.hike-popup.is-opening .atlas-paper{animation:atlas-paper-open .82s ease-out both}
+.hike-popup .atlas-paper>*{animation:none}
+.hike-popup.is-opening .atlas-paper>*{animation:atlas-contents-in .24s .67s both}
+@keyframes atlas-from-icon{0%{transform:translate(var(--atlas-start-x),var(--atlas-start-y)) scale(var(--atlas-start-scale))}100%{transform:translate(0,0) scale(1)}}
+@keyframes atlas-folded-continuity{0%,30%{opacity:1}54%,100%{opacity:0}}
+@keyframes atlas-paper-open{0%,25%{clip-path:inset(0 48% 0 48%);opacity:0}45%{opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1}}
+/* Map, legend, and notes are printed on the paper rather than framed as panels. */
+.hike-popup .atlas-paper{padding:27px 34px 25px}
+.hike-popup h2{display:block;margin:0 0 7px;padding:0;background:none;font-size:clamp(19px,2.4vw,25px);letter-spacing:-.025em}
+.hike-popup .mountain-layout{display:block;min-height:0}
+.hike-popup .mountain-map{height:clamp(260px,43vh,390px);border:0;box-shadow:none;background:transparent;mix-blend-mode:multiply;mask-image:linear-gradient(to bottom,transparent,black 8%,black 92%,transparent)}
+.hike-popup .mountain-map .leaflet-control-zoom{display:none}
+.hike-popup .mountain-map .leaflet-control-attribution{background:transparent;font-size:9px}
+.hike-popup .mountain-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 12px;max-height:none;overflow:visible;margin-top:5px;padding:6px 0 0;border:0;border-top:1px solid rgba(75,60,42,.48);background:none}
+.hike-popup .mountain-list button{display:block;width:100%;padding:6px 1px;border:0;background:none;color:#3d352b;font:500 11px/1.2 'Avenir Next',Avenir,sans-serif;text-align:left}
+.hike-popup .mountain-list button::before{content:'△';display:inline-block;width:16px;font-size:13px}
+.hike-popup .mountain-list button[aria-current=true]{padding-left:1px;background:none;color:#8f3e26;font-weight:700}
+.hike-popup .mountain-detail{margin-top:9px;padding:9px 0 0;border:0;border-top:1px solid rgba(75,60,42,.48);background:none;color:#3d352b}
+.hike-popup .mountain-detail h3{margin:2px 0 4px}
+.hike-popup .mountain-detail p{display:inline;margin-right:11px}
+.hike-popup .mountain-detail small{white-space:nowrap}
+.hike-popup .mountain-detail a{margin-left:10px}
+.hike-popup .content-close{top:15px;right:22px}
+@media(max-width:650px){.hike-popup .atlas-paper{padding:18px 19px 15px}.hike-popup h2{font-size:18px;margin-bottom:4px}.hike-popup .mountain-map{height:230px}.hike-popup .mountain-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 4px}.hike-popup .mountain-list button{font-size:9px;line-height:1.1;padding:5px 0}.hike-popup .mountain-list button::before{width:12px;font-size:10px}.hike-popup .mountain-detail{font-size:10px}.hike-popup .mountain-detail p{display:block;margin:2px 0}.hike-popup .content-close{top:5px;right:10px}}
+@media(prefers-reduced-motion:reduce){.hike-popup.is-opening .atlas-stage,.hike-popup.is-opening .atlas-paper,.hike-popup.is-opening .atlas-paper>*{animation:none}.hike-popup .atlas-folded{display:none}}
+
+/* Let the geographic layer occupy the sheet; the writing sits in its lower margin. */
+.hike-popup .atlas-paper{background-size:calc(100% + 32px) calc(100% + 32px);overflow:auto}
+.hike-popup .mountain-layout{position:static;min-height:0}
+.hike-popup .mountain-map{position:absolute;inset:0 0 90px;width:100%;height:auto;z-index:0;opacity:.58;mix-blend-mode:multiply;mask-image:linear-gradient(to bottom,black 0%,black 54%,transparent 100%)}
+.hike-popup .mountain-map.leaflet-container{background:transparent}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.62;mix-blend-mode:multiply}
+.hike-popup h2,.hike-popup .mountain-list,.hike-popup .mountain-detail,.hike-popup .content-close{position:relative;z-index:2}
+.hike-popup .mountain-list{margin-top:330px}
+.hike-popup .mountain-detail{min-height:50px}
+@media(max-width:650px){.hike-popup .mountain-map{bottom:70px}.hike-popup .mountain-list{margin-top:220px}}
+/* The folded map remains visible until the paper begins to open. */
+@keyframes atlas-folded-continuity{0%,45%{opacity:1}65%,100%{opacity:0}}
+@keyframes atlas-paper-open{0%,44%{clip-path:inset(0 49% 0 49%);opacity:0}60%{clip-path:inset(0 38% 0 38%);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1}}
+.hike-popup .mountain-map{opacity:.82}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.9}
+.hike-popup h2{width:max-content;max-width:70%;margin-left:auto;margin-right:auto;text-align:center}
+/* The live geography is the map artwork; restrained fold lines supply the paper texture. */
+.hike-popup .atlas-paper{background:linear-gradient(90deg,transparent 24.7%,rgba(97,79,51,.13) 25%,rgba(255,255,255,.22) 25.3%,transparent 25.7%,transparent 49.7%,rgba(97,79,51,.13) 50%,rgba(255,255,255,.22) 50.3%,transparent 50.7%,transparent 74.7%,rgba(97,79,51,.13) 75%,rgba(255,255,255,.22) 75.3%,transparent 75.7%),linear-gradient(0deg,transparent 49.4%,rgba(97,79,51,.12) 50%,rgba(255,255,255,.15) 50.4%,transparent 51%),#e5d9bf}
+.hike-popup .mountain-map{opacity:.95}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:.9}
+.hike-popup .mountain-map{bottom:145px}
+.hike-popup .mountain-detail h3{color:#3d352b}
+.hike-popup .mountain-detail-kicker{display:none}
+@media(max-width:650px){.hike-popup .mountain-map{bottom:95px}}
