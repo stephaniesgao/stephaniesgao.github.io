@@ -683,3 +683,5 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .secret .secret-status,.secret[data-puzzle=wordle] .secret-status{min-height:0;margin:8px 0 0;font:12px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif}
 .secret .secret-status:empty{display:none}
 @media(max-width:600px){.secret,.secret[data-puzzle=wordle],.secret[data-puzzle=wordle][data-boards="8"]{padding:16px;width:calc(100% - 20px)}.secret .puzzle-picker{gap:12px}.secret .puzzle-picker button{font-size:11px}}
+.blog-math{overflow-x:auto;margin:19px 0 22px;padding:8px 0;color:var(--ink)}
+.blog-math math{font-size:1.3em;min-width:max-content}
