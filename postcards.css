@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 /* Photographic postcards with a quiet printed border. */
 .places-page{padding-top:2px}
 .places-heading h1{margin:0 0 13px}
@@ -116,13 +116,13 @@
 /* Handwritten message and city-specific printed stamps. */
 .postal-back-grid{height:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
 .postal-message{padding:7% 3% 5% 9%}
-.postal-message strong,.postal-message>span,.postal-message em{font-family:'Patrick Hand','Bradley Hand','Segoe Print',cursive;letter-spacing:0}
+.postal-message strong,.postal-message>span,.postal-message em{font-family:'Caveat','Segoe Print',cursive;letter-spacing:0}
 .postal-message strong{font-size:20px;font-weight:700;line-height:1.1;margin:0 0 7px}
 .postal-message>span{font-size:14px;line-height:1.35}
 .postal-message em{margin-top:8px;padding:0;font-size:15px;line-height:1.1;font-weight:400;font-style:normal}
 .postal-address{padding:6% 12% 4% 2%;display:flex;flex-direction:column;align-items:center;gap:5px}
 .postal-landmark-stamp{display:block;width:min(100%,95px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(1px 2px 2px #0002)}
-.postal-to{align-self:center;margin:0;font:12px/1.2 'Patrick Hand','Bradley Hand','Segoe Print',cursive;color:#4f514a}
+.postal-to{align-self:center;margin:0;font:12px/1.2 'Caveat','Segoe Print',cursive;color:#4f514a}
 @media(max-width:600px){.postal-back-grid{height:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.postal-message{padding:5% 1% 4% 7%}.postal-message strong{font-size:16px;margin-bottom:4px}.postal-message>span{font-size:11.5px;line-height:1.22}.postal-message em{margin-top:5px;font-size:12px}.postal-address{padding:5% 7% 3% 1%}.postal-landmark-stamp{width:min(100%,75px)}.postal-to{font-size:10px}}
 @media(max-width:390px){.postal-message>span{font-size:11px;line-height:1.2}.postal-landmark-stamp{width:min(100%,68px)}}
 
@@ -141,3 +141,10 @@
 .postal-message{padding:3% 8% 2% 3%;border-right:1px solid #a6a39a}
 .postal-address{padding:4% 2% 3% 8%}
 @media(max-width:600px){.postal-back-grid{height:100%;padding:5% 5% 5% 4%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.postal-message{padding:2% 6% 2% 2%}.postal-address{padding:2% 0 2% 7%}}
+
+/* A softer, connected hand for the notes. */
+.postal-message strong{font-size:23px;font-weight:600;line-height:1.05}
+.postal-message>span{font-size:18px;line-height:1.12;font-weight:500}
+.postal-message em{font-size:18px;line-height:1.1;font-weight:500}
+@media(max-width:600px){.postal-message strong{font-size:20px}.postal-message>span{font-size:15px;line-height:1.07}.postal-message em{font-size:15px}}
+@media(max-width:390px){.postal-message>span{font-size:14px;line-height:1.05}}
