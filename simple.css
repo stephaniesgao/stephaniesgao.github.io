@@ -629,6 +629,9 @@ body.camera-snapping .after-camera img{filter:brightness(1.35) drop-shadow(2px 6
 .blog-header{margin:0 0 27px;padding-bottom:23px;border-bottom:1px solid var(--line)}
 .blog-header h1{font:600 clamp(29px,5vw,34px)/1.17 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.035em;margin:0 0 14px;text-wrap:balance}
 .blog-deck{font:17px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted);margin:0 0 15px}
+.blog-audio{display:grid;gap:7px;max-width:400px;margin:0 0 18px}
+.blog-audio-label{font:13px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+.blog-audio audio{display:block;width:100%;height:38px}
 .blog-byline{font:13px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--ink);margin:0}
 .blog-contents{margin:0 0 35px!important;padding:0 0 10px;border:0;border-bottom:1px solid var(--line)}
 .blog-contents summary{font:13px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted);margin:0!important}
