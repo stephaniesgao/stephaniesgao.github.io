@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://api.github.com; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://api.github.com; img-src 'self' data:; media-src 'self' blob:; font-src 'self'; base-uri 'none'; form-action 'none'">
   <title>Blog editor | Stephanie Gao</title>
   <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
-  <link rel="stylesheet" href="admin.css?v=1">
-  <script type="module" src="admin.js?v=2"></script>
+  <link rel="stylesheet" href="admin.css?v=2">
+  <script type="module" src="admin.js?v=3"></script>
 </head>
 <body>
   <main class="admin-shell">
@@ -41,6 +41,11 @@
           <label>Subtitle<input name="subtitle"></label>
           <div class="field-row"><label>Date <small>e.g. November 2026</small><input name="date" required></label><label>Byline<input name="byline" required></label></div>
           <label>Short description<input name="excerpt"></label>
+          <div class="audio-field">
+            <div class="body-label">Audio reading <small>optional · mp3, m4a, wav or ogg</small></div>
+            <div id="audio-current" class="audio-current"></div>
+            <div class="audio-actions"><label class="audio-pick" tabindex="0" role="button">Choose audio file<input id="audio-file" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" hidden></label><button id="audio-remove" type="button" class="text-button" hidden>Remove audio</button></div>
+          </div>
           <div class="body-label">Essay</div>
           <div class="format-toolbar" role="toolbar" aria-label="Text formatting"><button type="button" data-format="bold" aria-label="Bold"><strong>B</strong></button><button type="button" data-format="italic" aria-label="Italic"><em>I</em></button><button type="button" data-format="formatBlock" data-value="p">Paragraph</button><button type="button" data-format="formatBlock" data-value="h2">Heading</button><button type="button" data-format="insertUnorderedList">List</button><button type="button" id="add-link">Link</button></div>
           <div id="body-editor" class="body-editor" contenteditable="true" role="textbox" aria-label="Essay text" aria-multiline="true" spellcheck="true"></div>
