@@ -134,3 +134,10 @@
 @keyframes postal-shuffle-left{0%{transform:translate3d(-13%,14px,-70px) rotate(-5deg)}42%{transform:translate3d(-24%,-10px,45px) rotate(-6deg)}100%{transform:translate3d(0,0,0) rotate(0)}}
 @media(max-width:600px){@keyframes postal-shuffle-right{0%{transform:translate3d(9%,12px,-55px) rotate(4deg)}42%{transform:translate3d(17%,-8px,40px) rotate(5deg)}100%{transform:translate3d(0,0,0) rotate(0)}}@keyframes postal-shuffle-left{0%{transform:translate3d(-9%,11px,-55px) rotate(-4deg)}42%{transform:translate3d(-17%,-8px,40px) rotate(-5deg)}100%{transform:translate3d(0,0,0) rotate(0)}}}
 @media(prefers-reduced-motion:reduce){.postal-entry.shuffling-in-right,.postal-entry.shuffling-in-left{animation:none}}
+
+/* Both faces are cut from the same cream photo-print stock. */
+.postal-back{background-image:url('card-paper/front.webp');background-color:transparent}
+.postal-back-grid{height:100%;padding:5.5% 5.5% 5.5% 5%;box-sizing:border-box;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.postal-message{padding:3% 8% 2% 3%;border-right:1px solid #a6a39a}
+.postal-address{padding:4% 2% 3% 8%}
+@media(max-width:600px){.postal-back-grid{height:100%;padding:5% 5% 5% 4%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.postal-message{padding:2% 6% 2% 2%}.postal-address{padding:2% 0 2% 7%}}
