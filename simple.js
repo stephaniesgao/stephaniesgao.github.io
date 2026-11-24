@@ -1,4 +1,4 @@
-import {posts} from './posts.js?v=15';
+import {posts} from './posts.js?v=16';
 import {mountTrace} from './trace-ui.js?v=2';
 const main=document.querySelector('main');
 const projectEntries=[

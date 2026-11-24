@@ -547,8 +547,6 @@ Writing: Whimsy Maxxing
 
 October 2026
 
-In defense of having a little more fun with technology.
-
 I used to be embarrassingly addicted to LinkedIn.
 I'd scroll through it the same way people scroll through Instagram or TikTok, except instead of watching people make questionable life decisions, I was reading about how someone's morning coffee taught them five lessons about entrepreneurship.
 And for a while, I genuinely enjoyed it. I liked seeing what people were building, reading about interesting ideas, and discovering people whose work I admired. Somewhere along the way, though, my feed started feeling like one enormous, never-ending corporate group project. Everyone was building something revolutionary, every minor inconvenience was a profound learning experience, and every post somehow ended with a lesson about leadership.
@@ -685,69 +683,60 @@ October 2026
 
 I've spent an unreasonable amount of time using Instinct lately.
 It started with the usual curiosity. A 23-year-old founder, a company barely a year old, an invite-only AI agent, and a $1 billion Series C at a $10 billion valuation. All this just a month after a $250 million round. People were reselling invitations, and apparently the company had spent nothing on marketing. Naturally, I wanted to see what all the fuss was about.
-I'm usually fairly skeptical of products that promise to change the way we use computers. Especially AI products. We've spent the last few years watching companies attach a chatbot to practically anything with a screen, and I think we've collectively become a little too generous with the word agent. But after using Instinct almost every day, I'm starting to think something more interesting is happening.
-Not necessarily because Instinct can do things other AI products can't. Many individual capabilities already exist elsewhere. What's interesting is how differently I've started thinking about the work I give it. I don't think much about which application to open anymore. I think about what I want to happen.
+I'm usually fairly skeptical of products that promise to change the way we use computers. Especially AI products. We've spent the last few years watching companies attach a chatbot to practically anything with a screen, and I think we've collectively become a little too generous with the word agent. But after using Instinct almost every day, I'm starting to think something more interesting is happening. Not necessarily because Instinct can do things other AI products can't. Many individual capabilities already exist elsewhere. What's interesting is how differently I've started thinking about the work I give it. I don't think much about which application to open anymore. I think about what I want to happen.
 And that might be a much bigger change than it sounds.
 We built software around the person doing the work
-The modern internet is an extraordinary collection of interfaces. We have applications for planning, writing, researching, shopping, editing, communicating, scheduling, and managing essentially every aspect of our lives. Each has its own navigation, settings, workflows, and little conventions we eventually learn to tolerate.
-For a long time, this made perfect sense. Computers were powerful but terrible at understanding what we wanted. We needed to translate our intentions into structured interactions they could execute. If I wanted to plan a trip, I would open some combination of Google Maps, booking websites, spreadsheets, and messaging apps. If I wanted to grow a YouTube channel, I'd move between my camera roll, editing software, YouTube Studio, and analytics dashboards. The work wasn't just deciding what to do. It was operating the software required to do it.
-We became very good at this, to the point where we rarely consider the amount of time spent navigating between applications to be work at all. But an agent capable of understanding an objective, selecting tools, and executing actions changes the relationship. Instead of learning how to operate each application, I can describe the outcome and let the agent figure out the intermediary steps.
+The modern internet is an extraordinary collection of interfaces. There's an application for practically everything we might want to accomplish, each with its own navigation, settings, and little conventions we eventually learn to tolerate. We've become so accustomed to operating these systems that we rarely consider how much work goes into simply using them.
+For a long time, this made perfect sense. Computers were powerful but terrible at understanding what we wanted. We needed to translate our intentions into structured interactions they could execute. If I wanted to plan a trip, I would open some combination of Google Maps, booking websites, and messaging apps. If I wanted to grow a YouTube channel, I'd move between my camera roll, editing software, and YouTube Studio. The work wasn't just deciding what to do. It was operating the software required to do it.
+We became very good at this, to the point where navigating between applications stopped feeling like work at all. But an agent capable of understanding an objective and acting on it changes that relationship. Instead of learning how to operate each application, I can describe the outcome and let the agent figure out the intermediary steps.
 This doesn't eliminate the underlying software. It changes who needs to understand it.
 A surprisingly large amount of my life is just moving information around
 One of the first things I asked Instinct to do was help with a project involving manufacturers in Buenos Aires. It researched roughly 200 companies, helped narrow the list to 30, drafted personalized outreach, and tracked the ensuing conversations.
-I've also used it to plan trips across multiple cities, researching activities and transportation. For content creation, it's helped write more than 15 scripts, set up a YouTube channel, and repurpose my Instagram Reels into daily Shorts. That channel reached 1,000 subscribers in its first two weeks. Then there are the smaller things: organizing a PR database, drafting brand pitches, responding to Instagram comments, and keeping track of applications and conversations.
+I've also used it to plan trips across multiple cities. For content creation, it's helped write more than 15 scripts and repurpose my Instagram Reels into daily YouTube Shorts. It even helped set up the channel, which reached 1,000 subscribers in its first two weeks. Then there are the smaller things, like organizing my PR database and helping me keep up with brand partnerships. There's something rather satisfying about asking a computer to handle work you've been putting off for weeks and watching it actually happen.
 None of these is conceptually extraordinary. That's precisely what makes them interesting.
-A surprisingly large part of digital work consists of taking information from one place, transforming it slightly, and putting it somewhere else. We copy things into spreadsheets, reorganize lists, check dashboards, draft messages, and remember to follow up. Most of these activities don't require particularly sophisticated judgment. They require attention, coordination, and an annoying amount of clicking.
-Until recently, automating them meant writing scripts, configuring integrations, or learning specialized tools. The effort of setting up automation often outweighed the effort of simply doing the task. An agent changes that calculation because the instructions can be expressed in ordinary language. The important improvement isn't that every individual action becomes faster. It's that tasks which previously weren't worth automating suddenly become candidates for automation.
+A surprisingly large part of digital work consists of taking information from one place, transforming it slightly, and putting it somewhere else. We spend hours copying things between applications, checking whether something has changed, and remembering what needs our attention next. Most of this doesn't require particularly sophisticated judgment. It requires an annoying amount of clicking.
+Until recently, automating these tasks meant building integrations or writing scripts yourself. The effort of setting up automation often outweighed the effort of simply doing the task. An agent changes that calculation because the instructions can be expressed in ordinary language. The important improvement isn't that every individual action becomes faster. It's that tasks which previously weren't worth automating suddenly become candidates for automation.
 And once an agent can preserve context between those actions, a task can become a recurring process without me having to reconstruct it every time.
 Noah's thesis is really about distribution
 I listened to Noah Shinn's interview on Invest Like the Best, and I think his thesis is more ambitious than simply building a better personal assistant.
 His argument is that personal agents could become the primary way people interact with technology. Rather than navigating dozens of applications, users would communicate with an agent that can operate those applications on their behalf. The agent becomes the interface between the person and everything they want to accomplish.
 This sounds like a product thesis, but I think it's equally a distribution thesis.
-For decades, the most valuable positions in consumer technology have belonged to companies that control how people discover and access other products. Search engines direct traffic to websites. App stores distribute applications. Social platforms determine which content reaches an audience. Each becomes an intermediary between users and the businesses trying to reach them.
+For decades, some of the most valuable positions in consumer technology have belonged to companies that control how people discover and access other products. Google became enormously powerful by determining which websites people visited. App stores created a similar relationship between developers and mobile users. Social platforms built entire economies around deciding what people see. Each became an intermediary between users and the businesses trying to reach them.
 If personal agents become the default interface to the internet, they could occupy a similarly powerful position.
-Imagine asking your agent to book a hotel in Tokyo. Today, hotels compete for your attention through search rankings, advertising, recommendations, loyalty programs, and interface design. But if your agent makes the decision for you, the hotel's website might never be something you visit.
-The hotel still needs to appeal to you, of course. Your preferences still matter. But the immediate decision-maker is software evaluating price, location, availability, and other constraints.
-The interesting question is what happens to businesses whose competitive advantage comes from capturing human attention rather than providing the underlying service.
+Imagine asking your agent to book a hotel in Tokyo. Today, hotels compete for your attention through search rankings, advertising, and the experience of visiting their websites. But if your agent makes the decision for you, the hotel's website might never be something you visit.
+The hotel still needs to appeal to you, of course. Your preferences still matter. But the immediate decision-maker is software evaluating the options against what it knows about you. The interesting question is what happens to businesses whose competitive advantage comes from capturing human attention rather than providing the underlying service.
 Shinn has suggested a transaction-based business model in which Instinct remains free for consumers while merchants pay for the distribution it provides. He draws comparisons to payment and distribution networks, with potential take rates depending on the value delivered. [1]
 It's a clever thesis because it doesn't require Instinct to replace every existing application. Those applications can continue operating behind the scenes. Instinct just needs to become the place where users decide what they want.
-Of course, this introduces another problem. If an agent is supposed to act in my interest but earns money from the companies it recommends, the incentives become complicated. Shinn has argued against traditional advertising precisely because an agent should not manipulate the person it represents.
-I agree with the intuition, although a transaction-based model doesn't automatically eliminate conflicts of interest. If one merchant pays a higher commission than another, the system still needs a principled way to ensure recommendations reflect the user's preferences rather than the platform's revenue.
+Of course, this introduces another problem. If an agent is supposed to act in my interest but earns money from the companies it recommends, the incentives become complicated. Shinn has argued against traditional advertising precisely because an agent should not manipulate the person it represents. I agree with the intuition, although a transaction-based model doesn't automatically eliminate conflicts of interest. If one merchant pays a higher commission than another, the system still needs a principled way to ensure recommendations reflect the user's preferences rather than the platform's revenue.
 As these agents become more capable, their business models may matter almost as much as their underlying intelligence.
 The interesting part of Instinct's growth isn't the invite list
-I've been especially interested in how Instinct managed to grow so quickly.
-In his September interview, Shinn described how the product began with roughly 200 users, mostly friends and family, each given a handful of invitations. Growth accelerated through referrals, eventually reaching a reported 10–11% daily growth rate without paid marketing. [1]
-At first glance, this looks like a familiar scarcity playbook. Restrict access, give existing users a limited number of invitations, and let exclusivity generate demand.
+I've been especially interested in how Instinct managed to grow so quickly. In his September interview, Shinn described how the product began with roughly 200 users, mostly friends and family, each given a handful of invitations. Growth accelerated through referrals, eventually reaching a reported 10–11% daily growth rate without paid marketing. [1]
+At first glance, this looks like a familiar scarcity playbook. Restrict access, make invitations difficult to obtain, and let exclusivity generate demand.
 But I think there's something more interesting underneath.
-Most software products have to teach users why they're useful. They create tutorials, demos, landing pages, and carefully orchestrated onboarding flows. With Instinct, the most compelling demonstration often comes from somebody describing what they asked it to do.
+Most software products have to teach users why they're useful. Companies spend enormous amounts of time designing onboarding experiences and convincing people to try features they might never have considered. With Instinct, the most compelling demonstration often comes from somebody describing what they asked it to do.
 Someone gives their agent a slightly ridiculous task, it figures out how to complete it, and suddenly there's a story worth sharing. The product generates its own marketing material through the things people accomplish with it.
-And these stories do something that conventional advertising struggles to achieve. They expand the range of things a potential user imagines asking a computer to do.
-I wouldn't necessarily have thought to ask an AI agent to manage a brand outreach pipeline until I saw how other people were using theirs. Someone else might see an agent cancel subscriptions, organize a wardrobe, or find a difficult-to-book reservation and realize they could use it for an entirely different problem.
-The product's utility is not fixed in the user's imagination. It grows as they encounter new examples.
-This makes word of mouth particularly powerful. Each user is both a potential customer and a source of new use cases that demonstrate the product to everyone else.
-The invitation system adds another layer. Rather than distributing unlimited access, each user receives a small number of invitations they can share. Those invitations become socially valuable, particularly when demand is high enough that people begin reselling them.
-What interests me is that Instinct is building distribution in a market where its competitors already have enormous distribution advantages.
-Meta can place an agent in applications used by billions of people. Google has Android, Search, and Gmail. OpenAI has ChatGPT. Each has an existing relationship with users and access to infrastructure that a young startup has to build or acquire.
-Instinct doesn't have those advantages. Its early growth depends on people finding the product valuable enough to introduce it to someone else.
-That gives Shinn an unusual race to run: he needs to build a sufficiently strong user relationship before incumbent platforms make similar capabilities ubiquitous.
+These stories do something that conventional advertising struggles to achieve. They expand the range of things a potential user imagines asking a computer to do. I wouldn't necessarily have thought to ask an AI agent to manage a brand outreach pipeline until I saw how other people were using theirs. Someone else might see an agent cancel subscriptions or find a difficult-to-book reservation and realize they could use it for an entirely different problem.
+The product's utility is not fixed in the user's imagination. It grows as they encounter new examples. This makes word of mouth particularly powerful because every new user becomes a potential source of use cases that demonstrate the product to everyone else.
+The invitation system amplifies this. Rather than distributing unlimited access, existing users receive a small number of invitations they can share. Those invitations become socially valuable, particularly when demand is high enough that people begin reselling them.
+What interests me is that Instinct is building distribution in a market where its competitors already have enormous advantages. Meta can place an agent in applications used by billions of people. Google controls some of the most important entry points to the internet, and OpenAI already has an established relationship with ChatGPT users. A young startup has to build that relationship from scratch.
+Instinct doesn't have those advantages. Its early growth depends on people finding the product valuable enough to introduce it to someone else. That gives Shinn an unusual race to run: he needs to build a sufficiently strong user relationship before incumbent platforms make similar capabilities ubiquitous.
 The question isn't only whether Instinct can acquire users. It's whether those users develop enough trust and dependency that an agent bundled into an existing platform becomes less attractive.
 The interface isn't disappearing. It's changing sides.
 There's a popular argument that AI agents will make interfaces obsolete. I'm sympathetic to it, but I think it's incomplete.
-Interfaces exist partly because humans need ways to understand and manipulate complex systems. If an agent can perform those manipulations for us, we may no longer need to interact with the same interfaces directly. But the underlying complexity doesn't disappear. An agent still needs to understand permissions, handle errors, preserve state, recover from failed actions, and coordinate information across services.
+Interfaces exist partly because humans need ways to understand and manipulate complex systems. If an agent can perform those manipulations for us, we may no longer need to interact with the same interfaces directly. But the underlying complexity doesn't disappear. The agent still has to deal with permissions and failed actions. It needs to preserve state across different services and know what to do when something unexpected happens.
 In some respects, this makes software more complicated, not less.
-Consider a travel booking. A person using a website can visually inspect available flights, compare prices, review the itinerary, and decide whether to purchase a ticket. An agent performing the same task needs to represent these decisions internally. It must know which preferences matter, when to request approval, and how to distinguish a successful booking from an incomplete transaction.
+Consider a travel booking. A person using a website can visually inspect available flights and decide whether to purchase a ticket. An agent performing the same task needs to represent those decisions internally. It must know which preferences matter, when to request approval, and how to distinguish a successful booking from an incomplete transaction.
 We've moved complexity away from the user, but someone still has to manage it. Microsoft's research on Hybrid Computer Use explores how agents can interact with software through programmatic tools, accessibility interfaces, and visual computer use, rather than relying on a single interaction method. [2]
 This makes me wonder whether the next generation of software will have two distinct interfaces: one designed for people, and another designed for agents acting on their behalf.
-And if agents become the primary consumers of software interfaces, the incentives for building applications may change considerably. A beautiful interface might become less important than reliable APIs, structured data, and predictable execution.
+And if agents become the primary consumers of software interfaces, the incentives for building applications may change considerably. A beautiful interface might become less important than whether an agent can reliably use the underlying service. Software that was once designed to be visually intuitive may increasingly need to be legible to machines instead.
 There's a certain irony in spending decades perfecting graphical user interfaces only to build software that operates them without us.
 Trust might be the real moat
 Instinct's growth is impressive, but the numbers I find more interesting concern trust.
 In his interview, Shinn described how roughly 40% of users had shared a personal credit card with Instinct within three weeks, and how users who connected at least one piece of sensitive information showed around 80% retention. These are company-reported figures, but they're interesting signals about the relationship people are developing with their agents. [1]
-A personal agent becomes more useful as it learns about your life. It might know which airlines you prefer, how you write emails, which brands you've worked with, and which tasks you tend to procrastinate on. More importantly, it can turn that knowledge into actions.
+A personal agent becomes more useful as it learns about your life. It might know which airlines you prefer or how you write emails. It might remember that you always choose a particular kind of hotel or that you've been meaning to follow up with someone for weeks. More importantly, it can turn that knowledge into actions.
 This creates a feedback loop. The more context the agent has, the less I need to explain. The less I need to explain, the more frequently I use it. Over time, switching to a different agent could mean losing the accumulated context that makes the experience useful.
 But that same accumulation makes the potential consequences of failure more serious. A chatbot hallucinating a restaurant recommendation is annoying. An agent making a reservation on the wrong date is inconvenient. An agent with financial access making an unauthorized purchase is something else entirely.
-I don't think these concerns are peripheral to the product. They're central to whether personal agents can become a mainstream category.
-And perhaps this is where Instinct's distribution strategy becomes particularly interesting. Acquiring a user is one thing. Becoming the agent that person trusts with their finances, communications, preferences, and daily responsibilities is something else.
+I don't think these concerns are peripheral to the product. They're central to whether personal agents can become a mainstream category. And perhaps this is where Instinct's distribution strategy becomes particularly interesting. Acquiring a user is one thing. Becoming the agent that person trusts with their finances and daily responsibilities is something else.
 A larger company might be able to distribute a competing agent to billions of people overnight, but distribution does not automatically produce trust. That relationship has to be earned through repeated, successful interactions.
 Of course, the opposite is also true. Trust can disappear remarkably quickly when a system makes a consequential mistake.
 Maybe the most important feature is having fewer features
@@ -755,14 +744,13 @@ One thing I find refreshing about Instinct is that it doesn't ask me to learn an
 Shinn has talked about building a personal assistant that can be reached through familiar forms of communication, including messages and phone calls, rather than requiring users to operate another application. [1]
 I think there's a broader lesson here about product design. For years, software companies have competed by adding capabilities, and capabilities generally become features. More buttons, more settings, more dashboards, more things to customize.
 But a product can become more capable without becoming more complicated to use. In fact, perhaps the most sophisticated thing about a good agent is how little of that sophistication the user needs to see.
-Of course, there are limits. Sometimes I want to inspect the work, change a parameter, or understand why the agent made a particular decision. A conversation isn't always the best interface for complex information. So I don't think everything should become a chat box.
-I think the more interesting possibility is that interfaces become something we request when they're useful, rather than something we're required to navigate before any work can happen.
-The default interaction could be intent. The interface appears when the task calls for it.
+Of course, there are limits. Sometimes I want to inspect the work or understand why the agent made a particular decision. A conversation isn't always the best interface for complex information. So I don't think everything should become a chat box.
+I think the more interesting possibility is that interfaces become something we request when they're useful, rather than something we're required to navigate before any work can happen. The default interaction could be intent. The interface appears when the task calls for it.
 The thing I'm actually excited about
-I don't know whether Instinct will become the dominant personal agent, or whether this category will eventually be absorbed into the products we already use. There are enormous questions around reliability, cost, privacy, and how much autonomy people genuinely want to give their software.
+I don't know whether Instinct will become the dominant personal agent, or whether this category will eventually be absorbed into the products we already use. There are enormous questions about reliability and how much autonomy people genuinely want to give their software.
 I'm also conscious that being an early user of a new AI product is a fairly privileged perspective. Most people have neither the time nor the inclination to experiment with agents until they figure out how to make them useful. For personal agents to matter at scale, they need to work for people who don't spend their weekends reading about AI.
 But I keep returning to the same observation.
-For much of computing history, we've organized our work around the limitations of software. We learned which application to use, which sequence of actions to follow, and how to move information between systems that weren't designed to cooperate. We became operators of increasingly powerful tools.
+For much of computing history, we've organized our work around the limitations of software. We learned which application to use and how to move information between systems that weren't designed to cooperate. We became operators of increasingly powerful tools.
 Now we're beginning to build software that can operate those tools for us.
 I still spend plenty of time correcting my agent, checking its work, and occasionally wondering what on earth it's doing. It is far from magic. But every so often, I ask it to do something that would previously have consumed an entire afternoon, and it just does it.
 Then I find myself wondering why I ever thought the old way was normal.
@@ -779,164 +767,84 @@ Writing: Was Lady Gaga's Meat Dress a Warning About AI?
 
 September 2026
 
-On meat proxies and the increasingly ceremonial role of having a brain.
-
 I recently came across a blog post by Niklas Gruhn titled Don't Be a Meat Proxy, and I haven't stopped thinking about it.
-
 The premise is wonderfully absurd. Someone asks a question in Slack or leaves feedback on a pull request. Instead of responding themselves, the other person copies the question into Claude, takes whatever comes back, and pastes it into the conversation. The recipient is now reading a response from an AI through a human who may not have understood, verified, or even read it.
-
 Congratulations, you've become a meat proxy. A biological API endpoint with considerably worse latency.
-
 It's a funny term, but I think it captures something much more interesting about how we're beginning to use AI. We've built systems that can generate increasingly sophisticated work with very little human involvement, but we haven't quite figured out what meaningful human involvement should look like anymore. Instead, we're creating workflows where the human is technically responsible for the output while contributing almost nothing to its production.
-
 And somehow, we've started calling this productivity.
-
 The illusion of getting more done
-
 One of the stranger consequences of generative AI is how dramatically it has changed the relationship between effort and output. A report that might have taken hours to write can now be generated in minutes. A developer can produce hundreds of lines of code without understanding every implementation detail.
-
 There's nothing inherently wrong with this. In fact, eliminating unnecessary effort is one of the best things technology can do. I've spent plenty of time building automations to avoid repetitive work, and I use AI extensively in my own projects. But I think we're beginning to confuse the volume of work produced with the amount of useful work accomplished.
-
 Consider a developer who receives a ticket, gives it to Claude Code, and submits the resulting pull request. Another developer reviews the implementation and points out a potential issue. The first developer copies the feedback into Claude, generates a fix, and pushes another commit. This repeats until the reviewer is satisfied.
-
 From the outside, the original developer appears to have completed the task. Yet it's worth asking where the actual understanding occurred. The reviewer identified the problems and determined what needed to change. The coding agent produced the modifications. The developer connecting them may have contributed little beyond transferring information between the two.
-
 This is close to the example Gruhn raises in his original essay, and I think it's especially interesting because the workflow technically functions. The code might even be good. The problem is that the person credited with the work may not be the person who understood it.
-
 Of course, using AI to implement something doesn't automatically make someone a meat proxy. An experienced engineer might delegate most of the code generation while still making architectural decisions and evaluating the result. The distinction isn't how much code someone writes themselves. It's whether they understand and contribute to the work being produced.
-
 We're accustomed to measuring productivity through completed work. Generative AI makes the visible evidence of that work extraordinarily cheap to produce, which means it tells us increasingly little about the understanding behind it.
-
 We've made writing cheaper than reading
-
 For most of the internet's history, producing a substantial piece of writing required enough effort that its existence suggested at least some investment from the author. A lengthy technical explanation usually meant someone had spent time thinking through what they wanted to communicate.
-
 That assumption is becoming less reliable.
-
 An AI-generated response can be longer and more polished than something a person would have written themselves. It can also contain far more information than the recipient needs. The sender saves time by generating it, but the recipient still has to figure out whether any of it is useful.
-
 We've reduced the cost of producing information without necessarily reducing the cost of consuming it.
-
 Suppose I ask a colleague why a particular technical decision was made. They could spend five minutes explaining the reasoning in their own words, or they could ask Claude to generate a comprehensive explanation and send me several paragraphs. The second option might take them thirty seconds. But if I now have to spend ten minutes figuring out whether the response actually answers my question, the total amount of work hasn't decreased. It's simply been transferred to me.
-
 It's a rather unfortunate trade. You save thirty minutes writing an essay nobody asked for, and I inherit the responsibility of figuring out what it means.
-
 This is what I find most frustrating about unfiltered AI output. It often creates the appearance of thoroughness while making the actual exchange of information less efficient. Sometimes the most valuable thing someone can do is understand a complicated issue well enough to explain it simply.
-
 That requires judgment. And judgment is precisely what disappears when a person forwards model output without processing it.
-
 The human in the loop might just be the bottleneck
-
 There's another irony here. We're building increasingly autonomous agents, but many workflows still require humans to manually transfer information between systems.
-
 An agent writes a document. A person copies it into another application. A second agent evaluates the document, and the person returns its feedback to the first. The cycle continues until someone is satisfied.
-
 Why is the human there?
-
 Sometimes there's a good answer. The person may need to authorize an action or assess something the systems cannot reliably evaluate. Human oversight can be genuinely valuable when it involves meaningful judgment. But in other cases, the human is only present because the systems haven't been connected.
-
 In software engineering, we generally wouldn't consider it good architecture to require a person to manually copy JSON responses between two services. We'd build an integration and let the systems communicate. Yet we routinely create equivalent workflows with AI agents and call them human-in-the-loop systems.
-
 We've somehow reinvented middleware, except the middleware needs coffee breaks and occasionally forgets to reply.
-
 This reminds me of a much older observation by Lisanne Bainbridge in her 1983 paper Ironies of Automation. Bainbridge argued that automating routine parts of a system can leave humans responsible for the very situations they are least prepared to handle. As automation improves, the remaining human role often becomes more difficult rather than less important. [2]
-
 I think we're encountering a related problem with AI agents. We keep humans involved because we want the reassurance of human oversight, but the mere presence of a human doesn't guarantee that any meaningful oversight is happening.
-
 Research on human involvement in automated decision-making adds another interesting complication. In Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making, Sele and Chugunova found that allowing people to adjust algorithmic recommendations increased their willingness to use the system, but their interventions also reduced average prediction accuracy in the experiment. The researchers observed that participants tended to follow algorithmic recommendations more closely than equivalent human recommendations. [3]
-
 I find this particularly interesting because it challenges the assumption that adding a human necessarily makes an automated system more reliable. We often treat human oversight as a safeguard, but its effectiveness depends on whether the person can independently assess the system's recommendation.
-
 A reviewer who doesn't understand the implementation they're approving isn't much of a safeguard. Neither is an employee who automatically accepts an agent's recommendation because it looks plausible.
-
 The useful human role should be explicit. What decision is this person making? What information do they have that the agent doesn't? What would cause them to reject the proposed action?
-
 If we can't answer those questions, there's a reasonable chance we've inserted a person into the workflow without giving them a meaningful function.
-
 The problem isn't delegation. It's responsibility.
-
 I don't think the solution is to use AI less. That would be a strange conclusion to draw from technology that can already perform so many useful tasks.
-
 The distinction I care about is between delegating execution and delegating judgment.
-
 When I use an agent to research companies or prepare outreach, I'm delegating work that would otherwise require considerable manual effort. But I still need to decide which companies matter and whether the research is credible enough to act on.
-
 Those decisions are often the most valuable part of the process.
-
 There's an important difference between asking AI to help formulate an argument and asking AI to decide what your argument should be. The former can make your thinking more effective. The latter can make it surprisingly easy to stop thinking altogether.
-
 This is especially apparent in writing. Language models are remarkably good at producing explanations that sound reasonable, even when the underlying reasoning is weak or the author hasn't fully understood the subject. A well-written paragraph creates an impression of competence. We've spent our entire lives using language as a signal of understanding, and now we've built systems capable of producing that signal without requiring understanding from the person presenting it.
-
 The danger isn't necessarily that the AI is wrong. It might be completely correct. The problem is that the human presenting the information may have no independent basis for evaluating it.
-
 This creates a peculiar accountability problem. When someone sends me a technical recommendation, I normally assume they're prepared to explain why they believe it. I can question their assumptions and understand how they arrived at their conclusion.
-
 But if the recommendation is generated by a model they haven't evaluated, that conversation becomes difficult. They may simply return to the model, ask it to defend its earlier answer, and forward the response. At that point, I'm not really having a discussion with another person. I'm having a discussion with a language model through someone who controls the prompt but doesn't necessarily understand the subject.
-
 Which raises the rather obvious question of why I wasn't invited to speak to Claude directly.
-
 Doing less should mean understanding more
-
 I think one of the most important skills in an AI-heavy workplace will be knowing which parts of a task deserve your attention.
-
 It's unrealistic to expect people to personally verify every line of code or every intermediate step of a sufficiently complex agentic workflow. The entire point of automation is to reduce how much work requires direct human attention. But we need better ways to determine where that attention is most valuable.
-
 For a software engineer, that might mean spending less time implementing boilerplate and more time understanding whether the system behaves correctly. For someone working in product, it might mean delegating research synthesis while retaining responsibility for deciding which customer problems are worth solving.
-
 The objective isn't to preserve human effort for its own sake. It's to make sure we're applying human effort where it changes the outcome.
-
 This is also why I think the ability to explain your work will become increasingly important. If you've delegated an implementation to an agent but can explain why it was built that way and where it might fail, you've probably contributed something meaningful. If your only response to a question is to ask the agent what it thinks, the situation is different.
-
 Of course, explanation isn't a perfect measure of understanding. People can produce convincing explanations for things they don't understand, and AI can help them do that too. But being able to reason independently about the work is still a useful standard.
-
 There's also a broader question about how we develop expertise. Much of what we know comes from the practical work of figuring things out ourselves. If we delegate more of that work, what happens to the experience we would otherwise have gained?
-
 I don't think the answer is necessarily that AI makes us less capable. Someone who actively interrogates an agent's work might learn faster than someone doing everything manually. AI can be a remarkably effective teacher, especially when it makes difficult material easier to explore.
-
 But there's a difference between using a tool to understand something and using it to avoid understanding altogether.
-
 And I suspect that difference will matter much more as these systems improve.
-
 Maybe we haven't redefined work yet
-
 I think meat proxy resonates because it gives a name to something we've all started encountering, but haven't quite figured out how to talk about.
-
 We're in an awkward transitional period where the tools can perform substantial portions of knowledge work, while our expectations of what it means to contribute haven't changed nearly as quickly.
-
 We still reward people for producing artifacts, even when producing those artifacts no longer requires much effort. Ownership often goes to whoever submitted the work, regardless of how much they understood or contributed to it.
-
 This doesn't mean AI-generated work is less valuable. In many cases, it's an extraordinary improvement. But it does mean we need to become more precise about what people are contributing.
-
 A developer who uses AI to ship a reliable system is not necessarily less valuable than one who writes every line themselves. A researcher who uses AI to investigate more hypotheses may be doing better research. The ability to accomplish something with less manual effort should generally be celebrated.
-
 What matters is whether the person has contributed something the system would not otherwise have produced.
-
 I also think there's a social dimension that gets overlooked. When someone asks a colleague a question, they may not just be requesting information. They may want that person's experience or perspective. Replacing the response with a generic AI explanation can miss the entire point of the interaction.
-
 If I wanted to know what Claude thinks, I could ask Claude. When I ask another person, I'm usually interested in what they think.
-
 Don't outsource the part that makes you useful
-
 I don't particularly care whether someone uses AI to write code or draft emails. I do both myself, and I think we're only beginning to understand how much work these systems can take off our hands.
-
 What I care about is whether the person using the tool is still participating intellectually in the process.
-
 There's a difference between being the person who decides what should happen and being the person who forwards what a model decided should happen. As AI becomes capable of handling more execution, I suspect that distinction will become increasingly important.
-
 The opportunity is enormous. We can spend less time on repetitive implementation and more time doing the thinking that previously got buried beneath it. But that only happens if we use the time we've recovered to do something more valuable.
-
 Otherwise, we end up in a strange situation where everyone is producing more work, everyone is reading more work, and nobody is particularly sure who's doing the thinking.
-
 Perhaps the most useful question to ask before sending something AI-generated isn't whether the output is good enough to pass along. It's whether you've added anything by being the person who sends it.
-
 Because if all you're doing is passing information between a person and a language model, congratulations. We've finally found a way to make computers faster by putting a human in the middle.
-
 References
-
 [1] Gruhn, N. (2026). Don't Be a Meat Proxy.
-
 [2] Bainbridge, L. (1983). Ironies of Automation. Automatica, 19(6), 775–779.
-
 [3] Sele, D., & Chugunova, M. (2024). Putting a Human in the Loop: Increasing Uptake, but Decreasing Accuracy of Automated Decision-Making. PLOS ONE, 19(2), e0298037.
 
 https://stephanie-gao-fieldnotes.stephyg.chatgpt.site/#blog/was-lady-gagas-meat-dress-a-warning-about-ai
