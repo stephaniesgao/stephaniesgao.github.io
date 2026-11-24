@@ -155,7 +155,8 @@ async function publish(nextPosts,message){
 
 $('#setup-form').addEventListener('submit',async event=>{
   event.preventDefault();
-  const data=new FormData(event.currentTarget);
+  const setupForm=event.currentTarget;
+  const data=new FormData(setupForm);
   const passphrase=String(data.get('passphrase'));
   if(passphrase!==data.get('confirm')){notice('The passphrases do not match.','error');return}
   token=String(data.get('token')).trim();
@@ -163,14 +164,15 @@ $('#setup-form').addEventListener('submit',async event=>{
   try{
     await confirmOwner();
     localStorage.setItem(vaultKey,await encryptToken(token,passphrase));
-    event.currentTarget.reset();showWorkspace();
+    setupForm.reset();showWorkspace();
   }catch(error){token=null;notice(error.message,'error')}
 });
 $('#unlock-form').addEventListener('submit',async event=>{
   event.preventDefault();notice('Unlocking…');
+  const unlockForm=event.currentTarget;
   try{
-    token=await decryptToken(localStorage.getItem(vaultKey),String(new FormData(event.currentTarget).get('passphrase')));
-    await confirmOwner();event.currentTarget.reset();showWorkspace();
+    token=await decryptToken(localStorage.getItem(vaultKey),String(new FormData(unlockForm).get('passphrase')));
+    await confirmOwner();unlockForm.reset();showWorkspace();
   }catch(error){token=null;notice(error.name==='OperationError'?'That passphrase did not unlock the editor.':error.message,'error')}
 });
 $('#lock').addEventListener('click',lockEditor);
