@@ -544,3 +544,13 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .hike-popup .mountain-detail h3{color:#3d352b}
 .hike-popup .mountain-detail-kicker{display:none}
 @media(max-width:650px){.hike-popup .mountain-map{bottom:95px}}
+
+/* Hold the lens flare fully white while the two camera faces switch. */
+.camera-popup .camera-object{aspect-ratio:1380/860}
+.camera-popup .camera-object::after{inset:-14% -12%;background:radial-gradient(ellipse 70% 60% at center,#fff 0 72%,rgba(255,255,255,.96) 84%,transparent 100%),radial-gradient(ellipse 88% 14% at center,rgba(255,255,255,.94),transparent 100%)}
+.camera-popup .camera-object.is-flashing::after{animation:camera-lens-flare .65s ease-out both}
+@keyframes camera-lens-flare{0%{opacity:0}22%{opacity:.85}30%,58%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.camera-popup .camera-object.is-flashing::after{animation:none}}
+.camera-popup .camera-object::after{inset:0;border-radius:20%;background:radial-gradient(ellipse 78% 76% at center,#fff 0 68%,rgba(255,255,255,.96) 80%,transparent 100%),radial-gradient(ellipse 82% 13% at center,rgba(255,255,255,.94),transparent 100%)}
+.camera-popup .camera-object::after{inset:0;border-radius:0;background:radial-gradient(ellipse 56% 48% at center,#fff 0 23%,rgba(255,255,255,.93) 42%,rgba(255,255,255,.35) 68%,transparent 100%),radial-gradient(ellipse 92% 7% at center,rgba(255,255,255,.88),rgba(255,255,255,.2) 58%,transparent 100%)}
+.camera-popup .camera-object.is-concealing .camera-front,.camera-popup .camera-object.is-concealing .camera-back{opacity:0}

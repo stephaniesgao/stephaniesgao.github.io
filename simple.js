@@ -203,19 +203,28 @@ agentMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>agentM
 main.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.camera-back')){e.preventDefault();turnCamera(e.target.closest('.camera-object'),false)}});
 function turnCamera(obj,toBack){
   if(obj._flashTimer)return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    obj.classList.toggle('is-flipped',toBack);
+    obj.querySelector('.camera-front').hidden=toBack;
+    obj.querySelector('.camera-back').hidden=!toBack;
+    obj.querySelector('.camera-front').setAttribute('aria-expanded',String(toBack));
+    return;
+  }
   const popup=obj.closest('.camera-popup');
   obj.classList.remove('is-flashing');
   void obj.offsetWidth;
   obj.classList.add('is-flashing');
   if(popup){popup.classList.remove('is-transitioning');void popup.offsetWidth;popup.classList.add('is-transitioning')}
+  setTimeout(()=>obj.classList.add('is-concealing'),140);
   obj._flashTimer=setTimeout(()=>{
     obj.classList.toggle('is-flipped',toBack);
     obj.querySelector('.camera-front').hidden=toBack;
     obj.querySelector('.camera-back').hidden=!toBack;
     obj.querySelector('.camera-front').setAttribute('aria-expanded',String(toBack));
     obj._flashTimer=null;
-  },180);
-  setTimeout(()=>{obj.classList.remove('is-flashing');popup?.classList.remove('is-transitioning')},500);
+  },240);
+  setTimeout(()=>obj.classList.remove('is-concealing'),440);
+  setTimeout(()=>{obj.classList.remove('is-flashing');popup?.classList.remove('is-transitioning')},650);
 }
 function openCamera(){
   if(document.querySelector('.camera-popup[open]'))return;
