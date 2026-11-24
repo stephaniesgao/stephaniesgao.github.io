@@ -581,3 +581,7 @@ html[data-theme=dark] .after-dance .pointe-shoes{mix-blend-mode:screen}
 .camera-popup .camera-object.is-flashing::after{animation:camera-lens-sweep .41s cubic-bezier(.2,.55,.3,1) both}
 @keyframes camera-lens-sweep{0%{opacity:0;transform:translateX(-17%) scale(.62) rotate(-5deg)}25%{opacity:.85;transform:translateX(-7%) scale(.91) rotate(-2deg)}42%,54%{opacity:1;transform:translateX(0) scale(1.04) rotate(0)}100%{opacity:0;transform:translateX(19%) scale(.72) rotate(4deg)}}
 @media(prefers-reduced-motion:reduce){.camera-popup .camera-object.is-flashing::after{animation:none}}
+
+/* Keep the real geographic map legible above the illustrated paper. */
+.hike-popup .mountain-map{opacity:.84;pointer-events:auto;mix-blend-mode:normal;mask-image:linear-gradient(to bottom,black 0%,black 82%,transparent 100%)}
+.hike-popup .mountain-map .leaflet-tile-pane{opacity:1;mix-blend-mode:normal}
