@@ -91,3 +91,302 @@ body:has(.place-table){overflow-x:clip}
 ::view-transition-group(stage-away),::view-transition-group(stage-in){animation-duration:.6s;animation-timing-function:cubic-bezier(.25,.8,.25,1)}
 ::view-transition-old(stage-away),::view-transition-new(stage-away),::view-transition-old(stage-in),::view-transition-new(stage-in){height:100%;object-fit:contain}
 @media(prefers-reduced-motion:reduce){.after-hours.room.is-dancing .shelf .strip-thumb,.tv-screen.is-static::after{animation:none}}
+.after-hours .turntable-deck,.after-hours .tiny-tv{cursor:pointer}
+
+/* ---------- Outside of work: scroll story ---------- */
+.ow .room-heading{margin-bottom:6px}
+.ow-list{display:flex;flex-direction:column;gap:clamp(56px,10vw,110px);margin:24px 0 30px}
+.ow-item{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:clamp(18px,4vw,40px)}
+.ow-item:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+.ow-item:nth-child(even) .ow-stage{order:2}
+.ow-stage{position:relative;display:grid;place-items:center;min-height:230px}
+.ow-stage .after-object{width:100%;max-width:330px;margin:0 auto;cursor:pointer}
+.ow-stage img{display:block;width:100%;height:auto;-webkit-user-drag:none;user-select:none}
+.ow-stage .camera-object,.ow-stage .camera-object>*{width:100%}
+.ow-stage button{padding:0;border:0;background:none;display:block;width:100%;color:inherit}
+.ow-copy{min-width:0}
+.ow-label{display:block;font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.ow-line{margin:6px 0 10px;font-size:clamp(16px,2.1vw,19px)!important;line-height:1.4!important;color:var(--ink)!important;max-width:22em}
+.ow-hint{margin:0;font-size:11px;color:var(--muted);transition:color .2s}
+.ow-item:hover .ow-hint{color:var(--ink)}
+
+/* entrance + wake-up */
+.ow-item .ow-stage{opacity:0;translate:0 46px;rotate:-2.5deg;transition:opacity .7s ease,translate .9s cubic-bezier(.2,.8,.2,1),rotate .9s cubic-bezier(.2,.8,.2,1)}
+.ow-item:nth-child(even) .ow-stage{rotate:2.5deg}
+.ow-item .ow-copy{opacity:0;translate:0 18px;transition:opacity .7s ease .15s,translate .8s cubic-bezier(.2,.8,.2,1) .15s}
+.ow-item.is-in .ow-stage,.ow-item.is-in .ow-copy{opacity:1;translate:0 0;rotate:0deg}
+.ow-stage .after-object{transition:scale .3s cubic-bezier(.3,1.5,.5,1)}
+.ow-stage .after-object:hover{scale:1.03}
+.ow-stage .after-object:active{scale:.97}
+.ow-music.is-in .vinyl{animation:ow-spin 9s linear infinite}
+.ow-music.is-playing .vinyl{animation-duration:1.8s}
+@keyframes ow-spin{to{rotate:360deg}}
+.ow-trails.is-in .trail-map-folded{animation:ow-rustle 4.5s ease-in-out infinite;transform-origin:30% 90%}
+@keyframes ow-rustle{0%,82%,100%{rotate:0deg}86%{rotate:-2deg}90%{rotate:1.6deg}94%{rotate:-.8deg}}
+.ow-films.is-in .tv-screen{animation:ow-tv-on .7s ease-out both}
+@keyframes ow-tv-on{0%{filter:brightness(3) contrast(.2);clip-path:inset(49% 0 49% 0)}35%{clip-path:inset(0 0 0 0)}100%{filter:none;clip-path:inset(0 0 0 0)}}
+.ow-stage .turntable-deck,.ow-stage .tiny-tv{cursor:pointer}
+
+/* dance break: the whole page bops */
+.ow.is-dancing .ow-item:not(.ow-dance) .ow-stage .after-object{animation:ow-bop .62s ease-in-out infinite alternate}
+.ow.is-dancing .ow-item:nth-child(odd):not(.ow-dance) .ow-stage .after-object{animation-delay:-.31s}
+@keyframes ow-bop{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-9px) rotate(2deg)}}
+
+/* books open in place */
+.ow-book-open{width:100%}
+.ow-book-spread{display:grid;grid-template-columns:1fr 1fr;filter:drop-shadow(0 12px 16px #0000004d);animation:ow-book-open .55s cubic-bezier(.2,.8,.2,1) both;transform-origin:50% 50%}
+@keyframes ow-book-open{from{opacity:0;transform:perspective(900px) rotateX(12deg) scaleX(.2)}to{opacity:1;transform:none}}
+.ow-book-page{display:flex;flex-direction:column;gap:8px;min-height:220px;padding:20px 16px;background:#f1ece2;color:#2d2a25;text-align:left}
+.ow-book-page:first-child{border-radius:4px 0 0 4px;box-shadow:inset -14px 0 16px -10px #6d63533d}
+.ow-book-page:last-child{border-radius:0 4px 4px 0;box-shadow:inset 14px 0 16px -10px #6d63533d}
+body:has(.after-hours) .ow-book-page small{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#7a7163}
+body:has(.after-hours) .ow-book-page strong{font:600 17px/1.2 Georgia,'Times New Roman',serif!important}
+.ow-book-page p{margin:0;font-size:12px!important;line-height:1.5!important;color:#4c463d!important}
+
+/* camera back sits where the front was */
+.ow-camera .camera-back{position:relative;display:block;width:100%;cursor:pointer}
+.ow-camera .camera-back-image{width:100%}
+
+@media(max-width:640px){
+  .ow-item,.ow-item:nth-child(even){grid-template-columns:1fr;gap:14px}
+  .ow-item:nth-child(even) .ow-stage{order:0}
+  .ow-stage{min-height:0}
+  .ow-stage .after-object{max-width:300px}
+  .ow-book-page{min-height:0;padding:16px 12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ow-item .ow-stage,.ow-item .ow-copy{opacity:1;translate:none;rotate:none;transition:none}
+  .ow-music .vinyl,.ow-trails .trail-map-folded,.ow-films .tv-screen,.ow.is-dancing .after-object,.ow-book-spread{animation:none!important}
+}
+.ow .ow-stage .after-object{height:auto!important;min-height:0!important;max-height:none!important;display:block}
+.ow .ow-stage .camera-object{height:auto!important}
+.ow .ow-music .record-player{position:static!important;inset:auto!important;transform:none!important;translate:none!important;width:100%!important;max-width:none!important;margin:16px 0 0!important;animation:ow-drop .45s cubic-bezier(.2,.8,.2,1) both;box-shadow:none}
+.ow .ow-music .record-player iframe{display:block;border:0;border-radius:12px}
+@keyframes ow-drop{from{opacity:0;translate:0 -10px}to{opacity:1;translate:0 0}}
+
+/* ---------- Outside of work: turning platform ---------- */
+.ow2 .room-heading{margin-bottom:0}
+.ring{position:relative;height:clamp(280px,48vw,370px);margin:8px 0 0;perspective:1100px;perspective-origin:50% 30%;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;outline:none}
+.ring.is-dragging{cursor:grabbing}
+.ring-track{position:absolute;inset:0;transform-style:preserve-3d}
+.ring-floor{position:absolute;left:50%;bottom:4%;width:min(92%,560px);aspect-ratio:3.4;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,#00000038,#0000001a 62%,transparent);pointer-events:none}
+:root[data-theme=dark] .ring-floor{background:radial-gradient(closest-side,#ffffff12,#ffffff08 60%,transparent)}
+.ring-item{position:absolute;left:50%;bottom:14%;transform-origin:50% 100%;width:clamp(150px,34vw,240px);margin-left:calc(clamp(150px,34vw,240px) / -2);transform-style:preserve-3d;will-change:transform;outline:none}
+.ring-item:focus-visible .ring-object{outline:1px dashed var(--muted);outline-offset:8px}
+.ring-object{transform-origin:50% 100%;transition:scale .3s cubic-bezier(.3,1.5,.5,1)}
+.ring-item.is-front{cursor:pointer}
+.ring-item.is-front:hover .ring-object{scale:1.04}
+.ring-item.is-front:active .ring-object{scale:.97}
+.ring-item:not(.is-front) *{pointer-events:none}
+.ring .after-object{width:100%;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;display:block}
+.ring img{display:block;width:100%;height:auto;-webkit-user-drag:none}
+.ring button{display:block;width:100%;padding:0;border:0;background:none;color:inherit}
+.ring .tonearm,.ring .record-skip{pointer-events:none}
+.ring-item[data-ow="music"] .vinyl{animation:ow-spin 10s linear infinite}
+.ring-item[data-ow="music"].is-playing .vinyl{animation-duration:1.8s}
+.ring-item[data-ow="trails"].is-front .trail-map-folded{animation:ow-rustle 4.5s ease-in-out infinite;transform-origin:30% 90%}
+.ow2.is-dancing .ring-item:not([data-ow="dance"]) .ring-object{animation:ow-bop .62s ease-in-out infinite alternate}
+.ow2.is-dancing .ring-item:nth-child(odd) .ring-object{animation-delay:-.31s}
+.ring-info{min-height:120px;max-width:460px;margin:6px auto 0;text-align:center}
+.ring-info .ow-line{margin:6px auto 8px}
+.ring-extra:not(:empty){margin-top:16px;animation:ow-drop .45s cubic-bezier(.2,.8,.2,1) both}
+.ring-extra iframe{display:block;width:100%;border:0;border-radius:12px}
+.ring-extra .ow-book-spread{text-align:left}
+
+/* the camera is a box: front photo, back photo, and real sides */
+.cam3d{container-type:inline-size;perspective:900px;aspect-ratio:3/2}
+.cam3d-body{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-7deg) rotateY(-16deg);transition:transform .5s cubic-bezier(.35,.7,.25,1)}
+.cam3d.is-flipped .cam3d-body{transform:rotateX(-7deg) rotateY(164deg)}
+.ring-item.is-front:hover .cam3d:not(.is-flipped) .cam3d-body{transform:rotateX(-9deg) rotateY(-24deg)}
+.cam3d-face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cam3d-front{inset:0;transform:translateZ(8cqw)}
+.cam3d-front img{width:100%}
+.cam3d-back{inset:0;transform:rotateY(180deg) translateZ(8cqw)}
+.cam3d-back>img{position:absolute;left:5.2%;top:7.3%;width:90%!important}
+@media(prefers-reduced-motion:reduce){.cam3d-body{transition:none}.ring-item .vinyl,.ring-item .trail-map-folded,.ow2.is-dancing .ring-object{animation:none!important}}
+.ring-track{pointer-events:none}
+.ring-item{pointer-events:auto}
+
+/* camera screen: two preview tiles inside the LCD */
+.cam3d .cam3d-back .camera-screen{position:absolute;left:30.4%;top:35%;width:31.5%;height:32%;display:block;padding:.9cqw;margin:0;border:0;border-radius:.8cqw;background:#0c0d0e;overflow:hidden;opacity:1}
+.cam3d .cam3d-back .camera-screen-label{display:none}
+.cam3d .cam3d-back .camera-profiles{display:grid;grid-template-columns:1fr 1fr;gap:.9cqw;height:100%;margin:0}
+.cam3d .cam3d-back .camera-profiles a{position:relative;display:block;min-height:0;height:100%;padding:0;border:0;border-radius:.5cqw;overflow:hidden;background:#1d1d1d;color:#fff;text-decoration:none}
+.cam3d .cam3d-back .camera-profiles a>span{font:inherit}
+.cam3d .cam3d-back .camera-profile-mark,.cam3d .cam3d-back .camera-profile-arrow{display:none}
+.cam3d .cam3d-back .camera-mini-feed{position:absolute;inset:0;display:grid;grid-auto-rows:1fr;gap:1px}
+.cam3d .cam3d-back .camera-mini-feed img{width:100%!important;height:100%;object-fit:cover}
+.cam3d .cam3d-back .camera-profile-name{position:absolute;left:0;right:0;bottom:0;display:block;padding:2.2cqw .8cqw .6cqw;background:linear-gradient(#0000,#000d);font-size:1.55cqw;font-weight:600;line-height:1.1}
+.cam3d .cam3d-back .camera-profile-name small{display:block;margin-top:.2cqw;font-size:1.15cqw;font-weight:400;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam3d .cam3d-back .camera-profiles a:hover img{filter:brightness(1.12)}
+
+/* the camera, big */
+.cam-popup{width:min(640px,calc(100vw - 32px));max-width:none;max-height:none;padding:40px 8px 12px;border:0;background:transparent;overflow:visible;color:#eee}
+.cam-popup::backdrop{background:#000000b8}
+.cam-popup .cam3d{width:100%;cursor:pointer}
+.cam-popup .cam3d-body{transition:transform .5s cubic-bezier(.35,.7,.25,1)}
+.cam-popup-close{position:absolute;right:8px;top:0;width:30px;height:30px;padding:0;border:1px solid #eee9dc;border-radius:50%;background:#1d1c1a;color:#eee9dc;font-size:20px;line-height:26px;cursor:pointer}
+.cam-popup-hint{margin:14px 0 0;text-align:center;font-size:11px;color:#cfcac0}
+
+/* a book slides out of the shelf before it opens */
+
+/* book text: no handwriting */
+body .books-popup .book-page h3{font:italic 400 clamp(14px,1.8vw,19px)/1.2 Georgia,'Times New Roman',serif!important}
+body .books-popup .book-page .book-title{font:600 clamp(15px,1.9vw,20px)/1.2 Georgia,'Times New Roman',serif!important}
+body .books-popup .book-synopsis{font:clamp(11.5px,1.25vw,14px)/1.45 'Helvetica Neue',Helvetica,Arial,sans-serif!important}
+
+/* a smaller map */
+body .hike-popup{width:min(560px,calc(100% - 28px));max-height:min(80vh,600px);padding:20px}
+body .hike-popup h2{font-size:19px;margin-bottom:12px}
+body .hike-popup .leaflet-container{height:min(48vh,340px)!important}
+
+/* the camera is flat: the back swaps in under the flash */
+.cam3d{perspective:none}
+.cam3d .cam3d-body,.cam3d.is-flipped .cam3d-body,.ring-item.is-front:hover .cam3d:not(.is-flipped) .cam3d-body,.cam-popup .cam3d-body{transform:none!important;transition:none!important}
+.cam3d .cam3d-face{transform:none!important;backface-visibility:visible;transition:none}
+.cam3d .cam3d-back{opacity:0;pointer-events:none}
+.cam3d.is-flipped .cam3d-back{opacity:1;pointer-events:auto}
+.cam3d.is-flipped .cam3d-front{opacity:0}
+
+/* flat camera: the front photo sets the size, the back photo sits exactly on top */
+.cam3d{height:auto!important;aspect-ratio:auto}
+.cam3d .cam3d-body{height:auto}
+.cam3d .cam3d-front{position:relative;inset:auto}
+.cam3d .cam3d-back{position:absolute;inset:0;display:flex;align-items:center}
+.cam3d .cam3d-back>img{position:static;width:100%!important;left:auto;top:auto}
+.cam3d .cam3d-back .camera-screen{left:20.8%;top:42.6%;width:54.6%;height:43%}
+.cam-popup-close,.books-popup .content-close,.hike-popup .content-close{display:none!important}
+.cam-popup{padding-top:12px}
+
+/* every object sits on the same centre line */
+.ring{perspective-origin:50% 50%}
+.ring-item{top:50%;bottom:auto;transform-origin:50% 50%}
+.ring-object{transform-origin:50% 50%}
+
+/* the book that comes off the shelf: spine cut from the shelf photo, cover from the cover photo */
+.flying-book{position:fixed;inset:auto;margin:0;padding:0;border:0;background:none;overflow:visible;transform-style:preserve-3d;transform-origin:50% 50%;pointer-events:none}
+.flying-book::backdrop{display:none}
+.flying-book>div{position:absolute;top:0;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fb-spine{left:0;width:100%;transform:translateZ(calc(var(--W) / 2));background:url(objects/books-v3-photo.webp) no-repeat;filter:drop-shadow(0 8px 10px #0005)}
+.fb-cover{left:calc((var(--T) - var(--W)) / 2);width:var(--W);transform:rotateY(90deg) translateZ(calc(var(--T) / 2));background:url(objects/book-cover-photo.webp) center/100% 100% no-repeat}
+.fb-pages{left:calc((var(--T) - var(--W)) / 2);width:var(--W);height:4%!important;top:-2%!important;transform:rotateX(90deg);background:#e7dcc4}
+.books-open img.is-missing-book{-webkit-mask:linear-gradient(90deg,#000 40.8%,#0000 40.8% 53.9%,#000 53.9%);mask:linear-gradient(90deg,#000 40.8%,#0000 40.8% 53.9%,#000 53.9%)}
+
+/* mountain map: a clean card, legible list and details */
+.peaks-popup{--pk-bg:#f7f4ee;--pk-ink:#24221f;--pk-muted:#77716a;--pk-line:#e2ddd3;--pk-accent:#b4532a;width:min(720px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 40px);padding:0;border:0;border-radius:14px;background:var(--pk-bg);color:var(--pk-ink);overflow:hidden;box-shadow:0 24px 60px #0007;display:flex;flex-direction:column}
+.peaks-popup:not([open]){display:none}
+:root[data-theme=dark] .peaks-popup{--pk-bg:#1e1d1b;--pk-ink:#ece8e1;--pk-muted:#a39d94;--pk-line:#34322e;--pk-accent:#e08a5f}
+.peaks-popup::backdrop{background:#000000a6}
+body .peaks-popup *{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+.peaks-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 20px 12px}
+body .peaks-head h2{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--pk-ink)}
+.peaks-head span{font-size:12px;color:var(--pk-muted)}
+.peaks-map{flex:none;height:min(42vh,330px);background:#dfe3e1;border-block:1px solid var(--pk-line)}
+.peaks-map .leaflet-tile-pane{filter:saturate(.55) sepia(.12) contrast(.95)}
+:root[data-theme=dark] .peaks-map .leaflet-tile-pane{filter:invert(.9) hue-rotate(180deg) saturate(.4) brightness(.95)}
+.peaks-pin span{display:block;width:14px;height:14px;border-radius:50%;background:var(--pk-accent);border:2.5px solid #fff;box-shadow:0 1px 4px #0006;transition:transform .2s}
+.peaks-pin.is-selected span{transform:scale(1.45);background:#111}
+:root[data-theme=dark] .peaks-pin.is-selected span{background:#fff;border-color:#111}
+.peaks-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);min-height:0;overflow:hidden}
+.peaks-list{margin:0;padding:8px 0;list-style:none;max-height:min(30vh,240px);overflow:auto;border-right:1px solid var(--pk-line)}
+.peaks-list li{margin:0;padding:0}
+.peaks-list button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;padding:8px 20px;border:0;background:none;text-align:left;color:var(--pk-ink);cursor:pointer}
+.peaks-list button span{font-size:14px;line-height:1.3}
+.peaks-list button small{font-size:12px;color:var(--pk-muted)}
+.peaks-list button:hover{background:color-mix(in srgb,var(--pk-ink) 5%,transparent)}
+.peaks-list button[aria-pressed=true]{background:color-mix(in srgb,var(--pk-accent) 13%,transparent);box-shadow:inset 3px 0 0 var(--pk-accent)}
+.peaks-detail{padding:16px 20px 18px;overflow:auto;max-height:min(30vh,240px)}
+body .peaks-detail h3{margin:0 0 2px;font:600 20px/1.2 Georgia,'Times New Roman',serif!important;color:var(--pk-ink)}
+.peaks-detail p{margin:0 0 10px;font-size:14px!important;line-height:1.5!important;color:var(--pk-ink)}
+.peaks-detail .peaks-meta{font-size:13px!important;color:var(--pk-muted)}
+.peaks-detail .peaks-coords{font-size:12px!important;color:var(--pk-muted);font-variant-numeric:tabular-nums}
+.peaks-detail .peaks-empty{color:var(--pk-muted)}
+.peaks-detail a{font-size:13px;color:var(--pk-accent)}
+@media(max-width:600px){
+  .peaks-map{height:min(36vh,260px)}
+  .peaks-body{grid-template-columns:1fr;overflow:auto}
+  .peaks-list{max-height:none;border-right:0;border-bottom:1px solid var(--pk-line)}
+  .peaks-detail{max-height:none}
+}
+
+/* camera screen: real-looking profile previews, sitting inside the LCD */
+.cam3d .cam3d-back .camera-screen{left:22.6%;top:43.9%;width:55.8%;height:46.6%;padding:.8cqw;border-radius:.5cqw;background:#0b0b0c}
+.cam3d .cam3d-back .camera-profiles{gap:.8cqw}
+.cam3d .cam3d-back .camera-profiles a{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;align-items:center;gap:.7cqw .7cqw;padding:.9cqw;border-radius:.6cqw}
+.cam3d .cam3d-back .camera-profiles a[href*="instagram"]{background:#fff;color:#111}
+.cam3d .cam3d-back .camera-profiles a[href*="tiktok"]{background:#000;color:#fff}
+.cam3d .cam3d-back .camera-profile-mark{display:grid;place-items:center;grid-area:1/1;width:3cqw;height:3cqw;border-radius:.8cqw}
+.cam3d .cam3d-back .camera-profile-mark svg{width:2cqw;height:2cqw}
+.cam3d .cam3d-back a[href*="instagram"] .camera-profile-mark{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff}
+.cam3d .cam3d-back a[href*="tiktok"] .camera-profile-mark{background:#000;color:#fff}
+.cam3d .cam3d-back a[href*="tiktok"] .camera-profile-mark svg{filter:drop-shadow(-.15cqw -.1cqw 0 #25f4ee) drop-shadow(.15cqw .1cqw 0 #fe2c55)}
+.cam3d .cam3d-back .camera-profile-name{position:static;grid-area:1/2;padding:0;background:none;font-size:0;line-height:1}
+.cam3d .cam3d-back .camera-profile-name small{display:block;margin:0;font-size:1.45cqw;font-weight:700;opacity:1;color:inherit}
+.cam3d .cam3d-back .camera-mini-feed{position:relative;inset:auto;grid-area:2/1/3/3;height:100%;min-height:0;display:grid;gap:.25cqw;overflow:hidden;border-radius:.3cqw}
+.cam3d .cam3d-back .camera-mini-instagram{grid-template-columns:1fr 1fr}
+.cam3d .cam3d-back .camera-mini-tiktok::after{content:'';position:absolute;left:50%;top:50%;width:3.4cqw;height:3.4cqw;translate:-50% -50%;border-radius:50%;background:#0008 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M7 5l8 5-8 5z' fill='white'/%3E%3C/svg%3E") center/60% no-repeat}
+.cam3d .cam3d-back .camera-profile-arrow{display:block;grid-area:3/1/4/3;font-size:0;text-align:center}
+.cam3d .cam3d-back .camera-profile-arrow::before{content:'View profile';display:block;padding:.45cqw 0;border-radius:.4cqw;font-size:1.25cqw;font-weight:600}
+.cam3d .cam3d-back a[href*="instagram"] .camera-profile-arrow::before{background:#0095f6;color:#fff}
+.cam3d .cam3d-back a[href*="tiktok"] .camera-profile-arrow::before{background:#fe2c55;color:#fff}
+
+/* screen previews pinned to the back photo's LCD (measured: 19.8–74.4% across, 37.1–85.4% down) */
+.cam3d .cam3d-back{inset:auto;left:0;top:50%;width:100%;translate:0 -50%;display:block}
+.cam3d .cam3d-back>img{display:block}
+.cam3d .cam3d-back .camera-screen{left:19.8%;top:37.1%;width:54.6%;height:48.3%;border-radius:.3cqw}
+.cam3d .cam3d-back .camera-profile-arrow{font-size:0!important;line-height:0!important;color:transparent}
+.cam3d .cam3d-back .camera-profile-arrow::before{line-height:1.2}
+
+/* record player: still until you play it, needle swings onto the record */
+.ring-item[data-ow="music"] .vinyl{animation:ow-spin 3.6s linear infinite;animation-play-state:paused}
+.ring-item[data-ow="music"].is-playing .vinyl{animation-play-state:running;animation-duration:3.6s}
+.ring-item[data-ow="music"] .tonearm{transition:transform .55s cubic-bezier(.2,.75,.3,1)}
+.ring-item[data-ow="music"].is-playing .tonearm{transform:rotate(38deg)}
+
+/* flying book: the cover photo without its own spine strip, so the 3D spine joins it cleanly */
+.fb-cover{background:url(objects/book-cover-photo.webp) 100% 50%/109% 100% no-repeat}
+
+/* map keeps its trail-map character: topo tiles, paper tint, inked peaks */
+.peaks-popup{--pk-bg:#f1e8d6;--pk-ink:#2b2620;--pk-muted:#6f6456;--pk-line:#d8cbb2;--pk-accent:#a2402a;background:var(--pk-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-theme=dark] .peaks-popup{--pk-bg:#2a251e;--pk-ink:#efe6d6;--pk-muted:#b6a993;--pk-line:#463d31;--pk-accent:#e0896a}
+body .peaks-head h2{font:italic 600 21px/1.2 Georgia,'Times New Roman',serif!important;letter-spacing:-.01em}
+.peaks-head span{font-variant:small-caps;letter-spacing:.06em}
+.peaks-map{background:#e9dfc7}
+.peaks-map .leaflet-tile-pane{filter:sepia(.45) saturate(.75) contrast(.96) brightness(1.02)}
+:root[data-theme=dark] .peaks-map .leaflet-tile-pane{filter:sepia(.5) saturate(.6) brightness(.82) contrast(1.05)}
+.peaks-map::after{content:'';position:absolute;inset:0;z-index:401;pointer-events:none;box-shadow:inset 0 0 40px #6b4f2a40}
+.peaks-map{position:relative}
+.peaks-pin{color:var(--pk-accent);filter:drop-shadow(0 1px 0 #fff8) drop-shadow(0 1px 2px #0005)}
+.peaks-pin svg{width:26px;height:26px;fill:#f6eedc;stroke:currentColor;stroke-width:2;stroke-linejoin:round;transition:transform .2s;transform-origin:50% 85%}
+.peaks-pin.is-selected svg{transform:scale(1.35);fill:currentColor;stroke:#2b2620}
+.peaks-pin span{display:none}
+.peaks-list button[aria-pressed=true]{background:color-mix(in srgb,var(--pk-accent) 12%,transparent)}
+.peaks-popup .leaflet-control-attribution{background:#f1e8d6cc;color:#6f6456;font-size:9px}
+
+/* the map is the unfolded paper trail map, with the real map printed onto it */
+.peaks-popup,:root[data-theme=dark] .peaks-popup{--pk-ink:#2f2416;--pk-muted:#6c5a41;--pk-line:#c9b48e;--pk-accent:#9c3b22;--pk-label:#f6eedcf2;width:min(760px,calc(100vw - 32px));padding:18px;gap:12px;border-radius:6px;background:#d9c49a url(objects/mountain-map-open-v2.jpg) center/cover no-repeat;color:var(--pk-ink);box-shadow:0 30px 70px #000a}
+.peaks-head{align-self:flex-start;padding:8px 14px;border-radius:3px;background:var(--pk-label);box-shadow:0 1px 3px #3b2a1340;gap:16px}
+body .peaks-head h2{color:var(--pk-ink)}
+.peaks-head span{color:var(--pk-muted)}
+.peaks-map,:root[data-theme=dark] .peaks-map{height:min(40vh,320px);border:0;border-radius:3px;background:transparent;mix-blend-mode:multiply;opacity:.92}
+.peaks-map .leaflet-tile-pane,:root[data-theme=dark] .peaks-map .leaflet-tile-pane{filter:grayscale(1) sepia(.55) contrast(.92) brightness(1.12)}
+.peaks-map::after{box-shadow:none}
+.peaks-popup .leaflet-container{background:transparent}
+.peaks-popup .leaflet-control-zoom a{background:var(--pk-label);color:var(--pk-ink);border-color:var(--pk-line)}
+.peaks-popup .leaflet-control-attribution{background:#f6eedccc;color:var(--pk-muted)}
+.peaks-body{gap:12px;overflow:visible}
+.peaks-list,.peaks-detail{border:0;border-radius:3px;background:var(--pk-label);box-shadow:0 1px 3px #3b2a1340}
+.peaks-list{border-right:0}
+.peaks-list button{color:var(--pk-ink)}
+.peaks-list button small{color:var(--pk-muted)}
+.peaks-detail p,.peaks-detail h3{color:var(--pk-ink)!important}
+.peaks-detail .peaks-meta,.peaks-detail .peaks-coords,.peaks-detail .peaks-empty{color:var(--pk-muted)!important}
+.peaks-pin{color:var(--pk-accent)}
+.peaks-pin svg{fill:#f6eedc}
+@media(max-width:600px){.peaks-popup{padding:12px}.peaks-body{gap:10px}}
+.peaks-popup,:root[data-theme=dark] .peaks-popup{background-size:106% 108%;background-position:center}
+.peaks-list:focus,.peaks-list:focus-visible{outline:none}
+
+/* projects still being built: no expanding, just a tag */
+.project-in-dev .project-static{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;cursor:default}
+.dev-tag{display:inline-block;margin-left:8px;padding:1px 7px;border:1px solid var(--line);border-radius:999px;font-size:10px;line-height:1.5;letter-spacing:.02em;color:var(--muted);vertical-align:2px;white-space:nowrap}
