@@ -457,9 +457,9 @@ function pullBookFromShelf(item){
   if(!dialog)return;
   dialog.classList.add('is-waiting');
   const leaf=(dialog.querySelector('.book-leaf-front')||dialog.querySelector('.book-leaf')).getBoundingClientRect();
-  // the cover photo's board (without its own spine strip) is 8.8–96.5% across and 3.6–94% down
-  const tW=leaf.width*.877,tH=leaf.height*.904,scale=tH/H,W=tW/scale;
-  const tCx=leaf.left+leaf.width*.088+tW/2,tCy=leaf.top+leaf.height*.036+tH/2;
+  // the cover photo's book (including its painted spine strip) is 3.25–96.5% across and 3.6–94% down
+  const tW=leaf.width*.9325,tH=leaf.height*.904,scale=tH/H,W=tW/scale;
+  const tCx=leaf.left+leaf.width*.0325+tW/2,tCy=leaf.top+leaf.height*.036+tH/2;
   const layer=document.createElement('div');layer.className='flying-book-layer';layer.popover='manual';
   layer.innerHTML=`<div class="flying-book" style="left:${x}px;top:${y}px;width:${T}px;height:${H}px;--W:${W}px;--T:${T}px"><div class="fb-spine" style="background-size:${r.width}px ${r.height}px;background-position:${-r.width*.41}px ${-r.height*.03}px"></div><div class="fb-cover"></div></div>`;
   document.body.append(layer);try{layer.showPopover()}catch{}
@@ -472,6 +472,9 @@ function pullBookFromShelf(item){
     {transform:`translate3d(0,${-H*.6}px,30px) scale(1.03) rotateY(-12deg)`,offset:.46},
     {transform:`translate3d(${dx}px,${dy}px,${(W/2-T*scale/2).toFixed(1)}px) scale(${scale}) rotateY(-90deg)`}
   ],{duration:1050,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+  // near the end the cover shows its painted spine strip (as the real cover does) and the 3D spine fades as it turns edge-on
+  book.querySelector('.fb-cover').animate([{backgroundSize:'114% 110.6%',backgroundPosition:'71.5% 37.5%'},{backgroundSize:'114% 110.6%',backgroundPosition:'71.5% 37.5%',offset:.7},{backgroundSize:'107.2% 110.6%',backgroundPosition:'48.1% 37.5%'}],{duration:1050,easing:'linear',fill:'forwards'});
+  book.querySelector('.fb-spine').animate([{opacity:1},{opacity:1,offset:.75},{opacity:0,offset:.95},{opacity:0}],{duration:1050,fill:'forwards'});
   dialog.addEventListener('close',()=>{shelf.classList.remove('is-missing-book');layer.remove()},{once:true});
   setTimeout(()=>{
     dialog.classList.remove('is-waiting');
@@ -496,9 +499,22 @@ function openPeaks(){
   };
   const pin=(p,i)=>{const {x,y}=pos(p);return `<button type="button" class="peak peak-${side[p.name]||'r'}" data-peak="${i}" style="left:${x.toFixed(2)}%;top:${y.toFixed(2)}%" aria-pressed="false"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M2 23 10 9l4 7 3-5 9 12H2Z"/><path d="m7 14 3-5 3 5m4 1 2-4 3 5"/></svg><span>${p.name}</span></button>`};
   const dialog=document.createElement('dialog');dialog.className='trailmap';dialog.setAttribute('aria-labelledby','peaks-title');
-  dialog.innerHTML=`<div class="peaks-sheet"><div class="peaks-cartouche"><h2 id="peaks-title">Mountains I’ve hiked</h2><span>${mountains.length} summits · three corners of the world</span></div><span class="peaks-region" style="left:${box.x+2}%;top:${box.y-4}%">Pacific Northwest</span><div class="peaks-inset" style="left:70%;top:28%"><span>Japan</span></div><div class="peaks-inset" style="left:70%;top:63%"><span>Patagonia</span></div>${mountains.map(pin).join('')}<article class="peaks-card" aria-live="polite" hidden></article></div>`;
+  const face=(c,r)=>`<div class="fold-face" style="background-position:${((c+.12)/3.24*100).toFixed(2)}% ${((r+.08)/1.16*100).toFixed(2)}%"></div><div class="fold-back" style="background-position:0 0,${((c+.12)/3.24*100).toFixed(2)}% ${((r+.08)/1.16*100).toFixed(2)}%"></div>`;
+  const chain=(r,c=0)=>c>3?'':`<div class="fold-col fold-c${c}">${face(c,r)}${chain(r,c+1)}</div>`;
+  dialog.innerHTML=`<div class="peaks-sheet"><div class="fold-sheet" aria-hidden="true"><div class="fold-half fold-top">${chain(0)}</div><div class="fold-half fold-bottom">${chain(1)}</div></div><div class="peaks-cartouche"><h2 id="peaks-title">Mountains I’ve hiked</h2><span>${mountains.length} summits · three corners of the world</span></div><span class="peaks-region" style="left:${box.x+2}%;top:${box.y-4}%">Pacific Northwest</span><div class="peaks-inset" style="left:70%;top:28%"><span>Japan</span></div><div class="peaks-inset" style="left:70%;top:63%"><span>Patagonia</span></div>${mountains.map(pin).join('')}<article class="peaks-card" aria-live="polite" hidden></article></div>`;
   document.body.append(dialog);dialog.showModal();
   const card=dialog.querySelector('.peaks-card');
+  // unfold: bottom half swings down, then the panels open out like an accordion
+  const sheetEl=dialog.querySelector('.peaks-sheet');
+  if(!roomReduced()){
+    sheetEl.classList.add('is-folded');
+    const fs=dialog.querySelector('.fold-sheet'),E='cubic-bezier(.45,.05,.2,1)';
+    fs.animate([{transform:'translate(37.5%,25%) scale(.95)',opacity:0},{transform:'translate(37.5%,25%) scale(1)',opacity:1,offset:.15},{transform:'translate(37.5%,0) scale(1)',offset:.5},{transform:'none'}],{duration:1400,easing:E,fill:'both'});
+    dialog.querySelectorAll('.fold-bottom').forEach(b=>b.animate([{transform:'rotateX(180deg)'},{transform:'rotateX(180deg)',offset:.15},{transform:'rotateX(0deg)',offset:.5},{transform:'rotateX(0deg)'}],{duration:1400,easing:E,fill:'both'}));
+    dialog.querySelectorAll('.fold-col').forEach(col=>{const c=Number(col.className.match(/fold-c(\d)/)[1]);if(!c)return;const a=c%2?-180:180;
+      col.animate([{transform:`rotateY(${a}deg)`},{transform:`rotateY(${a}deg)`,offset:.45+c*.05},{transform:'rotateY(0deg)'}],{duration:1400,easing:E,fill:'both'})});
+    setTimeout(()=>sheetEl.classList.remove('is-folded'),1350);
+  }
   const select=i=>{
     const peak=mountains[i],already=dialog.querySelector(`[data-peak="${i}"]`).getAttribute('aria-pressed')==='true';
     dialog.querySelectorAll('[data-peak]').forEach(b=>b.setAttribute('aria-pressed',String(!already&&Number(b.dataset.peak)===i)));
@@ -790,6 +806,27 @@ function openCamera(){
   dialog.showModal();
   turnCamera(camera,true);
 }
+// the book's notes write themselves onto the page, letter by letter
+function writeOn(root){
+  if(roomReduced())return;
+  let t=250;
+  const pace={H3:26,P:7};
+  root.querySelectorAll('.book-page').forEach(page=>{
+    page.querySelectorAll('h3,p').forEach(el=>{
+      const text=el.textContent,step=el.classList.contains('book-title')?20:(pace[el.tagName]||9);
+      el.setAttribute('aria-label',text);
+      el.textContent='';
+      text.split(/(\s+)/).forEach(chunk=>{
+        if(/^\s+$/.test(chunk)){el.append(chunk);t+=step;return}
+        const word=document.createElement('span');word.className='ink-word';word.setAttribute('aria-hidden','true');
+        for(const ch of chunk){const c=document.createElement('span');c.className='ink-char';c.textContent=ch;c.style.animationDelay=t+'ms';word.append(c);t+=step}
+        el.append(word);
+      });
+      t+=160;
+    });
+    t+=200;
+  });
+}
 function openReadingBook(source){
   if(document.querySelector('.books-popup[open]'))return;
   const dialog=document.createElement('dialog');
@@ -802,7 +839,7 @@ function openReadingBook(source){
   document.body.append(dialog);
   closeOutsideSurface(dialog,stage,()=>dialog.close());
   const notes=dialog.querySelector('.book-notes');
-  const reveal=()=>{if(dialog.open){notes.classList.add('is-open');notes.setAttribute('aria-hidden','false')}};
+  const reveal=()=>{if(dialog.open&&!notes.classList.contains('is-open')){notes.classList.add('is-open');notes.setAttribute('aria-hidden','false');writeOn(notes)}};
   dialog.querySelector('.book-leaf').addEventListener('animationend',reveal,{once:true});
   const timer=setTimeout(reveal,1450);
   dialog.querySelector('.content-close').addEventListener('click',()=>dialog.close());

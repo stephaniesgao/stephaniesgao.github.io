@@ -486,3 +486,28 @@ body .peaks-card h3{margin:0 0 .3cqw;font:600 clamp(16px,2.3cqw,21px)/1.2 Georgi
   .peaks-card{width:min(46%,240px);padding:2.4cqw}
 }
 .peak-rt{translate:calc(-1 * clamp(8px,1.3cqw,12px)) -115%}
+
+/* book notes ink themselves in, letter by letter */
+.ink-word{display:inline-block;white-space:nowrap}
+.ink-char{display:inline-block;opacity:0;animation:ink-in .32s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes ink-in{0%{opacity:0;filter:blur(1.4px);transform:translateY(1px) scale(1.06)}60%{opacity:.9;filter:blur(.3px)}100%{opacity:1;filter:none;transform:none}}
+@media(prefers-reduced-motion:reduce){.ink-char{animation:none;opacity:1}}
+
+/* the trail map unfolds: 8 printed panels, bottom half first, then the columns */
+.peaks-sheet{background:none!important;perspective:1600px}
+.peaks-sheet::before{z-index:1}
+.fold-sheet{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:0 0}
+.fold-half{position:absolute;left:0;width:25%;height:50%;transform-style:preserve-3d}
+.fold-top{top:0}
+.fold-bottom{top:50%;transform-origin:50% 0}
+.fold-col{position:absolute;top:0;left:0;width:100%;height:100%;transform-style:preserve-3d;transform-origin:0 50%}
+.fold-col .fold-col{left:100%}
+.fold-face,.fold-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fold-face{background:#d9c49a url(objects/mountain-map-open-v2.jpg) no-repeat;background-size:424% 216%}
+.fold-back{transform:rotateY(180deg);background:linear-gradient(135deg,#d8c59c,#c7b083);box-shadow:inset 0 0 0 1px #a88f6455}
+.fold-bottom>.fold-col>.fold-back,.fold-bottom .fold-back{transform:rotateX(180deg)}
+.peaks-sheet>*:not(.fold-sheet){transition:opacity .35s}
+.peaks-sheet.is-folded>*:not(.fold-sheet){opacity:0;pointer-events:none}
+.peaks-sheet.is-folded::before{opacity:0}
+
+.fold-back{background:linear-gradient(135deg,#e3d2adde,#cdb68bde),url(objects/mountain-map-open-v2.jpg) no-repeat;background-size:100% 100%,424% 216%;filter:sepia(.3);box-shadow:inset 0 0 0 1px #a88f6455,inset 0 0 22px #7a5f3533}
