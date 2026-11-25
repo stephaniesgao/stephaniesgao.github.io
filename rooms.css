@@ -641,3 +641,55 @@ body .peaks-card h3{margin:0 0 .3cqw;font:600 clamp(16px,2.3cqw,21px)/1.2 Georgi
 .rpeak:focus-visible{outline:none}
 /* follower counts under the handles on the camera screen */
 .cam3d .cam3d-back .camera-followers{display:block;margin-top:.15cqw;font-size:1.15cqw;font-style:normal;font-weight:500;line-height:1.1;opacity:.75}
+
+/* puzzle room: one fixed size for every game */
+body dialog.secret[open],body dialog.secret[open][data-boards]{display:flex;flex-direction:column;width:min(620px,calc(100vw - 32px))!important;height:min(660px,calc(100vh - 40px))!important;max-width:none!important;max-height:none!important;overflow:hidden}
+body dialog.secret[open]>*{flex:none}
+body dialog.secret[open] .secret-grid{flex:1 1 auto;min-height:0;margin:12px auto;overflow:auto;align-content:center}
+body dialog.secret[open] .secret-bottom{margin-top:auto}
+
+/* boombox video stays invisible until YouTube reports it's playing */
+.boombox-video.is-on{opacity:0}
+.boombox-video.is-on.is-playing{opacity:.22}
+:root[data-theme=dark] .boombox-video.is-on{opacity:0}
+:root[data-theme=dark] .boombox-video.is-on.is-playing{opacity:.35}
+
+/* puzzle solved: links to the unlocked pages */
+body dialog.secret .puzzle-rewards{flex:none;margin:4px 0 12px;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--ink) 6%,transparent);text-align:center}
+body dialog.secret .puzzle-rewards[hidden]{display:none}
+body dialog.secret .puzzle-rewards p{margin:0 0 10px;font:500 13px/1.4 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--ink)}
+body dialog.secret .puzzle-rewards div{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+body dialog.secret .puzzle-rewards a{padding:7px 16px;border-radius:999px;background:var(--ink);color:var(--paper);font:500 13px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;text-decoration:none}
+body dialog.secret .puzzle-rewards a:hover{opacity:.85}
+/* the game area spans the box so Wordle tiles (which size from the width) don't collapse */
+body dialog.secret[open] .secret-grid{width:100%;box-sizing:border-box}
+/* Wordle tiles sized for the fixed box */
+body dialog.secret[open][data-boards="1"] .word-board{width:min(290px,100%);margin:0 auto}
+body dialog.secret[open][data-boards="1"] .word-cell{height:auto!important;aspect-ratio:1;font-size:22px!important}
+body dialog.secret[open][data-boards="4"] .word-cell{height:24px!important;font-size:13px!important}
+/* puzzle room: game sits right under the instructions; tighter box */
+body dialog.secret[open],body dialog.secret[open][data-boards]{height:min(620px,calc(100vh - 40px))!important;padding:20px 22px 16px}
+body dialog.secret[open] .secret-grid{flex:0 1 auto;margin:10px auto 0;align-content:start}
+body dialog.secret[open] #word-form{margin:12px auto 0}
+body dialog.secret[open] #puzzle-instructions{margin-bottom:0}
+body dialog.secret[open][data-boards="1"] .word-board{width:min(250px,100%)}
+/* outside of work: less space between the objects and their description */
+.ring{height:clamp(240px,38vw,290px)}
+.ring-info{margin-top:-4px}
+body dialog.secret[open][data-boards="4"] .word-cell{height:19px!important;font-size:12px!important}
+body dialog.secret[open][data-boards="4"] .word-cell{height:15px!important;font-size:10px!important}
+body dialog.secret[open][data-boards="4"] .word-cell,body dialog.secret[open][data-boards="8"] .word-cell{border-radius:3px}
+.ring-info{margin-top:-26px}
+.ring-info{margin-top:0;transition:margin-top .3s cubic-bezier(.2,.8,.2,1)}
+body dialog.secret[open] .secret-grid{margin-top:22px}
+body dialog.secret[open][data-boards="4"] .word-cell{height:14px!important}
+/* every object sits in the same 3:2 frame so they share a centre line and a bottom edge */
+.ring-object{aspect-ratio:3/2;display:grid;place-items:center}
+.ring-object>.after-object{width:100%;max-height:100%}
+.ring .book-object,.ring .after-dance,.ring .after-hike,.ring .after-books,.ring .mini-turntable,.ring .tiny-tv,.ring .dance-radio,.ring .trail-map-open,.ring .books-open{height:auto!important;min-height:0!important;margin:0!important;padding:0!important}
+.ring .ring-object .trail-map-folded,.ring .ring-object .books-open img,.ring .ring-object .dance-radio-image{display:block;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain}
+.ring .ring-object .trail-map-folded,.ring .ring-object .books-open img{position:static!important;inset:auto!important}
+/* puzzle centred with equal space above and below */
+body dialog.secret[open] .secret-grid{flex:1 1 auto;margin:16px auto;align-content:center}
+body dialog.secret[open] #word-form{margin:0 auto 16px}
+body dialog.secret[open]:has(#word-form:not([hidden])) .secret-grid{margin-bottom:8px}

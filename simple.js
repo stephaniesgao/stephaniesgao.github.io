@@ -303,7 +303,7 @@ main.addEventListener('click',e=>{
 });
 /* Outside of work: one object per section. Each wakes up as it scrolls in, and clicking anywhere on it does its thing in place. */
 let outsideObserver=null;
-const ringInfo=[{label:'content',line:'I make makeup videos and film the small moments I want to remember, then share them on TikTok and Instagram.',hint:'click the camera to turn it around'},{label:'music',line:'I keep one running playlist of the songs I come back to most. Drop the needle to hear what’s on repeat right now.',hint:'click the record player to drop the needle'},{label:'books',line:'One book I’d recommend to anyone, Nick Hayes’s The Book of Trespass, and the one I’m reading now, Camus’s The Myth of Sisyphus.',hint:'click the books to open them'},{label:'films',line:'Rom-coms are my comfort watch. These are my 11 favourites, from 10 Things I Hate About You to Notting Hill and Love Actually.',hint:'click the TV to change the channel'},{label:'dance',line:'I’ve been dancing for 10 years, and for 6 of them I performed professionally at the Calgary Stampede. I still take dance breaks whenever I need to get moving again.',hint:'click the boombox to play a song'},{label:'trails',line:'I fell in love with hiking at UWC on Vancouver Island, and I’m happiest when a trail leads into the mountains. So far that’s taken me from Strathcona to Mount Fuji and Fitz Roy in Patagonia.',hint:'click the map to unfold it'}];
+const ringInfo=[{label:'content',line:'I make makeup videos and film the small moments I want to remember, then share them on TikTok and Instagram.',hint:'click the camera to turn it around'},{label:'music',line:'I keep one running playlist of the songs I come back to most. Drop the needle to hear what’s on repeat right now.',hint:'click the record player to drop the needle'},{label:'books',line:'One book I’d recommend to anyone, Nick Hayes’s The Book of Trespass, and the one I’m reading now, Camus’s The Myth of Sisyphus.',hint:'click the books to open them'},{label:'films',line:'Rom-coms are my comfort watch. These are my 11 favourites, from 10 Things I Hate About You to Notting Hill and Love Actually.',hint:'click the TV to change the channel'},{label:'dance',line:'I’ve been dancing for 10 years, and for 6 of them I performed professionally at the Calgary Stampede. I still take dance breaks whenever I need to get moving again.',hint:'click the boombox to play a song'},{label:'trails',line:'I fell in love with hiking at UWC on Vancouver Island, and trails have since taken me from Strathcona to Mount Fuji and Fitz Roy.',hint:'click the map to unfold it'}];
 function mountOutside(){
   const root=main.querySelector('.after-hours.ow');if(!root)return;
   const items=[...root.querySelectorAll('.ow-item')];
@@ -363,6 +363,14 @@ function ringLayout(){
   const front=((Math.round(ring.angle/ringStep)%6)+6)%6;
   if(front!==ring.front||!els.root.dataset.ready){ringSetFront(front);els.root.dataset.ready='1'}
 }
+// keep the description a steady distance below whichever object is in front
+function ringPlaceInfo(){
+  // one fixed spot for every item: just below the tallest object when it's in front (scaled 1.3×, centred in the ring)
+  const els=ringEls();if(!els)return;
+  const info=els.root.querySelector('.ring-info');if(!info)return;
+  const ringH=els.stage.clientHeight,tallest=Math.max(...els.items.map(i=>i.querySelector('.ring-object').offsetHeight));
+  info.style.marginTop=Math.round(ringH/2+tallest*1.3/2-ringH+28)+'px';
+}
 function ringTick(){
   ring.frame=0;
   if(!ring.drag){
@@ -372,8 +380,9 @@ function ringTick(){
   }
   ringLayout();
   if(ring.drag||ring.angle!==ring.target)ring.frame=requestAnimationFrame(ringTick);
+  else ringPlaceInfo();
 }
-function ringGo(target){ring.target=target;if(roomReduced()||document.hidden){ring.angle=target;ringLayout();return}if(!ring.frame)ring.frame=requestAnimationFrame(ringTick)}
+function ringGo(target){ring.target=target;if(roomReduced()||document.hidden){ring.angle=target;ringLayout();ringPlaceInfo();return}if(!ring.frame)ring.frame=requestAnimationFrame(ringTick)}
 function ringTurnTo(i){const cur=ring.target,base=Math.round(cur/360)*360;let best=null;for(const k of [-360,0,360]){const a=base+k+i*ringStep;if(best===null||Math.abs(a-cur)<Math.abs(best-cur))best=a}ringGo(best)}
 function ringSetFront(i){
   const els=ringEls();if(!els)return;
@@ -535,6 +544,7 @@ function openPeaks(){
 }
 function mountRing(){
   const els=ringEls();if(!els)return;
+  setTimeout(ringPlaceInfo,60);
   // warm up the big pop-up images so the book and camera start moving straight away
   ['objects/book-cover-photo.webp','objects/open-book-photo.webp','objects/camera-back-photo.webp','objects/instagram-preview-1.jpg','objects/instagram-preview-2.jpg','objects/tiktok-preview.avif','objects/tiktok-preview-2.jpg'].forEach(src=>{const i=new Image();i.decoding='async';i.src=src;i.decode?.().catch(()=>{})});
   ring.angle=ring.target=0;ring.front=-1;delete els.root.dataset.ready;ringLayout();
@@ -604,7 +614,7 @@ main.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();ringGo(Math.round(ring.target/ringStep)*ringStep+(e.key==='ArrowRight'?ringStep:-ringStep));setTimeout(()=>stage.querySelector('.ring-item.is-front')?.focus({preventScroll:true}),380)}
   if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('ring-item')){e.preventDefault();const t=e.target.querySelector('.dance-open,.trail-map-open,[data-tv="next"]');if(!ringUse(e.target)&&t)t.click()}
 });
-addEventListener('resize',()=>{if(ringEls())ringLayout()});
+addEventListener('resize',()=>{if(ringEls()){ringLayout();ringPlaceInfo()}});
 main.addEventListener('click',e=>{const root=e.target.closest('.after-hours.ow2');if(!root)return;setTimeout(()=>{const radio=root.querySelector('.dance-radio');const on=!!radio?.classList.contains('is-playing');root.classList.toggle('is-dancing',on);boomboxSong(root,on)},0)});
 // pop-ups close when you click outside them
 document.addEventListener('click',e=>{const d=e.target;if(d instanceof HTMLDialogElement&&d.open&&d.matches('.books-popup,.hike-popup,.camera-popup,.secret'))d.close()});
@@ -624,12 +634,44 @@ function boomboxSong(root,on){
     layer=document.createElement('div');layer.className='boombox-video';layer.setAttribute('aria-hidden','true');
     const player=document.createElement('iframe');player.title='Dance break video';player.tabIndex=-1;
     player.allow='autoplay; encrypted-media';player.referrerPolicy='strict-origin-when-cross-origin';
-    player.src='https://www.youtube-nocookie.com/embed/UN32lVrgiYk?autoplay=1&loop=1&playlist=UN32lVrgiYk&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1';
+    player.src='https://www.youtube-nocookie.com/embed/UN32lVrgiYk?enablejsapi=1&autoplay=1&loop=1&playlist=UN32lVrgiYk&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&origin='+encodeURIComponent(location.origin);
+    const send=(func,args=[])=>player.contentWindow?.postMessage(JSON.stringify({event:'command',func,args}),'*');
+    player.addEventListener('load',()=>{
+      player.contentWindow?.postMessage(JSON.stringify({event:'listening',id:'boombox'}),'*');
+      send('unMute');send('setVolume',[100]);send('playVideo');
+      // keep asking until it's actually playing (some browsers need a moment)
+      let tries=0;const nudge=setInterval(()=>{if(layer.classList.contains('is-playing')||++tries>8||!layer.isConnected){clearInterval(nudge);return}send('playVideo')},500);
+    });
     layer.append(player);document.body.append(layer);
     requestAnimationFrame(()=>layer.classList.add('is-on'));
   }else if(!on&&layer){
-    layer.classList.remove('is-on');setTimeout(()=>layer.remove(),500);
+    layer.classList.remove('is-on','is-playing');setTimeout(()=>layer.remove(),500);
   }
+}
+// only show the video once YouTube says it's playing, so its play screen and buttons never appear
+addEventListener('message',e=>{
+  if(!/youtube(-nocookie)?\.com$/.test(new URL(e.origin).hostname))return;
+  let data;try{data=typeof e.data==='string'?JSON.parse(e.data):e.data}catch{return}
+  const state=data?.info?.playerState;if(state===undefined)return;
+  const layer=document.querySelector('.boombox-video');if(!layer)return;
+  layer.classList.toggle('is-playing',state===1);
+});
+// after a puzzle is solved, offer the pages it unlocks
+function showPuzzleRewards(){
+  const dialog=document.querySelector('dialog.secret');if(!dialog)return;
+  let box=dialog.querySelector('.puzzle-rewards');
+  if(!box){
+    box=document.createElement('div');box.className='puzzle-rewards';
+    box.innerHTML='<p>Solved. You’ve unlocked two pages for today:</p><div><a href="#places" data-reward>Places</a><a href="#hobbies" data-reward>Outside of work</a></div>';
+    dialog.querySelector('.secret-bottom').before(box);
+    box.addEventListener('click',e=>{if(e.target.closest('[data-reward]'))dialog.close()});
+    const hide=()=>box.hidden=true;
+    dialog.querySelector('#new-puzzle')?.addEventListener('click',hide);
+    dialog.querySelectorAll('.puzzle-picker [data-game]').forEach(b=>b.addEventListener('click',hide));
+    dialog.addEventListener('close',hide);
+  }
+  box.hidden=false;
+  if(!roomReduced())box.animate([{opacity:0,translate:'0 8px'},{opacity:1,translate:'0 0'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
 }
 // stop the video if you leave the page
 addEventListener('hashchange',()=>{if(!location.hash.startsWith('#hobbies'))boomboxSong(null,false)});
@@ -753,7 +795,7 @@ const patterns=['0010001110111110111000100','1111110001101011000111111','0010000
 function clues(line){return line.join('').split(/0+/).filter(Boolean).map(v=>v.length).join(' ')||'0'}
 function flip(i){const r=Math.floor(i/gridSize),c=i%gridSize;for(const [dr,dc] of [[0,0],[-1,0],[1,0],[0,-1],[0,1]]){const y=r+dr,x=c+dc;if(y>=0&&y<gridSize&&x>=0&&x<gridSize)board[y*gridSize+x]=!board[y*gridSize+x]}}
 function scoreWord(word,target){const result=Array(5).fill('absent'),left=target.split('');for(let i=0;i<5;i++)if(word[i]===left[i]){result[i]='correct';left[i]=null}for(let i=0;i<5;i++)if(result[i]!=='correct'){const j=left.indexOf(word[i]);if(j!==-1){result[i]='present';left[j]=null}}return result}
-function paintPuzzle(){grid.replaceChildren();grid.dataset.game=game;secret.dataset.puzzle=game;secret.dataset.boards=wordCount;grid.style.gridTemplateColumns=game==='wordle'?'':game==='nonogram'?'32px repeat('+gridSize+',1fr)':'repeat('+gridSize+',1fr)';document.querySelector('#word-form').hidden=game!=='wordle';document.querySelector('#size-options').hidden=game==='wordle';document.querySelector('#word-options').hidden=game!=='wordle';grid.setAttribute('aria-label',game+' puzzle');if(game==='wordle'){targets.forEach((target,k)=>{const wrap=document.createElement('div');wrap.className='word-board';wrap.setAttribute('aria-label','Word '+(k+1));const solveAt=guesses.indexOf(target);for(let r=0;r<guessLimit;r++){const word=solveAt>=0&&r>solveAt?'':guesses[r]||'',scores=word?scoreWord(word,target):[];for(let c=0;c<5;c++){const cell=document.createElement('span');cell.className='word-cell '+(scores[c]||'');cell.textContent=word[c]||'';cell.setAttribute('aria-label',word[c]?word[c]+': '+scores[c]:'Empty letter');wrap.append(cell)}}grid.append(wrap)});document.querySelector('#word-input').disabled=won||guesses.length>=guessLimit;document.querySelector('#word-submit').disabled=won||guesses.length>=guessLimit;}else{if(game==='nonogram'){grid.append(document.createElement('span'));for(let c=0;c<gridSize;c++){const label=document.createElement('span');label.className='nonogram-clue column-clue';label.textContent=clues(picture.filter((_,i)=>i%gridSize===c));grid.append(label)}}board.forEach((v,i)=>{if(game==='nonogram'&&i%gridSize===0){const label=document.createElement('span');label.className='nonogram-clue';label.textContent=clues(picture.slice(i,i+gridSize));grid.append(label)}const btn=document.createElement('button');btn.type='button';btn.classList.toggle('on',v===true||v===1);btn.textContent=v===2?'×':'';btn.setAttribute('aria-label','Row '+(Math.floor(i/gridSize)+1)+', column '+(i%gridSize+1)+': '+(v===2?'marked empty':v?'filled':'blank'));btn.disabled=won;btn.addEventListener('click',()=>{if(game==='lights'){flip(i);won=board.every(x=>!x)}else{board[i]=(board[i]+1)%3;won=board.every((x,j)=>(x===1?1:0)===picture[j])}moves++;paintPuzzle();if(won)document.querySelector('#new-puzzle').focus();else grid.querySelectorAll('button')[i].focus()});grid.append(btn)})}document.querySelector('#move-count').textContent=game==='wordle'?guesses.length+' / '+guessLimit+' guesses · '+targets.filter(t=>guesses.includes(t)).length+'/'+wordCount+' solved':moves+' moves';if(won)markDailySolved(game);document.querySelector('.secret-status').textContent=won?'Solved! Another puzzle?':game==='wordle'&&guesses.length>=guessLimit?'Answers: '+targets.join(', '):''}
+function paintPuzzle(){grid.replaceChildren();grid.dataset.game=game;secret.dataset.puzzle=game;secret.dataset.boards=wordCount;grid.style.gridTemplateColumns=game==='wordle'?'':game==='nonogram'?'32px repeat('+gridSize+',1fr)':'repeat('+gridSize+',1fr)';document.querySelector('#word-form').hidden=game!=='wordle';document.querySelector('#size-options').hidden=game==='wordle';document.querySelector('#word-options').hidden=game!=='wordle';grid.setAttribute('aria-label',game+' puzzle');if(game==='wordle'){targets.forEach((target,k)=>{const wrap=document.createElement('div');wrap.className='word-board';wrap.setAttribute('aria-label','Word '+(k+1));const solveAt=guesses.indexOf(target);for(let r=0;r<guessLimit;r++){const word=solveAt>=0&&r>solveAt?'':guesses[r]||'',scores=word?scoreWord(word,target):[];for(let c=0;c<5;c++){const cell=document.createElement('span');cell.className='word-cell '+(scores[c]||'');cell.textContent=word[c]||'';cell.setAttribute('aria-label',word[c]?word[c]+': '+scores[c]:'Empty letter');wrap.append(cell)}}grid.append(wrap)});document.querySelector('#word-input').disabled=won||guesses.length>=guessLimit;document.querySelector('#word-submit').disabled=won||guesses.length>=guessLimit;}else{if(game==='nonogram'){grid.append(document.createElement('span'));for(let c=0;c<gridSize;c++){const label=document.createElement('span');label.className='nonogram-clue column-clue';label.textContent=clues(picture.filter((_,i)=>i%gridSize===c));grid.append(label)}}board.forEach((v,i)=>{if(game==='nonogram'&&i%gridSize===0){const label=document.createElement('span');label.className='nonogram-clue';label.textContent=clues(picture.slice(i,i+gridSize));grid.append(label)}const btn=document.createElement('button');btn.type='button';btn.classList.toggle('on',v===true||v===1);btn.textContent=v===2?'×':'';btn.setAttribute('aria-label','Row '+(Math.floor(i/gridSize)+1)+', column '+(i%gridSize+1)+': '+(v===2?'marked empty':v?'filled':'blank'));btn.disabled=won;btn.addEventListener('click',()=>{if(game==='lights'){flip(i);won=board.every(x=>!x)}else{board[i]=(board[i]+1)%3;won=board.every((x,j)=>(x===1?1:0)===picture[j])}moves++;paintPuzzle();if(won)document.querySelector('#new-puzzle').focus();else grid.querySelectorAll('button')[i].focus()});grid.append(btn)})}document.querySelector('#move-count').textContent=game==='wordle'?guesses.length+' / '+guessLimit+' guesses · '+targets.filter(t=>guesses.includes(t)).length+'/'+wordCount+' solved':moves+' moves';if(won){markDailySolved(game);showPuzzleRewards()}document.querySelector('.secret-status').textContent=won?'Solved! Another puzzle?':game==='wordle'&&guesses.length>=guessLimit?'Answers: '+targets.join(', '):''}
 function newPuzzle(){const rand=dailyRandom(game+':'+gridSize+':'+wordCount);moves=0;won=false;guesses=[];board=Array(gridSize*gridSize).fill(0);if(game==='lights'){for(let i=0;i<gridSize*2;i++)flip(Math.floor(rand()*board.length));if(board.every(v=>!v))flip(0)}else if(game==='wordle'){const pool=[...answers];for(let i=pool.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}targets=pool.slice(0,wordCount);guessLimit=wordCount===1?6:wordCount===4?9:13;}else if(gridSize===5){picture=patterns[Math.floor(rand()*patterns.length)].split('').map(Number)}else{const type=Math.floor(rand()*3),mid=Math.floor(gridSize/2);picture=Array.from({length:gridSize*gridSize},(_,i)=>{const r=Math.floor(i/gridSize),c=i%gridSize;return +(type===0?r===0||r===gridSize-1||c===0||c===gridSize-1:type===1?r===mid||c===mid:r%2===0)})}document.querySelector('#word-input').value='';document.querySelector('#puzzle-instructions').textContent={lights:'Turn off every filled square. A click flips its neighbours too.',wordle:'One guess plays across every board. Green: right spot. Gold: wrong spot. Grey: absent.',nonogram:'Clues give filled runs separated by empty cells. Click: filled → × empty → blank.'}[game];paintPuzzle()}
 document.querySelector('#grid-size').addEventListener('change',e=>{gridSize=Number(e.target.value);newPuzzle()});
 document.querySelector('#word-variant').addEventListener('change',e=>{wordCount=Number(e.target.value);newPuzzle()});
@@ -855,9 +897,10 @@ function openCamera(){
 // the book's notes write themselves onto the page, letter by letter
 function writeOn(root){
   if(roomReduced())return;
-  let t=250;
   const pace={H3:26,P:7};
+  // both pages write at the same time
   root.querySelectorAll('.book-page').forEach(page=>{
+    let t=250;
     page.querySelectorAll('h3,p').forEach(el=>{
       const text=el.textContent,step=el.classList.contains('book-title')?20:(pace[el.tagName]||9);
       el.setAttribute('aria-label',text);
@@ -870,7 +913,6 @@ function writeOn(root){
       });
       t+=160;
     });
-    t+=200;
   });
 }
 function openReadingBook(source){
