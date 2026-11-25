@@ -696,3 +696,8 @@ body dialog.secret[open]:has(#word-form:not([hidden])) .secret-grid{margin-botto
 .writing-locked .writing-title{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 6px}
 .writing-locked .dev-tag{margin-left:2px}
 .writing-locked{cursor:default}
+
+/* search results: excerpt with matched words highlighted */
+#search-results li{margin:14px 0}
+.search-snippet{margin:3px 0 0;font-size:13px;line-height:1.5;color:var(--muted)}
+#search-results mark{background:color-mix(in srgb,#e8b84a 45%,transparent);color:inherit;border-radius:2px;padding:0 1px}
