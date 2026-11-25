@@ -693,3 +693,6 @@ body dialog.secret[open][data-boards="4"] .word-cell{height:14px!important}
 body dialog.secret[open] .secret-grid{flex:1 1 auto;margin:16px auto;align-content:center}
 body dialog.secret[open] #word-form{margin:0 auto 16px}
 body dialog.secret[open]:has(#word-form:not([hidden])) .secret-grid{margin-bottom:8px}
+.writing-locked .writing-title{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 6px}
+.writing-locked .dev-tag{margin-left:2px}
+.writing-locked{cursor:default}
