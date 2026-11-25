@@ -457,16 +457,20 @@ function pullBookFromShelf(item){
   if(!dialog)return;
   dialog.classList.add('is-waiting');
   const leaf=(dialog.querySelector('.book-leaf-front')||dialog.querySelector('.book-leaf')).getBoundingClientRect();
-  // the cover photo's book (including its painted spine strip) is 3.25–96.5% across and 3.6–94% down
-  const tW=leaf.width*.9325,tH=leaf.height*.904,scale=tH/H,W=tW/scale;
-  const tCx=leaf.left+leaf.width*.0325+tW/2,tCy=leaf.top+leaf.height*.036+tH/2;
+  // the cover now fills the whole leaf, so land exactly on the leaf
+  const tW=leaf.width,tH=leaf.height,scale=tH/H,W=tW/scale;
+  const tCx=leaf.left+tW/2,tCy=leaf.top+tH/2;
   const layer=document.createElement('div');layer.className='flying-book-layer';layer.popover='manual';
   layer.innerHTML=`<div class="flying-book" style="left:${x}px;top:${y}px;width:${T}px;height:${H}px;--W:${W}px;--T:${T}px"><div class="fb-spine" style="background-size:${r.width}px ${r.height}px;background-position:${-r.width*.41}px ${-r.height*.03}px"></div><div class="fb-cover"></div></div>`;
   document.body.append(layer);try{layer.showPopover()}catch{}
   const book=layer.firstElementChild;
+  // look at the spine exactly side-on when it lands, so it disappears edge-on instead of leaving a sliver
+  layer.style.perspectiveOrigin=`${(tCx-tW/2).toFixed(1)}px ${tCy.toFixed(1)}px`;
+  // dim the page during the flight to the same shade as the book's backdrop, so nothing snaps at the hand-off
+  layer.animate([{backgroundColor:'rgba(8,9,10,0)'},{backgroundColor:'rgba(8,9,10,0)',offset:.3},{backgroundColor:'rgba(8,9,10,.78)'}],{duration:1050,easing:'ease-in-out',fill:'forwards'});
   shelf.classList.add('is-missing-book');
   const dx=tCx-(x+T/2),dy=tCy-(y+H/2);
-  book.animate([
+  const flight=book.animate([
     {transform:'translate3d(0,0,0) scale(1) rotateY(0deg)'},
     {transform:`translate3d(0,${-H*.6}px,0) scale(1) rotateY(0deg)`,offset:.36},
     {transform:`translate3d(0,${-H*.6}px,30px) scale(1.03) rotateY(-12deg)`,offset:.46},
@@ -474,70 +478,61 @@ function pullBookFromShelf(item){
   ],{duration:1050,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
   // near the end the cover shows its painted spine strip (as the real cover does) and the 3D spine fades as it turns edge-on
   book.querySelector('.fb-cover').animate([{backgroundSize:'114% 110.6%',backgroundPosition:'71.5% 37.5%'},{backgroundSize:'114% 110.6%',backgroundPosition:'71.5% 37.5%',offset:.7},{backgroundSize:'107.2% 110.6%',backgroundPosition:'48.1% 37.5%'}],{duration:1050,easing:'linear',fill:'forwards'});
-  book.querySelector('.fb-spine').animate([{opacity:1},{opacity:1,offset:.75},{opacity:0,offset:.95},{opacity:0}],{duration:1050,fill:'forwards'});
+  book.querySelector('.fb-spine').animate([{opacity:1},{opacity:1,offset:.9},{opacity:0}],{duration:1050,fill:'forwards'});
   dialog.addEventListener('close',()=>{shelf.classList.remove('is-missing-book');layer.remove()},{once:true});
-  setTimeout(()=>{
-    dialog.classList.remove('is-waiting');
-    layer.animate([{opacity:1},{opacity:0}],{duration:160,fill:'forwards'});
-    setTimeout(()=>layer.remove(),180);
-  },1050);
+  // hand off only when the flight has really landed, then swap in the same frame
+  flight.finished.then(()=>requestAnimationFrame(()=>{dialog.classList.remove('is-waiting');layer.remove()})).catch(()=>{dialog.classList.remove('is-waiting');layer.remove()});
 }
 function openPeaks(){
   if(document.querySelector('.trailmap[open]'))return;
-  // Pacific Northwest peaks are placed by real coordinates; Japan and Patagonia get inset boxes
-  const pnw=mountains.filter(p=>p.lon<-100&&p.lat>45),cos=Math.cos(49.6*Math.PI/180);
-  const lon0=Math.min(...pnw.map(p=>p.lon)),lon1=Math.max(...pnw.map(p=>p.lon)),lat0=Math.min(...pnw.map(p=>p.lat)),lat1=Math.max(...pnw.map(p=>p.lat));
-  const spanX=(lon1-lon0)*cos,spanY=lat1-lat0;
-  // region box on the card (percent of card width/height): x 6–62, y 30–90; card is 3:2
-  const box={x:12,y:30,w:52,h:60},unit=Math.min(box.w/spanX,(box.h/1.5)/spanY);
-  const offX=box.x+(box.w-spanX*unit)/2,offY=box.y+(box.h-spanY*unit*1.5)/2;
-  const side={'Mount St. Patrick':'r','Kings Peak':'l','Mount Washington':'rt','Mount Albert Edward':'rb','5040 Peak':'r','Kludahk Trail':'r','Mount Baker':'l','Mount Fuji':'b','Fitz Roy':'b'};
-  const pos=p=>{
-    if(p.region==='Japan')return {x:82,y:44};
-    if(p.region==='Patagonia')return {x:82,y:80};
-    return {x:offX+(p.lon-lon0)*cos*unit,y:offY+(lat1-p.lat)*unit*1.5};
-  };
-  const pin=(p,i)=>{const {x,y}=pos(p);return `<button type="button" class="peak peak-${side[p.name]||'r'}" data-peak="${i}" style="left:${x.toFixed(2)}%;top:${y.toFixed(2)}%" aria-pressed="false"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M2 23 10 9l4 7 3-5 9 12H2Z"/><path d="m7 14 3-5 3 5m4 1 2-4 3 5"/></svg><span>${p.name}</span></button>`};
   const dialog=document.createElement('dialog');dialog.className='trailmap';dialog.setAttribute('aria-labelledby','peaks-title');
-  const face=(c,r)=>`<div class="fold-face" style="background-position:${((c+.12)/3.24*100).toFixed(2)}% ${((r+.08)/1.16*100).toFixed(2)}%"></div><div class="fold-back" style="background-position:0 0,${((c+.12)/3.24*100).toFixed(2)}% ${((r+.08)/1.16*100).toFixed(2)}%"></div>`;
-  const chain=(r,c=0)=>c>3?'':`<div class="fold-col fold-c${c}">${face(c,r)}${chain(r,c+1)}</div>`;
-  dialog.innerHTML=`<div class="peaks-sheet"><div class="fold-sheet" aria-hidden="true"><div class="fold-half fold-top">${chain(0)}</div><div class="fold-half fold-bottom">${chain(1)}</div></div><div class="peaks-cartouche"><h2 id="peaks-title">Mountains I’ve hiked</h2><span>${mountains.length} summits · three corners of the world</span></div><span class="peaks-region" style="left:${box.x+2}%;top:${box.y-4}%">Pacific Northwest</span><div class="peaks-inset" style="left:70%;top:28%"><span>Japan</span></div><div class="peaks-inset" style="left:70%;top:63%"><span>Patagonia</span></div>${mountains.map(pin).join('')}<article class="peaks-card" aria-live="polite" hidden></article></div>`;
+  dialog.innerHTML=`<div class="rmap"><div class="rmap-canvas" aria-label="Map of the mountains I’ve hiked"></div><p class="mtitle" id="peaks-title">Mountains I’ve hiked</p><nav class="rmap-tabs" aria-label="Regions"><button type="button" data-region="pnw" aria-pressed="true">Pacific Northwest</button><button type="button" data-region="japan" aria-pressed="false">Japan</button><button type="button" data-region="patagonia" aria-pressed="false">Patagonia</button><button type="button" data-region="all" aria-pressed="false">All</button></nav><div class="rmap-creases" aria-hidden="true"></div><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="water-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .34 0 0 .33 .33 .34 0 0 .33 .33 .34 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="discrete" tableValues=".58 .58 .58 .58 .58 .58 .58 1"/><feFuncG type="discrete" tableValues=".66 .66 .66 .66 .66 .66 .66 1"/><feFuncB type="discrete" tableValues=".69 .69 .69 .69 .69 .69 .69 1"/></feComponentTransfer></filter></svg></div>`;
   document.body.append(dialog);dialog.showModal();
-  const card=dialog.querySelector('.peaks-card');
-  // unfold: bottom half swings down, then the panels open out like an accordion
-  const sheetEl=dialog.querySelector('.peaks-sheet');
+  const box=dialog.querySelector('.rmap');
+  // unfold: one panel, then the bottom half, then the columns open out along their creases
   if(!roomReduced()){
-    sheetEl.classList.add('is-folded');
-    const fs=dialog.querySelector('.fold-sheet'),E='cubic-bezier(.45,.05,.2,1)';
-    fs.animate([{transform:'translate(37.5%,25%) scale(.95)',opacity:0},{transform:'translate(37.5%,25%) scale(1)',opacity:1,offset:.15},{transform:'translate(37.5%,0) scale(1)',offset:.5},{transform:'none'}],{duration:1400,easing:E,fill:'both'});
-    dialog.querySelectorAll('.fold-bottom').forEach(b=>b.animate([{transform:'rotateX(180deg)'},{transform:'rotateX(180deg)',offset:.15},{transform:'rotateX(0deg)',offset:.5},{transform:'rotateX(0deg)'}],{duration:1400,easing:E,fill:'both'}));
-    dialog.querySelectorAll('.fold-col').forEach(col=>{const c=Number(col.className.match(/fold-c(\d)/)[1]);if(!c)return;const a=c%2?-180:180;
-      col.animate([{transform:`rotateY(${a}deg)`},{transform:`rotateY(${a}deg)`,offset:.45+c*.05},{transform:'rotateY(0deg)'}],{duration:1400,easing:E,fill:'both'})});
-    setTimeout(()=>sheetEl.classList.remove('is-folded'),1350);
-  }
-  const select=i=>{
-    const peak=mountains[i],already=dialog.querySelector(`[data-peak="${i}"]`).getAttribute('aria-pressed')==='true';
-    dialog.querySelectorAll('[data-peak]').forEach(b=>b.setAttribute('aria-pressed',String(!already&&Number(b.dataset.peak)===i)));
-    if(already){card.hidden=true;return}
-    card.innerHTML=`<h3>${peak.name}</h3><p class="peaks-meta">${peak.region}${peak.elevation?' · '+peak.elevation:''}</p><p>${peak.detail}</p><p class="peaks-coords">${Math.abs(peak.lat).toFixed(3)}° ${peak.lat>=0?'N':'S'}, ${Math.abs(peak.lon).toFixed(3)}° ${peak.lon>=0?'E':'W'}${peak.source?` · <a href="${peak.source}" target="_blank" rel="noopener">source ↗</a>`:''}</p>`;
-    card.hidden=false;
-    // put the card in the first empty corner that doesn't cover a peak
-    const spots=[{left:'3%',top:'auto',right:'auto',bottom:'4%'},{left:'auto',top:'auto',right:'33%',bottom:'4%'},{left:'42%',top:'4%',right:'auto',bottom:'auto'},{left:'auto',top:'auto',right:'3%',bottom:'4%'}];
-    const peaksR=[...dialog.querySelectorAll('.peak,.peaks-inset span,.peaks-region')].map(b=>{const q=b.getBoundingClientRect();q.weight=b.classList.contains('peak')?10:1;return q});
-    let best=spots[0],bestHits=Infinity;
-    for(const sp of spots){Object.assign(card.style,sp);const c=card.getBoundingClientRect();const hits=peaksR.filter(q=>q.left<c.right&&q.right>c.left&&q.top<c.bottom&&q.bottom>c.top).reduce((n,q)=>n+q.weight,0);if(hits<bestHits){best=sp;bestHits=hits}if(!hits)break}
-    Object.assign(card.style,best);
-    if(!roomReduced())card.animate([{opacity:0,translate:'0 10px'},{opacity:1,translate:'0 0'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)'});
-  };
-  dialog.addEventListener('click',e=>{
-    const b=e.target.closest('[data-peak]');if(b){select(Number(b.dataset.peak));return}
-    if(e.target===dialog){dialog.close();return}
-    if(!e.target.closest('.peaks-card,a')){card.hidden=true;dialog.querySelectorAll('[data-peak]').forEach(x=>x.setAttribute('aria-pressed','false'))}
-  });
-  dialog.addEventListener('close',()=>{dialog.remove();main.querySelector('.ring-item.is-front')?.focus({preventScroll:true})},{once:true});
+    box.animate([{clipPath:'inset(25% 37.5% 25% 37.5% round 6px)'},{clipPath:'inset(25% 37.5% 25% 37.5% round 6px)',offset:.12},{clipPath:'inset(0% 37.5% 0% 37.5% round 6px)',offset:.42},{clipPath:'inset(0% 12.5% 0% 12.5% round 6px)',offset:.72},{clipPath:'inset(0% 0% 0% 0% round 6px)'}],{duration:1300,easing:'cubic-bezier(.5,0,.2,1)'});
+    box.animate([{opacity:0},{opacity:1,offset:.12},{opacity:1}],{duration:1300});
+    dialog.querySelector('.rmap-creases').animate([{opacity:1},{opacity:1,offset:.75},{opacity:0}],{duration:1900,fill:'forwards'});
+  }else dialog.querySelector('.rmap-creases').style.opacity=0;
+  let map=null,markers=[];
+  // keep everything on one side of the date line so the view centres on the Pacific
+  const ll=p=>[p.lat,p.lon>0?p.lon-360:p.lon];
+  const bounds=()=>mountains.map(ll);
+  const tag=p=>`<strong>${p.name}</strong>${p.elevation?`<span>${p.elevation}</span>`:''}<p class="mtag-region">${p.region}</p><p>${p.detail}</p><p class="mtag-coords">${Math.abs(p.lat).toFixed(2)}° ${p.lat>=0?'N':'S'}, ${Math.abs(p.lon).toFixed(2)}° ${p.lon>=0?'E':'W'}${p.source?` · <a href="${p.source}" target="_blank" rel="noopener">source</a>`:''}</p>`;
+  const regionPts={pnw:()=>mountains.filter(p=>p.lon<-100).map(ll),japan:()=>mountains.filter(p=>p.region==='Japan').map(ll),patagonia:()=>mountains.filter(p=>p.region==='Patagonia').map(ll),all:bounds};
+  const goRegion=(key,animate=true)=>{if(!map)return;map.closePopup();const pts=regionPts[key]();const opts={padding:[50,50],maxZoom:key==='all'?3:(pts.length>1?8:9)};if(animate)map.flyToBounds(pts,{...opts,duration:1});else map.fitBounds(pts,opts);dialog.querySelectorAll('[data-region]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.region===key)))};
+  dialog.querySelector('.rmap-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-region]');if(b)goRegion(b.dataset.region)});
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+  dialog.addEventListener('close',()=>{if(map)map.remove();dialog.remove();main.querySelector('.ring-item.is-front')?.focus({preventScroll:true})},{once:true});
+  leafletPromise ||= import('./vendor/leaflet/leaflet-src.esm.js');
+  leafletPromise.then(L=>{
+    if(!dialog.isConnected)return;
+    map=L.map(dialog.querySelector('.rmap-canvas'),{scrollWheelZoom:true,worldCopyJump:true,zoomControl:false,attributionControl:true,minZoom:2,zoomSnap:.25});
+    L.control.zoom({position:'bottomright'}).addTo(map);
+    // styled like the folded-map icon: kraft paper, real water and coastlines printed on it, real hill-shading as pencil relief
+    const Paper=L.GridLayer.extend({createTile(){const t=document.createElement('div');t.className='paper-tile';return t}});
+    new Paper({className:'tiles-paper',maxZoom:16}).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,className:'tiles-water',attribution:'Base &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'}).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:15,className:'tiles-relief',attribution:'Hillshade &copy; Esri'}).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,className:'tiles-labels'}).addTo(map);
+    goRegion('pnw',false);
+    const addMarkers=()=>{if(!dialog.isConnected)return;markers=mountains.map((p,i)=>{
+      const m=L.marker(ll(p),{icon:L.divIcon({className:'rdot',html:'<span></span>',iconSize:[18,18],iconAnchor:[9,9]}),title:p.name,keyboard:true}).addTo(map);
+      m.bindTooltip(`<strong>${p.name}</strong>${p.elevation?`<span>${p.elevation}</span>`:''}`,{className:'rtip',direction:'top',offset:[0,-8],opacity:1});
+      m.bindPopup(tag(p),{className:'rpop',closeButton:false,maxWidth:260,minWidth:200,offset:[0,-6],autoPanPadding:[24,24]});
+      m.on('click',()=>{m.closePopup();m.closeTooltip();const z=Math.max(map.getZoom(),11);map.flyTo(ll(p),z,{duration:1.1});map.once('moveend',()=>{m.openPopup()})});
+      const dot=m.getElement();if(dot&&!roomReduced())dot.firstElementChild.animate([{transform:'scale(0)',opacity:0},{transform:'scale(1.35)',opacity:1,offset:.6},{transform:'scale(1)'}],{duration:380,delay:i*70,easing:'cubic-bezier(.3,1.4,.5,1)',fill:'backwards'});
+      return m;
+    })};
+    setTimeout(addMarkers,roomReduced()?0:1350);
+    setTimeout(()=>map.invalidateSize(),80);
+  }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.rmap-canvas').textContent='The map couldn’t load right now.'});
 }
 function mountRing(){
   const els=ringEls();if(!els)return;
+  // warm up the big pop-up images so the book and camera start moving straight away
+  ['objects/book-cover-photo.webp','objects/open-book-photo.webp','objects/camera-back-photo.webp','objects/instagram-preview-1.jpg','objects/instagram-preview-2.jpg','objects/tiktok-preview.avif','objects/tiktok-preview-2.jpg'].forEach(src=>{const i=new Image();i.decoding='async';i.src=src;i.decode?.().catch(()=>{})});
   ring.angle=ring.target=0;ring.front=-1;delete els.root.dataset.ready;ringLayout();
 }
 main.addEventListener('pointerdown',e=>{

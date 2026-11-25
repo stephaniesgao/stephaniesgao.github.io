@@ -511,3 +511,99 @@ body .peaks-card h3{margin:0 0 .3cqw;font:600 clamp(16px,2.3cqw,21px)/1.2 Georgi
 .peaks-sheet.is-folded::before{opacity:0}
 
 .fold-back{background:linear-gradient(135deg,#e3d2adde,#cdb68bde),url(objects/mountain-map-open-v2.jpg) no-repeat;background-size:100% 100%,424% 216%;filter:sepia(.3);box-shadow:inset 0 0 0 1px #a88f6455,inset 0 0 22px #7a5f3533}
+
+/* ---------- minimal trail map: dots, tags on hover, details on click ---------- */
+.mtitle{position:absolute;left:3.5%;top:4%;z-index:2;margin:0;font:italic 600 clamp(16px,2.6cqw,24px)/1.1 Georgia,'Times New Roman',serif;color:#2b2116;text-shadow:0 0 6px #f6ecd5,0 0 14px #f6ecd5cc,0 0 2px #f6ecd5}
+.mdot{position:absolute;z-index:2;width:0;height:0}
+.mdot button{position:absolute;left:-9px;top:-9px;width:18px;height:18px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
+.mdot button::before{content:'';position:absolute;inset:4px;border-radius:50%;background:#9c3b22;box-shadow:0 0 0 2px #f6ecd5,0 1px 4px #2b211666;transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.mdot button::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid #9c3b2299;opacity:0;transform:scale(.6);transition:opacity .25s,transform .35s}
+.mdot:hover button::before,.mdot.is-open button::before,.mdot button:focus-visible::before{transform:scale(1.3)}
+.mdot:hover button::after,.mdot.is-open button::after{opacity:1;transform:scale(1.25)}
+.mdot button:focus-visible{outline:none}
+.mtag{position:absolute;left:14px;bottom:8px;width:max-content;max-width:min(240px,44cqw);padding:6px 10px 7px;border-radius:4px;background:#f8f0dcf5;color:#2b2116;box-shadow:0 4px 14px #2b211640,0 0 0 1px #8a6f4533;font-family:Georgia,'Times New Roman',serif;opacity:0;translate:0 4px;pointer-events:none;transition:opacity .18s,translate .18s}
+.mdot.is-left .mtag{left:auto;right:14px}
+.mdot.is-below .mtag{bottom:auto;top:8px}
+.mdot:hover .mtag,.mdot.is-open .mtag,.mdot button:focus-visible+.mtag{opacity:1;translate:0 0}
+.mdot.is-open .mtag{pointer-events:auto;z-index:3}
+.mdot:hover,.mdot.is-open{z-index:3}
+.mtag strong{display:block;font-size:14px;font-weight:600;line-height:1.25}
+.mtag>span{display:block;margin-top:1px;font-size:12px;color:#6b5434}
+.mtag-more{display:none}
+.mdot.is-open .mtag{width:min(240px,44cqw)}
+.mdot.is-open .mtag-more{display:block;margin-top:6px;padding-top:6px;border-top:1px solid #8a6f4540}
+.mtag-more p{margin:0 0 5px;font-size:12.5px;line-height:1.45;color:#2b2116}
+.mtag-more .mtag-region{font-variant:small-caps;letter-spacing:.05em;color:#6b5434}
+.mtag-more .mtag-coords{margin:0;font-size:11.5px;color:#6b5434}
+.mtag-more a{color:#9c3b22}
+
+/* ---------- real topographic map ---------- */
+.rmap{position:relative;width:100%;aspect-ratio:3/2;border-radius:6px;overflow:hidden;background:#e8e4d8;container-type:inline-size}
+.rmap-canvas{position:absolute;inset:0;background:#e8e4d8}
+.rmap .leaflet-tile-pane{filter:saturate(.82) contrast(.97)}
+:root[data-theme=dark] .rmap .leaflet-tile-pane{filter:saturate(.75) brightness(.92)}
+.rmap .mtitle{z-index:500;pointer-events:none}
+.rmap-all{position:absolute;right:12px;top:12px;z-index:500;padding:6px 12px;border:0;border-radius:999px;background:#fffdf8f0;color:#2b2116;font:500 12px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;box-shadow:0 2px 8px #0003;cursor:pointer}
+.rmap-creases{position:absolute;inset:0;z-index:600;pointer-events:none;background:linear-gradient(90deg,transparent calc(25% - 1px),#0000002e 25%,#ffffff40 calc(25% + 1px),transparent calc(25% + 3px)),linear-gradient(90deg,transparent calc(50% - 1px),#0000002e 50%,#ffffff40 calc(50% + 1px),transparent calc(50% + 3px)),linear-gradient(90deg,transparent calc(75% - 1px),#0000002e 75%,#ffffff40 calc(75% + 1px),transparent calc(75% + 3px)),linear-gradient(transparent calc(50% - 1px),#0000002e 50%,#ffffff40 calc(50% + 1px),transparent calc(50% + 3px))}
+.rdot span{position:absolute;inset:4px;border-radius:50%;background:#c2410c;box-shadow:0 0 0 2.5px #fff,0 1px 5px #0006;transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.rdot:hover span,.rdot:focus-visible span{transform:scale(1.3)}
+.rdot:focus-visible{outline:none}
+.leaflet-tooltip.rtip{padding:5px 9px;border:0;border-radius:4px;background:#fffdf8;color:#2b2116;box-shadow:0 3px 10px #0003;font-family:Georgia,'Times New Roman',serif}
+.leaflet-tooltip.rtip::before{display:none}
+.rtip strong{display:block;font-size:13.5px;font-weight:600}
+.rtip span{display:block;font-size:11.5px;color:#6b5434}
+.leaflet-popup.rpop .leaflet-popup-content-wrapper{border-radius:6px;background:#fffdf8;color:#2b2116;box-shadow:0 6px 20px #0004}
+.leaflet-popup.rpop .leaflet-popup-content{margin:10px 13px 11px;font-family:Georgia,'Times New Roman',serif;line-height:1.4}
+.leaflet-popup.rpop .leaflet-popup-tip{background:#fffdf8}
+.rpop strong{display:block;font-size:16px;font-weight:600}
+.rpop strong+span{display:block;font-size:12.5px;color:#6b5434}
+.rpop p{margin:6px 0 0;font-size:13px}
+.rpop .mtag-region{font-variant:small-caps;letter-spacing:.05em;color:#6b5434;padding-top:6px;border-top:1px solid #8a6f4533}
+.rpop .mtag-coords{font-size:11.5px;color:#6b5434}
+.rpop a{color:#c2410c}
+.rmap .leaflet-control-zoom a{border-radius:6px!important;color:#2b2116}
+.rmap .leaflet-control-attribution{font-size:9px;background:#fffdf8cc}
+
+/* the real map, tinted like the illustrated folded map: paper beige, olive greens, soft blue water */
+.rmap{background:#e9dcbf}
+.rmap-canvas{background:#e9dcbf}
+.rmap .leaflet-tile-pane,:root[data-theme=dark] .rmap .leaflet-tile-pane{filter:sepia(.55) saturate(.78) hue-rotate(-8deg) brightness(1.04) contrast(.9)}
+.rmap::after{content:'';position:absolute;inset:0;z-index:450;pointer-events:none;mix-blend-mode:multiply;opacity:.55;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .44 0 0 0 0 .28 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(90deg,transparent calc(25% - 1px),#6b4f2a30 25%,transparent calc(25% + 2px)),linear-gradient(90deg,transparent calc(50% - 1px),#6b4f2a30 50%,transparent calc(50% + 2px)),linear-gradient(90deg,transparent calc(75% - 1px),#6b4f2a30 75%,transparent calc(75% + 2px)),linear-gradient(transparent calc(50% - 1px),#6b4f2a30 50%,transparent calc(50% + 2px));box-shadow:inset 0 0 60px #6b4f2a55}
+.rdot span{background:#9c3b22;box-shadow:0 0 0 2.5px #f6ecd5,0 1px 5px #2b211666}
+.rmap .leaflet-control-zoom a{background:#f6ecd5;border-color:#c9b48e!important;color:#2b2116}
+.rmap .leaflet-control-attribution{background:#f6ecd5cc;color:#6b5434}
+.rmap-all{background:#f6ecd5;color:#2b2116;font-family:Georgia,'Times New Roman',serif}
+.leaflet-tooltip.rtip,.leaflet-popup.rpop .leaflet-popup-content-wrapper,.leaflet-popup.rpop .leaflet-popup-tip{background:#f8f0dc}
+.rpop a{color:#9c3b22}
+
+.rmap .leaflet-tile-pane,:root[data-theme=dark] .rmap .leaflet-tile-pane{filter:none}
+.rmap .tiles-relief{filter:sepia(.42) saturate(.95) hue-rotate(-6deg) brightness(1.03) contrast(.96)}
+.rmap .tiles-topo{filter:sepia(.5) saturate(.8) hue-rotate(-8deg) brightness(1.05) contrast(.92)}
+
+.rmap-tabs{position:absolute;right:12px;top:12px;z-index:500;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;max-width:70%}
+.rmap-tabs button{padding:5px 10px;border:1px solid #c9b48e;border-radius:999px;background:#f6ecd5e8;color:#5a4426;font:12px/1 Georgia,'Times New Roman',serif;cursor:pointer;box-shadow:0 1px 3px #2b211622}
+.rmap-tabs button[aria-pressed=true]{background:#2f2416;border-color:#2f2416;color:#f6ecd5}
+.rmap .tiles-relief{filter:sepia(.5) saturate(.85) hue-rotate(-12deg) brightness(1.02) contrast(1.02)}
+@media(max-width:600px){.rmap-tabs{top:auto;bottom:10px;right:auto;left:10px;justify-content:flex-start;max-width:80%}.rmap-tabs button{font-size:11px;padding:4px 8px}}
+
+.rmap .tiles-topo{filter:sepia(.35) saturate(.85) hue-rotate(-6deg) brightness(1.03) contrast(.95)}
+
+/* the book's cover fills its leaf (the photo's transparent margins let the page underneath show through) */
+.books-popup .book-leaf-front{background-size:107.2% 110.6%!important;background-position:48.1% 37.5%!important}
+
+/* map coloured like the folded-map icon */
+.rmap,.rmap-canvas,.rmap .leaflet-container{background:#d7bd93}
+.rmap .paper-tile{background:#d9c19b}
+.rmap .tiles-water{mix-blend-mode:multiply;filter:grayscale(1) sepia(.25) hue-rotate(160deg) saturate(1.6) contrast(1.25) brightness(1.02)}
+.rmap .tiles-relief{mix-blend-mode:multiply;opacity:.62;filter:grayscale(1) contrast(1.15) brightness(1.05)}
+.rmap .tiles-labels{mix-blend-mode:multiply;opacity:.55;filter:grayscale(1) sepia(.6)}
+.rmap .tiles-topo{display:none}
+.rmap::after{opacity:.4}
+.rdot span{inset:3px;background:#f3e3c4;box-shadow:0 0 0 2.5px #b8402a,0 1px 3px #3b2a1355}
+.rdot:hover span,.rdot:focus-visible span{background:#b8402a}
+
+.rmap .tiles-water{filter:grayscale(1) sepia(.35) hue-rotate(165deg) saturate(1.5) contrast(1.35) brightness(1.08)}
+.rmap .tiles-labels{opacity:.7;filter:sepia(.7) contrast(1.1)}
+.rmap .tiles-water{filter:grayscale(1) contrast(3.4) brightness(1.3) sepia(1) hue-rotate(168deg) saturate(1.35)}
+.rmap .tiles-water{filter:brightness(.625) contrast(8)}
+.rmap .tiles-water{filter:url(#water-ink);mix-blend-mode:darken}
