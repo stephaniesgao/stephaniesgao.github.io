@@ -390,3 +390,54 @@ body .peaks-head h2{color:var(--pk-ink)}
 /* projects still being built: no expanding, just a tag */
 .project-in-dev .project-static{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;cursor:default}
 .dev-tag{display:inline-block;margin-left:8px;padding:1px 7px;border:1px solid var(--line);border-radius:999px;font-size:10px;line-height:1.5;letter-spacing:.02em;color:var(--muted);vertical-align:2px;white-space:nowrap}
+
+/* TikTok card: two videos side by side, each with a play button */
+.cam3d .cam3d-back .camera-mini-tiktok{grid-template-columns:1fr 1fr;gap:.35cqw}
+.cam3d .cam3d-back .camera-mini-tiktok::after{display:none}
+.cam3d .cam3d-back .tt-vid{position:relative;display:block;min-height:0;overflow:hidden}
+.cam3d .cam3d-back .tt-vid img{width:100%;height:100%;object-fit:cover}
+.cam3d .cam3d-back .tt-vid::after{content:'';position:absolute;left:50%;top:50%;width:2.6cqw;height:2.6cqw;translate:-50% -50%;border-radius:50%;background:#0008 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M7 5l8 5-8 5z' fill='white'/%3E%3C/svg%3E") center/60% no-repeat}
+
+/* flying book: the spine sits exactly on the page plane, so it starts flush with the shelf photo */
+.flying-book{transform-origin:50% 50% calc(var(--W) / -2)}
+.fb-spine{transform:none}
+.fb-cover{transform:translateZ(calc(var(--W) / -2)) rotateY(90deg) translateZ(calc(var(--T) / 2))}
+
+.flying-book-layer{position:fixed;inset:0;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:none;overflow:visible;perspective:1400px;perspective-origin:50% 50%;pointer-events:none}
+.flying-book-layer::backdrop{display:none}
+.flying-book-layer .flying-book{position:absolute;transform-origin:50% 50% calc(var(--W) / -2)}
+
+/* blog audio: player with a speed button beside it */
+.blog-audio-row{display:flex;align-items:center;gap:8px}
+.blog-audio-row audio{flex:1;min-width:0}
+.audio-speed{flex:none;min-width:48px;height:32px;padding:0 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 12px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer}
+.audio-speed:hover{border-color:var(--muted)}
+
+/* puzzle room: same soft card, pills and type as the rest of the site */
+body dialog.secret{width:min(440px,calc(100vw - 32px));padding:22px 22px 18px;border:0;border-radius:16px;background:var(--paper);color:var(--ink);box-shadow:0 28px 70px #0000008c,0 0 0 1px color-mix(in srgb,var(--ink) 8%,transparent)}
+body dialog.secret::backdrop{background:#0000008c;backdrop-filter:blur(2px)}
+body dialog.secret header{position:static;margin:0;padding:0;background:none}
+body dialog.secret #secret-close{display:none}
+body dialog.secret h2{margin:0 0 14px;font:500 20px/1.25 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-.02em}
+body dialog.secret .puzzle-picker{display:inline-flex;gap:2px;margin:0 0 14px;padding:3px;border:0;border-radius:999px;background:color-mix(in srgb,var(--ink) 7%,transparent)}
+body dialog.secret .puzzle-picker button{padding:5px 12px;border:0;border-radius:999px;background:none;color:var(--muted);font:500 12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;text-decoration:none;box-shadow:none}
+body dialog.secret .puzzle-picker button[aria-pressed=true]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px #0000002e}
+body dialog.secret .puzzle-options label{display:inline-flex;align-items:center;gap:8px;font:12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+body dialog.secret .puzzle-options select{padding:4px 24px 4px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif}
+body dialog.secret #puzzle-instructions{margin:12px 0 0;font:13px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+body dialog.secret .secret-grid{gap:6px;margin:16px auto}
+body dialog.secret .secret-grid button{border:1px solid var(--line);border-radius:8px;background:color-mix(in srgb,var(--ink) 3%,transparent);transition:background .18s,transform .12s,border-color .18s}
+body dialog.secret .secret-grid button:hover{border-color:var(--muted)}
+body dialog.secret .secret-grid button:active{transform:scale(.94)}
+body dialog.secret .secret-grid button.on{background:var(--ink);border-color:var(--ink)}
+body dialog.secret .word-cell{border-radius:6px;border-color:var(--line);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600}
+body dialog.secret .word-cell.correct{background:#4f7d58;border-color:#4f7d58}
+body dialog.secret .word-cell.present{background:#a7843a;border-color:#a7843a}
+body dialog.secret .word-cell.absent{background:color-mix(in srgb,var(--ink) 45%,var(--paper));border-color:transparent}
+body dialog.secret .nonogram-clue{font:11px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+body dialog.secret #word-form{display:flex;gap:8px}
+body dialog.secret #word-input{flex:1;min-width:0;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 14px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+body dialog.secret #word-submit,body dialog.secret #new-puzzle{padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;text-decoration:none}
+body dialog.secret #word-submit:hover,body dialog.secret #new-puzzle:hover{border-color:var(--muted)}
+body dialog.secret .secret-bottom{padding-top:12px;border-top:1px solid var(--line);font:12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+body dialog.secret .secret-status{font:12px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
