@@ -1,4 +1,4 @@
-import {posts as bundledPosts} from './posts.js?v=18';
+import {posts as bundledPosts} from './posts.js?v=19';
 let posts=bundledPosts;
 const livePostsUrl=location.hostname==='stephanie-gao-fieldnotes.stephyg.chatgpt.site'?'https://stephaniesgao.github.io/blog-posts.json':location.hostname==='stephaniesgao.github.io'?'/blog-posts.json':null;
 if(livePostsUrl)fetch(livePostsUrl+'?fresh='+Date.now(),{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Blog refresh failed');return response.text()}).then(source=>{
