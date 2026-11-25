@@ -423,8 +423,25 @@ function openCameraBig(source){
     cam.animate([{transform:`translate(${dx}px,${dy}px) scale(${k})`},{transform:'none'}],{duration:620,easing:'cubic-bezier(.3,.7,.2,1)'});
     timer=setTimeout(()=>flip(true),200);
   }
-  cam.addEventListener('click',e=>{if(e.target.closest('a'))return;flip(!cam.classList.contains('is-flipped'))});
-  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+  let closing=false;
+  const putDown=()=>{
+    if(closing)return;closing=true;clearTimeout(timer);
+    if(roomReduced()||!source.isConnected){dialog.close();return}
+    const to=cam.getBoundingClientRect(),back=source.getBoundingClientRect(),k=back.width/to.width;
+    const dx=(back.left+back.width/2)-(to.left+to.width/2),dy=(back.top+back.height/2)-(to.top+to.height/2);
+    dialog.classList.add('is-putting-down');
+    cam.classList.remove('is-flipped');
+    cam.animate([{transform:'none'},{transform:`translate(${dx}px,${dy}px) scale(${k})`}],{duration:420,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+    setTimeout(()=>dialog.close(),400);
+  };
+  cam.addEventListener('click',e=>{
+    if(e.target.closest('a'))return;
+    const img=cam.querySelector(cam.classList.contains('is-flipped')?'.cam3d-back>img':'.cam3d-front img');
+    if(img&&(e.clientX||e.clientY)&&!ringOpaque(img,e.clientX,e.clientY)){putDown();return}
+    flip(!cam.classList.contains('is-flipped'));
+  });
+  dialog.addEventListener('click',e=>{if(e.target===dialog||e.target.classList.contains('cam-popup-hint'))putDown()});
+  dialog.addEventListener('cancel',e=>{e.preventDefault();putDown()});
   dialog.addEventListener('close',()=>{clearTimeout(timer);dialog.remove();main.querySelector('.ring-item.is-front')?.focus({preventScroll:true})},{once:true});
 }
 function pullBookFromShelf(item){
@@ -434,52 +451,74 @@ function pullBookFromShelf(item){
   const r=shelf.getBoundingClientRect();
   // the tall brown book in the middle of the shelf photo: 41%–53.7% across, 3%–97% down
   const T=r.width*.127,H=r.height*.94,x=r.left+r.width*.41,y=r.top+r.height*.03;
-  const P=Math.min(940,innerWidth-28),coverW=P/2,coverH=Math.min(P/1.5,innerHeight*.92-30),scale=coverH/H,W=coverW/scale;
+  // open the real book first, hidden and paused, so the flight can land exactly on its cover
+  openReadingBook(source);
+  const dialog=document.querySelector('.books-popup');
+  if(!dialog)return;
+  dialog.classList.add('is-waiting');
+  const leaf=(dialog.querySelector('.book-leaf-front')||dialog.querySelector('.book-leaf')).getBoundingClientRect();
+  // the cover photo's board (without its own spine strip) is 8.8–96.5% across and 3.6–94% down
+  const tW=leaf.width*.877,tH=leaf.height*.904,scale=tH/H,W=tW/scale;
+  const tCx=leaf.left+leaf.width*.088+tW/2,tCy=leaf.top+leaf.height*.036+tH/2;
   const layer=document.createElement('div');layer.className='flying-book-layer';layer.popover='manual';
   layer.innerHTML=`<div class="flying-book" style="left:${x}px;top:${y}px;width:${T}px;height:${H}px;--W:${W}px;--T:${T}px"><div class="fb-spine" style="background-size:${r.width}px ${r.height}px;background-position:${-r.width*.41}px ${-r.height*.03}px"></div><div class="fb-cover"></div></div>`;
   document.body.append(layer);try{layer.showPopover()}catch{}
   const book=layer.firstElementChild;
   shelf.classList.add('is-missing-book');
-  const dx=innerWidth/2+coverW/2-(x+T/2),dy=innerHeight/2-(y+H/2);
+  const dx=tCx-(x+T/2),dy=tCy-(y+H/2);
   book.animate([
     {transform:'translate3d(0,0,0) scale(1) rotateY(0deg)'},
     {transform:`translate3d(0,${-H*.6}px,0) scale(1) rotateY(0deg)`,offset:.36},
     {transform:`translate3d(0,${-H*.6}px,30px) scale(1.03) rotateY(-12deg)`,offset:.46},
     {transform:`translate3d(${dx}px,${dy}px,${(W/2-T*scale/2).toFixed(1)}px) scale(${scale}) rotateY(-90deg)`}
   ],{duration:1050,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+  dialog.addEventListener('close',()=>{shelf.classList.remove('is-missing-book');layer.remove()},{once:true});
   setTimeout(()=>{
-    openReadingBook(source);
-    const dialog=document.querySelector('.books-popup');
-    dialog?.addEventListener('close',()=>shelf.classList.remove('is-missing-book'),{once:true});
+    dialog.classList.remove('is-waiting');
     layer.animate([{opacity:1},{opacity:0}],{duration:160,fill:'forwards'});
     setTimeout(()=>layer.remove(),180);
   },1050);
 }
 function openPeaks(){
-  if(document.querySelector('.peaks-popup[open]'))return;
-  const dialog=document.createElement('dialog');dialog.className='peaks-popup';dialog.setAttribute('aria-labelledby','peaks-title');
-  dialog.innerHTML=`<header class="peaks-head"><h2 id="peaks-title">Mountains I’ve hiked</h2><span>${mountains.length} summits</span></header><div class="peaks-map" aria-label="Map of mountains I’ve hiked"></div><div class="peaks-body"><ol class="peaks-list">${mountains.map((peak,i)=>`<li><button type="button" data-peak="${i}" aria-pressed="false"><span>${peak.name}</span><small>${peak.region}</small></button></li>`).join('')}</ol><div class="peaks-detail" aria-live="polite"><p class="peaks-empty">Pick a mountain from the list or the map.</p></div></div>`;
-  document.body.append(dialog);dialog.showModal();
-  let map=null,markers=[];
-  const detail=dialog.querySelector('.peaks-detail');
-  const select=i=>{
-    const peak=mountains[i];
-    dialog.querySelectorAll('[data-peak]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.peak)===i)));
-    detail.innerHTML=`<h3>${peak.name}</h3><p class="peaks-meta">${peak.region}${peak.elevation?' · '+peak.elevation:''}</p><p>${peak.detail}</p><p class="peaks-coords">${Math.abs(peak.lat).toFixed(3)}° ${peak.lat>=0?'N':'S'}, ${Math.abs(peak.lon).toFixed(3)}° ${peak.lon>=0?'E':'W'}</p>${peak.source?`<a href="${peak.source}" target="_blank" rel="noopener">Source ↗</a>`:''}`;
-    markers.forEach((m,n)=>m.getElement()?.classList.toggle('is-selected',n===i));
-    if(map)map.flyTo([peak.lat,peak.lon],10,{duration:.8});
+  if(document.querySelector('.trailmap[open]'))return;
+  // Pacific Northwest peaks are placed by real coordinates; Japan and Patagonia get inset boxes
+  const pnw=mountains.filter(p=>p.lon<-100&&p.lat>45),cos=Math.cos(49.6*Math.PI/180);
+  const lon0=Math.min(...pnw.map(p=>p.lon)),lon1=Math.max(...pnw.map(p=>p.lon)),lat0=Math.min(...pnw.map(p=>p.lat)),lat1=Math.max(...pnw.map(p=>p.lat));
+  const spanX=(lon1-lon0)*cos,spanY=lat1-lat0;
+  // region box on the card (percent of card width/height): x 6–62, y 30–90; card is 3:2
+  const box={x:12,y:30,w:52,h:60},unit=Math.min(box.w/spanX,(box.h/1.5)/spanY);
+  const offX=box.x+(box.w-spanX*unit)/2,offY=box.y+(box.h-spanY*unit*1.5)/2;
+  const side={'Mount St. Patrick':'r','Kings Peak':'l','Mount Washington':'rt','Mount Albert Edward':'rb','5040 Peak':'r','Kludahk Trail':'r','Mount Baker':'l','Mount Fuji':'b','Fitz Roy':'b'};
+  const pos=p=>{
+    if(p.region==='Japan')return {x:82,y:44};
+    if(p.region==='Patagonia')return {x:82,y:80};
+    return {x:offX+(p.lon-lon0)*cos*unit,y:offY+(lat1-p.lat)*unit*1.5};
   };
-  dialog.querySelector('.peaks-list').addEventListener('click',e=>{const b=e.target.closest('[data-peak]');if(b)select(Number(b.dataset.peak))});
-  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
-  dialog.addEventListener('close',()=>{if(map)map.remove();dialog.remove();main.querySelector('.ring-item.is-front')?.focus({preventScroll:true})},{once:true});
-  leafletPromise ||= import('./vendor/leaflet/leaflet-src.esm.js');
-  leafletPromise.then(L=>{
-    if(!dialog.isConnected)return;
-    map=L.map(dialog.querySelector('.peaks-map'),{scrollWheelZoom:false,worldCopyJump:true,zoomControl:true,attributionControl:true}).setView([30,-60],2);
-    L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:15,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="https://opentopomap.org">OpenTopoMap</a>'}).addTo(map);
-    markers=mountains.map((peak,i)=>{const m=L.marker([peak.lat,peak.lon],{icon:L.divIcon({className:'peaks-pin',html:'<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M2 23 10 9l4 7 3-5 9 12H2Z"/><path d="m7 14 3-5 3 5m4 1 2-4 3 5"/></svg>',iconSize:[26,26],iconAnchor:[13,22]}),title:peak.name}).addTo(map);m.bindTooltip(peak.name,{direction:'top',offset:[0,-6]});m.on('click',()=>select(i));return m});
-    setTimeout(()=>{map.invalidateSize();map.fitBounds(mountains.map(p=>[p.lat,p.lon]),{padding:[28,28],maxZoom:4})},60);
-  }).catch(()=>{if(dialog.isConnected)dialog.querySelector('.peaks-map').textContent='The map couldn’t load. The list still works.'});
+  const pin=(p,i)=>{const {x,y}=pos(p);return `<button type="button" class="peak peak-${side[p.name]||'r'}" data-peak="${i}" style="left:${x.toFixed(2)}%;top:${y.toFixed(2)}%" aria-pressed="false"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M2 23 10 9l4 7 3-5 9 12H2Z"/><path d="m7 14 3-5 3 5m4 1 2-4 3 5"/></svg><span>${p.name}</span></button>`};
+  const dialog=document.createElement('dialog');dialog.className='trailmap';dialog.setAttribute('aria-labelledby','peaks-title');
+  dialog.innerHTML=`<div class="peaks-sheet"><div class="peaks-cartouche"><h2 id="peaks-title">Mountains I’ve hiked</h2><span>${mountains.length} summits · three corners of the world</span></div><span class="peaks-region" style="left:${box.x+2}%;top:${box.y-4}%">Pacific Northwest</span><div class="peaks-inset" style="left:70%;top:28%"><span>Japan</span></div><div class="peaks-inset" style="left:70%;top:63%"><span>Patagonia</span></div>${mountains.map(pin).join('')}<article class="peaks-card" aria-live="polite" hidden></article></div>`;
+  document.body.append(dialog);dialog.showModal();
+  const card=dialog.querySelector('.peaks-card');
+  const select=i=>{
+    const peak=mountains[i],already=dialog.querySelector(`[data-peak="${i}"]`).getAttribute('aria-pressed')==='true';
+    dialog.querySelectorAll('[data-peak]').forEach(b=>b.setAttribute('aria-pressed',String(!already&&Number(b.dataset.peak)===i)));
+    if(already){card.hidden=true;return}
+    card.innerHTML=`<h3>${peak.name}</h3><p class="peaks-meta">${peak.region}${peak.elevation?' · '+peak.elevation:''}</p><p>${peak.detail}</p><p class="peaks-coords">${Math.abs(peak.lat).toFixed(3)}° ${peak.lat>=0?'N':'S'}, ${Math.abs(peak.lon).toFixed(3)}° ${peak.lon>=0?'E':'W'}${peak.source?` · <a href="${peak.source}" target="_blank" rel="noopener">source ↗</a>`:''}</p>`;
+    card.hidden=false;
+    // put the card in the first empty corner that doesn't cover a peak
+    const spots=[{left:'3%',top:'auto',right:'auto',bottom:'4%'},{left:'auto',top:'auto',right:'33%',bottom:'4%'},{left:'42%',top:'4%',right:'auto',bottom:'auto'},{left:'auto',top:'auto',right:'3%',bottom:'4%'}];
+    const peaksR=[...dialog.querySelectorAll('.peak,.peaks-inset span,.peaks-region')].map(b=>{const q=b.getBoundingClientRect();q.weight=b.classList.contains('peak')?10:1;return q});
+    let best=spots[0],bestHits=Infinity;
+    for(const sp of spots){Object.assign(card.style,sp);const c=card.getBoundingClientRect();const hits=peaksR.filter(q=>q.left<c.right&&q.right>c.left&&q.top<c.bottom&&q.bottom>c.top).reduce((n,q)=>n+q.weight,0);if(hits<bestHits){best=sp;bestHits=hits}if(!hits)break}
+    Object.assign(card.style,best);
+    if(!roomReduced())card.animate([{opacity:0,translate:'0 10px'},{opacity:1,translate:'0 0'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)'});
+  };
+  dialog.addEventListener('click',e=>{
+    const b=e.target.closest('[data-peak]');if(b){select(Number(b.dataset.peak));return}
+    if(e.target===dialog){dialog.close();return}
+    if(!e.target.closest('.peaks-card,a')){card.hidden=true;dialog.querySelectorAll('[data-peak]').forEach(x=>x.setAttribute('aria-pressed','false'))}
+  });
+  dialog.addEventListener('close',()=>{dialog.remove();main.querySelector('.ring-item.is-front')?.focus({preventScroll:true})},{once:true});
 }
 function mountRing(){
   const els=ringEls();if(!els)return;
@@ -553,7 +592,7 @@ main.addEventListener('keydown',e=>{
 addEventListener('resize',()=>{if(ringEls())ringLayout()});
 main.addEventListener('click',e=>{const root=e.target.closest('.after-hours.ow2');if(!root)return;setTimeout(()=>{const radio=root.querySelector('.dance-radio');root.classList.toggle('is-dancing',!!radio?.classList.contains('is-playing'))},0)});
 // pop-ups close when you click outside them
-document.addEventListener('click',e=>{const d=e.target;if(d instanceof HTMLDialogElement&&d.open&&d.matches('.books-popup,.hike-popup,.cam-popup,.camera-popup,.secret'))d.close()});
+document.addEventListener('click',e=>{const d=e.target;if(d instanceof HTMLDialogElement&&d.open&&d.matches('.books-popup,.hike-popup,.camera-popup,.secret'))d.close()});
 // blog audio: step through playback speeds
 const audioSpeeds=[1,1.25,1.5,1.75,2,.75];
 main.addEventListener('click',e=>{

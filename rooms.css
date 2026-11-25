@@ -441,3 +441,48 @@ body dialog.secret #word-submit,body dialog.secret #new-puzzle{padding:6px 14px;
 body dialog.secret #word-submit:hover,body dialog.secret #new-puzzle:hover{border-color:var(--muted)}
 body dialog.secret .secret-bottom{padding-top:12px;border-top:1px solid var(--line);font:12px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
 body dialog.secret .secret-status{font:12px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--muted)}
+.cam-popup.is-putting-down::backdrop{transition:opacity .4s;opacity:0}
+.cam-popup.is-putting-down .cam-popup-hint{opacity:0;transition:opacity .2s}
+.cam-popup::backdrop{transition:opacity .4s}
+
+.fb-cover{background:url(objects/book-cover-photo.webp) 71.5% 37.5%/114% 110.6% no-repeat}
+.books-popup.is-waiting,.books-popup.is-waiting::backdrop{opacity:0}
+.books-popup.is-waiting *,.books-popup.is-waiting{animation-play-state:paused!important}
+.books-popup::backdrop{transition:opacity .25s}
+
+/* ---------- mountain map: an illustrated trail map ---------- */
+body dialog.trailmap{all:unset;position:fixed;inset:0;margin:auto;display:block;width:min(900px,calc(100vw - 24px));height:fit-content;max-height:calc(100vh - 24px);border-radius:6px;box-shadow:0 30px 80px #000b;overflow:hidden;background:none}
+body dialog.trailmap:not([open]){display:none}
+body dialog.trailmap::backdrop{background:#000000b0;backdrop-filter:blur(2px)}
+.peaks-sheet{position:relative;width:100%;aspect-ratio:3/2;background:#d9c49a url(objects/mountain-map-open-v2.jpg) center/106% 108% no-repeat;color:#2f2416;font-family:Georgia,'Times New Roman',serif;container-type:inline-size}
+.peaks-sheet::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#f3e6c800 40%,#5a3f1a33 100%);pointer-events:none}
+.peaks-cartouche{position:absolute;left:4%;top:5%;padding:1.4cqw 2.2cqw 1.2cqw;background:#f6ecd5f2;border:1px solid #8a6f45;outline:1px solid #8a6f4566;outline-offset:3px;box-shadow:0 2px 6px #3b2a1340}
+body .peaks-cartouche h2{margin:0;font:italic 600 clamp(17px,3cqw,27px)/1.1 Georgia,'Times New Roman',serif!important;color:#2f2416;letter-spacing:-.01em}
+.peaks-cartouche span{display:block;margin-top:.5cqw;font:clamp(10px,1.35cqw,12.5px)/1.2 Georgia,serif;font-variant:small-caps;letter-spacing:.06em;color:#6b5434}
+.peaks-region{position:absolute;padding:.3cqw 1cqw;background:#f6ecd5d9;font:clamp(10px,1.5cqw,13px)/1 Georgia,serif;font-variant:small-caps;letter-spacing:.14em;color:#5a4426;border-radius:2px}
+.peaks-inset{position:absolute;width:24%;height:30%;border:1.5px solid #6f5634;outline:1px solid #6f563455;outline-offset:3px;background:#f4e8cc55;box-shadow:inset 0 0 18px #6b4f2a33}
+.peaks-inset span{position:absolute;left:0;top:0;padding:.35cqw 1cqw;background:#f6ecd5f0;border-right:1px solid #6f5634;border-bottom:1px solid #6f5634;font:clamp(10px,1.4cqw,12.5px)/1 Georgia,serif;font-variant:small-caps;letter-spacing:.12em;color:#5a4426}
+.peak{position:absolute;display:flex;align-items:center;gap:.5cqw;padding:0;border:0;background:none;color:#2f2416;cursor:pointer;translate:-50% -70%;transform-origin:50% 70%;transition:scale .2s cubic-bezier(.3,1.5,.5,1)}
+.peak svg{flex:none;width:clamp(16px,2.6cqw,24px);height:auto;fill:#f6ecd5;stroke:#9c3b22;stroke-width:2.2;stroke-linejoin:round;filter:drop-shadow(0 1px 1px #3b2a1366)}
+.peak span{padding:.15cqw .7cqw;background:#f6ecd5e6;border-radius:2px;font:clamp(10px,1.45cqw,13px)/1.2 Georgia,'Times New Roman',serif;white-space:nowrap;box-shadow:0 1px 2px #3b2a1333}
+.peak-l{flex-direction:row-reverse;translate:calc(-100% + clamp(8px,1.3cqw,12px)) -70%}
+.peak-r{translate:calc(-1 * clamp(8px,1.3cqw,12px)) -70%}
+.peak-rb{translate:calc(-1 * clamp(8px,1.3cqw,12px)) -20%}
+.peak-b{flex-direction:column;gap:.2cqw;translate:-50% -35%}
+.peak:hover{scale:1.08;z-index:2}
+.peak[aria-pressed=true]{z-index:3}
+.peak[aria-pressed=true] svg{fill:#9c3b22;stroke:#2f2416}
+.peak[aria-pressed=true] span{background:#2f2416;color:#f6ecd5}
+.peak:focus-visible{outline:2px solid #9c3b22;outline-offset:3px;border-radius:3px}
+.peaks-card{position:absolute;left:3%;bottom:4%;z-index:4;width:min(33%,300px);padding:1.8cqw 2.2cqw;background:#f8f0dcf7;border:1px solid #8a6f45;box-shadow:0 6px 18px #3b2a1359;color:#2f2416}
+.peaks-card.is-right{left:auto;right:4%}
+body .peaks-card h3{margin:0 0 .3cqw;font:600 clamp(16px,2.3cqw,21px)/1.2 Georgia,'Times New Roman',serif!important;color:#2f2416}
+.peaks-card p{margin:0 0 .8cqw;font:clamp(12px,1.55cqw,14.5px)/1.45 Georgia,'Times New Roman',serif!important;color:#2f2416!important}
+.peaks-card .peaks-meta{font-variant:small-caps;letter-spacing:.05em;color:#6b5434!important}
+.peaks-card .peaks-coords{margin:0;font-size:clamp(11px,1.3cqw,12.5px)!important;color:#6b5434!important}
+.peaks-card a{color:#9c3b22}
+@media(max-width:600px){
+  body dialog.trailmap{width:calc(100vw - 16px)}
+  .peaks-card{width:min(46%,240px);padding:2.4cqw}
+}
+.peak-rt{translate:calc(-1 * clamp(8px,1.3cqw,12px)) -115%}
