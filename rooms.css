@@ -701,3 +701,12 @@ body dialog.secret[open]:has(#word-form:not([hidden])) .secret-grid{margin-botto
 #search-results li{margin:14px 0}
 .search-snippet{margin:3px 0 0;font-size:13px;line-height:1.5;color:var(--muted)}
 #search-results mark{background:color-mix(in srgb,#e8b84a 45%,transparent);color:inherit;border-radius:2px;padding:0 1px}
+
+/* footer always stays at the bottom: the window doesn't scroll, the content between header and footer does */
+html,body{height:100%}
+body{overflow:hidden}
+.site{height:100vh;height:100svh;min-height:0!important;overflow:hidden}
+.site>main,.site>#search-panel{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent;margin-right:-10px;padding-right:10px}
+.site>main::-webkit-scrollbar,.site>#search-panel::-webkit-scrollbar{width:6px}
+.site>main::-webkit-scrollbar-thumb,.site>#search-panel::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.site>main{padding-bottom:24px}
