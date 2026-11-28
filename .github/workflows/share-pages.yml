@@ -1,0 +1,58 @@
+name: Update share previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - blog-posts.json
+      - posts.js
+      - portfolio-content.mjs
+      - scripts/build-share-pages.mjs
+      - .github/workflows/share-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: share-pages-main
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+        with:
+          chrome-version: '156.0.8078.47'
+      - name: Generate HTML and preview images
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/build-share-pages.mjs
+      - name: Commit generated changes
+        id: publish
+        run: |
+          git add -- blog/ experiences/ hobbies/ places/ projects/
+          if git ls-files --cached --others --exclude-standard -- og/blog/ | grep -q .; then
+            git add -- og/blog/
+          fi
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Update portfolio share previews'
+          git push origin HEAD:main
+          echo 'changed=true' >> "$GITHUB_OUTPUT"
+      - name: Request a GitHub Pages build
+        if: steps.publish.outputs.changed == 'true' || github.event_name == 'workflow_dispatch' || github.run_attempt > 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

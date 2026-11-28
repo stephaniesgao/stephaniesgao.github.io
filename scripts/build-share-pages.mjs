@@ -58,7 +58,7 @@ ${marker}
 ${meta('og','property',openGraph)}
 ${meta('twitter','name',twitter)}
   <meta http-equiv="refresh" content="0;url=${target}">
-  <script>location.replace(${JSON.stringify(target)})</script>
+  <script>location.replace("/"+location.search+${JSON.stringify(target.slice(1))}+location.hash)</script>
 </head>
 <body>
   <p>Continue to <a href="${target}">${escapeHtml(title)}</a>.</p>
@@ -91,6 +91,7 @@ function renderImages(){
       const screenshot=join(temp,`${page.id}.png`);
       const result=spawnSync(process.env.CHROME_BIN||'google-chrome',[
         '--headless','--hide-scrollbars','--disable-background-networking','--force-device-scale-factor=1',
+        ...(process.env.GITHUB_ACTIONS==='true'?['--no-sandbox']:[]),
         `--user-data-dir=${join(temp,'profile')}`,`--window-size=${width},${height}`,
         `--screenshot=${screenshot}`,pathToFileURL(input).href
       ],{encoding:'utf8',timeout:30_000});
@@ -136,4 +137,5 @@ for(const page of pages){
   writeFileSync(join(directory,'index.html'),sharePage(page));
 }
 removeStaleOutputs();
+writeFileSync(join(root,'blog/share-posts.json'),JSON.stringify(articlePages.map(page=>page.id),null,2)+'\n');
 console.log(`Generated ${pages.length} share pages and ${articlePages.length} blog preview images.`);

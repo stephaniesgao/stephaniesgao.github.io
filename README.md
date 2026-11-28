@@ -3,6 +3,8 @@ Stephanie Gao’s personal portfolio
 
 ## Link previews
 
-Share clean URLs such as `/blog/was-lady-gagas-meat-dress-a-warning-about-ai/` instead of `/#blog/…`. Link crawlers cannot see URL fragments. The clean pages expose preview metadata and redirect visitors to the existing portfolio routes.
+Copy the clean URL from the address bar to share a page, for example `/blog/was-lady-gagas-meat-dress-a-warning-about-ai/`. Old `/#blog/…` links still open the same pages, but link crawlers cannot see their fragments. Preview images are only used in link metadata.
 
-After publishing, editing, or removing a post, or changing the projects or post visibility in `portfolio-content.mjs`, run `node scripts/build-share-pages.mjs` and commit the updated HTML and PNGs. The in-browser editor updates the post data but does not regenerate previews. The script needs Node.js and Chrome on your PATH (`google-chrome`), or set `CHROME_BIN` to the Chrome/Chromium executable. Locked posts do not get share pages or preview images.
+Publishing through the in-browser editor triggers the **Update share previews** workflow. It regenerates the HTML and images on `main`, removes the assets for deleted or newly locked posts, and requests a Pages build when the generated files change. Locked posts do not get share pages or preview images.
+
+For local changes, run `node scripts/build-share-pages.mjs`. The script needs Node.js and Chrome on your PATH (`google-chrome`), or set `CHROME_BIN` to the Chrome/Chromium executable.
